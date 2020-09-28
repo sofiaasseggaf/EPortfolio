@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">ePortfolio</string>
+
+    <string name="strategi_prompt">Choose a Strategy</string>
+    <string-array name="list_strategi">
+        <item>Penghargaan</item>
+        <item>Forum Edukasi</item>
+        <item>Organisasi</item>
+    </string-array>
+
+    <string name="semester_prompt">Choose a Semester</string>
+    <string-array name="list_semester">
+        <item>Ganjil</item>
+        <item>Genap</item>
+    </string-array>
+
+    <string name="kategori_prompt">Choose a Categoty</string>
+    <string-array name="list_kategori">
+        <item>Karya</item>
+        <item>Unjuk Kerja</item>
+        <item>Proyek</item>
+    </string-array>
+
+</resources>

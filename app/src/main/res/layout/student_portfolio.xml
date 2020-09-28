@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    tools:context=".student.PortfolioStudent"
+    android:background="#ffffff"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingRight="30dp"
+        android:paddingLeft="30dp"
+        android:layout_marginBottom="60dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="80dp">
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Portfolio"
+                android:fontFamily="@font/montserrat_regular"
+                android:textSize="14pt"
+                android:gravity="center"
+                android:layout_marginTop="15dp"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/text">
+
+                <LinearLayout
+                    android:id="@+id/btn_unjuk_kerja"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btnunjukkerja"
+                    android:layout_marginTop="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Unjuk Kerja"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorFont2"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="5dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_penghargaan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btnpenghargaan"
+                    android:layout_below="@id/btn_unjuk_kerja"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Penghargaan"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorFont2"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="5dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_karya"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btnkarya"
+                    android:layout_below="@id/btn_unjuk_kerja"
+                    android:layout_toRightOf="@id/btn_penghargaan"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Karya"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorFont2"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="5dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_organisasi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btnorganisasi"
+                    android:layout_below="@id/btn_karya"
+                    android:layout_toRightOf="@id/btn_penghargaan"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Organisasi"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorFont2"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="5dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_proyek"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btnproyek"
+                    android:layout_below="@id/btn_penghargaan"
+                    android:layout_marginTop="10dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Proyek"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorFont2"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="5dp"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_forum_edukasi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btnforumedukasi"
+                    android:layout_below="@id/btn_proyek"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Forum Edukasi"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textSize="16sp"
+                        android:textColor="@color/colorFont2"
+                        android:layout_gravity="bottom"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="5dp"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:background="@color/colorFont2">
+
+        <ImageButton
+            android:id="@+id/btn_home"
+            android:layout_width="30dp"
+            android:layout_height="35dp"
+            android:layout_marginRight="70dp"
+            android:layout_gravity="center"
+            android:background="@drawable/berandabotton"/>
+        <ImageButton
+            android:id="@+id/btn_portfolio"
+            android:layout_width="40dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="70dp"
+            android:layout_gravity="center"
+            android:background="@drawable/portfoliobotton"/>
+        <ImageButton
+            android:id="@+id/btn_input"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="70dp"
+            android:layout_gravity="center"
+            android:background="@drawable/inputbotton"/>
+        <ImageButton
+            android:id="@+id/btn_profile"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:background="@drawable/profilebotton"/>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/framelayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/loading"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"></ProgressBar>
+
+    </FrameLayout>
+
+</RelativeLayout>

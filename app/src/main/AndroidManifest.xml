@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.project.eportfolio">
+
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- Include following permission if you want to cache images on SD card -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/logo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        android:debuggable="false"
+        tools:ignore="HardcodedDebugMode">
+
+        <activity android:name=".SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".utility.PreferenceUtils" />
+
+        <activity android:name=".student.HomeStudent" />
+        <activity android:name=".student.InputStudent"/>
+        <activity android:name=".student.PortfolioStudent"/>
+        <activity android:name=".student.ProfileStudent"/>
+        <activity android:name=".student.ProfileStudentSettingEdit" />
+        <activity android:name=".student.ProfileStudentSettingPrivacy" />
+
+        <activity android:name=".student.portfolio.ForumEdukasi" />
+        <activity android:name=".student.portfolio.Karya" />
+        <activity android:name=".student.portfolio.Organisasi" />
+        <activity android:name=".student.portfolio.Penghargaan" />
+        <activity android:name=".student.portfolio.Proyek" />
+        <activity android:name=".student.portfolio.UnjukKerja" />
+
+        <activity android:name=".teacher.HomeTeacher" />
+        <activity android:name=".teacher.InputTeacher" />
+        <activity android:name=".teacher.MasterTeacher" />
+        <activity android:name=".teacher.ProfileTeacher"/>
+        <activity android:name=".teacher.ProfileTeacherSettingEdit" />
+        <activity android:name=".teacher.ProfileTeacherSettingPrivacy" />
+
+        <activity android:name=".teacher.master.DataGuru" />
+        <activity android:name=".teacher.master.DataKelas" />
+        <activity android:name=".teacher.master.DataMapel" />
+        <activity android:name=".teacher.master.DataMurid" />
+        <activity android:name=".teacher.master.DataPortfolio" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.project.eportfolio.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+    </application>
+
+</manifest>

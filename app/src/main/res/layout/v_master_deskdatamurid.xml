@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="350dp"
+    android:layout_height="550dp"
+    android:paddingTop="30dp"
+    android:paddingRight="15dp"
+    android:paddingLeft="15dp"
+    android:layout_gravity="center"
+    android:background="@drawable/bghome">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgDeskDataMMurid"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/profilepicture"
+            app:civ_border_width="3dp"
+            app:civ_border_color="#ffffff"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="10dp">
+            <TextView
+                android:id="@+id/namaDeskDataGuru"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="HIMALAYATI JAE HOO"
+                android:textColor="@color/colorFont"/>
+            <TextView
+                android:id="@+id/kelasDeskDataMurid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_marginTop="5dp"
+                android:text="XII IPA 1"
+                android:textColor="@color/colorFont"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="Alamat"
+                android:textColor="@color/colorFont"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_gravity="center"
+                android:textSize="14sp"/>
+            <TextView
+                android:id="@+id/alamatDeskDataMurid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jl Datuk Ibrahim RT 05 RW 07 NO 99 Condet Jakarta Timur"
+                android:textColor="@color/colorFont"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_gravity="center"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp">
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textColor="@color/colorFont"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_gravity="center"
+                android:textSize="14sp"/>
+            <TextView
+                android:id="@+id/emailDeskDataMurid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="rachelgreen@outlook.com"
+                android:textColor="@color/colorFont"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_gravity="center"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="30dp">
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="Telepon"
+                android:textColor="@color/colorFont"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_gravity="center"
+                android:textSize="14sp"/>
+            <TextView
+                android:id="@+id/tlpDeskDataMurid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="087798765567"
+                android:textColor="@color/colorFont"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_gravity="center"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

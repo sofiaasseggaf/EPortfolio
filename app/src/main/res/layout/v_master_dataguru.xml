@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:gravity="center_vertical"
+    android:layout_margin="10dp"
+    android:padding="10dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgMasterGuru"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/profilepicture"
+            app:civ_border_width="2dp"
+            android:layout_gravity="center_vertical"
+            app:civ_border_color="@color/colorFont2"/>
+
+        <TextView
+            android:id="@+id/namaMasterGuru"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rachel Green"
+            android:textSize="8pt"
+            android:fontFamily="@font/montserrat_bold"
+            android:layout_gravity="center"
+            android:layout_marginLeft="15dp"
+            android:textColor="@color/colorFont"/>
+
+</LinearLayout>

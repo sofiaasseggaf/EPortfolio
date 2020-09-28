@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#CC22D3D3"
+    android:gravity="center_vertical"
+    android:layout_margin="10dp"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/imgListUnjukKerja"
+        android:layout_width="120dp"
+        android:layout_height="120dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_toRightOf="@id/imgListUnjukKerja"
+        android:layout_marginLeft="15dp">
+
+        <TextView
+            android:id="@+id/mapelListUnjukKerja"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Matematika"
+            android:textSize="7pt"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@color/colorFont"/>
+
+
+        <TextView
+            android:id="@+id/predikatListUnjukKerja"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Predikat : A"
+            android:textSize="7pt"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@color/colorFont"/>
+
+        <TextView
+            android:id="@+id/narasiListUnjukKerja"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Narasi Singkat"
+            android:textSize="7pt"
+            android:layout_marginTop="5dp"
+            android:minLines="6"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@color/colorFont"/>
+
+        <TextView
+            android:id="@+id/tglListUnjukKerja"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="10/02/2020"
+            android:textSize="7pt"
+            android:layout_marginTop="5dp"
+            android:gravity="right"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@color/colorFont"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/judulListUnjukKerja"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:text="Kemampuan Seni dalam Berbahasa"
+        android:textSize="7pt"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:layout_below="@id/imgListUnjukKerja"
+        android:textColor="@color/colorFont"/>
+
+</RelativeLayout>

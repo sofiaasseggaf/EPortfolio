@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="360dp"
+    android:layout_height="720dp"
+    android:background="@drawable/bgmaster"
+    tools:context=".teacher.MasterTeacher">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="60dp"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <LinearLayout
+            android:id="@+id/btnDataMurid"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/bgbtndatamurid"
+            android:layout_marginTop="100dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data Murid"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:textSize="10pt"
+                android:fontFamily="@font/montserrat_bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnDataGuru"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/bgbtndataguru"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data Guru"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:textSize="10pt"
+                android:fontFamily="@font/montserrat_bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnDataKelas"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/bgbtndatakelas"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data Kelas"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:textSize="10pt"
+                android:fontFamily="@font/montserrat_bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnDataMapel"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/bgbtndatamapel"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data Mapel"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:textSize="10pt"
+                android:fontFamily="@font/montserrat_bold"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btnDataPortfolio"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@drawable/bgbtndataportfolio"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data Portfolio"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:textSize="10pt"
+                android:fontFamily="@font/montserrat_bold"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_horizontal"
+        android:background="@color/colorFont2">
+
+        <ImageButton
+            android:id="@+id/btn_home"
+            android:layout_width="20dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="65dp"
+            android:layout_gravity="center"
+            android:background="@drawable/berandabotton"/>
+        <ImageButton
+            android:id="@+id/btn_master"
+            android:layout_width="40dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="65dp"
+            android:layout_gravity="center"
+            android:background="@drawable/btnmaster"/>
+        <ImageButton
+            android:id="@+id/btn_input"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="65dp"
+            android:layout_gravity="center"
+            android:background="@drawable/inputbotton"/>
+        <ImageButton
+            android:id="@+id/btn_profile"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:background="@drawable/profilebotton"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
