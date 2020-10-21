@@ -1,11 +1,16 @@
 package com.project.eportfolio.student;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityOptions;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.transition.Slide;
+import android.view.Gravity;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -44,6 +49,7 @@ public class ProfileStudentSettingPrivacy extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setAnimation();
         setContentView(R.layout.student_profile_setting_privacy);
 
         editPassLama = findViewById(R.id.editPasswordLama);
@@ -156,6 +162,18 @@ public class ProfileStudentSettingPrivacy extends AppCompatActivity {
         }
     }
 
+    //Your Slide animation
+    public void setAnimation(){
+        if(Build.VERSION.SDK_INT>20) {
+            Slide slide = new Slide();
+            slide.setSlideEdge(Gravity.LEFT);
+            slide.setDuration(500);
+            slide.setInterpolator(new DecelerateInterpolator());
+            getWindow().setExitTransition(slide);
+            getWindow().setEnterTransition(slide);
+        }
+    }
+
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Batal Edit Password ?")
@@ -165,8 +183,14 @@ public class ProfileStudentSettingPrivacy extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int i) {
                         //HomeTeacher.super.onBackPressed();
                         Intent a = new Intent(ProfileStudentSettingPrivacy.this, ProfileStudent.class);
-                        startActivity(a);
-                        finish();
+                        if(Build.VERSION.SDK_INT>20){
+                            ActivityOptions options =
+                                    ActivityOptions.makeSceneTransitionAnimation(ProfileStudentSettingPrivacy.this);
+                            startActivity(a,options.toBundle());
+                        }else {
+                            startActivity(a);
+                            finish();
+                        }
                     }
                 })
 

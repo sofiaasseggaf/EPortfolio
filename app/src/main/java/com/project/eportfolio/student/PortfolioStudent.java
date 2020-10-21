@@ -1,8 +1,13 @@
 package com.project.eportfolio.student;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.transition.Slide;
+import android.view.Gravity;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
@@ -25,6 +30,7 @@ public class PortfolioStudent extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setAnimation();
         setContentView(R.layout.student_portfolio);
 
         btn_beranda = findViewById(R.id.btn_home);
@@ -51,8 +57,14 @@ public class PortfolioStudent extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent a = new Intent(PortfolioStudent.this, InputStudent.class);
-                startActivity(a);
-                finish();
+                if(Build.VERSION.SDK_INT>20){
+                    ActivityOptions options =
+                            ActivityOptions.makeSceneTransitionAnimation(PortfolioStudent.this);
+                    startActivity(a,options.toBundle());
+                }else {
+                    startActivity(a);
+                    finish();
+                }
             }
         });
 
@@ -60,8 +72,14 @@ public class PortfolioStudent extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent a = new Intent(PortfolioStudent.this, ProfileStudent.class);
-                startActivity(a);
-                finish();
+                if(Build.VERSION.SDK_INT>20){
+                    ActivityOptions options =
+                            ActivityOptions.makeSceneTransitionAnimation(PortfolioStudent.this);
+                    startActivity(a,options.toBundle());
+                }else {
+                    startActivity(a);
+                    finish();
+                }
             }
         });
 
@@ -120,11 +138,29 @@ public class PortfolioStudent extends AppCompatActivity {
         });
     }
 
+    //Your Slide animation
+    public void setAnimation(){
+        if(Build.VERSION.SDK_INT>20) {
+            Slide slide = new Slide();
+            slide.setSlideEdge(Gravity.LEFT);
+            slide.setDuration(500);
+            slide.setInterpolator(new DecelerateInterpolator());
+            getWindow().setExitTransition(slide);
+            getWindow().setEnterTransition(slide);
+        }
+    }
+
 
     @Override
     public void onBackPressed() {
         Intent a = new Intent(PortfolioStudent.this, HomeStudent.class);
-        startActivity(a);
-        finish();
+        if(Build.VERSION.SDK_INT>20){
+            ActivityOptions options =
+                    ActivityOptions.makeSceneTransitionAnimation(PortfolioStudent.this);
+            startActivity(a,options.toBundle());
+        }else {
+            startActivity(a);
+            finish();
+        }
     }
 }
