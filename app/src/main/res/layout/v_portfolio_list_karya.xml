@@ -5,7 +5,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#CC40DFC4"
+    android:background="#9940DFC4"
     android:gravity="center_vertical"
     android:layout_margin="10dp"
     android:padding="10dp">
@@ -27,6 +27,26 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Matematika"
+            android:textSize="7pt"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@color/colorFont"/>
+
+        <TextView
+            android:id="@+id/kelasListKarya"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="kelas X"
+            android:textSize="7pt"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@color/colorFont"/>
+
+        <TextView
+            android:id="@+id/semesterListKarya"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Semester 1"
             android:textSize="7pt"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/montserrat_regular"

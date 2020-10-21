@@ -144,9 +144,9 @@ public interface APIInterfacesRest {
             @Field("firstname") String firstname,
             @Field("midname") String midname,
             @Field("lastname") String lastname,
-            @Field("ttl") String ttl,
             @Field("nis") String nis,
             @Field("gender") String gender,
+            @Field("ttl") String ttl,
             @Field("address") String address,
             @Field("email") String email,
             @Field("phone") String phone

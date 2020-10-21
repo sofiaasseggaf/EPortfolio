@@ -45,21 +45,10 @@ public class AdapterListForumEdukasi extends RecyclerView.Adapter<RecyclerView.V
         ((Penampung)holder).narasiListForumEdukasi.setText(dataItemList.get(position).getNarasi());
         ((Penampung)holder).tglListForumEdukasi.setText(dataItemList.get(position).getTanggal());
         try{
-            Picasso.get().load(dataItemList.get(position).getFoto().toString()).into(new Target() {
-                @Override
-                public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                    ((Penampung)holder).imgListForumEdukasi.setImageBitmap(bitmap);
-                }
-                @Override
-                public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-                    //Toast.makeText(HomeStudent.this, "Maaf gambar gagal diload", Toast.LENGTH_LONG).show();
-                }
-                @Override
-                public void onPrepareLoad(Drawable placeHolderDrawable) {
-                }
-            });
+            ImageView image = ((Penampung)holder).imgListForumEdukasi;
+            Picasso.get().load("https://eportofolio.id/uploads/tr_portofolio/"+dataItemList.get(position).getFoto().toString()).into(image);
         } catch (Exception e){
-
+            e.printStackTrace();
         }
     }
 

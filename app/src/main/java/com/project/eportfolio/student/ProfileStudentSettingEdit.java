@@ -201,18 +201,30 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
                 editFirstName.getText().toString(),
                 editMidName.getText().toString(),
                 editLastName.getText().toString(),
-                editTtl.getText().toString(),
                 editNis.getText().toString(),
                 editJk.getText().toString(),
+                editTtl.getText().toString(),
                 editAlamat.getText().toString(),
                 editEmail.getText().toString(),
-                editTelp.getText().toString());
+                editTelp.getText().toString()
+        );
 
         postAdd.enqueue(new Callback<ModelUpdateDataSiswa>() {
             @Override
             public void onResponse(Call<ModelUpdateDataSiswa> call, Response<ModelUpdateDataSiswa> response) {
-                if (response!=null){
-                    getSiswa();
+
+                try {
+                    if (response.isSuccessful() ) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(ProfileStudentSettingEdit.this, "Update Berhasil", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                        getSiswa();
+                    }
+                } catch (Exception e){
+                    e.printStackTrace();
                 }
             }
 
@@ -240,17 +252,17 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
                 dataModelSiswa = response.body();
 
                 if (response.body()!=null){
-                    try {
-                        for (int a = 0; a < dataModelSiswa.getData().getMsMurid().size(); a++) {
-                            if (PreferenceUtils.getIdSiswa(getApplicationContext()).equalsIgnoreCase(dataModelSiswa.getData().getMsMurid().get(a).getId())) {
 
-                                dataSiswa = dataModelSiswa.getData().getMsMurid().get(a);
-                                saveDataMurid();
+                        for (int a = 0; a < dataModelSiswa.getTotal(); a++) {
+                            try {
+                                if (PreferenceUtils.getIdSiswa(getApplicationContext()).equalsIgnoreCase(dataModelSiswa.getData().getMsMurid().get(a).getId())) {
+                                    dataSiswa = dataModelSiswa.getData().getMsMurid().get(a);
+                                    saveDataMurid();
+                                }
+                            } catch (Exception e){
                             }
                         }
-                    }catch (Exception e){
 
-                    }
                 }
             }
             @Override

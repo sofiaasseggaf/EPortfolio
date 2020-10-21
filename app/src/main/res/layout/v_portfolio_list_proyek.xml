@@ -5,7 +5,7 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#CCC8F681"
+    android:background="#99C8F681"
     android:gravity="center_vertical"
     android:layout_margin="10dp"
     android:padding="10dp">
@@ -32,6 +32,25 @@
             android:fontFamily="@font/montserrat_regular"
             android:textColor="@color/colorFont"/>
 
+        <TextView
+            android:id="@+id/kelasListProyek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="kelas X"
+            android:textSize="7pt"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@color/colorFont"/>
+
+        <TextView
+            android:id="@+id/semesterListProyek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Semester 1"
+            android:textSize="7pt"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@color/colorFont"/>
 
         <TextView
             android:id="@+id/predikatListProyek"

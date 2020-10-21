@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.project.eportfolio.R;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -36,14 +37,17 @@ public class AdapterListUnjukKerja extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ((Penampung)holder).mapelListUnjukKerja.setText(dataItemList.get(position).getMapelid());
+        ((Penampung)holder).kelasListUnjukKerja.setText(dataItemList.get(position).getKelas());
+        ((Penampung)holder).semesterListUnjukKerja.setText(dataItemList.get(position).getSemester());
         ((Penampung)holder).predikatListUnjukKerja.setText(dataItemList.get(position).getPredikat());
         ((Penampung)holder).narasiListUnjukKerja.setText(dataItemList.get(position).getNarasi());
         ((Penampung)holder).judulListUnjukKerja.setText(dataItemList.get(position).getJudulKd());
         ((Penampung)holder).tglListUnjukKerja.setText(dataItemList.get(position).getTanggal());
-        try {
-            Bitmap bitmap= BitmapFactory.decodeFile(dataItemList.get(position).getFoto().toString());
-            ((Penampung)holder).imgListUnjukKerja.setImageBitmap(bitmap);
-        }  catch (Exception e){
+        try{
+            ImageView image = ((Penampung)holder).imgListUnjukKerja;
+            Picasso.get().load("https://eportofolio.id/uploads/tr_portofolio/"+dataItemList.get(position).getFoto().toString()).into(image);
+        } catch (Exception e){
+            e.printStackTrace();
         }
     }
 
@@ -53,12 +57,15 @@ public class AdapterListUnjukKerja extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     static class Penampung extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView mapelListUnjukKerja, predikatListUnjukKerja, narasiListUnjukKerja, judulListUnjukKerja, tglListUnjukKerja;
+        public TextView mapelListUnjukKerja, kelasListUnjukKerja, semesterListUnjukKerja,
+                predikatListUnjukKerja, narasiListUnjukKerja, judulListUnjukKerja, tglListUnjukKerja;
         public ImageView imgListUnjukKerja;
         public Penampung(View itemView) {
             super(itemView);
             mapelListUnjukKerja = itemView.findViewById(R.id.mapelListUnjukKerja);
             predikatListUnjukKerja = itemView.findViewById(R.id.predikatListUnjukKerja);
+            kelasListUnjukKerja = itemView.findViewById(R.id.kelasListUnjukKerja);
+            semesterListUnjukKerja = itemView.findViewById(R.id.semesterListUnjukKerja);
             narasiListUnjukKerja = itemView.findViewById(R.id.narasiListUnjukKerja);
             judulListUnjukKerja = itemView.findViewById(R.id.judulListUnjukKerja);
             tglListUnjukKerja = itemView.findViewById(R.id.tglListUnjukKerja);

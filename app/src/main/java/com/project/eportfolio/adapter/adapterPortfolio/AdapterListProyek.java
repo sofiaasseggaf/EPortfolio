@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.project.eportfolio.R;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -32,18 +33,20 @@ public class AdapterListProyek extends RecyclerView.Adapter<RecyclerView.ViewHol
         Penampung penampung = new Penampung(view);
         return penampung;
     }
-
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ((Penampung)holder).mapelListProyek.setText(dataItemList.get(position).getMapelid());
+        ((Penampung)holder).kelasListProyek.setText(dataItemList.get(position).getKelas());
+        ((Penampung)holder).semesterListProyek.setText(dataItemList.get(position).getSemester());
         ((Penampung)holder).predikatListproyek.setText("Predikat : " + dataItemList.get(position).getPredikat());
         ((Penampung)holder).narasiListProyek.setText(dataItemList.get(position).getNarasi());
         ((Penampung)holder).tglListProyek.setText(dataItemList.get(position).getTanggal());
         ((Penampung)holder).judulListProyek.setText(dataItemList.get(position).getJudulKd());
-        try {
-            Bitmap bitmap= BitmapFactory.decodeFile(dataItemList.get(position).getFoto().toString());
-            ((Penampung)holder).imgListProyek.setImageBitmap(bitmap);
-        }  catch (Exception e){
+        try{
+            ImageView image = ((Penampung)holder).imgListProyek;
+            Picasso.get().load("https://eportofolio.id/uploads/tr_portofolio/"+dataItemList.get(position).getFoto().toString()).into(image);
+        } catch (Exception e){
+            e.printStackTrace();
         }
     }
 
@@ -53,11 +56,14 @@ public class AdapterListProyek extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     static class Penampung extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView mapelListProyek, predikatListproyek, narasiListProyek, judulListProyek, tglListProyek;
+        public TextView mapelListProyek,  kelasListProyek, semesterListProyek,
+                predikatListproyek, narasiListProyek, judulListProyek, tglListProyek;
         public ImageView imgListProyek;
         public Penampung(View itemView) {
             super(itemView);
             mapelListProyek = itemView.findViewById(R.id.mapelListProyek);
+            kelasListProyek = itemView.findViewById(R.id.kelasListProyek);
+            semesterListProyek = itemView.findViewById(R.id.semesterListProyek);
             predikatListproyek = itemView.findViewById(R.id.predikatListProyek);
             narasiListProyek = itemView.findViewById(R.id.narasiListProyek);
             judulListProyek = itemView.findViewById(R.id.judulListProyek);
