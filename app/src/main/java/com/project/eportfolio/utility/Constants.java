@@ -55,4 +55,13 @@ public class Constants {
     public static String NAMA_IMAGE_SISWA = "nama_image_siswa";
     public static String KEY_IMAGE_GURU = "image_guru";
     public static String NAMA_IMAGE_GURU = "nama_image_guru";
+
+
+
+
+
+
+    public static final String ALLOW_KEY = "ALLOWED";
+    public static final String CAMERA_PREF = "camera_pref";
+
 }

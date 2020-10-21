@@ -3,6 +3,7 @@ package com.project.eportfolio.student;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -14,14 +15,17 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.R;
+import com.project.eportfolio.adapter.adapterPortfolio.AdapterListKarya;
+import com.project.eportfolio.adapter.adapterPortfolio.AdapterSliderPortfolio;
 import com.project.eportfolio.model.portfolio.ModelPortofolio;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
-import com.project.eportfolio.model.strategi.ModelStrategi;
-import com.project.eportfolio.model.strategi.MsStrategi;
+import com.project.eportfolio.student.portfolio.Karya;
 import com.project.eportfolio.utility.PreferenceUtils;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -40,11 +44,6 @@ public class HomeStudent extends AppCompatActivity {
 
     ModelPortofolio dataModelPortfolio;
     List<TrPortofolio> listPortofolio = new ArrayList<>();
-    ModelStrategi dataModelStrategi;
-    List<MsStrategi> listKarya = new ArrayList<>();
-    List<MsStrategi> listProyek = new ArrayList<>();
-    List<MsStrategi> listUnjukKerja = new ArrayList<>();
-
     List<TrPortofolio> listKaryaMurid = new ArrayList<>();
     List<TrPortofolio> listProyekMurid = new ArrayList<>();
     List<TrPortofolio> listUnjukKerjaMurid = new ArrayList<>();
@@ -52,9 +51,12 @@ public class HomeStudent extends AppCompatActivity {
     List<TrPortofolio> listOrganisasi = new ArrayList<>();
     List<TrPortofolio> listForumEdukasi = new ArrayList<>();
 
+    List<TrPortofolio> listSlider = new ArrayList<>();
+    AdapterSliderPortfolio itemList;
+    RecyclerView rvSliderPortfolioSiswa;
 
     String namasiswa;
-    TextView namaSiswa, nisSiswa;
+    TextView namaSiswa, nisSiswa, txtMorePortfolioSiswa;
     ImageView fotoSiswa;
     String apikey = "7826470ABBA476706DB24D47C6A6ED64";
 
@@ -71,6 +73,8 @@ public class HomeStudent extends AppCompatActivity {
         namaSiswa = findViewById(R.id.namaSiswa);
         nisSiswa = findViewById(R.id.nisSiswa);
         fotoSiswa = findViewById(R.id.imgSiswa);
+        txtMorePortfolioSiswa = findViewById(R.id.txtMorePortfolioSiswa);
+        txtMorePortfolioSiswa.setPaintFlags(txtMorePortfolioSiswa.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
 
         txtForumEdukasi = findViewById(R.id.txtForumEdukasi);
         txtKarya = findViewById(R.id.txtKarya);
@@ -78,10 +82,20 @@ public class HomeStudent extends AppCompatActivity {
         txtPenghargaan = findViewById(R.id.txtPenghargaan);
         txtProyek = findViewById(R.id.txtProyek);
         txtUnjukKerja = findViewById(R.id.txtUnjukKerja);
+        rvSliderPortfolioSiswa = findViewById(R.id.rvSliderPortfolioSiswa);
 
         first();
 
         btn_portfolio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(HomeStudent.this, PortfolioStudent.class);
+                startActivity(a);
+                finish();
+            }
+        });
+
+        txtMorePortfolioSiswa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent a = new Intent(HomeStudent.this, PortfolioStudent.class);
@@ -115,59 +129,13 @@ public class HomeStudent extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                getStrategi();
+                getPortfolio();
             }
         }).start();
 
         //getdataportfoliosiswa, setelah itu dapet semua baru ke main thread trus set data siswa
     }
 
-    public void getStrategi() {
-        final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
-        final Call<ModelStrategi> dataSiswax = apiInterface.getDataStrategi( apikey, 1000);
-
-        dataSiswax.enqueue(new Callback<ModelStrategi>() {
-            @Override
-            public void onResponse(Call<ModelStrategi> call, Response<ModelStrategi> response) {
-
-                dataModelStrategi = response.body();
-
-                if (response.body()!=null) {
-                    for(int i=0; i<dataModelStrategi.getData().getMsStrategi().size(); i++){
-                        if (dataModelStrategi.getData().getMsStrategi().get(i).getKategoriid().equalsIgnoreCase("3")){
-                            listKarya.add(dataModelStrategi.getData().getMsStrategi().get(i));
-                        }
-                    }
-
-                    for(int i=0; i<dataModelStrategi.getData().getMsStrategi().size(); i++){
-                        if (dataModelStrategi.getData().getMsStrategi().get(i).getKategoriid().equalsIgnoreCase("1")){
-                            listUnjukKerja.add(dataModelStrategi.getData().getMsStrategi().get(i));
-                        }
-                    }
-
-                    for(int i=0; i<dataModelStrategi.getData().getMsStrategi().size(); i++){
-                        if (dataModelStrategi.getData().getMsStrategi().get(i).getKategoriid().equalsIgnoreCase("2")){
-                            listProyek.add(dataModelStrategi.getData().getMsStrategi().get(i));
-                        }
-                    }
-
-                    getPortfolio();
-                }
-            }
-            @Override
-            public void onFailure(Call<ModelStrategi> call, Throwable t) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        findViewById(R.id.framelayout).setVisibility(View.GONE);
-                        Toast.makeText(HomeStudent.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
-                    }
-                });
-
-                call.cancel();
-            }
-        });
-    }
 
     public void getPortfolio() {
         final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
@@ -181,66 +149,95 @@ public class HomeStudent extends AppCompatActivity {
 
                 if (response.body()!=null){
 
-                    for (int i=0; i<dataModelPortfolio.getData().getTrPortofolio().size(); i++) {
-                        if (String.valueOf(dataModelPortfolio.getData().getTrPortofolio().get(i).getMuridid())
-                                .equalsIgnoreCase(PreferenceUtils.getIdSiswa(getApplicationContext()))) {
-                            listPortofolio.add(dataModelPortfolio.getData().getTrPortofolio().get(i));
-                            //LIST SEMUA PORTFOLIO SI SISWA YG LOGIN
+                    for (int i=0; i<dataModelPortfolio.getTotal(); i++) {
+                        try {
+                            if (String.valueOf(dataModelPortfolio.getData().getTrPortofolio().get(i).getMuridid())
+                                    .equalsIgnoreCase(PreferenceUtils.getIdSiswa(getApplicationContext()))) {
+                                listPortofolio.add(dataModelPortfolio.getData().getTrPortofolio().get(i));
+                                //LIST SEMUA PORTFOLIO SI SISWA YG LOGIN
+                            }
+                        } catch (Exception e){
+
                         }
                     }
 
-                    for(int i=0; i<listPortofolio.size(); i++){
-                        if (listPortofolio.get(i).getStrategiid().equalsIgnoreCase(listKarya.get(i).getIdStrategi())){
-                            listKaryaMurid.add(listPortofolio.get(i));
+                    if(listPortofolio==null) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                findViewById(R.id.framelayout).setVisibility(View.GONE);
+                                Toast.makeText(HomeStudent.this, "Kamu Belum Memiliki Portofolio", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    } else {
+                        for(int i=0; i<listPortofolio.size(); i++){
+                            try {
+                                if (listPortofolio.get(i).getIdkategori().equalsIgnoreCase("3")){
+                                    listKaryaMurid.add(listPortofolio.get(i));
+                                }
+                            } catch (Exception e){
+
+                            }
                         }
+
+                        for(int i=0; i<listPortofolio.size(); i++){
+                            try {
+                                if (listPortofolio.get(i).getIdkategori().equalsIgnoreCase("1")){
+                                    listUnjukKerjaMurid.add(listPortofolio.get(i));
+                                }
+                            } catch (Exception e){
+
+                            }
+                        }
+
+                        for(int i=0; i<listPortofolio.size(); i++){
+                            try {
+                                if (listPortofolio.get(i).getIdkategori().equalsIgnoreCase("2")){
+                                    listProyekMurid.add(listPortofolio.get(i));
+                                }
+                            } catch (Exception e){
+
+                            }
+                        }
+
+                        for(int i=0; i<listPortofolio.size(); i++){
+                            try {
+                                if (listPortofolio.get(i).getStrategiid().equalsIgnoreCase("Organisasi")){
+                                    listOrganisasi.add(listPortofolio.get(i));
+                                }
+                            } catch (Exception e){
+
+                            }
+                        }
+
+                        for(int i=0; i<listPortofolio.size(); i++){
+                            try {
+                                if (listPortofolio.get(i).getStrategiid().equalsIgnoreCase("Penghargaan")){
+                                    listPenghargaan.add(listPortofolio.get(i));
+                                }
+                            } catch (Exception e){
+
+                            }
+                        }
+
+                        for(int i=0; i<listPortofolio.size(); i++){
+                            try {
+                                if (listPortofolio.get(i).getStrategiid().equalsIgnoreCase("Forum Edukasi")){
+                                    listForumEdukasi.add(listPortofolio.get(i));
+                                }
+                            } catch (Exception e){
+
+                            }
+                        }
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                findViewById(R.id.framelayout).setVisibility(View.GONE);
+                                setDataSiswa();
+                            }
+                        });
                     }
-
-                    for(int i=0; i<listPortofolio.size(); i++){
-                        if (listPortofolio.get(i).getStrategiid().equalsIgnoreCase(listUnjukKerja.get(i).getIdStrategi())){
-                            listUnjukKerjaMurid.add(listPortofolio.get(i));
-                        }
-                    }
-
-                    for(int i=0; i<listPortofolio.size(); i++){
-                        if (listPortofolio.get(i).getStrategiid().equalsIgnoreCase(listProyek.get(i).getIdStrategi())){
-                            listProyekMurid.add(listPortofolio.get(i));
-                        }
-                    }
-
-                    for(int i=0; i<listPortofolio.size(); i++){
-                        if (listPortofolio.get(i).getStrategiid().equalsIgnoreCase("Organisasi")){
-                            listOrganisasi.add(listPortofolio.get(i));
-                        }
-                    }
-
-                    for(int i=0; i<listPortofolio.size(); i++){
-                        if (listPortofolio.get(i).getStrategiid().equalsIgnoreCase("Penghargaan")){
-                            listPenghargaan.add(listPortofolio.get(i));
-                        }
-                    }
-
-                    for(int i=0; i<listPortofolio.size(); i++){
-                        if (listPortofolio.get(i).getStrategiid().equalsIgnoreCase("Forum Edukasi")){
-                            listForumEdukasi.add(listPortofolio.get(i));
-                        }
-                    }
-
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            findViewById(R.id.framelayout).setVisibility(View.GONE);
-                            setDataSiswa();
-                        }
-                    });
-
-                } else {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            findViewById(R.id.framelayout).setVisibility(View.GONE);
-                            Toast.makeText(HomeStudent.this, "Siswa Tidak Memiliki Portofolio", Toast.LENGTH_SHORT).show();
-                        }
-                    });
                 }
 
             }
@@ -281,12 +278,33 @@ public class HomeStudent extends AppCompatActivity {
             });
         }
 
-        txtKarya.setText(listKaryaMurid.size() + " Karya");
-        txtUnjukKerja.setText(listUnjukKerjaMurid.size() + " Unjuk Kerja");
-        txtProyek.setText(listProyekMurid.size() + " Proyek");
-        txtOrganisasi.setText(listOrganisasi.size() + " Organisasi");
-        txtPenghargaan.setText(listPenghargaan.size() + " Penghargaan");
-        txtForumEdukasi.setText(listForumEdukasi.size() + " Forum Edukasi");
+        txtKarya.setText(listKaryaMurid.size() + "   Karya");
+        txtUnjukKerja.setText(listUnjukKerjaMurid.size() + "   Unjuk Kerja");
+        txtProyek.setText(listProyekMurid.size() + "   Proyek");
+        txtOrganisasi.setText(listOrganisasi.size() + "   Organisasi");
+        txtPenghargaan.setText(listPenghargaan.size() + "   Penghargaan");
+        txtForumEdukasi.setText(listForumEdukasi.size() + "   Forum Edukasi");
+
+        if (listPortofolio!=null){
+            try {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        findViewById(R.id.framelayout).setVisibility(View.GONE);
+                        for (int i=0; i<5; i++){
+                            itemList = new AdapterSliderPortfolio(listPortofolio);
+                            LinearLayoutManager layoutManager
+                                    = new LinearLayoutManager(HomeStudent.this, LinearLayoutManager.HORIZONTAL, false);
+                            rvSliderPortfolioSiswa.setLayoutManager(layoutManager);
+                            rvSliderPortfolioSiswa.setAdapter(itemList);
+                        }
+                    }
+                });
+            } catch (Exception e){
+
+            }
+
+        }
 
     }
 

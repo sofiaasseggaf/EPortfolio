@@ -54,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
     RadioButton rbStudent, rbTeacher;
     String username, password, idUser;
     Bitmap photosiswa, photoguru;
-    boolean isValid;
+    boolean isValid, breakLoop;
 
     ModelSiswa dataModelSiswa;
     ModelUser dataModelUser;
@@ -66,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
     MsSekolah dataSekolah;
 
     String apikey = "7826470ABBA476706DB24D47C6A6ED64";
+    int bener;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -113,56 +114,38 @@ public class LoginActivity extends AppCompatActivity {
 
         if(rbStudent.isChecked()) {
             if (!txtUsername.getText().toString().isEmpty() && !txtPassword.getText().toString().isEmpty()) {
-                isValid = false;
-                for (int i = 0; i < dataModelUser.getTotal(); i++) {
-                    username = dataModelUser.getData().getAauthUsers().get(i).getUsername();
-                    password = dataModelUser.getData().getAauthUsers().get(i).getPass();
-                    idUser = dataModelUser.getData().getAauthUsers().get(i).getId();
-                    if (username.equalsIgnoreCase(txtUsername.getText().toString()) && password.equalsIgnoreCase(txtPassword.getText().toString())) {
-                        isValid = true;
-                    } else {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                findViewById(R.id.framelayout).setVisibility(View.GONE);
-                                Toast.makeText(LoginActivity.this, "akun belum terdaftar", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
-                    break;
-                }
-                if (isValid) {
-                    for(int a = 0; a < dataModelSiswa.getTotal(); a++) {
-                        if (dataModelSiswa.getData().getMsMurid().get(a).getUserid().equalsIgnoreCase(idUser)) {
-                            userSiswa = dataModelSiswa.getData().getMsMurid().get(a);
-                            saveDataMurid();
-                        } else {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    findViewById(R.id.framelayout).setVisibility(View.GONE);
-                                    Toast.makeText(LoginActivity.this, "akun belum terdaftar", Toast.LENGTH_SHORT).show();
+                try {
+                    for (int i = 0; i < dataModelUser.getTotal(); i++) {
+                        username = dataModelUser.getData().getAauthUsers().get(i).getUsername();
+                        password = dataModelUser.getData().getAauthUsers().get(i).getPass();
+                        idUser = dataModelUser.getData().getAauthUsers().get(i).getId();
+                        if (username.equalsIgnoreCase(txtUsername.getText().toString()) && password.equalsIgnoreCase(txtPassword.getText().toString())) {
+                            bener = 10;
+                            for (int a = 0; a < dataModelSiswa.getTotal(); a++) {
+                                if (dataModelSiswa.getData().getMsMurid().get(a).getUserid().equalsIgnoreCase(idUser)) {
+                                    userSiswa = dataModelSiswa.getData().getMsMurid().get(a);
+                                    saveDataMurid();
+                                    break;
                                 }
-                            });
+                            }
+                            break;
                         }
-                        break;
                     }
-                } else {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            findViewById(R.id.framelayout).setVisibility(View.GONE);
-                            Toast.makeText(LoginActivity.this, "akun belum terdaftar", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                } catch (Exception e){
+
                 }
+
+                if (bener!=10){
+                    findViewById(R.id.framelayout).setVisibility(View.GONE);
+                    Toast.makeText(LoginActivity.this, "Akun Belum Terdaftar", Toast.LENGTH_SHORT).show();
+                }
+
 
             } else if (txtUsername.getText().toString().isEmpty()) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        findViewById(R.id.framelayout).setVisibility(View.GONE);
-                        Toast.makeText(LoginActivity.this, "please fill any empty field", Toast.LENGTH_SHORT).show();
+
                     }
                 });
             } else if (txtPassword.getText().toString().isEmpty()) {
@@ -184,52 +167,34 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
 
+
         else if(rbTeacher.isChecked()) {
 
             if (!txtUsername.getText().toString().isEmpty() && !txtPassword.getText().toString().isEmpty()) {
-                isValid = false;
-                for (int i = 0; i <= dataModelUser.getTotal(); i++) {
-                    username = dataModelUser.getData().getAauthUsers().get(i).getUsername();
-                    password = dataModelUser.getData().getAauthUsers().get(i).getPass();
-                    idUser = dataModelUser.getData().getAauthUsers().get(i).getId();
-                    if (username.equalsIgnoreCase(txtUsername.getText().toString()) && password.equalsIgnoreCase(txtPassword.getText().toString())) {
-                        isValid = true;
-                    } else {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                findViewById(R.id.framelayout).setVisibility(View.GONE);
-                                Toast.makeText(LoginActivity.this, "akun belum terdaftar", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                    }
-                    break;
-                }
+               try {
+                   for (int i = 0; i <= dataModelUser.getTotal(); i++) {
+                       username = dataModelUser.getData().getAauthUsers().get(i).getUsername();
+                       password = dataModelUser.getData().getAauthUsers().get(i).getPass();
+                       idUser = dataModelUser.getData().getAauthUsers().get(i).getId();
+                       if (username.equalsIgnoreCase(txtUsername.getText().toString()) && password.equalsIgnoreCase(txtPassword.getText().toString())) {
+                          bener = 11;
+                           for(int a = 0; a < dataModelGuru.getTotal(); a++){
+                               if (dataModelGuru.getData().getMsGuru().get(a).getUserid().equalsIgnoreCase(idUser)){
+                                   userGuru = dataModelGuru.getData().getMsGuru().get(a);
+                                   saveDataGuru();
+                                   break;
+                               }
+                           }
+                           break;
+                       }
+                   }
+               } catch (Exception e){
 
-                if (isValid) {
-                    for(int a = 0; a < dataModelGuru.getTotal(); a++){
-                        if (dataModelGuru.getData().getMsGuru().get(a).getUserid().equalsIgnoreCase(idUser)){
-                            userGuru = dataModelGuru.getData().getMsGuru().get(a);
-                            saveDataGuru();
-                        } else {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    findViewById(R.id.framelayout).setVisibility(View.GONE);
-                                    Toast.makeText(LoginActivity.this, "akun belum terdaftar", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                        }
-                        break;
-                    }
-                } else {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            findViewById(R.id.framelayout).setVisibility(View.GONE);
-                            Toast.makeText(LoginActivity.this, "akun belum terdaftar", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+               }
+
+                if (bener!=11){
+                    findViewById(R.id.framelayout).setVisibility(View.GONE);
+                    Toast.makeText(LoginActivity.this, "Akun Belum Terdaftar", Toast.LENGTH_SHORT).show();
                 }
 
             } else if (txtUsername.getText().toString().isEmpty()) {
@@ -339,11 +304,11 @@ public class LoginActivity extends AppCompatActivity {
         PreferenceUtils.saveSekolahPhone(dataSekolah.getPhone(), getApplicationContext());
         PreferenceUtils.saveSekolahWebsite(dataSekolah.getWebsite(), getApplicationContext());
 
-            findViewById(R.id.framelayout).setVisibility(View.GONE);
-            Intent x = new Intent(LoginActivity.this, HomeTeacher.class);
-            startActivity(x);
-            Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
-            finish();
+        findViewById(R.id.framelayout).setVisibility(View.GONE);
+        Intent x = new Intent(LoginActivity.this, HomeTeacher.class);
+        startActivity(x);
+        Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
+        finish();
 
     }
 
@@ -355,11 +320,17 @@ public class LoginActivity extends AppCompatActivity {
         PreferenceUtils.saveSekolahPhone(dataSekolah.getPhone(), getApplicationContext());
         PreferenceUtils.saveSekolahWebsite(dataSekolah.getWebsite(), getApplicationContext());
 
-        findViewById(R.id.framelayout).setVisibility(View.GONE);
-        Intent x = new Intent(LoginActivity.this, HomeStudent.class);
-        startActivity(x);
-        Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
-        finish();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                findViewById(R.id.framelayout).setVisibility(View.GONE);
+                Intent x = new Intent(LoginActivity.this, HomeStudent.class);
+                startActivity(x);
+                Toast.makeText(LoginActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
 
     }
 

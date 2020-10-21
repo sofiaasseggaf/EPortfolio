@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -119,26 +120,35 @@ public class ProfileStudentSettingPrivacy extends AppCompatActivity {
         final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
         final Call<ModelSiswa> dataSiswax = apiInterface.getDataSiswa(apikey, 1000);
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         try {
 
             Response<ModelSiswa> response = dataSiswax.execute();
 
             dataModelSiswa = response.body();
 
-            for (int a = 0; a < dataModelSiswa.getData().getMsMurid().size(); a++) {
-                if (PreferenceUtils.getIdSiswa(getApplicationContext()).equalsIgnoreCase(dataModelSiswa.getData().getMsMurid().get(a).getId())) {
-                    newpass = dataModelSiswa.getData().getMsMurid().get(a).getPassword().toString();
-                    PreferenceUtils.savePassword(newpass, getApplicationContext());
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            findViewById(R.id.framelayout).setVisibility(View.GONE);
-                            Toast.makeText(ProfileStudentSettingPrivacy.this, "Password Berhasil Diganti !", Toast.LENGTH_SHORT).show();
-                            Intent a = new Intent(ProfileStudentSettingPrivacy.this, ProfileStudent.class);
-                            startActivity(a);
-                            finish();
+            if (dataModelSiswa!=null){
+                try {
+                    for (int a = 0; a < dataModelSiswa.getData().getMsMurid().size(); a++) {
+                        if (PreferenceUtils.getIdSiswa(getApplicationContext()).equalsIgnoreCase(dataModelSiswa.getData().getMsMurid().get(a).getId())) {
+                            newpass = dataModelSiswa.getData().getMsMurid().get(a).getPassword().toString();
+                            PreferenceUtils.savePassword(newpass, getApplicationContext());
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    findViewById(R.id.framelayout).setVisibility(View.GONE);
+                                    Toast.makeText(ProfileStudentSettingPrivacy.this, "Password Berhasil Diganti !", Toast.LENGTH_SHORT).show();
+                                    Intent a = new Intent(ProfileStudentSettingPrivacy.this, ProfileStudent.class);
+                                    startActivity(a);
+                                    finish();
+                                }
+                            });
                         }
-                    });
+                    }
+                } catch (Exception e){
+
                 }
             }
         } catch (IOException e) {

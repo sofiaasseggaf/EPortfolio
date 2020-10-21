@@ -18,35 +18,37 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="150dp">
+            android:paddingBottom="50dp">
 
             <LinearLayout
                 android:id="@+id/rect_profile"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:background="@drawable/hometop"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
+                android:paddingRight="20dp"
+                android:paddingLeft="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_gravity="center">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="40dp"
                     android:layout_marginLeft="15dp"
                     android:orientation="horizontal">
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/imgSiswa"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:src="@drawable/profilepicture"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         app:civ_border_width="2dp"
                         android:layout_gravity="center"
                         app:civ_border_color="#ffffff"/>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
                         android:orientation="vertical">
                         <TextView
                             android:layout_width="wrap_content"
@@ -61,7 +63,6 @@
                             android:id="@+id/namaSiswa"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Himalayati Jae Hoo"
                             android:textSize="16sp"
                             android:fontFamily="@font/montserrat_bold"
                             android:textColor="@color/colorFont"
@@ -71,7 +72,6 @@
                             android:id="@+id/nisSiswa"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="SMA/SMK Sederajat"
                             android:textSize="12sp"
                             android:fontFamily="@font/montserrat_regular"
                             android:textColor="@color/colorFont"
@@ -86,9 +86,9 @@
                 android:id="@+id/disemester"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:background="@color/colorFont2"
                 android:layout_below="@id/rect_profile"
                 android:orientation="vertical"
+                android:background="#97E8E8E8"
                 android:paddingLeft="40dp"
                 android:paddingRight="60dp"
                 android:paddingTop="30dp"
@@ -98,7 +98,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_regular"
-                    android:text="Di Semester ini, \nkamu telah menyelesaikan :"
+                    android:text="Pada Semester ini, \nSaya telah menyelesaikan :"
                     android:textColor="@color/colorFont"
                     android:textSize="14sp"/>
 
@@ -106,6 +106,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="30dp">
                     <LinearLayout
                         android:layout_weight="1"
@@ -129,7 +130,7 @@
                             android:fontFamily="@font/montserrat_regular"
                             android:textSize="14sp"
                             android:textColor="@color/colorFont"
-                            android:layout_marginTop="10dp">
+                            android:layout_marginTop="15dp">
                         </TextView>
                         <TextView
                             android:id="@+id/txtProyek"
@@ -139,7 +140,7 @@
                             android:fontFamily="@font/montserrat_regular"
                             android:textSize="14sp"
                             android:textColor="@color/colorFont"
-                            android:layout_marginTop="10dp">
+                            android:layout_marginTop="15dp">
                         </TextView>
                     </LinearLayout>
                     <LinearLayout
@@ -164,7 +165,7 @@
                             android:fontFamily="@font/montserrat_regular"
                             android:textSize="14sp"
                             android:textColor="@color/colorFont"
-                            android:layout_marginTop="10dp">
+                            android:layout_marginTop="15dp">
                         </TextView>
                         <TextView
                             android:id="@+id/txtForumEdukasi"
@@ -174,7 +175,7 @@
                             android:fontFamily="@font/montserrat_regular"
                             android:textSize="14sp"
                             android:textColor="@color/colorFont"
-                            android:layout_marginTop="10dp">
+                            android:layout_marginTop="15dp">
                         </TextView>
                     </LinearLayout>
                 </LinearLayout>
@@ -187,19 +188,26 @@
                 android:layout_alignParentRight="true"
                 android:text="more portfolio"
                 android:layout_marginTop="30dp"
+                android:layout_marginRight="15dp"
                 android:clickable="true"
                 android:layout_below="@id/disemester"
                 android:fontFamily="@font/montserrat_bold"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvPortfolioSiswa"
+                android:id="@+id/rvSliderPortfolioSiswa"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/txtMorePortfolioSiswa"
                 android:layout_marginTop="5dp"
                 android:paddingLeft="10dp"
                 android:orientation="horizontal">
             </androidx.recyclerview.widget.RecyclerView>
+
+
+
+
+
+            <!--
 
             <TextView
                 android:id="@+id/txtMoreArtikelSiswa"
@@ -209,7 +217,7 @@
                 android:text="more article"
                 android:layout_marginTop="30dp"
                 android:clickable="true"
-                android:layout_below="@id/rvPortfolioSiswa"
+                android:layout_below="@id/rvSliderPortfolioSiswa"
                 android:fontFamily="@font/montserrat_bold"/>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -221,6 +229,13 @@
                 android:paddingLeft="10dp"
                 android:orientation="horizontal">
             </androidx.recyclerview.widget.RecyclerView>
+
+            -->
+
+
+
+
+
 
         </RelativeLayout>
 
@@ -270,14 +285,15 @@
         android:id="@+id/framelayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/loading"
+        android:background="#A9009688"
         android:visibility="gone">
 
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"></ProgressBar>
-
+            android:layout_gravity="center|bottom"
+            android:layout_marginBottom="70dp">
+        </ProgressBar>
     </FrameLayout>
 
 </RelativeLayout>

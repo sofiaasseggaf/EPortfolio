@@ -52,6 +52,7 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
     Bitmap f;
     ModelSiswa dataModelSiswa;
     MsMurid dataSiswa;
+    String tempFotoPiagam;
 
     String apikey = "7826470ABBA476706DB24D47C6A6ED64";
 
@@ -91,7 +92,7 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
         dialogPicker1.setDialogSelectionListener(new DialogSelectionListener() {
             @Override
             public void onSelectedFilePaths(String[] files) {
-                String tempFotoPiagam = "file://" + files[0];
+                tempFotoPiagam = "file://" + files[0];
                 Picasso.get().load(tempFotoPiagam).into(new Target() {
                     @Override
                     public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
@@ -210,7 +211,9 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
         postAdd.enqueue(new Callback<ModelUpdateDataSiswa>() {
             @Override
             public void onResponse(Call<ModelUpdateDataSiswa> call, Response<ModelUpdateDataSiswa> response) {
-                getSiswa();
+                if (response!=null){
+                    getSiswa();
+                }
             }
 
             @Override
@@ -230,21 +233,55 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
         final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
         final Call<ModelSiswa> dataSiswax = apiInterface.getDataSiswa(apikey, 1000);
 
+        dataSiswax.enqueue(new Callback<ModelSiswa>() {
+            @Override
+            public void onResponse(Call<ModelSiswa> call, Response<ModelSiswa> response) {
+
+                dataModelSiswa = response.body();
+
+                if (response.body()!=null){
+                    try {
+                        for (int a = 0; a < dataModelSiswa.getData().getMsMurid().size(); a++) {
+                            if (PreferenceUtils.getIdSiswa(getApplicationContext()).equalsIgnoreCase(dataModelSiswa.getData().getMsMurid().get(a).getId())) {
+
+                                dataSiswa = dataModelSiswa.getData().getMsMurid().get(a);
+                                saveDataMurid();
+                            }
+                        }
+                    }catch (Exception e){
+
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<ModelSiswa> call, Throwable t) {
+
+                //Toast.makeText(LoginActivity.this, "Terjadi gangguan koneksi (getSiswa)", Toast.LENGTH_LONG).show();
+                call.cancel();
+            }
+        });
+
+        /*
         try {
-
             Response<ModelSiswa> response = dataSiswax.execute();
-
             dataModelSiswa = response.body();
+            if (dataModelSiswa!=null){
+                try {
+                    for (int a = 0; a < dataModelSiswa.getData().getMsMurid().size(); a++) {
+                        if (PreferenceUtils.getIdSiswa(getApplicationContext()).equalsIgnoreCase(dataModelSiswa.getData().getMsMurid().get(a).getId())) {
 
-            for (int a = 0; a < dataModelSiswa.getData().getMsMurid().size(); a++) {
-                if (PreferenceUtils.getIdSiswa(getApplicationContext()).equalsIgnoreCase(dataModelSiswa.getData().getMsMurid().get(a).getId())) {
-                    dataSiswa = dataModelSiswa.getData().getMsMurid().get(a);
-                    saveDataMurid();
+                            dataSiswa = dataModelSiswa.getData().getMsMurid().get(a);
+                            saveDataMurid();
+                        }
+                    }
+                }catch (Exception e){
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        */
+
     }
 
     public void saveDataMurid(){

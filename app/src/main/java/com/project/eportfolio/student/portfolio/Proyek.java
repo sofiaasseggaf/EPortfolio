@@ -105,19 +105,34 @@ public class Proyek extends AppCompatActivity {
 
                 if (response.body()!=null){
 
-                    for (int i=0; i<dataModelPortfolio.getData().getTrPortofolio().size(); i++) {
-                        if (dataModelPortfolio.getData().getTrPortofolio().get(i).getMuridid().toString()
-                                .equalsIgnoreCase(PreferenceUtils.getIdSiswa(getApplicationContext()))) {
-                            listPortofolio.add(dataModelPortfolio.getData().getTrPortofolio().get(i));
-                            //LIST SEMUA PORTFOLIO SI SISWA YG LOGIN
+                    for (int i=0; i<dataModelPortfolio.getTotal(); i++) {
+                        try {
+                            if (dataModelPortfolio.getData().getTrPortofolio().get(i).getMuridid().toString()
+                                    .equalsIgnoreCase(PreferenceUtils.getIdSiswa(getApplicationContext()))) {
+                                listPortofolio.add(dataModelPortfolio.getData().getTrPortofolio().get(i));
+                                //LIST SEMUA PORTFOLIO SI SISWA YG LOGIN
+                            }
+                        } catch (Exception e){
+
+                        }
+
+                    }
+
+                    if(listPortofolio==null) {
+                        Toast.makeText(Proyek.this, "Kamu Tidak Memiliki Portofolio Proyek", Toast.LENGTH_SHORT).show();
+                    } else {
+                        for(int i=0; i<listPortofolio.size(); i++){
+                            try {
+                                if (listPortofolio.get(i).getIdkategori().equalsIgnoreCase("2")){
+                                    listProyekMurid.add(listPortofolio.get(i));
+                                }
+                            } catch (Exception e){
+
+                            }
                         }
                     }
 
-                    for(int i=0; i<listPortofolio.size(); i++){
-                        if (listPortofolio.get(i).getStrategiid().equalsIgnoreCase(listProyek.get(i).getIdStrategi())){
-                            listProyekMurid.add(listPortofolio.get(i));
-                        }
-                    }
+
 
                     if (listProyekMurid!=null){
                         runOnUiThread(new Runnable() {

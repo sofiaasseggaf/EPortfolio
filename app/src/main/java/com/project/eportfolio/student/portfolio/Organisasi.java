@@ -69,19 +69,34 @@ public class Organisasi extends AppCompatActivity {
 
                 if (response.body()!=null){
 
-                    for (int i=0; i<dataModelPortfolio.getData().getTrPortofolio().size(); i++) {
-                        if (dataModelPortfolio.getData().getTrPortofolio().get(i).getMuridid().toString()
-                                .equalsIgnoreCase(PreferenceUtils.getIdSiswa(getApplicationContext()))) {
-                            listPortofolio.add(dataModelPortfolio.getData().getTrPortofolio().get(i));
-                            //LIST SEMUA PORTFOLIO SI SISWA YG LOGIN
+                    for (int i=0; i<dataModelPortfolio.getTotal(); i++) {
+
+                        try {
+                            if (dataModelPortfolio.getData().getTrPortofolio().get(i).getMuridid().toString()
+                                    .equalsIgnoreCase(PreferenceUtils.getIdSiswa(getApplicationContext()))) {
+                                listPortofolio.add(dataModelPortfolio.getData().getTrPortofolio().get(i));
+                                //LIST SEMUA PORTFOLIO SI SISWA YG LOGIN
+                            }
+                        } catch (Exception e){
+
                         }
                     }
 
-                    for(int i=0; i<listPortofolio.size(); i++){
-                        if (listPortofolio.get(i).getStrategiid().equalsIgnoreCase("Organisasi")){
-                            listOrganisasiMurid.add(listPortofolio.get(i));
+                    if(listPortofolio==null) {
+                        Toast.makeText(Organisasi.this, "Kamu Tidak Memiliki Portofolio Organisasi", Toast.LENGTH_SHORT).show();
+                    } else {
+                        for(int i=0; i<listPortofolio.size(); i++){
+                            try {
+                                if (listPortofolio.get(i).getStrategiid().equalsIgnoreCase("Organisasi")){
+                                    listOrganisasiMurid.add(listPortofolio.get(i));
+                                }
+                            } catch (Exception e){
+
+                            }
                         }
+
                     }
+
 
                     if (listOrganisasiMurid!=null){
                         runOnUiThread(new Runnable() {

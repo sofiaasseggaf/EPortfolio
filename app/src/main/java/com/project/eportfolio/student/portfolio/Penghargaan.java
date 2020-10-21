@@ -73,46 +73,55 @@ public class Penghargaan extends AppCompatActivity {
 
                 if (response.body()!=null){
 
-                    for (int i=0; i<dataModelPortfolio.getData().getTrPortofolio().size(); i++) {
-                        if (dataModelPortfolio.getData().getTrPortofolio().get(i).getMuridid().toString()
-                                .equalsIgnoreCase(PreferenceUtils.getIdSiswa(getApplicationContext()))) {
-                            listPortofolio.add(dataModelPortfolio.getData().getTrPortofolio().get(i));
-                            //LIST SEMUA PORTFOLIO SI SISWA YG LOGIN
-                        }
-                    }
-
-                    for(int i=0; i<listPortofolio.size(); i++){
-                        if (listPortofolio.get(i).getStrategiid().equalsIgnoreCase("Penghargaan")){
-                            listPenghargaanMurid.add(listPortofolio.get(i));
-                        }
-                    }
-
-                    if (listPenghargaanMurid!=null){
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                findViewById(R.id.framelayout).setVisibility(View.GONE);
-                                itemList = new AdapterListPenghargaan(listPenghargaanMurid);
-                                rvpenghargaan.setLayoutManager(new LinearLayoutManager(Penghargaan.this));
-                                rvpenghargaan.setAdapter(itemList);
+                    for (int i=0; i<dataModelPortfolio.getTotal(); i++) {
+                        try {
+                            if (dataModelPortfolio.getData().getTrPortofolio().get(i).getMuridid().toString()
+                                    .equalsIgnoreCase(PreferenceUtils.getIdSiswa(getApplicationContext()))) {
+                                listPortofolio.add(dataModelPortfolio.getData().getTrPortofolio().get(i));
+                                //LIST SEMUA PORTFOLIO SI SISWA YG LOGIN
                             }
-                        });
+                        } catch (Exception e){
+
+                        }
+                    }
+
+                    if(listPortofolio==null) {
+                        Toast.makeText(Penghargaan.this, "Kamu Tidak Memiliki Portofolio Penghargaan", Toast.LENGTH_SHORT).show();
                     } else {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                findViewById(R.id.framelayout).setVisibility(View.GONE);
-                                Toast.makeText(Penghargaan.this, "Tidak Memiliki Penghargaan", Toast.LENGTH_SHORT).show();
-                                /*try {
-                            JSONObject jObjError = new JSONObject(response.errorBody().string());
-                            Toast.makeText(Karya.this, jObjError.getString("message"), Toast.LENGTH_LONG).show();
-                        } catch (Exception e) {
-                            Toast.makeText(Karya.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                        }*/
+                        for(int i=0; i<listPortofolio.size(); i++){
+                            try {
+                                if (listPortofolio.get(i).getStrategiid().equalsIgnoreCase("Penghargaan")){
+                                    listPenghargaanMurid.add(listPortofolio.get(i));
+                                }
+                            } catch (Exception e){
 
                             }
-                        });
+                        }
+
+                        if (listPenghargaanMurid==null){
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    findViewById(R.id.framelayout).setVisibility(View.GONE);
+                                    Toast.makeText(Penghargaan.this, "Tidak Memiliki Penghargaan", Toast.LENGTH_SHORT).show();
+
+                                }
+                            });
+                        } else if (listPenghargaanMurid!=null){
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    findViewById(R.id.framelayout).setVisibility(View.GONE);
+                                    itemList = new AdapterListPenghargaan(listPenghargaanMurid);
+                                    rvpenghargaan.setLayoutManager(new LinearLayoutManager(Penghargaan.this));
+                                    rvpenghargaan.setAdapter(itemList);
+                                }
+                            });
+                        }
+
                     }
+
+
                 }
             }
             @Override

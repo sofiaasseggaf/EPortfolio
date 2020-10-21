@@ -28,7 +28,7 @@ public class AdapterListProyek extends RecyclerView.Adapter<RecyclerView.ViewHol
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.v_portfolio_list_penghargaan, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.v_portfolio_list_proyek, parent, false);
         Penampung penampung = new Penampung(view);
         return penampung;
     }
