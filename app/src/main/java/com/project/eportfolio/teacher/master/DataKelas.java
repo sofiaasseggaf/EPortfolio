@@ -73,21 +73,28 @@ public class DataKelas extends AppCompatActivity {
                 modelDataKelas = response.body();
 
                 if (modelDataKelas!=null){
-                    for (int i = 0; i < modelDataKelas.getData().getMsKelas().size(); i++) {
-                        if (PreferenceUtils.getIdSekolahGuru(getApplicationContext())
-                                .equalsIgnoreCase(modelDataKelas.getData().getMsKelas().get(i).getSekolahid())) {
-                            listkelas.add(modelDataKelas.getData().getMsKelas().get(i));
+                    for (int i = 0; i < modelDataKelas.getTotal(); i++) {
+                        try {
+                            if (PreferenceUtils.getIdSekolahGuru(getApplicationContext())
+                                    .equalsIgnoreCase(modelDataKelas.getData().getMsKelas().get(i).getSekolahid())) {
+                                listkelas.add(modelDataKelas.getData().getMsKelas().get(i));
+                            }
+                        } catch (Exception e){
+
                         }
                     }
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            findViewById(R.id.framelayout).setVisibility(View.GONE);
-                            itemList = new AdapterMasterKelas(listkelas);
-                            rvDataKelas.setLayoutManager(new LinearLayoutManager(DataKelas.this));
-                            rvDataKelas.setAdapter(itemList);
-                        }
-                    });
+
+                    if (listkelas!=null){
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                findViewById(R.id.framelayout).setVisibility(View.GONE);
+                                itemList = new AdapterMasterKelas(listkelas);
+                                rvDataKelas.setLayoutManager(new LinearLayoutManager(DataKelas.this));
+                                rvDataKelas.setAdapter(itemList);
+                            }
+                        });
+                    }
                 }
             }
             @Override

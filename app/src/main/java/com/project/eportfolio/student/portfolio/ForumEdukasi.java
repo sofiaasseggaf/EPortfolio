@@ -14,12 +14,8 @@ import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.R;
 import com.project.eportfolio.adapter.adapterPortfolio.AdapterListForumEdukasi;
-import com.project.eportfolio.adapter.adapterPortfolio.AdapterListUnjukKerja;
 import com.project.eportfolio.model.portfolio.ModelPortofolio;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
-import com.project.eportfolio.model.strategi.ModelStrategi;
-import com.project.eportfolio.model.strategi.MsStrategi;
-import com.project.eportfolio.student.HomeStudent;
 import com.project.eportfolio.student.PortfolioStudent;
 import com.project.eportfolio.utility.PreferenceUtils;
 
@@ -118,12 +114,6 @@ public class ForumEdukasi extends AppCompatActivity {
                             public void run() {
                                 findViewById(R.id.framelayout).setVisibility(View.GONE);
                                 Toast.makeText(ForumEdukasi.this, "Tidak Memiliki Forum Edukasi", Toast.LENGTH_SHORT).show();
-                                /*try {
-                            JSONObject jObjError = new JSONObject(response.errorBody().string());
-                            Toast.makeText(Karya.this, jObjError.getString("message"), Toast.LENGTH_LONG).show();
-                        } catch (Exception e) {
-                            Toast.makeText(Karya.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                        }*/
 
                             }
                         });

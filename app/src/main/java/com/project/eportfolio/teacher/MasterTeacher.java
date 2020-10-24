@@ -1,22 +1,25 @@
 package com.project.eportfolio.teacher;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
-import android.os.Parcelable;
+import android.transition.Slide;
+import android.view.Gravity;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.project.eportfolio.R;
+import com.project.eportfolio.student.PortfolioStudent;
 import com.project.eportfolio.teacher.master.DataGuru;
 import com.project.eportfolio.teacher.master.DataKelas;
 import com.project.eportfolio.teacher.master.DataMapel;
 import com.project.eportfolio.teacher.master.DataMurid;
-import com.project.eportfolio.model.guru.MsGuru;
 import com.project.eportfolio.teacher.master.DataPortfolio;
 
 public class MasterTeacher extends AppCompatActivity {
@@ -27,6 +30,7 @@ public class MasterTeacher extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setAnimation();
         setContentView(R.layout.teacher_master);
 
         btn_beranda = findViewById(R.id.btn_home);
@@ -50,8 +54,14 @@ public class MasterTeacher extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent a = new Intent(MasterTeacher.this, InputTeacher.class);
-                startActivity(a);
-                finish();
+                if(Build.VERSION.SDK_INT>20){
+                    ActivityOptions options =
+                            ActivityOptions.makeSceneTransitionAnimation(MasterTeacher.this);
+                    startActivity(a,options.toBundle());
+                }else {
+                    startActivity(a);
+                    finish();
+                }
             }
         });
 
@@ -59,8 +69,14 @@ public class MasterTeacher extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent a = new Intent(MasterTeacher.this, ProfileTeacher.class);
-                startActivity(a);
-                finish();
+                if(Build.VERSION.SDK_INT>20){
+                    ActivityOptions options =
+                            ActivityOptions.makeSceneTransitionAnimation(MasterTeacher.this);
+                    startActivity(a,options.toBundle());
+                }else {
+                    startActivity(a);
+                    finish();
+                }
             }
         });
 
@@ -112,9 +128,27 @@ public class MasterTeacher extends AppCompatActivity {
 
     }
 
+    //Your Slide animation
+    public void setAnimation(){
+        if(Build.VERSION.SDK_INT>20) {
+            Slide slide = new Slide();
+            slide.setSlideEdge(Gravity.LEFT);
+            slide.setDuration(500);
+            slide.setInterpolator(new DecelerateInterpolator());
+            getWindow().setExitTransition(slide);
+            getWindow().setEnterTransition(slide);
+        }
+    }
+
     public void onBackPressed() {
         Intent a = new Intent(MasterTeacher.this, HomeTeacher.class);
-        startActivity(a);
-        finish();
+        if(Build.VERSION.SDK_INT>20){
+            ActivityOptions options =
+                    ActivityOptions.makeSceneTransitionAnimation(MasterTeacher.this);
+            startActivity(a,options.toBundle());
+        }else {
+            startActivity(a);
+            finish();
+        }
     }
 }

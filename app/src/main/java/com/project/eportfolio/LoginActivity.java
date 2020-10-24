@@ -1,12 +1,8 @@
 package com.project.eportfolio;
 
 import android.content.Intent;
-import android.gesture.Prediction;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Base64;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,10 +12,6 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
-import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.security.ProviderInstaller;
-import com.google.gson.Gson;
 import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.model.guru.ModelGuru;
@@ -31,21 +23,11 @@ import com.project.eportfolio.model.siswa.MsMurid;
 import com.project.eportfolio.model.user.ModelUser;
 import com.project.eportfolio.student.HomeStudent;
 import com.project.eportfolio.teacher.HomeTeacher;
-import com.project.eportfolio.utility.Constants;
 import com.project.eportfolio.utility.PreferenceUtils;
-
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.security.KeyManagementException;
-import java.security.NoSuchAlgorithmException;
-import java.util.List;
-
-import javax.net.ssl.SSLContext;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.internal.EverythingIsNonNull;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -53,8 +35,6 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin;
     RadioButton rbStudent, rbTeacher;
     String username, password, idUser;
-    Bitmap photosiswa, photoguru;
-    boolean isValid, breakLoop;
 
     ModelSiswa dataModelSiswa;
     ModelUser dataModelUser;
@@ -131,16 +111,11 @@ public class LoginActivity extends AppCompatActivity {
                             break;
                         }
                     }
-                } catch (Exception e){
-
-                }
-
+                } catch (Exception e){ }
                 if (bener!=10){
                     findViewById(R.id.framelayout).setVisibility(View.GONE);
                     Toast.makeText(LoginActivity.this, "Akun Belum Terdaftar", Toast.LENGTH_SHORT).show();
                 }
-
-
             } else if (txtUsername.getText().toString().isEmpty()) {
                 runOnUiThread(new Runnable() {
                     @Override
@@ -167,9 +142,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
 
-
         else if(rbTeacher.isChecked()) {
-
             if (!txtUsername.getText().toString().isEmpty() && !txtPassword.getText().toString().isEmpty()) {
                try {
                    for (int i = 0; i <= dataModelUser.getTotal(); i++) {
@@ -188,15 +161,11 @@ public class LoginActivity extends AppCompatActivity {
                            break;
                        }
                    }
-               } catch (Exception e){
-
-               }
-
+               } catch (Exception e){ }
                 if (bener!=11){
                     findViewById(R.id.framelayout).setVisibility(View.GONE);
                     Toast.makeText(LoginActivity.this, "Akun Belum Terdaftar", Toast.LENGTH_SHORT).show();
                 }
-
             } else if (txtUsername.getText().toString().isEmpty()) {
                 runOnUiThread(new Runnable() {
                     @Override
@@ -222,7 +191,10 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
             }
-        } else if (!rbTeacher.isChecked() || !rbStudent.isChecked()){
+
+        }
+
+        else if (!rbTeacher.isChecked() || !rbStudent.isChecked()){
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -232,6 +204,10 @@ public class LoginActivity extends AppCompatActivity {
             });
         }
     }
+
+
+    // ---------------- SAVE DATA ----------------
+
 
     public void saveDataGuru(){
         PreferenceUtils.saveIdGuru(userGuru.getIdGuru(), getApplicationContext());
@@ -333,6 +309,10 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+
+
+    // ---------------- GET DATA ----------------
+
 
     public void getUser() {
         final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);

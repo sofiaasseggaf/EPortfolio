@@ -91,7 +91,7 @@
             android:fontFamily="@font/montserrat_bold"/>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvPortfolioGuru"
+            android:id="@+id/rvSliderPortfolioGuru"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_below="@id/txtMorePortfolioGuru"
@@ -108,7 +108,7 @@
             android:text="more article"
             android:layout_marginTop="30dp"
             android:clickable="true"
-            android:layout_below="@id/rvPortfolioGuru"
+            android:layout_below="@id/rvSliderPortfolioGuru"
             android:fontFamily="@font/montserrat_bold"/>
 
         <androidx.recyclerview.widget.RecyclerView

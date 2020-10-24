@@ -1,11 +1,17 @@
 package com.project.eportfolio.teacher;
 
+import android.app.ActivityOptions;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.transition.Slide;
+import android.view.Gravity;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,12 +20,18 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.R;
+import com.project.eportfolio.adapter.adapterPortfolio.AdapterSliderPortfolio;
 import com.project.eportfolio.model.portfolio.ModelPortofolio;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
+import com.project.eportfolio.student.HomeStudent;
+import com.project.eportfolio.student.PortfolioStudent;
+import com.project.eportfolio.teacher.master.DataPortfolio;
 import com.project.eportfolio.utility.PreferenceUtils;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -36,16 +48,20 @@ public class HomeTeacher extends AppCompatActivity {
     ImageButton btn_beranda, btn_master, btn_input, btn_profile;
 
     String namaguru;
-    TextView namaGuru, nipGuru;
+    TextView namaGuru, nipGuru,  txtMorePortfolioGuru;
     ImageView fotoGuru;
 
     ModelPortofolio dataModelPortfolio;
     List<TrPortofolio> listPortofolio = new ArrayList<>();
+    AdapterSliderPortfolio itemList;
+    RecyclerView rvSliderPortfolioGuru;
+
     String apikey = "7826470ABBA476706DB24D47C6A6ED64";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setAnimation();
         setContentView(R.layout.teacher_home);
 
         btn_beranda = findViewById(R.id.btn_home);
@@ -56,6 +72,10 @@ public class HomeTeacher extends AppCompatActivity {
         namaGuru = findViewById(R.id.namaGuru);
         nipGuru = findViewById(R.id.nipGuru);
         fotoGuru = findViewById(R.id.imgGuru);
+        txtMorePortfolioGuru = findViewById(R.id.txtMorePortfolioGuru);
+        txtMorePortfolioGuru.setPaintFlags(txtMorePortfolioGuru.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
+
+        rvSliderPortfolioGuru = findViewById(R.id.rvSliderPortfolioGuru);
 
         first();
 
@@ -63,8 +83,29 @@ public class HomeTeacher extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent a = new Intent(HomeTeacher.this, MasterTeacher.class);
-                startActivity(a);
-                finish();
+                if(Build.VERSION.SDK_INT>20){
+                    ActivityOptions options =
+                            ActivityOptions.makeSceneTransitionAnimation(HomeTeacher.this);
+                    startActivity(a,options.toBundle());
+                }else {
+                    startActivity(a);
+                    finish();
+                }
+            }
+        });
+
+        txtMorePortfolioGuru.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(HomeTeacher.this, DataPortfolio.class);
+                if(Build.VERSION.SDK_INT>20){
+                    ActivityOptions options =
+                            ActivityOptions.makeSceneTransitionAnimation(HomeTeacher.this);
+                    startActivity(a,options.toBundle());
+                }else {
+                    startActivity(a);
+                    finish();
+                }
             }
         });
 
@@ -72,8 +113,14 @@ public class HomeTeacher extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent a = new Intent(HomeTeacher.this, InputTeacher.class);
-                startActivity(a);
-                finish();
+                if(Build.VERSION.SDK_INT>20){
+                    ActivityOptions options =
+                            ActivityOptions.makeSceneTransitionAnimation(HomeTeacher.this);
+                    startActivity(a,options.toBundle());
+                }else {
+                    startActivity(a);
+                    finish();
+                }
             }
         });
 
@@ -81,8 +128,14 @@ public class HomeTeacher extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent a = new Intent(HomeTeacher.this, ProfileTeacher.class);
-                startActivity(a);
-                finish();
+                if(Build.VERSION.SDK_INT>20){
+                    ActivityOptions options =
+                            ActivityOptions.makeSceneTransitionAnimation(HomeTeacher.this);
+                    startActivity(a,options.toBundle());
+                }else {
+                    startActivity(a);
+                    finish();
+                }
             }
         });
 
@@ -120,6 +173,26 @@ public class HomeTeacher extends AppCompatActivity {
             });
         }
 
+        if (listPortofolio!=null){
+            try {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        findViewById(R.id.framelayout).setVisibility(View.GONE);
+                        for (int i=0; i<5; i++){
+                            itemList = new AdapterSliderPortfolio(listPortofolio);
+                            LinearLayoutManager layoutManager
+                                    = new LinearLayoutManager(HomeTeacher.this, LinearLayoutManager.HORIZONTAL, false);
+                            rvSliderPortfolioGuru.setLayoutManager(layoutManager);
+                            rvSliderPortfolioGuru.setAdapter(itemList);
+                        }
+                    }
+                });
+            } catch (Exception e){
+
+            }
+
+        }
     }
 
     public void getPortfolio() {
@@ -164,6 +237,18 @@ public class HomeTeacher extends AppCompatActivity {
                 call.cancel();
             }
         });
+    }
+
+    //Your Slide animation
+    public void setAnimation(){
+        if(Build.VERSION.SDK_INT>20) {
+            Slide slide = new Slide();
+            slide.setSlideEdge(Gravity.LEFT);
+            slide.setDuration(500);
+            slide.setInterpolator(new DecelerateInterpolator());
+            getWindow().setExitTransition(slide);
+            getWindow().setEnterTransition(slide);
+        }
     }
 
     @Override

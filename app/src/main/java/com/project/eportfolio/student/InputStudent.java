@@ -76,21 +76,16 @@ import static android.os.Environment.getExternalStoragePublicDirectory;
 
 public class InputStudent extends AppCompatActivity {
 
-    //MsMurid dataSiswa;
-
     ImageButton btn_beranda, btn_portfolio, btn_input, btn_profile;
     Spinner sp_strategi;
     EditText txtJudul, txtTempat, txtNarasi;
     Button btnInputPortfolio, btnOpenCamera;
     ImageView imgPortofolio;
 
-    //String pathToFile;
     File photoFile, mPhotoFile;
     FileCompressor mCompressor;
     String mFileName;
-    Bitmap foto;
     MultipartBody.Part fotox;
-    //@BindView(R.id.imageViewProfilePic)
 
     static final int REQUEST_TAKE_PHOTO = 1;
     static final int REQUEST_GALLERY_PHOTO = 2;
@@ -195,6 +190,48 @@ public class InputStudent extends AppCompatActivity {
         builder.show();
     }
 
+    private void requestStoragePermission(boolean isCamera) {
+        Dexter.withActivity(this)
+                .withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport report) {
+                        // check if all permissions are granted
+                        if (report.areAllPermissionsGranted()) {
+                            if (isCamera) {
+                                dispatchTakePictureIntent();
+                            } else {
+                                dispatchGalleryIntent();
+                            }
+                        }
+                        // check for permanent denial of any permission
+                        if (report.isAnyPermissionPermanentlyDenied()) {
+                            // show alert dialog navigating to Settings
+                            showSettingsDialog();
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions,
+                                                                   PermissionToken token) {
+                        token.continuePermissionRequest();
+                    }
+                })
+                .withErrorListener(
+                        error -> Toast.makeText(getApplicationContext(), "Error occurred! ", Toast.LENGTH_SHORT)
+                                .show())
+                .onSameThread()
+                .check();
+    }
+
+    private void dispatchGalleryIntent() {
+        Intent pickPhoto = new Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        pickPhoto.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        startActivityForResult(pickPhoto, REQUEST_GALLERY_PHOTO);
+    }
+
     private void dispatchTakePictureIntent() {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -213,11 +250,39 @@ public class InputStudent extends AppCompatActivity {
         }
     }
 
-    private void dispatchGalleryIntent() {
-        Intent pickPhoto = new Intent(Intent.ACTION_PICK,
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        pickPhoto.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        startActivityForResult(pickPhoto, REQUEST_GALLERY_PHOTO);
+    private void showSettingsDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Need Permissions");
+        builder.setMessage(
+                "This app needs permission to use this feature. You can grant them in app settings.");
+        builder.setPositiveButton("GOTO SETTINGS", (dialog, which) -> {
+            dialog.cancel();
+            openSettings();
+        });
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
+        builder.show();
+    }
+
+    // navigating user to app settings
+    private void openSettings() {
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", getPackageName(), null);
+        intent.setData(uri);
+        startActivityForResult(intent, 101);
+    }
+
+    /**
+     * Create file with current timestamp name
+     *
+     * @throws IOException
+     */
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        mFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File mFile = File.createTempFile(mFileName, ".jpg", storageDir);
+        return mFile;
     }
 
     @Override
@@ -256,125 +321,6 @@ public class InputStudent extends AppCompatActivity {
         }
     }
 
-    private void requestStoragePermission(boolean isCamera) {
-        Dexter.withActivity(this)
-                .withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
-                .withListener(new MultiplePermissionsListener() {
-                    @Override
-                    public void onPermissionsChecked(MultiplePermissionsReport report) {
-                        // check if all permissions are granted
-                        if (report.areAllPermissionsGranted()) {
-                            if (isCamera) {
-                                dispatchTakePictureIntent();
-                            } else {
-                                dispatchGalleryIntent();
-                            }
-                        }
-                        // check for permanent denial of any permission
-                        if (report.isAnyPermissionPermanentlyDenied()) {
-                            // show alert dialog navigating to Settings
-                            showSettingsDialog();
-                        }
-                    }
-
-                    @Override
-                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions,
-                                                                   PermissionToken token) {
-                        token.continuePermissionRequest();
-                    }
-                })
-                .withErrorListener(
-                        error -> Toast.makeText(getApplicationContext(), "Error occurred! ", Toast.LENGTH_SHORT)
-                                .show())
-                .onSameThread()
-                .check();
-    }
-
-    private void showSettingsDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Need Permissions");
-        builder.setMessage(
-                "This app needs permission to use this feature. You can grant them in app settings.");
-        builder.setPositiveButton("GOTO SETTINGS", (dialog, which) -> {
-            dialog.cancel();
-            openSettings();
-        });
-        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
-        builder.show();
-    }
-
-    // navigating user to app settings
-    private void openSettings() {
-        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-        Uri uri = Uri.fromParts("package", getPackageName(), null);
-        intent.setData(uri);
-        startActivityForResult(intent, 101);
-    }
-
-
-    /**
-     * Create file with current timestamp name
-     *
-     * @throws IOException
-     */
-    private File createImageFile() throws IOException {
-        // Create an image file name
-        String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-        mFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-        File mFile = File.createTempFile(mFileName, ".jpg", storageDir);
-        return mFile;
-    }
-
-
-    /*
-    private File createTempFile(Bitmap bitmap) {
-        File file = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-                , System.currentTimeMillis() + "");
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
-        byte[] bitmapdata = bos.toByteArray();
-        //write the bytes in file
-
-        try {
-            FileOutputStream fos = new FileOutputStream(file);
-            fos.write(bitmapdata);
-            fos.flush();
-            fos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return file;
-    }
-
-    private File createPhotoFile() throws  IOException {
-        String name = "JPEG_" + new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        File storageDir = getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        File image= null;
-        try {
-            image= File.createTempFile(name, ".jpg", storageDir);
-        } catch (IOException e){
-            Log.d("mylog", "Except  :" + e.toString());
-        }
-        return image;
-    }
-
-
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            if (requestCode == 2) {
-                Bitmap bitmap= BitmapFactory.decodeFile(pathToFile);
-                imgPortofolio.setImageBitmap(bitmap);
-                foto = bitmap;
-            }
-        }
-    }
-    */
-
     public String getRealPathFromUri(Uri contentUri) {
         Cursor cursor = null;
         try {
@@ -391,17 +337,11 @@ public class InputStudent extends AppCompatActivity {
         }
     }
 
-   /* @OnClick(R.id.imageViewProfilePic)
-    public void onViewClicked() {
-        selectImage();
-    }*/
-
     private void sendDataPortfolio(){
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
         String now = formatter.format(new Date());
 
-       // File fotoo = createTempFile(foto);
         if (mPhotoFile!=null){
             byte[] bImg1 = AppUtil.FiletoByteArray(mPhotoFile);
             RequestBody requestFile1 = RequestBody.create(MediaType.parse("image/jpeg"),bImg1);

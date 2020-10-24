@@ -65,21 +65,27 @@ public class DataMurid extends AppCompatActivity {
             public void onResponse(Call<ModelSiswa> call, Response<ModelSiswa> response) {
                 modelDataSiswa = response.body();
                 if (modelDataSiswa!=null){
-                    for (int i = 0; i < modelDataSiswa.getData().getMsMurid().size(); i++) {
-                        if (PreferenceUtils.getIdSekolahGuru(getApplicationContext())
-                                .equalsIgnoreCase(modelDataSiswa.getData().getMsMurid().get(i).getSekolahid())) {
-                            listsiswa.add(modelDataSiswa.getData().getMsMurid().get(i));
+                    for (int i = 0; i < modelDataSiswa.getTotal(); i++) {
+                        try {
+                            if (PreferenceUtils.getIdSekolahGuru(getApplicationContext())
+                                    .equalsIgnoreCase(modelDataSiswa.getData().getMsMurid().get(i).getSekolahid())) {
+                                listsiswa.add(modelDataSiswa.getData().getMsMurid().get(i));
+                            }
+                        } catch (Exception e){
                         }
                     }
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            findViewById(R.id.framelayout).setVisibility(View.GONE);
-                            itemList = new AdapterMasterSiswa(listsiswa);
-                            rvDataMurid.setLayoutManager(new LinearLayoutManager(DataMurid.this));
-                            rvDataMurid.setAdapter(itemList);
-                        }
-                    });
+
+                    if (listsiswa!=null){
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                findViewById(R.id.framelayout).setVisibility(View.GONE);
+                                itemList = new AdapterMasterSiswa(listsiswa);
+                                rvDataMurid.setLayoutManager(new LinearLayoutManager(DataMurid.this));
+                                rvDataMurid.setAdapter(itemList);
+                            }
+                        });
+                    }
                 }
             }
             @Override

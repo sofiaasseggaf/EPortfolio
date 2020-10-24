@@ -68,21 +68,28 @@ public class DataPortfolio extends AppCompatActivity {
             public void onResponse(Call<ModelPortofolio> call, Response<ModelPortofolio> response) {
                 modelDataPortfolio = response.body();
                 if (modelDataPortfolio!=null){
-                    for (int i = 0; i < modelDataPortfolio.getData().getTrPortofolio().size(); i++) {
-                        if (PreferenceUtils.getIdGuru(getApplicationContext())
-                                .equalsIgnoreCase(modelDataPortfolio.getData().getTrPortofolio().get(i).getGuruid())) {
-                            listPortfolio.add(modelDataPortfolio.getData().getTrPortofolio().get(i));
+                    for (int i = 0; i < modelDataPortfolio.getTotal(); i++) {
+                        try {
+                            if (PreferenceUtils.getIdGuru(getApplicationContext())
+                                    .equalsIgnoreCase(modelDataPortfolio.getData().getTrPortofolio().get(i).getGuruid())) {
+                                listPortfolio.add(modelDataPortfolio.getData().getTrPortofolio().get(i));
+                            }
+                        } catch (Exception e){
+
                         }
                     }
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            findViewById(R.id.framelayout).setVisibility(View.GONE);
-                            itemList = new AdapterMasterPortfolio(listPortfolio);
-                            rvDataPortfolio.setLayoutManager(new LinearLayoutManager(DataPortfolio.this));
-                            rvDataPortfolio.setAdapter(itemList);
-                        }
-                    });
+
+                    if (listPortfolio!=null){
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                findViewById(R.id.framelayout).setVisibility(View.GONE);
+                                itemList = new AdapterMasterPortfolio(listPortfolio);
+                                rvDataPortfolio.setLayoutManager(new LinearLayoutManager(DataPortfolio.this));
+                                rvDataPortfolio.setAdapter(itemList);
+                            }
+                        });
+                    }
                 }
             }
             @Override

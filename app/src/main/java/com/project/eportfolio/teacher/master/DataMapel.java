@@ -72,21 +72,28 @@ public class DataMapel extends AppCompatActivity {
                 modelDataMapel = response.body();
 
                 if (modelDataMapel!=null){
-                    for (int i = 0; i < modelDataMapel.getData().getMsMatapelajaran().size(); i++) {
-                        if (PreferenceUtils.getIdGuru(getApplicationContext())
-                                .equalsIgnoreCase(modelDataMapel.getData().getMsMatapelajaran().get(i).getGuruid())) {
-                            listMapel.add(modelDataMapel.getData().getMsMatapelajaran().get(i));
+                    for (int i = 0; i < modelDataMapel.getTotal(); i++) {
+                        try {
+                            if (PreferenceUtils.getIdGuru(getApplicationContext())
+                                    .equalsIgnoreCase(modelDataMapel.getData().getMsMatapelajaran().get(i).getGuruid())) {
+                                listMapel.add(modelDataMapel.getData().getMsMatapelajaran().get(i));
+                            }
+                        } catch (Exception e){
+
                         }
                     }
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            findViewById(R.id.framelayout).setVisibility(View.GONE);
-                            itemList = new AdapterMasterMapel(listMapel);
-                            rvDataMapel.setLayoutManager(new LinearLayoutManager(DataMapel.this));
-                            rvDataMapel.setAdapter(itemList);
-                        }
-                    });
+
+                    if (listMapel!=null){
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                findViewById(R.id.framelayout).setVisibility(View.GONE);
+                                itemList = new AdapterMasterMapel(listMapel);
+                                rvDataMapel.setLayoutManager(new LinearLayoutManager(DataMapel.this));
+                                rvDataMapel.setAdapter(itemList);
+                            }
+                        });
+                    }
                 }
             }
             @Override

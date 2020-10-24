@@ -1,8 +1,11 @@
 package com.project.eportfolio.teacher;
 
 import android.Manifest;
+import android.app.ActivityOptions;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -10,9 +13,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.provider.Settings;
+import android.transition.Slide;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -28,8 +35,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.APIService.AppUtil;
@@ -47,6 +62,8 @@ import com.project.eportfolio.model.siswa.ModelSiswa;
 import com.project.eportfolio.model.siswa.MsMurid;
 import com.project.eportfolio.model.strategi.ModelStrategi;
 import com.project.eportfolio.model.strategi.MsStrategi;
+import com.project.eportfolio.student.InputStudent;
+import com.project.eportfolio.utility.FileCompressor;
 import com.project.eportfolio.utility.PreferenceUtils;
 
 import java.io.ByteArrayOutputStream;
@@ -60,6 +77,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import butterknife.ButterKnife;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -79,9 +97,12 @@ public class InputTeacher extends AppCompatActivity {
     TextView txtPoint4, txtPoint3, txtPoint2, txtPoint1;
     RadioButton rbPoint4, rbPoint3, rbPoint2, rbPoint1;
     ImageView imgPortofolio;
-    String pathToFile;
-    Bitmap foto;
-    File photoFile;
+
+    File photoFile, mPhotoFile;
+    FileCompressor mCompressor;
+    String mFileName;
+    MultipartBody.Part fotox;
+
     String deskRubrik1, idRubrik1, deskRubrik2, idRubrik2, deskRubrik3, idRubrik3, deskRubrik4, idRubrik4;
     String inputIdSiswa, inputIdMapel, inputIdKelas, inputIdKategori, inputIdStrategi, inputIdRubrik, inputDeskRubrik;
 
@@ -104,18 +125,19 @@ public class InputTeacher extends AppCompatActivity {
     ModelMasterRubrik dataMasterRubrik;
     List<MsRubrik> listRubrik = new ArrayList<>();
 
+    static final int REQUEST_TAKE_PHOTO = 1;
+    static final int REQUEST_GALLERY_PHOTO = 2;
 
     String apikey = "7826470ABBA476706DB24D47C6A6ED64";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setAnimation();
         setContentView(R.layout.teacher_input);
 
-        if (Build.VERSION.SDK_INT>=23){
-            requestPermissions(new String[] {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
-        }
-
+        ButterKnife.bind(this);
+        mCompressor = new FileCompressor(this);
 
         btn_beranda = findViewById(R.id.btn_home);
         btn_master = findViewById(R.id.btn_master);
@@ -169,9 +191,27 @@ public class InputTeacher extends AppCompatActivity {
         btnOpenCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dispatchTakePictureIntent();
+                try{
+                    if (Build.VERSION.SDK_INT>=23){
+                        requestPermissions(new String[] {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, 2);
+                        if (ContextCompat.checkSelfPermission(InputTeacher.this,
+                                Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                            if  (ContextCompat.checkSelfPermission(InputTeacher.this,
+                                    Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                                if (ContextCompat.checkSelfPermission(InputTeacher.this,
+                                        Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                                    selectImage();
+                                }
+                            }
+                        } else {
+                            Toast.makeText(InputTeacher.this, "camera gagal", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                } catch (Exception e){
+                }
             }
         });
+
         btnInputPortfolio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -197,6 +237,172 @@ public class InputTeacher extends AppCompatActivity {
         }).start();
     }
 
+    private void selectImage() {
+        final CharSequence[] items = {
+                "Take Photo", "Choose from Library",
+                "Cancel"
+        };
+        AlertDialog.Builder builder = new AlertDialog.Builder(InputTeacher.this);
+        builder.setItems(items, (dialog, item) -> {
+            if (items[item].equals("Take Photo")) {
+                requestStoragePermission(true);
+            } else if (items[item].equals("Choose from Library")) {
+                requestStoragePermission(false);
+            } else if (items[item].equals("Cancel")) {
+                dialog.dismiss();
+            }
+        });
+        builder.show();
+    }
+
+    private void requestStoragePermission(boolean isCamera) {
+        Dexter.withActivity(this)
+                .withPermissions(Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport report) {
+                        // check if all permissions are granted
+                        if (report.areAllPermissionsGranted()) {
+                            if (isCamera) {
+                                dispatchTakePictureIntent();
+                            } else {
+                                dispatchGalleryIntent();
+                            }
+                        }
+                        // check for permanent denial of any permission
+                        if (report.isAnyPermissionPermanentlyDenied()) {
+                            // show alert dialog navigating to Settings
+                            showSettingsDialog();
+                        }
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions,
+                                                                   PermissionToken token) {
+                        token.continuePermissionRequest();
+                    }
+                })
+                .withErrorListener(
+                        error -> Toast.makeText(getApplicationContext(), "Error occurred! ", Toast.LENGTH_SHORT)
+                                .show())
+                .onSameThread()
+                .check();
+    }
+
+    private void dispatchGalleryIntent() {
+        Intent pickPhoto = new Intent(Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        pickPhoto.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        startActivityForResult(pickPhoto, REQUEST_GALLERY_PHOTO);
+    }
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            try{
+                photoFile = createImageFile();
+            } catch (IOException ex){
+                ex.printStackTrace();
+            }
+            if (photoFile!=null){
+                //pathToFile = photoFile.getAbsolutePath();
+                mPhotoFile = photoFile;
+                Uri photoUri = FileProvider.getUriForFile(InputTeacher.this, "com.project.eportfolio.fileprovider", photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
+                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+            }
+        }
+    }
+
+    private void showSettingsDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Need Permissions");
+        builder.setMessage(
+                "This app needs permission to use this feature. You can grant them in app settings.");
+        builder.setPositiveButton("GOTO SETTINGS", (dialog, which) -> {
+            dialog.cancel();
+            openSettings();
+        });
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
+        builder.show();
+    }
+
+    // navigating user to app settings
+    private void openSettings() {
+        Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+        Uri uri = Uri.fromParts("package", getPackageName(), null);
+        intent.setData(uri);
+        startActivityForResult(intent, 101);
+    }
+
+    /**
+     * Create file with current timestamp name
+     *
+     * @throws IOException
+     */
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        mFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File mFile = File.createTempFile(mFileName, ".jpg", storageDir);
+        return mFile;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //super.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK) {
+            if (requestCode == REQUEST_TAKE_PHOTO) {
+                try {
+                    mPhotoFile = mCompressor.compressToFile(mPhotoFile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Glide.with(InputTeacher.this)
+                        .load(mPhotoFile)
+                        .apply(new RequestOptions().centerCrop()
+                                        .circleCrop()
+                                //.placeholder(R.drawable.profile_pic_place_holder))
+                        )
+                        .into(imgPortofolio);
+            } else if (requestCode == REQUEST_GALLERY_PHOTO) {
+                Uri selectedImage = data.getData();
+                try {
+                    mPhotoFile = mCompressor.compressToFile(new File(getRealPathFromUri(selectedImage)));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Glide.with(InputTeacher.this)
+                        .load(mPhotoFile)
+                        .apply(new RequestOptions().centerCrop()
+                                        .circleCrop()
+                                //.placeholder(R.drawable.profile_pic_place_holder))
+                        )
+                        .into(imgPortofolio);
+            }
+        }
+    }
+
+    public String getRealPathFromUri(Uri contentUri) {
+        Cursor cursor = null;
+        try {
+            String[] proj = { MediaStore.Images.Media.DATA };
+            cursor = getContentResolver().query(contentUri, proj, null, null, null);
+            assert cursor != null;
+            int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+    }
+
+
     public void getKelas()  {
         final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
         final Call<ModelKelas> dataSiswax = apiInterface.getdataKelas( apikey, 1000);
@@ -206,7 +412,7 @@ public class InputTeacher extends AppCompatActivity {
                 dataModelKelas = response.body();
                 if (response.body()!=null){
                     listkelas.clear();
-                    for (int i = 0; i < dataModelKelas.getData().getMsKelas().size(); i++) {
+                    for (int i = 0; i < dataModelKelas.getTotal(); i++) {
                         if (PreferenceUtils.getIdSekolahGuru(getApplicationContext()).equalsIgnoreCase(dataModelKelas.getData().getMsKelas().get(i).getSekolahid())) {
                             listkelas.add(dataModelKelas.getData().getMsKelas().get(i));
                         }
@@ -226,6 +432,7 @@ public class InputTeacher extends AppCompatActivity {
             }
         });
     }
+
 
     public void getSiswa() {
         final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
@@ -363,6 +570,9 @@ public class InputTeacher extends AppCompatActivity {
             }
         });
     }
+
+
+
 
     private void setSpinnerKelas(){
 
@@ -669,71 +879,16 @@ public class InputTeacher extends AppCompatActivity {
         });
     }
 
-    private void dispatchTakePictureIntent() {
-        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            photoFile = createPhotoFile();
-            if (photoFile!=null){
-                pathToFile= photoFile.getAbsolutePath();
-                Uri photoUri = FileProvider.getUriForFile(InputTeacher.this, "com.project.eportfolio.fileprovider", photoFile);
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
-                startActivityForResult(takePictureIntent, 2);
-            }
-        }
-    }
-
-    private File createPhotoFile() {
-        String name = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        File storageDir = getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-        File image= null;
-        try {
-            image= File.createTempFile(name, ".jpg", storageDir);
-        } catch (IOException e){
-            Log.d("mylog", "Except  :" + e.toString());
-        }
-        return image;
-    }
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            if (requestCode == 2) {
-                Bitmap bitmap= BitmapFactory.decodeFile(pathToFile);
-                imgPortofolio.setImageBitmap(bitmap);
-                foto = bitmap;
-            }
-        }
-    }
-
-    private File createTempFile(Bitmap bitmap) {
-        File file = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-                , System.currentTimeMillis() + "");
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-
-        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
-        byte[] bitmapdata = bos.toByteArray();
-        //write the bytes in file
-
-        try {
-            FileOutputStream fos = new FileOutputStream(file);
-            fos.write(bitmapdata);
-            fos.flush();
-            fos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return file;
-    }
-
     private void sendDataPortfolio(){
 
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
         String now = formatter.format(new Date());
 
-        File fotoo = createTempFile(foto);
-        byte[] bImg1 = AppUtil.FiletoByteArray(fotoo);
-        RequestBody requestFile1 = RequestBody.create(MediaType.parse("image/jpeg"),bImg1);
-        MultipartBody.Part fotox = MultipartBody.Part.createFormData("foto", fotoo.getName() + ".jpg", requestFile1);
+        if (mPhotoFile!=null){
+            byte[] bImg1 = AppUtil.FiletoByteArray(mPhotoFile);
+            RequestBody requestFile1 = RequestBody.create(MediaType.parse("image/jpeg"),bImg1);
+            fotox = MultipartBody.Part.createFormData("foto", mFileName + ".jpg", requestFile1);
+        }
 
         APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
         Call<ModelPostPortofolio> data = apiInterface.sendDataPortfolioGuru(
@@ -779,6 +934,8 @@ public class InputTeacher extends AppCompatActivity {
 
     }
 
+
+
     public void keProfile(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Batal Input Portfolio ?")
@@ -787,8 +944,14 @@ public class InputTeacher extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
                         Intent a = new Intent(InputTeacher.this, ProfileTeacher.class);
-                        startActivity(a);
-                        finish();
+                        if(Build.VERSION.SDK_INT>20){
+                            ActivityOptions options =
+                                    ActivityOptions.makeSceneTransitionAnimation(InputTeacher.this);
+                            startActivity(a,options.toBundle());
+                        }else {
+                            startActivity(a);
+                            finish();
+                        }
                     }
                 })
 
@@ -810,8 +973,14 @@ public class InputTeacher extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
                         Intent a = new Intent(InputTeacher.this, MasterTeacher.class);
-                        startActivity(a);
-                        finish();
+                        if(Build.VERSION.SDK_INT>20){
+                            ActivityOptions options =
+                                    ActivityOptions.makeSceneTransitionAnimation(InputTeacher.this);
+                            startActivity(a,options.toBundle());
+                        }else {
+                            startActivity(a);
+                            finish();
+                        }
                     }
                 })
 
@@ -825,6 +994,18 @@ public class InputTeacher extends AppCompatActivity {
         alertDialog.show();
     }
 
+    //Your Slide animation
+    public void setAnimation(){
+        if(Build.VERSION.SDK_INT>20) {
+            Slide slide = new Slide();
+            slide.setSlideEdge(Gravity.LEFT);
+            slide.setDuration(500);
+            slide.setInterpolator(new DecelerateInterpolator());
+            getWindow().setExitTransition(slide);
+            getWindow().setEnterTransition(slide);
+        }
+    }
+
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -834,8 +1015,14 @@ public class InputTeacher extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
                         Intent a = new Intent(InputTeacher.this, HomeTeacher.class);
-                        startActivity(a);
-                        finish();
+                        if(Build.VERSION.SDK_INT>20){
+                            ActivityOptions options =
+                                    ActivityOptions.makeSceneTransitionAnimation(InputTeacher.this);
+                            startActivity(a,options.toBundle());
+                        }else {
+                            startActivity(a);
+                            finish();
+                        }
                     }
                 })
 

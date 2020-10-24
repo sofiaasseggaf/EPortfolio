@@ -26,11 +26,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.R;
-import com.project.eportfolio.adapter.adapterPortfolio.AdapterListKarya;
 import com.project.eportfolio.adapter.adapterPortfolio.AdapterSliderPortfolio;
 import com.project.eportfolio.model.portfolio.ModelPortofolio;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
-import com.project.eportfolio.student.portfolio.Karya;
 import com.project.eportfolio.utility.PreferenceUtils;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -56,13 +54,13 @@ public class HomeStudent extends AppCompatActivity {
     List<TrPortofolio> listOrganisasi = new ArrayList<>();
     List<TrPortofolio> listForumEdukasi = new ArrayList<>();
 
-    List<TrPortofolio> listSlider = new ArrayList<>();
     AdapterSliderPortfolio itemList;
     RecyclerView rvSliderPortfolioSiswa;
 
     String namasiswa;
     TextView namaSiswa, nisSiswa, txtMorePortfolioSiswa;
     ImageView fotoSiswa;
+
     String apikey = "7826470ABBA476706DB24D47C6A6ED64";
 
     @Override

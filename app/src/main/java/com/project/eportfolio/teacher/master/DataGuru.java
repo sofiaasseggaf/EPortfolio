@@ -14,12 +14,8 @@ import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.R;
 import com.project.eportfolio.adapter.adapterMaster.AdapterMasterGuru;
-import com.project.eportfolio.adapter.adapterMaster.AdapterMasterSiswa;
-import com.project.eportfolio.model.grade.ModelGrade;
 import com.project.eportfolio.model.guru.ModelGuru;
 import com.project.eportfolio.model.guru.MsGuru;
-import com.project.eportfolio.model.siswa.ModelSiswa;
-import com.project.eportfolio.model.siswa.MsMurid;
 import com.project.eportfolio.teacher.MasterTeacher;
 import com.project.eportfolio.utility.PreferenceUtils;
 
@@ -68,21 +64,28 @@ public class DataGuru extends AppCompatActivity {
                 modelDataGuru = response.body();
 
                 if (modelDataGuru!=null){
-                    for (int i = 0; i < modelDataGuru.getData().getMsGuru().size(); i++) {
-                        if (PreferenceUtils.getIdSekolahGuru(getApplicationContext())
-                                .equalsIgnoreCase(modelDataGuru.getData().getMsGuru().get(i).getSekolahid())) {
-                            listguru.add(modelDataGuru.getData().getMsGuru().get(i));
+                    for (int i = 0; i < modelDataGuru.getTotal(); i++) {
+                        try{
+                            if (PreferenceUtils.getIdSekolahGuru(getApplicationContext())
+                                    .equalsIgnoreCase(modelDataGuru.getData().getMsGuru().get(i).getSekolahid())) {
+                                listguru.add(modelDataGuru.getData().getMsGuru().get(i));
+                            }
+                        } catch (Exception e){
+
                         }
                     }
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            findViewById(R.id.framelayout).setVisibility(View.GONE);
-                            itemList = new AdapterMasterGuru(listguru);
-                            rvDataGuru.setLayoutManager(new LinearLayoutManager(DataGuru.this));
-                            rvDataGuru.setAdapter(itemList);
-                        }
-                    });
+
+                    if (listguru!=null){
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                findViewById(R.id.framelayout).setVisibility(View.GONE);
+                                itemList = new AdapterMasterGuru(listguru);
+                                rvDataGuru.setLayoutManager(new LinearLayoutManager(DataGuru.this));
+                                rvDataGuru.setAdapter(itemList);
+                            }
+                        });
+                    }
                 }
             }
             @Override
