@@ -41,12 +41,12 @@ public class AdapterMasterGuru extends RecyclerView.Adapter<RecyclerView.ViewHol
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ((Penampung)holder).namaList.setText(dataItemList.get(position).getFirstname()+" "+dataItemList.get(position).getLastname());
         ImageView imgList = ((Penampung)holder).imgList;
-       /* try {
-            Bitmap bitmap= BitmapFactory.decodeFile(dataItemList.get(position).getPhoto().toString());
-            ((Penampung)holder).imgList.setImageBitmap(bitmap);
-        }  catch (Exception e){
-        }*/
-        Picasso.get().load(dataItemList.get(position).getPhoto()).into(imgList);
+        try{
+            ImageView image = ((Penampung)holder).imgList;
+            Picasso.get().load("https://eportofolio.id/uploads/ms_guru/"+dataItemList.get(position).getPhoto()).into(image);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     @Override

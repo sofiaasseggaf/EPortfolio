@@ -64,20 +64,10 @@ public class ProfileTeacher extends AppCompatActivity {
         namaProfile.setText(namaguru);
         nipProfile.setText(PreferenceUtils.getNip(getApplicationContext()));
         sekolahProfile.setText(PreferenceUtils.getSekolahNama(getApplicationContext()));
-        if (!PreferenceUtils.getPhotoGuru(getApplicationContext()).equalsIgnoreCase("") || PreferenceUtils.getPhotoGuru(getApplicationContext())!= null){
-            Picasso.get().load(PreferenceUtils.getPhotoGuru(getApplicationContext())).into(new Target() {
-                @Override
-                public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                    imgProfile.setImageBitmap(bitmap);
-                }
-                @Override
-                public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-                    Toast.makeText(ProfileTeacher.this, "Maaf gambar gagal diload", Toast.LENGTH_LONG).show();
-                }
-                @Override
-                public void onPrepareLoad(Drawable placeHolderDrawable) {
-                }
-            });
+        try{
+            Picasso.get().load("https://eportofolio.id/uploads/ms_guru/"+PreferenceUtils.getPhotoGuru(getApplicationContext())).into(imgProfile);
+        } catch (Exception e){
+            e.printStackTrace();
         }
 
 

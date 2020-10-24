@@ -79,7 +79,6 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
     Bitmap f;
     ModelSiswa dataModelSiswa;
     MsMurid dataSiswa;
-    String tempFotoPiagam;
     File photoFile, mPhotoFile;
     String mFileName;
     FileCompressor mCompressor;
@@ -115,44 +114,9 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
 
         setDataProfile();
 
-        /*DialogProperties properties = new DialogProperties();
-        properties.selection_mode = DialogConfigs.SINGLE_MODE;
-        properties.selection_type = DialogConfigs.FILE_SELECT;
-        properties.root = new File(DialogConfigs.DEFAULT_DIR);
-        properties.error_dir = new File(DialogConfigs.DEFAULT_DIR);
-        properties.offset = new File(DialogConfigs.DEFAULT_DIR);
-        properties.extensions = null;
-
-        final FilePickerDialog dialogPicker1 = new FilePickerDialog(ProfileStudentSettingEdit.this, properties);
-        dialogPicker1.setTitle("Pilih File Foto");
-        dialogPicker1.setDialogSelectionListener(new DialogSelectionListener() {
-            @Override
-            public void onSelectedFilePaths(String[] files) {
-                tempFotoPiagam = "file://" + files[0];
-                Picasso.get().load(tempFotoPiagam).into(new Target() {
-                    @Override
-                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                        f = bitmap;
-                        thread2();
-                    }
-                    @Override
-                    public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-                        Toast.makeText(ProfileStudentSettingEdit.this, "Maaf gambar gagal diload", Toast.LENGTH_LONG).show();
-                    }
-                    @Override
-                    public void onPrepareLoad(Drawable placeHolderDrawable) {
-                    }
-                });
-            }
-        });
-
-        dialogPicker1.dismiss();
-*/
-
         btnUbahFotoProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //dialogPicker1.show();
                 try{
                     if (Build.VERSION.SDK_INT>=23){
                         requestPermissions(new String[] {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, 2);
@@ -288,11 +252,6 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
         startActivityForResult(intent, 101);
     }
 
-    /**
-     * Create file with current timestamp name
-     *
-     * @throws IOException
-     */
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
@@ -493,26 +452,6 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
             }
         });
 
-        /*
-        try {
-            Response<ModelSiswa> response = dataSiswax.execute();
-            dataModelSiswa = response.body();
-            if (dataModelSiswa!=null){
-                try {
-                    for (int a = 0; a < dataModelSiswa.getData().getMsMurid().size(); a++) {
-                        if (PreferenceUtils.getIdSiswa(getApplicationContext()).equalsIgnoreCase(dataModelSiswa.getData().getMsMurid().get(a).getId())) {
-
-                            dataSiswa = dataModelSiswa.getData().getMsMurid().get(a);
-                            saveDataMurid();
-                        }
-                    }
-                }catch (Exception e){
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        */
 
     }
 

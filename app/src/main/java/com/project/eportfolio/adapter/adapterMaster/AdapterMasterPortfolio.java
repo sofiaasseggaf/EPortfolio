@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.project.eportfolio.R;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -42,10 +43,11 @@ public class AdapterMasterPortfolio extends RecyclerView.Adapter<RecyclerView.Vi
         ((Penampung)holder).narasiMasterPortfolio.setText(dataItemList.get(position).getNarasi());
         ((Penampung)holder).tglMasterPortfolio.setText(dataItemList.get(position).getTanggal());
         ((Penampung)holder).judulMasterPortfolio.setText(dataItemList.get(position).getJudulKd());
-        try {
-            Bitmap bitmap= BitmapFactory.decodeFile(dataItemList.get(position).getFoto().toString());
-            ((Penampung)holder).imgMasterPortfolio.setImageBitmap(bitmap);
-        }  catch (Exception e){
+        try{
+            ImageView image = ((Penampung)holder).imgMasterPortfolio;
+            Picasso.get().load("https://eportofolio.id/uploads/tr_portofolio/"+dataItemList.get(position).getFoto().toString()).into(image);
+        } catch (Exception e){
+            e.printStackTrace();
         }
     }
 

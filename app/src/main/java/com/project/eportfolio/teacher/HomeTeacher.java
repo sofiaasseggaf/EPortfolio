@@ -26,6 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.R;
+import com.project.eportfolio.adapter.adapterMaster.AdapterMasterGuru;
 import com.project.eportfolio.adapter.adapterPortfolio.AdapterSliderPortfolio;
 import com.project.eportfolio.model.portfolio.ModelPortofolio;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
@@ -157,21 +158,12 @@ public class HomeTeacher extends AppCompatActivity {
                 PreferenceUtils.getLastName(getApplicationContext());
         namaGuru.setText(namaguru);
         nipGuru.setText(PreferenceUtils.getNip(getApplicationContext()));
-        if (!PreferenceUtils.getPhotoGuru(getApplicationContext()).equalsIgnoreCase("") || PreferenceUtils.getPhotoGuru(getApplicationContext())!= null){
-            Picasso.get().load(PreferenceUtils.getPhotoSiswa(getApplicationContext())).into(new Target() {
-                @Override
-                public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                    fotoGuru.setImageBitmap(bitmap);
-                }
-                @Override
-                public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-                    Toast.makeText(HomeTeacher.this, "Maaf gambar gagal diload", Toast.LENGTH_LONG).show();
-                }
-                @Override
-                public void onPrepareLoad(Drawable placeHolderDrawable) {
-                }
-            });
+        try{
+            Picasso.get().load("https://eportofolio.id/uploads/ms_guru/"+PreferenceUtils.getPhotoGuru(getApplicationContext())).into(fotoGuru);
+        } catch (Exception e){
+            e.printStackTrace();
         }
+
 
         if (listPortofolio!=null){
             try {

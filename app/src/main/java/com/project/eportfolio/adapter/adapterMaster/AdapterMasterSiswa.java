@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.project.eportfolio.R;
+import com.project.eportfolio.adapter.adapterPortfolio.AdapterListProyek;
 import com.project.eportfolio.model.siswa.MsMurid;
 import com.squareup.picasso.Picasso;
 
@@ -37,13 +38,12 @@ public class AdapterMasterSiswa extends RecyclerView.Adapter<RecyclerView.ViewHo
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ((Penampung)holder).namaList.setText(dataItemList.get(position).getFirstname()+" "+dataItemList.get(position).getLastname());
-        try {
-            Bitmap bitmap= BitmapFactory.decodeFile(dataItemList.get(position).getPhoto());
-            ((Penampung)holder).imgList.setImageBitmap(bitmap);
-        }  catch (Exception e){
+        try{
+            ImageView image = ((Penampung)holder).imgList;
+            Picasso.get().load(dataItemList.get(position).getPhoto()).into(image);
+        } catch (Exception e){
+            e.printStackTrace();
         }
-        /*ImageView imgList = ((Penampung)holder).imgList;
-        Picasso.get().load(dataItemList.get(position).getPhoto()).into(imgList);*/
     }
 
     @Override

@@ -1,10 +1,15 @@
 package com.project.eportfolio.teacher;
 
 import android.annotation.SuppressLint;
+import android.app.ActivityOptions;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.transition.Slide;
+import android.view.Gravity;
 import android.view.View;
+import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -47,6 +52,7 @@ public class ProfileTeacherSettingPrivacy extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setAnimation();
         setContentView(R.layout.teacher_profile_setting_privacy);
 
         editPassLama = findViewById(R.id.editPasswordLama);
@@ -137,14 +143,31 @@ public class ProfileTeacherSettingPrivacy extends AppCompatActivity {
                             findViewById(R.id.framelayout).setVisibility(View.GONE);
                             Toast.makeText(ProfileTeacherSettingPrivacy.this, "Password Berhasil Diganti !", Toast.LENGTH_SHORT).show();
                             Intent a = new Intent(ProfileTeacherSettingPrivacy.this, ProfileStudent.class);
-                            startActivity(a);
-                            finish();
+                            if(Build.VERSION.SDK_INT>20){
+                                ActivityOptions options =
+                                        ActivityOptions.makeSceneTransitionAnimation(ProfileTeacherSettingPrivacy.this);
+                                startActivity(a,options.toBundle());
+                            }else {
+                                startActivity(a);
+                                finish();
+                            }
                         }
                     });
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void setAnimation() {
+        if (Build.VERSION.SDK_INT > 20) {
+            Slide slide = new Slide();
+            slide.setSlideEdge(Gravity.LEFT);
+            slide.setDuration(500);
+            slide.setInterpolator(new DecelerateInterpolator());
+            getWindow().setExitTransition(slide);
+            getWindow().setEnterTransition(slide);
         }
     }
 
@@ -157,8 +180,14 @@ public class ProfileTeacherSettingPrivacy extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int i) {
                         //HomeTeacher.super.onBackPressed();
                         Intent a = new Intent(ProfileTeacherSettingPrivacy.this, ProfileTeacher.class);
-                        startActivity(a);
-                        finish();
+                        if(Build.VERSION.SDK_INT>20){
+                            ActivityOptions options =
+                                    ActivityOptions.makeSceneTransitionAnimation(ProfileTeacherSettingPrivacy.this);
+                            startActivity(a,options.toBundle());
+                        }else {
+                            startActivity(a);
+                            finish();
+                        }
                     }
                 })
 
