@@ -90,7 +90,20 @@
             android:layout_below="@id/rect_profile"
             android:fontFamily="@font/montserrat_bold"/>
 
-        <androidx.recyclerview.widget.RecyclerView
+        <androidx.viewpager.widget.ViewPager
+            android:foregroundGravity="center"
+            android:id="@+id/viewPager"
+            android:layout_marginTop="5dp"
+            android:layout_centerInParent="true"
+            android:clipToPadding="false"
+            android:layout_below="@id/txtMorePortfolioGuru"
+            android:paddingLeft="10dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="150dp">
+        </androidx.viewpager.widget.ViewPager>
+
+       <!-- <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvSliderPortfolioGuru"
             android:layout_width="match_parent"
             android:layout_height="150dp"
@@ -98,7 +111,7 @@
             android:layout_marginTop="5dp"
             android:paddingLeft="10dp"
             android:orientation="horizontal">
-        </androidx.recyclerview.widget.RecyclerView>
+        </androidx.recyclerview.widget.RecyclerView>-->
 
         <TextView
             android:id="@+id/txtMoreArtikelGuru"
@@ -108,7 +121,7 @@
             android:text="more article"
             android:layout_marginTop="30dp"
             android:clickable="true"
-            android:layout_below="@id/rvSliderPortfolioGuru"
+            android:layout_below="@id/viewPager"
             android:fontFamily="@font/montserrat_bold"/>
 
         <androidx.recyclerview.widget.RecyclerView

@@ -22,10 +22,12 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.R;
+//import com.project.eportfolio.adapter.adapterPortfolio.AdapterSliderPortfolio;
 import com.project.eportfolio.adapter.adapterPortfolio.AdapterSliderPortfolio;
 import com.project.eportfolio.model.portfolio.ModelPortofolio;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
@@ -55,6 +57,7 @@ public class HomeStudent extends AppCompatActivity {
     List<TrPortofolio> listForumEdukasi = new ArrayList<>();
 
     AdapterSliderPortfolio itemList;
+    ViewPager viewPager;
     RecyclerView rvSliderPortfolioSiswa;
 
     String namasiswa;
@@ -86,7 +89,8 @@ public class HomeStudent extends AppCompatActivity {
         txtPenghargaan = findViewById(R.id.txtPenghargaan);
         txtProyek = findViewById(R.id.txtProyek);
         txtUnjukKerja = findViewById(R.id.txtUnjukKerja);
-        rvSliderPortfolioSiswa = findViewById(R.id.rvSliderPortfolioSiswa);
+        //rvSliderPortfolioSiswa = findViewById(R.id.rvSliderPortfolioSiswa);
+        viewPager = findViewById(R.id.viewPager);
 
         first();
 
@@ -320,11 +324,11 @@ public class HomeStudent extends AppCompatActivity {
                     public void run() {
                         findViewById(R.id.framelayout).setVisibility(View.GONE);
                         for (int i=0; i<5; i++){
-                            itemList = new AdapterSliderPortfolio(listPortofolio);
-                            LinearLayoutManager layoutManager
+                            itemList = new AdapterSliderPortfolio(listPortofolio, getApplicationContext());
+                           /* LinearLayoutManager layoutManager
                                     = new LinearLayoutManager(HomeStudent.this, LinearLayoutManager.HORIZONTAL, false);
-                            rvSliderPortfolioSiswa.setLayoutManager(layoutManager);
-                            rvSliderPortfolioSiswa.setAdapter(itemList);
+                            rvSliderPortfolioSiswa.setLayoutManager(layoutManager);*/
+                            viewPager.setAdapter(itemList);
                         }
                     }
                 });

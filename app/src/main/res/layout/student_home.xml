@@ -193,7 +193,21 @@
                 android:layout_below="@id/disemester"
                 android:fontFamily="@font/montserrat_bold"/>
 
-            <androidx.recyclerview.widget.RecyclerView
+
+            <androidx.viewpager.widget.ViewPager
+                android:foregroundGravity="center"
+                android:id="@+id/viewPager"
+                android:layout_marginTop="5dp"
+                android:layout_centerInParent="true"
+                android:clipToPadding="false"
+                android:layout_below="@id/txtMorePortfolioSiswa"
+                android:paddingLeft="10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="150dp">
+            </androidx.viewpager.widget.ViewPager>
+
+           <!-- <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvSliderPortfolioSiswa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -202,9 +216,7 @@
                 android:paddingLeft="10dp"
                 android:orientation="horizontal">
             </androidx.recyclerview.widget.RecyclerView>
-
-
-
+-->
 
 
             <!--

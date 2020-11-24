@@ -22,6 +22,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
@@ -56,6 +57,7 @@ public class HomeTeacher extends AppCompatActivity {
     List<TrPortofolio> listPortofolio = new ArrayList<>();
     AdapterSliderPortfolio itemList;
     RecyclerView rvSliderPortfolioGuru;
+    ViewPager viewPager;
 
     String apikey = "7826470ABBA476706DB24D47C6A6ED64";
 
@@ -75,8 +77,8 @@ public class HomeTeacher extends AppCompatActivity {
         fotoGuru = findViewById(R.id.imgGuru);
         txtMorePortfolioGuru = findViewById(R.id.txtMorePortfolioGuru);
         txtMorePortfolioGuru.setPaintFlags(txtMorePortfolioGuru.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
-
-        rvSliderPortfolioGuru = findViewById(R.id.rvSliderPortfolioGuru);
+        viewPager = findViewById(R.id.viewPager);
+//        rvSliderPortfolioGuru = findViewById(R.id.rvSliderPortfolioGuru);
 
         first();
 
@@ -172,11 +174,11 @@ public class HomeTeacher extends AppCompatActivity {
                     public void run() {
                         findViewById(R.id.framelayout).setVisibility(View.GONE);
                         for (int i=0; i<5; i++){
-                            itemList = new AdapterSliderPortfolio(listPortofolio);
-                            LinearLayoutManager layoutManager
+                            itemList = new AdapterSliderPortfolio(listPortofolio, getApplicationContext());
+                           /* LinearLayoutManager layoutManager
                                     = new LinearLayoutManager(HomeTeacher.this, LinearLayoutManager.HORIZONTAL, false);
-                            rvSliderPortfolioGuru.setLayoutManager(layoutManager);
-                            rvSliderPortfolioGuru.setAdapter(itemList);
+                            rvSliderPortfolioGuru.setLayoutManager(layoutManager);*/
+                            viewPager.setAdapter(itemList);
                         }
                     }
                 });
