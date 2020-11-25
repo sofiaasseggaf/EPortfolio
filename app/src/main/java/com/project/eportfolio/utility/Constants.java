@@ -64,4 +64,9 @@ public class Constants {
     public static final String ALLOW_KEY = "ALLOWED";
     public static final String CAMERA_PREF = "camera_pref";
 
+
+    // ---------------- LISTPORTFOLIO --------------------
+
+    public static String KEY_NAMA_MAPEL = "nama_mapel";
+
 }

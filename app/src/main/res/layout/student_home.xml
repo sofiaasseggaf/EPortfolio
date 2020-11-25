@@ -28,20 +28,17 @@
                 android:background="@drawable/hometop"
                 android:paddingRight="20dp"
                 android:paddingLeft="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:layout_gravity="center">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="40dp"
-                    android:layout_marginLeft="15dp"
                     android:orientation="horizontal">
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/imgSiswa"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_width="130dp"
+                        android:layout_height="130dp"
                         app:civ_border_width="2dp"
                         android:layout_gravity="center"
                         app:civ_border_color="#ffffff"/>
@@ -75,7 +72,7 @@
                             android:textSize="12sp"
                             android:fontFamily="@font/montserrat_regular"
                             android:textColor="@color/colorFont"
-                            android:layout_marginTop="20dp">
+                            android:layout_marginTop="10dp">
                         </TextView>
                     </LinearLayout>
                 </LinearLayout>
@@ -88,10 +85,10 @@
                 android:layout_height="200dp"
                 android:layout_below="@id/rect_profile"
                 android:orientation="vertical"
-                android:background="#97E8E8E8"
+                android:background="#E8E8E8"
                 android:paddingLeft="40dp"
-                android:paddingRight="60dp"
-                android:paddingTop="30dp"
+                android:paddingRight="40dp"
+                android:paddingTop="20dp"
                 android:layout_marginTop="30dp">
 
                 <TextView
@@ -106,7 +103,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginLeft="10dp"
                     android:layout_marginTop="30dp">
                     <LinearLayout
                         android:layout_weight="1"
@@ -147,7 +143,8 @@
                         android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:layout_marginLeft="10dp">
                         <TextView
                             android:id="@+id/txtPenghargaan"
                             android:layout_width="wrap_content"
@@ -169,7 +166,7 @@
                         </TextView>
                         <TextView
                             android:id="@+id/txtForumEdukasi"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="- Forum Edukasi"
                             android:fontFamily="@font/montserrat_regular"
@@ -197,7 +194,7 @@
             <androidx.viewpager.widget.ViewPager
                 android:foregroundGravity="center"
                 android:id="@+id/viewPager"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:layout_centerInParent="true"
                 android:clipToPadding="false"
                 android:layout_below="@id/txtMorePortfolioSiswa"

@@ -62,10 +62,10 @@ public class ProfileStudent extends AppCompatActivity {
                 PreferenceUtils.getMidName(getApplicationContext()) + " " +
                 PreferenceUtils.getLastName(getApplicationContext());
         namaProfile.setText(namasiswa);
-        nisProfile.setText(PreferenceUtils.getNis(getApplicationContext()));
+        nisProfile.setText("NIS : "+PreferenceUtils.getNis(getApplicationContext()));
         sekolahProfile.setText(PreferenceUtils.getSekolahNama(getApplicationContext()));
         if (!PreferenceUtils.getPhotoSiswa(getApplicationContext()).equalsIgnoreCase("") || PreferenceUtils.getPhotoSiswa(getApplicationContext())!= null){
-            Picasso.get().load(PreferenceUtils.getPhotoSiswa(getApplicationContext())).into(new Target() {
+            Picasso.get().load("https://eportofolio.id/uploads/ms_murid/"+PreferenceUtils.getPhotoSiswa(getApplicationContext())).into(new Target() {
                 @Override
                 public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
                     imgProfile.setImageBitmap(bitmap);

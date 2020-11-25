@@ -318,10 +318,10 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
         namaSiswa.setText(PreferenceUtils.getFirstName(getApplicationContext()) + " " +
                 PreferenceUtils.getMidName(getApplicationContext()) + " " +
                 PreferenceUtils.getLastName(getApplicationContext()));
-        nisSiswa.setText(PreferenceUtils.getNis(getApplicationContext()));
+        nisSiswa.setText("NIS : "+PreferenceUtils.getNis(getApplicationContext()));
 
         if (!PreferenceUtils.getPhotoSiswa(getApplicationContext()).equalsIgnoreCase("") || PreferenceUtils.getPhotoSiswa(getApplicationContext())!= null){
-            Picasso.get().load(PreferenceUtils.getPhotoSiswa(getApplicationContext())).into(new Target() {
+            Picasso.get().load("https://eportofolio.id/uploads/ms_murid/"+PreferenceUtils.getPhotoSiswa(getApplicationContext())).into(new Target() {
                 @Override
                 public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
                     imgSiswa.setImageBitmap(bitmap);

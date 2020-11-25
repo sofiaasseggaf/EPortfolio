@@ -555,7 +555,19 @@ public class PreferenceUtils extends AppCompatActivity {
     */
 
 
+    // ----------------- LIST PORTFOLIO ---------------
 
+    public static boolean saveNamaMapel(String nama_mapel, Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor prefsEditor = prefs.edit();
+        prefsEditor.putString(Constants.KEY_NAMA_MAPEL, nama_mapel);
+        prefsEditor.apply();
+        return true;
+    }
 
+    public static String getNamaMapel(Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getString(Constants.KEY_NAMA_MAPEL, null);
+    }
 
 }
