@@ -57,14 +57,14 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="50dp"
                     android:layout_marginRight="20dp">
+
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/fotoSiswa"
                         android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/profilepicture"
-                        app:civ_border_width="2dp"
+                        android:layout_height="83dp"
                         android:layout_gravity="center"
-                        app:civ_border_color="#f7f7f7"/>
+                        app:civ_border_color="#f7f7f7"
+                        app:civ_border_width="2dp" />
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

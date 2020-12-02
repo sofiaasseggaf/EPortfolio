@@ -154,7 +154,7 @@ public interface APIInterfacesRest {
 
     @Multipart
     @POST("api/ms_murid/update")
-    Call<ModelUpdateDataSiswa> updateDataSiswaFoto(
+    Call<ModelUpdateDataSiswa> updateDataSiswaRequiredFoto(
             @Part("id") String id,
             @Part("userid") String userid,
             @Part("sekolahid") String sekolahid,
@@ -162,9 +162,9 @@ public interface APIInterfacesRest {
             @Part("firstname") String firstname,
             @Part("midname") String midname,
             @Part("lastname") String lastname,
-            @Part("ttl") String ttl,
             @Part("nis") String nis,
             @Part("gender") String gender,
+            @Part("ttl") String ttl,
             @Part("address") String address,
             @Part("email") String email,
             @Part("phone") String phone,

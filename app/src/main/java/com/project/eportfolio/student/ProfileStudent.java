@@ -64,20 +64,24 @@ public class ProfileStudent extends AppCompatActivity {
         namaProfile.setText(namasiswa);
         nisProfile.setText("NIS : "+PreferenceUtils.getNis(getApplicationContext()));
         sekolahProfile.setText(PreferenceUtils.getSekolahNama(getApplicationContext()));
-        if (!PreferenceUtils.getPhotoSiswa(getApplicationContext()).equalsIgnoreCase("") || PreferenceUtils.getPhotoSiswa(getApplicationContext())!= null){
-            Picasso.get().load("https://eportofolio.id/uploads/ms_murid/"+PreferenceUtils.getPhotoSiswa(getApplicationContext())).into(new Target() {
-                @Override
-                public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                    imgProfile.setImageBitmap(bitmap);
-                }
-                @Override
-                public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-                    Toast.makeText(ProfileStudent.this, "Maaf gambar gagal diload", Toast.LENGTH_LONG).show();
-                }
-                @Override
-                public void onPrepareLoad(Drawable placeHolderDrawable) {
-                }
-            });
+        try{
+            if (!PreferenceUtils.getPhotoSiswa(getApplicationContext()).equalsIgnoreCase("") || PreferenceUtils.getPhotoSiswa(getApplicationContext())!= null){
+                Picasso.get().load("https://eportofolio.id/uploads/ms_murid/"+PreferenceUtils.getPhotoSiswa(getApplicationContext())).into(new Target() {
+                    @Override
+                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                        imgProfile.setImageBitmap(bitmap);
+                    }
+                    @Override
+                    public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+                        //Toast.makeText(ProfileStudent.this, "Maaf gambar gagal diload", Toast.LENGTH_LONG).show();
+                    }
+                    @Override
+                    public void onPrepareLoad(Drawable placeHolderDrawable) {
+                    }
+                });
+            }
+        } catch (Exception e){
+
         }
 
         btn_beranda.setOnClickListener(new View.OnClickListener() {

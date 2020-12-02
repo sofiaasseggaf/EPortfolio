@@ -294,20 +294,25 @@ public class HomeStudent extends AppCompatActivity {
                 PreferenceUtils.getLastName(getApplicationContext());
         namaSiswa.setText(namasiswa);
         nisSiswa.setText("NIS : "+PreferenceUtils.getNis(getApplicationContext()));
+        try{
         if (!PreferenceUtils.getPhotoSiswa(getApplicationContext()).equalsIgnoreCase("") || PreferenceUtils.getPhotoSiswa(getApplicationContext())!=null){
-            Picasso.get().load("https://eportofolio.id/uploads/ms_murid/"+PreferenceUtils.getPhotoSiswa(getApplicationContext())).into(new Target() {
-                @Override
-                public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                    fotoSiswa.setImageBitmap(bitmap);
-                }
-                @Override
-                public void onBitmapFailed(Exception e, Drawable errorDrawable) {
-                    Toast.makeText(HomeStudent.this, "Maaf gambar gagal diload", Toast.LENGTH_LONG).show();
-                }
-                @Override
-                public void onPrepareLoad(Drawable placeHolderDrawable) {
-                }
-            });
+
+                Picasso.get().load("https://eportofolio.id/uploads/ms_murid/"+PreferenceUtils.getPhotoSiswa(getApplicationContext())).into(new Target() {
+                    @Override
+                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                        fotoSiswa.setImageBitmap(bitmap);
+                    }
+                    @Override
+                    public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+                        //Toast.makeText(HomeStudent.this, "Maaf gambar gagal diload", Toast.LENGTH_LONG).show();
+                    }
+                    @Override
+                    public void onPrepareLoad(Drawable placeHolderDrawable) {
+                    }
+                });
+        }
+        } catch (Exception e){
+
         }
 
         txtKarya.setText(listKaryaMurid.size() + "   Karya");

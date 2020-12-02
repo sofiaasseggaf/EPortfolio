@@ -294,13 +294,15 @@
         android:id="@+id/framelayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#A9009688"
-        android:visibility="gone">
+        android:background="#25009688"
+        android:visibility="visible">
 
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|bottom"
+            android:outlineAmbientShadowColor="@color/colorFont"
+            android:outlineSpotShadowColor="@color/colorFont"
             android:layout_marginBottom="70dp">
         </ProgressBar>
     </FrameLayout>
