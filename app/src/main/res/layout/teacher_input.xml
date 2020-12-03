@@ -32,150 +32,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Data Siswa"
-                android:textColor="@color/colorFont"
-                android:fontFamily="@font/montserrat_bold"
-                android:textSize="8pt"
-                android:layout_marginTop="60dp"
-                android:layout_marginLeft="10dp"/>
-
-              <LinearLayout
-                  android:layout_width="match_parent"
-                  android:layout_height="match_parent"
-                  android:layout_marginLeft="20dp"
-                  android:layout_marginRight="20dp"
-                  android:layout_marginTop="20dp"
-                  android:orientation="vertical">
-
-                  <LinearLayout
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:orientation="horizontal">
-
-                      <TextView
-                          android:layout_width="100dp"
-                          android:layout_height="wrap_content"
-                          android:text="Kelas"
-                          android:textColor="@color/colorFont"
-                          android:fontFamily="@font/montserrat_bold"
-                          android:layout_gravity="center"
-                          android:textSize="14sp"/>
-                      <Spinner
-                          android:id="@+id/sp_kelas"
-                          android:layout_width="match_parent"
-                          android:layout_gravity="center"
-                          android:fontFamily="@font/montserrat_regular"
-                          android:textStyle="bold"
-                          android:textSize="14sp"
-                          android:textColor="@color/colorFont"
-                          android:layout_height="40dp" />
-                  </LinearLayout>
-
-                  <LinearLayout
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:orientation="horizontal"
-                      android:layout_marginTop="15dp">
-                      <TextView
-                          android:layout_width="100dp"
-                          android:layout_height="wrap_content"
-                          android:text="Nama\nSiswa"
-                          android:textColor="@color/colorFont"
-                          android:fontFamily="@font/montserrat_bold"
-                          android:layout_gravity="center"
-                          android:textSize="14sp"/>
-                      <Spinner
-                          android:id="@+id/sp_siswa"
-                          android:layout_width="match_parent"
-                          android:layout_gravity="center"
-                          android:fontFamily="@font/montserrat_regular"
-                          android:textStyle="bold"
-                          android:textSize="14sp"
-                          android:textColor="@color/colorFont"
-                          android:layout_height="40dp" />
-                  </LinearLayout>
-
-                  <LinearLayout
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:orientation="horizontal"
-                      android:layout_marginTop="15dp">
-                      <TextView
-                          android:layout_width="100dp"
-                          android:layout_height="wrap_content"
-                          android:text="Mata\nPelajaran"
-                          android:textColor="@color/colorFont"
-                          android:fontFamily="@font/montserrat_bold"
-                          android:layout_gravity="center"
-                          android:textSize="14sp"/>
-                      <Spinner
-                          android:id="@+id/sp_mapel"
-                          android:layout_width="match_parent"
-                          android:layout_gravity="center"
-                          android:fontFamily="@font/montserrat_regular"
-                          android:textStyle="bold"
-                          android:textSize="14sp"
-                          android:textColor="@color/colorFont"
-                          android:layout_height="40dp" />
-                  </LinearLayout>
-
-
-                  <LinearLayout
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:orientation="horizontal"
-                      android:layout_marginTop="15dp">
-                      <TextView
-                          android:layout_width="100dp"
-                          android:layout_height="wrap_content"
-                          android:text="Tahun\nAjaran"
-                          android:textColor="@color/colorFont"
-                          android:fontFamily="@font/montserrat_bold"
-                          android:layout_gravity="center"
-                          android:textSize="14sp"/>
-                      <EditText
-                          android:id="@+id/txtTahunAjaran"
-                          android:layout_width="match_parent"
-                          android:layout_gravity="center"
-                          android:fontFamily="@font/montserrat_regular"
-                          android:textStyle="bold"
-                          android:textSize="14sp"
-                          android:textColor="@color/colorFont"
-                          android:layout_height="40dp" />
-                  </LinearLayout>
-
-                  <LinearLayout
-                      android:layout_width="match_parent"
-                      android:layout_height="wrap_content"
-                      android:orientation="horizontal"
-                      android:layout_marginTop="15dp">
-                      <TextView
-                          android:layout_width="100dp"
-                          android:layout_height="wrap_content"
-                          android:text="Semester"
-                          android:textColor="@color/colorFont"
-                          android:fontFamily="@font/montserrat_bold"
-                          android:layout_gravity="center"
-                          android:textSize="14sp"/>
-                      <Spinner
-                          android:id="@+id/sp_semester"
-                          android:layout_width="match_parent"
-                          android:layout_gravity="center"
-                          android:fontFamily="@font/montserrat_regular"
-                          android:textStyle="bold"
-                          android:textSize="14sp"
-                          android:textColor="@color/colorFont"
-                          android:prompt="@string/semester_prompt"
-                          android:entries="@array/list_semester"
-                          android:layout_height="40dp" />
-                  </LinearLayout>
-
-
-              </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:text="Portfolio Point"
                 android:textColor="@color/colorFont"
                 android:fontFamily="@font/montserrat_bold"
@@ -199,21 +55,19 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="Kategori"
+                        android:text="Strategi"
                         android:textColor="@color/colorFont"
                         android:fontFamily="@font/montserrat_bold"
                         android:layout_gravity="center"
                         android:textSize="14sp"/>
                     <Spinner
-                        android:id="@+id/sp_kategori"
+                        android:id="@+id/sp_strategi"
                         android:layout_width="match_parent"
                         android:layout_gravity="center"
                         android:fontFamily="@font/montserrat_regular"
                         android:textStyle="bold"
                         android:textSize="14sp"
                         android:textColor="@color/colorFont"
-                        android:prompt="@string/kategori_prompt"
-                        android:entries="@array/list_kategori"
                         android:layout_height="40dp" />
                 </LinearLayout>
 
@@ -226,13 +80,13 @@
                     <TextView
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
-                        android:text="Strategi"
+                        android:text="Kategori"
                         android:textColor="@color/colorFont"
                         android:fontFamily="@font/montserrat_bold"
                         android:layout_gravity="center"
                         android:textSize="14sp"/>
                     <Spinner
-                        android:id="@+id/sp_strategi"
+                        android:id="@+id/sp_kategori"
                         android:layout_width="match_parent"
                         android:layout_gravity="center"
                         android:fontFamily="@font/montserrat_regular"
@@ -267,6 +121,156 @@
                 </LinearLayout>
 
             </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Data Siswa"
+                android:textColor="@color/colorFont"
+                android:fontFamily="@font/montserrat_bold"
+                android:textSize="8pt"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="10dp"/>
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:layout_marginLeft="20dp"
+                  android:layout_marginRight="20dp"
+                  android:layout_marginTop="20dp"
+                  android:orientation="vertical">
+
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:layout_marginTop="15dp">
+                      <TextView
+                          android:layout_width="100dp"
+                          android:layout_height="wrap_content"
+                          android:text="Tahun\nAjaran"
+                          android:textColor="@color/colorFont"
+                          android:fontFamily="@font/montserrat_bold"
+                          android:layout_gravity="center"
+                          android:textSize="14sp"/>
+                      <Spinner
+                          android:id="@+id/sp_tahun_ajaran"
+                          android:layout_width="match_parent"
+                          android:layout_gravity="center"
+                          android:fontFamily="@font/montserrat_regular"
+                          android:textStyle="bold"
+                          android:textSize="14sp"
+                          android:textColor="@color/colorFont"
+                          android:prompt="@string/tahun_ajaran"
+                          android:entries="@array/list_tahun"
+                          android:layout_height="40dp" />
+                  </LinearLayout>
+
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:layout_marginTop="15dp">
+                      <TextView
+                          android:layout_width="100dp"
+                          android:layout_height="wrap_content"
+                          android:text="Semester"
+                          android:textColor="@color/colorFont"
+                          android:fontFamily="@font/montserrat_bold"
+                          android:layout_gravity="center"
+                          android:textSize="14sp"/>
+                      <Spinner
+                          android:id="@+id/sp_semester"
+                          android:layout_width="match_parent"
+                          android:layout_gravity="center"
+                          android:fontFamily="@font/montserrat_regular"
+                          android:textStyle="bold"
+                          android:textSize="14sp"
+                          android:textColor="@color/colorFont"
+                          android:prompt="@string/semester_prompt"
+                          android:entries="@array/list_semester"
+                          android:layout_height="40dp" />
+                  </LinearLayout>
+
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:layout_marginTop="15dp">
+
+                      <TextView
+                          android:layout_width="100dp"
+                          android:layout_height="wrap_content"
+                          android:text="Kelas"
+                          android:textColor="@color/colorFont"
+                          android:fontFamily="@font/montserrat_bold"
+                          android:layout_gravity="center"
+                          android:textSize="14sp"/>
+                      <Spinner
+                          android:id="@+id/sp_kelas"
+                          android:layout_width="match_parent"
+                          android:layout_gravity="center"
+                          android:fontFamily="@font/montserrat_regular"
+                          android:textStyle="bold"
+                          android:textSize="14sp"
+                          android:textColor="@color/colorFont"
+                          android:layout_height="40dp" />
+                  </LinearLayout>
+
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:layout_marginTop="15dp">
+                      <TextView
+                          android:layout_width="100dp"
+                          android:layout_height="wrap_content"
+                          android:text="Mata\nPelajaran"
+                          android:textColor="@color/colorFont"
+                          android:fontFamily="@font/montserrat_bold"
+                          android:layout_gravity="center"
+                          android:textSize="14sp"/>
+                      <Spinner
+                          android:id="@+id/sp_mapel"
+                          android:layout_width="match_parent"
+                          android:layout_gravity="center"
+                          android:fontFamily="@font/montserrat_regular"
+                          android:textStyle="bold"
+                          android:textSize="14sp"
+                          android:textColor="@color/colorFont"
+                          android:layout_height="40dp" />
+                  </LinearLayout>
+
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:layout_marginTop="15dp">
+                      <TextView
+                          android:layout_width="100dp"
+                          android:layout_height="wrap_content"
+                          android:text="Nama\nSiswa"
+                          android:textColor="@color/colorFont"
+                          android:fontFamily="@font/montserrat_bold"
+                          android:layout_gravity="center"
+                          android:textSize="14sp"/>
+                      <Spinner
+                          android:id="@+id/sp_siswa"
+                          android:layout_width="match_parent"
+                          android:layout_gravity="center"
+                          android:fontFamily="@font/montserrat_regular"
+                          android:textStyle="bold"
+                          android:textSize="14sp"
+                          android:textColor="@color/colorFont"
+                          android:layout_height="40dp" />
+                  </LinearLayout>
+
+
+
+
+
+              </LinearLayout>
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -497,13 +501,16 @@
                         android:layout_gravity="center"
                         android:layout_weight="1"
                         android:textSize="14sp"/>
-                    <EditText
+                    <TextView
                         android:id="@+id/txtPredikat"
                         android:layout_width="match_parent"
                         android:layout_gravity="center"
                         android:fontFamily="@font/montserrat_regular"
                         android:textStyle="bold"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
+                        android:text="A"
+                        android:gravity="center|left"
+                        android:paddingLeft="20dp"
                         android:textColor="@color/colorFont"
                         android:layout_weight="1"
                         android:layout_height="40dp" />
@@ -526,6 +533,7 @@
                         android:textSize="14sp"
                         android:textColor="@color/colorFont"
                         android:layout_weight="1"
+                        android:inputType="number"
                         android:layout_height="40dp" />
                 </LinearLayout>
 
@@ -568,6 +576,15 @@
                     </ImageView>
 
                 </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Extension file must JPG,JPEG,PNG"
+                    android:textColor="@color/colorFont"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textSize="12sp"/>
 
                 <Button
                     android:id="@+id/btnInputPortfolio"

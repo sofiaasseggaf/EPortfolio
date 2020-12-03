@@ -92,9 +92,9 @@ public class InputTeacher extends AppCompatActivity {
 
     ImageButton btn_beranda, btn_master, btn_input, btn_profile;
     Button btnInputPortfolio, btnOpenCamera;
-    Spinner sp_mapel, sp_strategi, sp_kelas, sp_siswa, sp_kategori, sp_semester;
-    EditText txtJudul, txtTahunAjaran, txtNarasi, txtPredikat, txtNilai;
-    TextView txtPoint4, txtPoint3, txtPoint2, txtPoint1;
+    Spinner sp_mapel, sp_strategi, sp_kelas, sp_siswa, sp_kategori, sp_semester, sp_tahun_ajaran;
+    EditText txtJudul, txtNarasi, txtNilai;
+    TextView txtPoint4, txtPoint3, txtPoint2, txtPoint1, txtPredikat;
     RadioButton rbPoint4, rbPoint3, rbPoint2, rbPoint1;
     ImageView imgPortofolio;
 
@@ -149,7 +149,7 @@ public class InputTeacher extends AppCompatActivity {
         sp_kelas = findViewById(R.id.sp_kelas);
         sp_siswa = findViewById(R.id.sp_siswa);
         sp_mapel = findViewById(R.id.sp_mapel);
-        txtTahunAjaran = findViewById(R.id.txtTahunAjaran);
+        sp_tahun_ajaran = findViewById(R.id.sp_tahun_ajaran);
         sp_semester = findViewById(R.id.sp_semester);
         sp_kategori = findViewById(R.id.sp_kategori);
         sp_strategi = findViewById(R.id.sp_strategi);
@@ -188,6 +188,7 @@ public class InputTeacher extends AppCompatActivity {
                 keProfile();
             }
         });
+
         btnOpenCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -236,6 +237,9 @@ public class InputTeacher extends AppCompatActivity {
             }
         }).start();
     }
+
+
+    // ============ CAMERA AND GALLERY THINGS ================
 
     private void selectImage() {
         final CharSequence[] items = {
@@ -403,6 +407,10 @@ public class InputTeacher extends AppCompatActivity {
     }
 
 
+
+    // =================== GET DATA ================
+
+
     public void getKelas()  {
         final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
         final Call<ModelKelas> dataSiswax = apiInterface.getdataKelas( apikey, 1000);
@@ -432,7 +440,6 @@ public class InputTeacher extends AppCompatActivity {
             }
         });
     }
-
 
     public void getSiswa() {
         final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
@@ -469,39 +476,11 @@ public class InputTeacher extends AppCompatActivity {
                 dataMasterMapel = response.body();
                 if (response.body()!=null){
                     listmapel.clear();
-                    getKategoriStrategi();
+                   getStrategi();
                 }
             }
             @Override
             public void onFailure(Call<ModelMataPelajaran> call, Throwable t) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(InputTeacher.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
-                    }
-                });
-                call.cancel();
-            }
-        });
-    }
-
-    public void getKategoriStrategi(){
-        final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
-        final Call<ModelKategoriStrategi> dataSiswax = apiInterface.getDataKategoriStrategi( apikey, 1000);
-        dataSiswax.enqueue(new Callback<ModelKategoriStrategi>() {
-            @Override
-            public void onResponse(Call<ModelKategoriStrategi> call, Response<ModelKategoriStrategi> response) {
-                dataModelKategoriStrategi = response.body();
-                if (response.body()!=null){
-                    listKategoriStrategi.clear();
-                    for (int i = 0; i < dataModelKategoriStrategi.getData().getMsKategoristrategi().size(); i++) {
-                        listKategoriStrategi.add(dataModelKategoriStrategi.getData().getMsKategoristrategi().get(i));
-                    }
-                    getStrategi();
-                }
-            }
-            @Override
-            public void onFailure(Call<ModelKategoriStrategi> call, Throwable t) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -522,11 +501,42 @@ public class InputTeacher extends AppCompatActivity {
                 dataModelStrategi = response.body();
                 if (response.body()!=null){
                     listStrategi.clear();
-                    getRubrik();
+                     for (int i = 0; i < dataModelStrategi.getData().getMsStrategi().size(); i++) {
+                        listStrategi.add(dataModelStrategi.getData().getMsStrategi().get(i));
+                    }
+                    getKategoriStrategi();
                 }
             }
             @Override
             public void onFailure(Call<ModelStrategi> call, Throwable t) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(InputTeacher.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
+                    }
+                });
+                call.cancel();
+            }
+        });
+    }
+
+    public void getKategoriStrategi(){
+        final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
+        final Call<ModelKategoriStrategi> dataSiswax = apiInterface.getDataKategoriStrategi( apikey, 1000);
+        dataSiswax.enqueue(new Callback<ModelKategoriStrategi>() {
+            @Override
+            public void onResponse(Call<ModelKategoriStrategi> call, Response<ModelKategoriStrategi> response) {
+                dataModelKategoriStrategi = response.body();
+                if (response.body()!=null){
+                    listKategoriStrategi.clear();
+                    /*for (int i = 0; i < dataModelKategoriStrategi.getData().getMsKategoristrategi().size(); i++) {
+                        listKategoriStrategi.add(dataModelKategoriStrategi.getData().getMsKategoristrategi().get(i));
+                    }*/
+                    getRubrik();
+                }
+            }
+            @Override
+            public void onFailure(Call<ModelKategoriStrategi> call, Throwable t) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -553,7 +563,7 @@ public class InputTeacher extends AppCompatActivity {
                             findViewById(R.id.framelayout).setVisibility(View.GONE);
                             setSpinnerKelas();
                             setSpinnerMapel();
-                            setSpinnerKategori();
+                            setSpinnerStrategi();
                         }
                     });
                 }
@@ -709,17 +719,17 @@ public class InputTeacher extends AppCompatActivity {
         });
     }
 
-    private void setSpinnerKategori(){
+    private void setSpinnerStrategi(){
 
-        ArrayAdapter<MsKategoristrategi> adapter_kategori = new ArrayAdapter<MsKategoristrategi>(
+        ArrayAdapter<MsStrategi> adapter_strategi = new ArrayAdapter<MsStrategi>(
                 InputTeacher.this,
                 android.R.layout.simple_spinner_dropdown_item,
-                listKategoriStrategi)
+                listStrategi)
         {
             @Override
             public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
                 View v = super.getDropDownView(position, convertView, parent);
-                ((TextView)v).setText(String.valueOf(listKategoriStrategi.get(position).getNameKategori()));
+                ((TextView)v).setText(String.valueOf(listStrategi.get(position).getNameStrategi()));
                 return v;
             }
 
@@ -727,38 +737,39 @@ public class InputTeacher extends AppCompatActivity {
             @Override
             public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
                 View v = super.getDropDownView(position, convertView, parent);
-                ((TextView)v).setText(String.valueOf(listKategoriStrategi.get(position).getNameKategori()));
+                ((TextView)v).setText(String.valueOf(listStrategi.get(position).getNameStrategi()));
                 return v;
             }
         };
-        adapter_kategori.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sp_kategori.setAdapter(adapter_kategori);
 
-        sp_kategori.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        adapter_strategi.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp_strategi.setAdapter(adapter_strategi);
+
+        sp_strategi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                for (int a=0; a<listKategoriStrategi.size(); a++){
-                    if (listKategoriStrategi.get(a).getNameKategori().equalsIgnoreCase(sp_kategori.getSelectedItem().toString())){
-                        inputIdKategori = listKategoriStrategi.get(a).getIdKategori();
-                        for(int i=0; i<dataModelStrategi.getData().getMsStrategi().size(); i++){
-                            if (dataModelStrategi.getData().getMsStrategi().get(i).getKategoriid().equalsIgnoreCase(inputIdKategori)) {
-                                listStrategi.add(dataModelStrategi.getData().getMsStrategi().get(i));
+                for (int a=0; a<listStrategi.size(); a++){
+                    if (listStrategi.get(a).getNameStrategi().equalsIgnoreCase(sp_kategori.getSelectedItem().toString())){
+                        inputIdKategori = listStrategi.get(a).getKategoriid();
+                        for(int i=0; i<dataModelKategoriStrategi.getData().getMsKategoristrategi().size(); i++){
+                            if (dataModelKategoriStrategi.getData().getMsKategoristrategi().get(i).getIdKategori().equalsIgnoreCase(inputIdKategori)) {
+                                listKategoriStrategi.add(dataModelKategoriStrategi.getData().getMsKategoristrategi().get(i));
                             }
                         }
                     }
                 }
 
 
-                ArrayAdapter<MsStrategi> adapter_strategi = new ArrayAdapter<MsStrategi>(
+                ArrayAdapter<MsKategoristrategi> adapter_kategori = new ArrayAdapter<MsKategoristrategi>(
                         InputTeacher.this,
                         android.R.layout.simple_spinner_dropdown_item,
-                        listStrategi)
+                        listKategoriStrategi)
                 {
                     @Override
                     public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
                         View v = super.getDropDownView(position, convertView, parent);
-                        ((TextView)v).setText(String.valueOf(listStrategi.get(position).getNameStrategi()));
+                        ((TextView)v).setText(String.valueOf(listKategoriStrategi.get(position).getNameKategori()));
                         return v;
                     }
 
@@ -766,12 +777,13 @@ public class InputTeacher extends AppCompatActivity {
                     @Override
                     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
                         View v = super.getDropDownView(position, convertView, parent);
-                        ((TextView)v).setText(String.valueOf(listStrategi.get(position).getNameStrategi()));
+                        ((TextView)v).setText(String.valueOf(listKategoriStrategi.get(position).getNameKategori()));
                         return v;
                     }
                 };
-                adapter_strategi.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                sp_strategi.setAdapter(adapter_strategi);
+
+                adapter_kategori.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                sp_kategori.setAdapter(adapter_kategori);
 
                 sp_strategi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
@@ -890,6 +902,18 @@ public class InputTeacher extends AppCompatActivity {
             fotox = MultipartBody.Part.createFormData("foto", mFileName + ".jpg", requestFile1);
         }
 
+        if (Integer.parseInt(txtNilai.getText().toString())>50&&Integer.parseInt(txtNilai.getText().toString())<=60){
+            txtPredikat.setText("D");
+        } else if (Integer.parseInt(txtNilai.getText().toString())>60&&Integer.parseInt(txtNilai.getText().toString())<=70){
+            txtPredikat.setText("C");
+        } else if (Integer.parseInt(txtNilai.getText().toString())>70&&Integer.parseInt(txtNilai.getText().toString())<=85) {
+            txtPredikat.setText("B");
+        } else if (Integer.parseInt(txtNilai.getText().toString())>85&&Integer.parseInt(txtNilai.getText().toString())<=100) {
+            txtPredikat.setText("A");
+        } else {
+            txtPredikat.setText("E");
+        }
+
         APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
         Call<ModelPostPortofolio> data = apiInterface.sendDataPortfolioGuru(
                 inputIdSiswa,
@@ -907,7 +931,7 @@ public class InputTeacher extends AppCompatActivity {
                 txtNarasi.getText().toString(),
                 fotox,
                 inputIdKelas,
-                txtTahunAjaran.getText().toString(),
+                sp_tahun_ajaran.getSelectedItem().toString(),
                 sp_semester.getSelectedItem().toString(),
                 PreferenceUtils.getFirstName(getApplicationContext()),
                 now,
@@ -925,6 +949,9 @@ public class InputTeacher extends AppCompatActivity {
                     public void run() {
                         findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
                         Toast.makeText(InputTeacher.this, "Portfolio Berhasil di Input !", Toast.LENGTH_SHORT).show();
+                        txtNilai.setText("");
+                        txtPredikat.setText("");
+                        imgPortofolio.setImageBitmap(null);
                     }
                 });
             }
