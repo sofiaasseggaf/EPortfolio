@@ -15,7 +15,7 @@
     </string-array>
 
     <string name="tahun_ajaran">Choose a Year</string>
-    <integer-array name="list_tahun">
+    <string-array name="list_tahun">
         <item>2015</item>
         <item>2016</item>
         <item>2017</item>
@@ -28,7 +28,7 @@
         <item>2024</item>
         <item>2025</item>
         <item>2026</item>
-    </integer-array>
+    </string-array>
 
     <!--
     <string name="kategori_prompt">Choose a Categoty</string>

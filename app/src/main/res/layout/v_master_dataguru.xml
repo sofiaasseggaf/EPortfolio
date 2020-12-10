@@ -7,14 +7,14 @@
     android:layout_height="wrap_content"
     android:background="#ffffff"
     android:gravity="center_vertical"
-    android:layout_margin="10dp"
+    android:layout_margin="7dp"
     android:padding="10dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgMasterGuru"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:src="@drawable/profilepicture"
+            android:background="@drawable/nopic"
             app:civ_border_width="2dp"
             android:layout_gravity="center_vertical"
             app:civ_border_color="@color/colorFont2"/>

@@ -141,9 +141,10 @@ public class InputTeacher extends AppCompatActivity {
         sp_mapel = findViewById(R.id.sp_mapel);
         sp_tahun_ajaran = findViewById(R.id.sp_tahun_ajaran);
         sp_semester = findViewById(R.id.sp_semester);
+
         sp_kategori = findViewById(R.id.sp_kategori);
         sp_strategi = findViewById(R.id.sp_strategi);
-        txtJudul = findViewById(R.id.txtJudul);
+        txtJudul = findViewById(R.id.txtJudulKd);
         rbPoint1 = findViewById(R.id.rbPoint1);
         rbPoint2 = findViewById(R.id.rbPoint2);
         rbPoint3 = findViewById(R.id.rbPoint3);
@@ -156,7 +157,6 @@ public class InputTeacher extends AppCompatActivity {
         txtPredikat = findViewById(R.id.txtPredikat);
         txtNilai = findViewById(R.id.txtNilai);
         imgPortofolio = findViewById(R.id.imgPortofolio);
-
 
         first();
 
@@ -206,6 +206,8 @@ public class InputTeacher extends AppCompatActivity {
         btnInputPortfolio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(InputTeacher.this, "Trial Version", Toast.LENGTH_SHORT).show();
+                /*
                 findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
                 new Thread(new Runnable() {
                     @Override
@@ -213,9 +215,10 @@ public class InputTeacher extends AppCompatActivity {
                         sendDataPortfolio();
                     }
                 }).start();
+                */
+
             }
         });
-
     }
 
     public void first(){
@@ -335,6 +338,7 @@ public class InputTeacher extends AppCompatActivity {
      *
      * @throws IOException
      */
+
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
@@ -551,9 +555,9 @@ public class InputTeacher extends AppCompatActivity {
                         @Override
                         public void run() {
                             findViewById(R.id.framelayout).setVisibility(View.GONE);
-                            setSpinnerKelas();
-                            setSpinnerMapel();
-                            setSpinnerStrategi();
+                           // setSpinnerKelas();
+                           // setSpinnerMapel();
+                           // setSpinnerStrategi();
                         }
                     });
                 }

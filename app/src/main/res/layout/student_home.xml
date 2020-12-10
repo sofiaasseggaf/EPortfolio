@@ -23,11 +23,13 @@
             <LinearLayout
                 android:id="@+id/rect_profile"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
+                android:padding="10dp"
                 android:orientation="vertical"
                 android:background="@drawable/hometop"
-                android:paddingRight="20dp"
-                android:paddingLeft="20dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="20dp"
                 android:layout_gravity="center">
 
                 <LinearLayout
@@ -40,6 +42,7 @@
                         android:layout_width="130dp"
                         android:layout_height="130dp"
                         app:civ_border_width="2dp"
+                        android:background="@drawable/nopic"
                         android:layout_gravity="center"
                         app:civ_border_color="#ffffff"/>
                     <LinearLayout
@@ -295,7 +298,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#A9009688"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <ProgressBar
             android:layout_width="wrap_content"

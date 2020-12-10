@@ -41,7 +41,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="20dp"
@@ -134,7 +134,7 @@
 
               <LinearLayout
                   android:layout_width="match_parent"
-                  android:layout_height="match_parent"
+                  android:layout_height="wrap_content"
                   android:layout_marginLeft="20dp"
                   android:layout_marginRight="20dp"
                   android:layout_marginTop="20dp"
@@ -311,7 +311,7 @@
                              android:layout_width="match_parent"
                              android:layout_height="wrap_content"
                              android:fontFamily="@font/montserrat_regular"
-                             android:text="rubkjhgsjenfjhosenfksf \n kagerbja,sbfjlbel fkbbwel"
+                             android:text="contains rubrik \npoint 4 values"
                              android:textSize="14sp"
                              android:layout_gravity="center"
                              android:layout_marginRight="15dp"
@@ -352,7 +352,7 @@
                              android:layout_width="match_parent"
                              android:layout_height="wrap_content"
                              android:fontFamily="@font/montserrat_regular"
-                             android:text="rubkjhgsjenfjhosenfksf \n kagerbja,sbfjlbel fkbbwel"
+                             android:text="contains rubrik \npoint 3 values"
                              android:textSize="14sp"
                              android:layout_gravity="center"
                              android:layout_marginRight="15dp"
@@ -393,7 +393,7 @@
                              android:layout_width="match_parent"
                              android:layout_height="wrap_content"
                              android:fontFamily="@font/montserrat_regular"
-                             android:text="rubkjhgsjenfjhosenfksf \n kagerbja,sbfjlbel fkbbwel"
+                             android:text="contains rubrik \npoint 2 values"
                              android:textSize="14sp"
                              android:layout_gravity="center"
                              android:layout_marginRight="15dp"
@@ -434,7 +434,7 @@
                              android:layout_width="match_parent"
                              android:layout_height="wrap_content"
                              android:fontFamily="@font/montserrat_regular"
-                             android:text="rubkjhgsjenfjhosenfksf \n kagerbja,sbfjlbel fkbbwel"
+                             android:text="contains rubrik \npoint 1 values"
                              android:textSize="14sp"
                              android:layout_gravity="center"
                              android:layout_marginRight="15dp"
@@ -457,7 +457,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="25dp"
@@ -508,7 +508,7 @@
                         android:fontFamily="@font/montserrat_regular"
                         android:textStyle="bold"
                         android:textSize="16sp"
-                        android:text="A"
+                        android:text="-"
                         android:gravity="center|left"
                         android:paddingLeft="20dp"
                         android:textColor="@color/colorFont"
@@ -606,37 +606,37 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:gravity="center_horizontal"
-        android:background="#03000000">
+        android:background="@color/colorFont2">
 
         <ImageButton
             android:id="@+id/btn_home"
-            android:layout_width="30dp"
-            android:layout_height="35dp"
-            android:layout_marginRight="70dp"
+            android:layout_width="20dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="65dp"
             android:layout_gravity="center"
             android:background="@drawable/berandabotton"/>
         <ImageButton
             android:id="@+id/btn_master"
-            android:layout_width="50dp"
-            android:layout_height="35dp"
-            android:layout_marginRight="70dp"
+            android:layout_width="40dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="65dp"
             android:layout_gravity="center"
             android:background="@drawable/btnmaster"/>
         <ImageButton
             android:id="@+id/btn_input"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginRight="70dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="65dp"
             android:layout_gravity="center"
             android:background="@drawable/inputbotton"/>
         <ImageButton
             android:id="@+id/btn_profile"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_gravity="center"
             android:background="@drawable/profilebotton"/>
 
@@ -646,17 +646,17 @@
         android:id="@+id/framelayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#EEFF41"
+        android:background="@drawable/loading"
         android:visibility="gone">
-
         <ProgressBar
             style="?android:attr/progressBarStyle"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="47dp"
+            android:layout_height="45dp"
             android:indeterminateDrawable="@drawable/pbstyle"
-            android:layout_gravity="bottom|center"
-            android:layout_marginBottom="50dp"></ProgressBar>
-
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp">
+        </ProgressBar>
     </FrameLayout>
+
 
 </RelativeLayout>
