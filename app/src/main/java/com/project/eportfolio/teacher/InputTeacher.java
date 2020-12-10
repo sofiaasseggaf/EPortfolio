@@ -60,6 +60,7 @@ import com.project.eportfolio.model.siswa.MsMurid;
 import com.project.eportfolio.model.strategi.ModelStrategi;
 import com.project.eportfolio.model.strategi.MsStrategi;
 import com.project.eportfolio.utility.FileCompressor;
+import com.project.eportfolio.utility.GRadioGroup;
 import com.project.eportfolio.utility.PreferenceUtils;
 
 import java.io.File;
@@ -128,6 +129,8 @@ public class InputTeacher extends AppCompatActivity {
 
         ButterKnife.bind(this);
         mCompressor = new FileCompressor(this);
+
+        GRadioGroup gr = new GRadioGroup(rbPoint1, rbPoint2, rbPoint3, rbPoint4);
 
         btn_beranda = findViewById(R.id.btn_home);
         btn_master = findViewById(R.id.btn_master);

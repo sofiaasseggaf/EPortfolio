@@ -95,7 +95,7 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
 
         namaSiswa = findViewById(R.id.namaSiswa);
         nisSiswa = findViewById(R.id.nisSiswa);
-        //btnUbahFotoProfile = findViewById(R.id.btnUbahFotoProfile);
+        btnUbahFotoProfile = findViewById(R.id.btnUbahFotoProfile);
         imgSiswa = findViewById(R.id.fotoSiswa);
         btnSimpan = findViewById(R.id.btnSimpan);
 
@@ -111,11 +111,11 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
 
         setDataProfile();
 
-        /*
         btnUbahFotoProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try{
+                Toast.makeText(ProfileStudentSettingEdit.this, "Trial Version", Toast.LENGTH_SHORT).show();
+                /*try{
                     if (Build.VERSION.SDK_INT>=23){
                         requestPermissions(new String[] {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, 2);
                         if (ContextCompat.checkSelfPermission(ProfileStudentSettingEdit.this,
@@ -132,11 +132,10 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
                         }
                     }
                 } catch (Exception e){
-                }
+                }*/
             }
         });
 
-        */
 
         btnSimpan.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -121,7 +121,9 @@ public class ProfileTeacherSettingEdit extends AppCompatActivity {
         btnUbahFotoProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try{
+
+                Toast.makeText(ProfileTeacherSettingEdit.this, "Trial Version", Toast.LENGTH_SHORT).show();
+                /*try{
                     if (Build.VERSION.SDK_INT>=23){
                         requestPermissions(new String[] {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, 2);
                         if (ContextCompat.checkSelfPermission(ProfileTeacherSettingEdit.this,
@@ -138,7 +140,7 @@ public class ProfileTeacherSettingEdit extends AppCompatActivity {
                         }
                     }
                 } catch (Exception e){
-                }
+                }*/
             }
         });
 
@@ -354,15 +356,6 @@ public class ProfileTeacherSettingEdit extends AppCompatActivity {
         }).start();
     }
 
-    private void thread2(){
-        findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                updateDataGuruFoto();
-            }
-        }).start();
-    }
 
     private void updateDataGuruRequired(){
 
@@ -442,42 +435,6 @@ public class ProfileTeacherSettingEdit extends AppCompatActivity {
                 finish();
             }
         });
-    }
-
-    //send post data with image
-    private void updateDataGuruFoto(){
-
-        if (mPhotoFile!=null){
-            byte[] bImg1 = AppUtil.FiletoByteArray(mPhotoFile);
-            RequestBody requestFile1 = RequestBody.create(MediaType.parse("image/jpeg"),bImg1);
-            fotox = MultipartBody.Part.createFormData("foto", mFileName + ".jpg", requestFile1);
-        }
-
-        APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
-        Call<ModelUpdateDataGuru> postAdd = apiInterface.updateDataGuruFoto(
-
-                PreferenceUtils.getIdGuru(getApplicationContext()),
-                PreferenceUtils.getUserId(getApplicationContext()),
-                PreferenceUtils.getIdSekolahGuru(getApplicationContext()),
-                PreferenceUtils.getFirstName(getApplicationContext()),
-                PreferenceUtils.getMidName(getApplicationContext()),
-                PreferenceUtils.getLastName(getApplicationContext()),
-                PreferenceUtils.getNik(getApplicationContext()),
-                PreferenceUtils.getNip(getApplicationContext()),
-                PreferenceUtils.getJk(getApplicationContext()),
-                PreferenceUtils.getAddress(getApplicationContext()),
-                PreferenceUtils.getEmail(getApplicationContext()),
-                PreferenceUtils.getTlp(getApplicationContext()),
-                fotox
-        );
-
-        try {
-            postAdd.execute();
-            getGuru();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
 
