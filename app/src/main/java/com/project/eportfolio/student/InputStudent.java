@@ -170,13 +170,14 @@ public class InputStudent extends AppCompatActivity {
         btnInputPortfolio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
+                Toast.makeText(InputStudent.this, "Trial Version", Toast.LENGTH_SHORT).show();
+                /*findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
                         sendDataPortfolioo();
                     }
-                }).start();
+                }).start();*/
             }
         });
     }
@@ -443,6 +444,7 @@ public class InputStudent extends AppCompatActivity {
 
 
     }*/
+
 
     private void sendDataPortfolioo() {
 

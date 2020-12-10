@@ -58,8 +58,8 @@ public class ProfileStudentSettingPrivacy extends AppCompatActivity {
         btnSimpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (editPassLama.getText().toString().equalsIgnoreCase(PreferenceUtils.getPassword(getApplicationContext()))){
+                Toast.makeText(ProfileStudentSettingPrivacy.this, "Trial Version", Toast.LENGTH_SHORT).show();
+                /*if (editPassLama.getText().toString().equalsIgnoreCase(PreferenceUtils.getPassword(getApplicationContext()))){
                     if (editPassBaru.getText().toString().equalsIgnoreCase(editPassBaruu.getText().toString())){
                         findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
                         new Thread(new Runnable() {
@@ -74,7 +74,7 @@ public class ProfileStudentSettingPrivacy extends AppCompatActivity {
                     }
                 } else {
                     Toast.makeText(ProfileStudentSettingPrivacy.this, "Password Salah", Toast.LENGTH_SHORT).show();
-                }
+                }*/
             }
         });
     }

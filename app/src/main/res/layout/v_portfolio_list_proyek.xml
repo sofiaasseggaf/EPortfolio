@@ -13,6 +13,7 @@
     <ImageView
         android:id="@+id/imgListProyek"
         android:layout_width="120dp"
+        android:src="@drawable/nopic"
         android:layout_height="120dp"/>
 
     <LinearLayout

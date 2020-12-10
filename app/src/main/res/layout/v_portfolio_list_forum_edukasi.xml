@@ -12,6 +12,7 @@
 
     <ImageView
         android:id="@+id/imgListForumEdukasi"
+        android:src="@drawable/nopic"
         android:layout_width="120dp"
         android:layout_height="120dp"/>
 
