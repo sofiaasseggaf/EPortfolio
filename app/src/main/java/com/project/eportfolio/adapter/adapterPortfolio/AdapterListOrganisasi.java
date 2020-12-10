@@ -41,7 +41,7 @@ public class AdapterListOrganisasi extends RecyclerView.Adapter<RecyclerView.Vie
         ((Penampung)holder).tglListOrganisasi.setText(dataItemList.get(position).getTanggal());
         try{
             ImageView image = ((Penampung)holder).imgListOrganisasi;
-            Picasso.get().load("https://eportofolio.id/uploads/tr_portofolio/"+dataItemList.get(position).getFoto().toString()).into(image);
+            Picasso.get().load(dataItemList.get(position).getFoto().toString()).into(image);
         } catch (Exception e){
             e.printStackTrace();
         }

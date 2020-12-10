@@ -41,7 +41,7 @@ public class AdapterListPenghargaan extends RecyclerView.Adapter<RecyclerView.Vi
         ((Penampung)holder).tglListPenghargaan.setText(dataItemList.get(position).getTanggal());
         try{
             ImageView image = ((Penampung)holder).imgListPenghargaan;
-            Picasso.get().load("https://eportofolio.id/uploads/tr_portofolio/"+dataItemList.get(position).getFoto().toString()).into(image);
+            Picasso.get().load(dataItemList.get(position).getFoto().toString()).into(image);
         } catch (Exception e){
             e.printStackTrace();
         }

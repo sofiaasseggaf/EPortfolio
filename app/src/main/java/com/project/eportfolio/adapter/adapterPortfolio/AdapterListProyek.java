@@ -44,7 +44,7 @@ public class AdapterListProyek extends RecyclerView.Adapter<RecyclerView.ViewHol
         ((Penampung)holder).judulListProyek.setText(dataItemList.get(position).getJudulKd());
         try{
             ImageView image = ((Penampung)holder).imgListProyek;
-            Picasso.get().load("https://eportofolio.id/uploads/tr_portofolio/"+dataItemList.get(position).getFoto().toString()).into(image);
+            Picasso.get().load(dataItemList.get(position).getFoto().toString()).into(image);
         } catch (Exception e){
             e.printStackTrace();
         }

@@ -24,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.project.eportfolio.LoginActivity;
 import com.project.eportfolio.R;
+import com.project.eportfolio.teacher.ProfileTeacher;
 import com.project.eportfolio.utility.PreferenceUtils;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -137,7 +138,6 @@ public class ProfileStudent extends AppCompatActivity {
             }
         });
 
-        /*
         btnEditPrivacy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,7 +152,6 @@ public class ProfileStudent extends AppCompatActivity {
                 }
             }
         });
-        */
 
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
@@ -161,6 +160,13 @@ public class ProfileStudent extends AppCompatActivity {
 
                 showPopup();
 
+            }
+        });
+
+        btnAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ProfileStudent.this, "Trial Version", Toast.LENGTH_SHORT).show();
             }
         });
     }

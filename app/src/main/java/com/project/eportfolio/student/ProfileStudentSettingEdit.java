@@ -114,8 +114,7 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
         btnUbahFotoProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(ProfileStudentSettingEdit.this, "Trial Version", Toast.LENGTH_SHORT).show();
-                /*try{
+                try{
                     if (Build.VERSION.SDK_INT>=23){
                         requestPermissions(new String[] {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, 2);
                         if (ContextCompat.checkSelfPermission(ProfileStudentSettingEdit.this,
@@ -132,7 +131,7 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
                         }
                     }
                 } catch (Exception e){
-                }*/
+                }
             }
         });
 
@@ -140,7 +139,10 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
         btnSimpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!editFirstName.getText().toString().equalsIgnoreCase("") && !editMidName.getText().toString().equalsIgnoreCase("")  && !editLastName.getText().toString().equalsIgnoreCase("")  &&
+
+                Toast.makeText(ProfileStudentSettingEdit.this, "Trial Version", Toast.LENGTH_SHORT).show();
+
+                /*if (!editFirstName.getText().toString().equalsIgnoreCase("") && !editMidName.getText().toString().equalsIgnoreCase("")  && !editLastName.getText().toString().equalsIgnoreCase("")  &&
                         !editTtl.getText().toString().equalsIgnoreCase("") && !editJk.getText().toString().equalsIgnoreCase("") && !editAlamat.getText().toString().equalsIgnoreCase("") &&
                         !editEmail.getText().toString().equalsIgnoreCase("") && !editTelp.getText().toString().equalsIgnoreCase("")
                         //&& mPhotoFile!=null
@@ -148,7 +150,7 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
                     thread();
                 } else {
                     Toast.makeText(ProfileStudentSettingEdit.this, "Lengkapi Data Terlebih Dahulu !", Toast.LENGTH_SHORT).show();
-                }
+                }*/
             }
         });
 

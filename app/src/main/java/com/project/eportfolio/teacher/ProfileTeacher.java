@@ -146,6 +146,13 @@ public class ProfileTeacher extends AppCompatActivity {
 
             }
         });
+
+        btnAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ProfileTeacher.this, "Trial Version", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void showPopup(){

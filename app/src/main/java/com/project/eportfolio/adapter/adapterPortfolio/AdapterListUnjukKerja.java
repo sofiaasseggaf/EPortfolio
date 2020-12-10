@@ -45,7 +45,7 @@ public class AdapterListUnjukKerja extends RecyclerView.Adapter<RecyclerView.Vie
         ((Penampung)holder).tglListUnjukKerja.setText(dataItemList.get(position).getTanggal());
         try{
             ImageView image = ((Penampung)holder).imgListUnjukKerja;
-            Picasso.get().load("https://eportofolio.id/uploads/tr_portofolio/"+dataItemList.get(position).getFoto().toString()).into(image);
+            Picasso.get().load(dataItemList.get(position).getFoto().toString()).into(image);
         } catch (Exception e){
             e.printStackTrace();
         }

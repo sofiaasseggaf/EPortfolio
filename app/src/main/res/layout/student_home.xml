@@ -42,7 +42,7 @@
                         android:layout_width="130dp"
                         android:layout_height="130dp"
                         app:civ_border_width="2dp"
-                        android:background="@drawable/nopic"
+                        android:src="@drawable/nopic"
                         android:layout_gravity="center"
                         app:civ_border_color="#ffffff"/>
                     <LinearLayout
@@ -204,7 +204,7 @@
                 android:paddingLeft="10dp"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="150dp">
+                android:layout_height="200dp">
             </androidx.viewpager.widget.ViewPager>
 
            <!-- <androidx.recyclerview.widget.RecyclerView
@@ -255,39 +255,37 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:orientation="horizontal"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
         android:layout_alignParentBottom="true"
         android:gravity="center_horizontal"
         android:background="@color/colorFont2">
 
         <ImageButton
             android:id="@+id/btn_home"
-            android:layout_width="30dp"
-            android:layout_height="35dp"
-            android:layout_marginRight="70dp"
+            android:layout_width="20dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="65dp"
             android:layout_gravity="center"
             android:background="@drawable/berandabotton"/>
         <ImageButton
             android:id="@+id/btn_portfolio"
             android:layout_width="40dp"
-            android:layout_height="30dp"
-            android:layout_marginRight="70dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="65dp"
             android:layout_gravity="center"
-            android:background="@drawable/portfoliobotton"/>
+            android:background="@drawable/btnportfolio"/>
         <ImageButton
             android:id="@+id/btn_input"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginRight="70dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="65dp"
             android:layout_gravity="center"
             android:background="@drawable/inputbotton"/>
         <ImageButton
             android:id="@+id/btn_profile"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_gravity="center"
             android:background="@drawable/profilebotton"/>
 

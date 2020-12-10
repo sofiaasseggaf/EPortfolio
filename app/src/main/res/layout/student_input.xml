@@ -180,15 +180,13 @@
                     android:id="@+id/btnInputPortfolio"
                     android:layout_width="200dp"
                     android:layout_height="80dp"
-                    android:layout_marginTop="30dp"
                     android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
                     android:background="@drawable/iconlogin"
+                    android:fontFamily="@font/montserrat_bold"
                     android:text="INPUT"
                     android:textColor="#ffffff"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:textSize="10pt"/>
-
-
+                    android:textSize="10pt" />
 
 
             </LinearLayout>
@@ -199,39 +197,37 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:orientation="horizontal"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
         android:layout_alignParentBottom="true"
         android:gravity="center_horizontal"
-        android:background="@color/cardview_shadow_end_color">
+        android:background="@color/colorFont2">
 
         <ImageButton
             android:id="@+id/btn_home"
-            android:layout_width="30dp"
-            android:layout_height="35dp"
-            android:layout_marginRight="70dp"
+            android:layout_width="20dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="65dp"
             android:layout_gravity="center"
             android:background="@drawable/berandabotton"/>
         <ImageButton
             android:id="@+id/btn_portfolio"
             android:layout_width="40dp"
-            android:layout_height="30dp"
-            android:layout_marginRight="70dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="65dp"
             android:layout_gravity="center"
-            android:background="@drawable/portfoliobotton"/>
+            android:background="@drawable/btnportfolio"/>
         <ImageButton
             android:id="@+id/btn_input"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginRight="70dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="65dp"
             android:layout_gravity="center"
             android:background="@drawable/inputbotton"/>
         <ImageButton
             android:id="@+id/btn_profile"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_gravity="center"
             android:background="@drawable/profilebotton"/>
 

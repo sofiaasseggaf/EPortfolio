@@ -130,7 +130,7 @@ public class InputTeacher extends AppCompatActivity {
         ButterKnife.bind(this);
         mCompressor = new FileCompressor(this);
 
-        GRadioGroup gr = new GRadioGroup(rbPoint1, rbPoint2, rbPoint3, rbPoint4);
+//        GRadioGroup gr = new GRadioGroup(rbPoint1, rbPoint2, rbPoint3, rbPoint4);
 
         btn_beranda = findViewById(R.id.btn_home);
         btn_master = findViewById(R.id.btn_master);
@@ -160,6 +160,12 @@ public class InputTeacher extends AppCompatActivity {
         txtPredikat = findViewById(R.id.txtPredikat);
         txtNilai = findViewById(R.id.txtNilai);
         imgPortofolio = findViewById(R.id.imgPortofolio);
+
+        rbPoint1.setEnabled(false);
+        rbPoint2.setEnabled(false);
+        rbPoint3.setEnabled(false);
+        rbPoint4.setEnabled(false);
+        txtNilai.setEnabled(false);
 
         first();
 
@@ -818,7 +824,7 @@ public class InputTeacher extends AppCompatActivity {
                                 }
                             }
 
-                            rbPoint1.setOnClickListener(new View.OnClickListener() {
+                            /*rbPoint1.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
                                     if (rbPoint1.isChecked()){
@@ -868,7 +874,7 @@ public class InputTeacher extends AppCompatActivity {
                                         inputDeskRubrik = deskRubrik4;
                                     }
                                 }
-                            });
+                            });*/
                         }
                     }
 

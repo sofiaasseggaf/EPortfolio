@@ -121,9 +121,7 @@ public class ProfileTeacherSettingEdit extends AppCompatActivity {
         btnUbahFotoProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Toast.makeText(ProfileTeacherSettingEdit.this, "Trial Version", Toast.LENGTH_SHORT).show();
-                /*try{
+                try{
                     if (Build.VERSION.SDK_INT>=23){
                         requestPermissions(new String[] {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, 2);
                         if (ContextCompat.checkSelfPermission(ProfileTeacherSettingEdit.this,
@@ -140,20 +138,24 @@ public class ProfileTeacherSettingEdit extends AppCompatActivity {
                         }
                     }
                 } catch (Exception e){
-                }*/
+                }
             }
         });
 
         btnSimpan.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (editFirstName.getText().toString()!=null && editMidName.getText().toString()!=null  && editLastName.getText().toString()!=null  &&
+
+                        Toast.makeText(ProfileTeacherSettingEdit.this, "Trial Version", Toast.LENGTH_SHORT).show();
+
+
+                        /*if (editFirstName.getText().toString()!=null && editMidName.getText().toString()!=null  && editLastName.getText().toString()!=null  &&
                                 editNip.getText().toString()!=null && editJk.getText().toString()!=null && editAlamat.getText().toString()!=null &&
                                 editEmail.getText().toString()!=null && editTelp.getText().toString()!=null) {
                             thread();
                         } else {
                             Toast.makeText(ProfileTeacherSettingEdit.this, "Lengkapi Data Terlebih Dahulu !", Toast.LENGTH_SHORT).show();
-                        }
+                        }*/
                     }
         });
 
