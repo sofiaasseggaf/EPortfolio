@@ -88,6 +88,8 @@
                             android:layout_marginTop="10dp"
                             android:fontFamily="@font/montserrat_regular"
                             android:textColor="@color/colorFont"/>
+
+                        <!--
                         <TextView
                             android:id="@+id/btnUbahFotoProfile"
                             android:layout_width="wrap_content"
@@ -97,6 +99,8 @@
                             android:layout_marginTop="10dp"
                             android:fontFamily="@font/montserrat_regular"
                             android:textColor="#536DFE"/>
+                   -->
+
                     </LinearLayout>
                 </LinearLayout>
 

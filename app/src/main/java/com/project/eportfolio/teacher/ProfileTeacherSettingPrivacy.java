@@ -10,7 +10,6 @@ import android.transition.Slide;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -24,16 +23,10 @@ import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.R;
 import com.project.eportfolio.model.guru.ModelGuru;
 import com.project.eportfolio.model.guru.ModelUpdateDataGuru;
-import com.project.eportfolio.model.siswa.ModelSiswa;
-import com.project.eportfolio.model.siswa.ModelUpdateDataSiswa;
-import com.project.eportfolio.model.user.AauthUser;
-import com.project.eportfolio.model.user.ModelUser;
 import com.project.eportfolio.student.ProfileStudent;
-import com.project.eportfolio.student.ProfileStudentSettingPrivacy;
 import com.project.eportfolio.utility.PreferenceUtils;
 
 import java.io.IOException;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;

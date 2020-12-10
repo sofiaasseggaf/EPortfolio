@@ -14,11 +14,8 @@ import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.R;
 import com.project.eportfolio.adapter.adapterMaster.AdapterMasterPortfolio;
-import com.project.eportfolio.adapter.adapterMaster.AdapterMasterSiswa;
 import com.project.eportfolio.model.portfolio.ModelPortofolio;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
-import com.project.eportfolio.model.siswa.ModelSiswa;
-import com.project.eportfolio.model.siswa.MsMurid;
 import com.project.eportfolio.teacher.MasterTeacher;
 import com.project.eportfolio.utility.PreferenceUtils;
 
@@ -70,8 +67,8 @@ public class DataPortfolio extends AppCompatActivity {
                 if (modelDataPortfolio!=null){
                     for (int i = 0; i < modelDataPortfolio.getTotal(); i++) {
                         try {
-                            if (PreferenceUtils.getIdGuru(getApplicationContext())
-                                    .equalsIgnoreCase(modelDataPortfolio.getData().getTrPortofolio().get(i).getGuruid())) {
+                            String id = PreferenceUtils.getUserId(getApplicationContext());
+                            if (id.equalsIgnoreCase(modelDataPortfolio.getData().getTrPortofolio().get(i).getGuruid())) {
                                 listPortfolio.add(modelDataPortfolio.getData().getTrPortofolio().get(i));
                             }
                         } catch (Exception e){

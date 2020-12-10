@@ -38,7 +38,7 @@ public class AdapterListUnjukKerja extends RecyclerView.Adapter<RecyclerView.Vie
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ((Penampung)holder).mapelListUnjukKerja.setText(dataItemList.get(position).getMapelid());
         ((Penampung)holder).kelasListUnjukKerja.setText(dataItemList.get(position).getKelas());
-        ((Penampung)holder).semesterListUnjukKerja.setText(dataItemList.get(position).getSemester());
+        ((Penampung)holder).semesterListUnjukKerja.setText("SEMESTER"+dataItemList.get(position).getSemester());
         ((Penampung)holder).predikatListUnjukKerja.setText(dataItemList.get(position).getPredikat());
         ((Penampung)holder).narasiListUnjukKerja.setText(dataItemList.get(position).getNarasi());
         ((Penampung)holder).judulListUnjukKerja.setText(dataItemList.get(position).getJudulKd());

@@ -1,7 +1,5 @@
 package com.project.eportfolio.adapter.adapterMaster;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.project.eportfolio.R;
-import com.project.eportfolio.adapter.adapterPortfolio.AdapterListProyek;
 import com.project.eportfolio.model.siswa.MsMurid;
 import com.squareup.picasso.Picasso;
 
@@ -22,6 +19,7 @@ import java.util.List;
 public class AdapterMasterSiswa extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<MsMurid> dataItemList;
+
 
     public AdapterMasterSiswa(List<MsMurid> dataItemList){
         this.dataItemList = dataItemList;
@@ -40,7 +38,7 @@ public class AdapterMasterSiswa extends RecyclerView.Adapter<RecyclerView.ViewHo
         ((Penampung)holder).namaList.setText(dataItemList.get(position).getFirstname()+" "+dataItemList.get(position).getLastname());
         try{
             ImageView image = ((Penampung)holder).imgList;
-            Picasso.get().load(dataItemList.get(position).getPhoto()).into(image);
+            Picasso.get().load("https://eportofolio.id/uploads/ms_murid/"+dataItemList.get(position).getPhoto()).into(image);
         } catch (Exception e){
             e.printStackTrace();
         }

@@ -14,17 +14,20 @@ import com.project.eportfolio.model.matapelajaran.ModelMataPelajaran;
 import com.project.eportfolio.model.portfolio.ModelPortofolio;
 import com.project.eportfolio.model.portfolio.ModelPostPortofolio;
 import com.project.eportfolio.model.rubrik.ModelMasterRubrik;
+import com.project.eportfolio.model.siswa.ModelSiswa;
 import com.project.eportfolio.model.siswa.ModelUpdateDataSiswa;
 import com.project.eportfolio.model.sekolah.ModelSekolah;
-import com.project.eportfolio.model.siswa.ModelSiswa;
 import com.project.eportfolio.model.strategi.ModelStrategi;
 import com.project.eportfolio.model.user.ModelUser;
 
 import okhttp3.MultipartBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -84,7 +87,7 @@ public interface APIInterfacesRest {
 
 
     @Multipart
-    @POST("api/tr_portfolio/add")
+    @POST("api/tr_portofolio/add")
     Call<ModelPostPortofolio> sendDataPortfolioSiswa(
             @Part("muridid") String muridid,
             @Part("guruid") String guruid,
@@ -100,6 +103,25 @@ public interface APIInterfacesRest {
             @Part("createddate") String createddate,
             @Part("updateby") String updateby,
             @Part("updatedate") String updatedate
+    );
+
+    @FormUrlEncoded
+    @POST("api/tr_portofolio/add")
+    Call<ModelPostPortofolio> sendDataPortfolioSiswaa(
+            @Field("muridid") String muridid,
+            @Field("guruid") String guruid,
+            @Field("mapelid") String mapelid,
+            @Field("strategiid") String strategiid,
+            @Field("rubrikid") String rubrikid,
+            @Field("judul_kd") String judul_kd,
+            @Field("tanggal") String tanggal,
+            @Field("tempat") String tempat,
+            @Field("narasi") String narasi,
+            @Field ("foto") String foto,
+            @Field("createdby") String createdby,
+            @Field("createddate") String createddate,
+            @Field("updateby") String updateby,
+            @Field("updatedate") String updatedate
     );
 
     @Multipart
@@ -137,6 +159,7 @@ public interface APIInterfacesRest {
     @FormUrlEncoded
     @POST("api/ms_murid/update")
     Call<ModelUpdateDataSiswa> updateDataSiswaRequired(
+            @Header("X-Api-Key") String apikey,
             @Field("id") String id,
             @Field("userid") String userid,
             @Field("sekolahid") String sekolahid,
@@ -149,12 +172,15 @@ public interface APIInterfacesRest {
             @Field("ttl") String ttl,
             @Field("address") String address,
             @Field("email") String email,
-            @Field("phone") String phone
+            @Field("phone") String phone,
+            @Field("updateby") String updateby,
+            @Field("updatedate") String updatedate
     );
 
     @Multipart
     @POST("api/ms_murid/update")
     Call<ModelUpdateDataSiswa> updateDataSiswaRequiredFoto(
+            @Header("X-Api-Key") String apikey,
             @Part("id") String id,
             @Part("userid") String userid,
             @Part("sekolahid") String sekolahid,
@@ -168,7 +194,9 @@ public interface APIInterfacesRest {
             @Part("address") String address,
             @Part("email") String email,
             @Part("phone") String phone,
-            @Part  MultipartBody.Part photo
+            @Part  MultipartBody.Part photo,
+            @Part("updateby") String updateby,
+            @Part("updatedate") String updatedate
     );
 
     @FormUrlEncoded

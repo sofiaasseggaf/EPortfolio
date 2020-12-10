@@ -13,15 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.R;
-import com.project.eportfolio.adapter.adapterMaster.AdapterMasterKelas;
 import com.project.eportfolio.adapter.adapterMaster.AdapterMasterMapel;
-import com.project.eportfolio.adapter.adapterMaster.AdapterMasterSiswa;
-import com.project.eportfolio.model.kelas.ModelKelas;
-import com.project.eportfolio.model.kelas.MsKela;
 import com.project.eportfolio.model.matapelajaran.ModelMataPelajaran;
 import com.project.eportfolio.model.matapelajaran.MsMatapelajaran;
-import com.project.eportfolio.model.siswa.ModelSiswa;
-import com.project.eportfolio.model.siswa.MsMurid;
 import com.project.eportfolio.teacher.MasterTeacher;
 import com.project.eportfolio.utility.PreferenceUtils;
 

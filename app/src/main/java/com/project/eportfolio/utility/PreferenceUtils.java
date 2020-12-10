@@ -2,23 +2,9 @@ package com.project.eportfolio.utility;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.preference.PreferenceManager;
-import android.util.Base64;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.project.eportfolio.model.guru.MsGuru;
-import com.project.eportfolio.model.siswa.MsMurid;
-
-import java.io.ByteArrayOutputStream;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.List;
 
 public class PreferenceUtils extends AppCompatActivity {
 

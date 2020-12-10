@@ -45,7 +45,7 @@ public class AdapterMasterPortfolio extends RecyclerView.Adapter<RecyclerView.Vi
         ((Penampung)holder).judulMasterPortfolio.setText(dataItemList.get(position).getJudulKd());
         try{
             ImageView image = ((Penampung)holder).imgMasterPortfolio;
-            Picasso.get().load("https://eportofolio.id/uploads/tr_portofolio/"+dataItemList.get(position).getFoto().toString()).into(image);
+            Picasso.get().load(dataItemList.get(position).getFoto().toString()).into(image);
         } catch (Exception e){
             e.printStackTrace();
         }

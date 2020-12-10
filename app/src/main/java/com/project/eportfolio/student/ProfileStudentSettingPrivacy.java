@@ -11,7 +11,6 @@ import android.transition.Slide;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -25,8 +24,6 @@ import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.R;
 import com.project.eportfolio.model.siswa.ModelSiswa;
 import com.project.eportfolio.model.siswa.ModelUpdateDataSiswa;
-import com.project.eportfolio.model.user.AauthUser;
-import com.project.eportfolio.model.user.ModelUser;
 import com.project.eportfolio.utility.PreferenceUtils;
 
 import java.io.IOException;

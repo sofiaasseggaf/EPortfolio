@@ -48,7 +48,7 @@ public class AdapterSliderPortfolio extends PagerAdapter {
         textView = view.findViewById(R.id.slider_oase_title);
 
         try{
-            Picasso.get().load("https://eportofolio.id/uploads/tr_portofolio/"+models.get(position).getFoto().toString()).into(imageView);
+            Picasso.get().load(models.get(position).getFoto().toString()).into(imageView);
         } catch (Exception e){
             e.printStackTrace();
         }

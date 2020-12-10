@@ -18,7 +18,6 @@ import android.transition.Slide;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -33,10 +32,6 @@ import androidx.core.content.FileProvider;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.github.angads25.filepicker.controller.DialogSelectionListener;
-import com.github.angads25.filepicker.model.DialogConfigs;
-import com.github.angads25.filepicker.model.DialogProperties;
-import com.github.angads25.filepicker.view.FilePickerDialog;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -87,7 +82,7 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
     static final int REQUEST_TAKE_PHOTO = 1;
     static final int REQUEST_GALLERY_PHOTO = 2;
 
-    String apikey = "7826470ABBA476706DB24D47C6A6ED64";
+    String apikey = "E0DBFA6CBB4C2F63E0ABBB25C4CE3CA3";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -100,7 +95,7 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
 
         namaSiswa = findViewById(R.id.namaSiswa);
         nisSiswa = findViewById(R.id.nisSiswa);
-        btnUbahFotoProfile = findViewById(R.id.btnUbahFotoProfile);
+        //btnUbahFotoProfile = findViewById(R.id.btnUbahFotoProfile);
         imgSiswa = findViewById(R.id.fotoSiswa);
         btnSimpan = findViewById(R.id.btnSimpan);
 
@@ -116,6 +111,7 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
 
         setDataProfile();
 
+        /*
         btnUbahFotoProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -140,12 +136,16 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
             }
         });
 
+        */
+
         btnSimpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (!editFirstName.getText().toString().equalsIgnoreCase("") && !editMidName.getText().toString().equalsIgnoreCase("")  && !editLastName.getText().toString().equalsIgnoreCase("")  &&
                         !editTtl.getText().toString().equalsIgnoreCase("") && !editJk.getText().toString().equalsIgnoreCase("") && !editAlamat.getText().toString().equalsIgnoreCase("") &&
-                        !editEmail.getText().toString().equalsIgnoreCase("") && !editTelp.getText().toString().equalsIgnoreCase("") && mPhotoFile!=null ) {
+                        !editEmail.getText().toString().equalsIgnoreCase("") && !editTelp.getText().toString().equalsIgnoreCase("")
+                        //&& mPhotoFile!=null
+                ) {
                     thread();
                 } else {
                     Toast.makeText(ProfileStudentSettingEdit.this, "Lengkapi Data Terlebih Dahulu !", Toast.LENGTH_SHORT).show();
@@ -389,14 +389,14 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
     //send post data with image
     private void updateDataSiswaFoto(){
 
-        //mPhotoFile = createTempFile(f);
-        byte[] bImg1 = AppUtil.FiletoByteArray(mPhotoFile);
-        RequestBody requestFile1 = RequestBody.create(MediaType.parse("image/jpeg"),bImg1);
-        MultipartBody.Part fotox = MultipartBody.Part.createFormData("photo", PreferenceUtils.getFirstName(getApplicationContext())+".jpg", requestFile1);
+
+       // byte[] bImg1 = AppUtil.FiletoByteArray(mPhotoFile);
+       // RequestBody requestFile1 = RequestBody.create(MediaType.parse("image/jpeg"),bImg1);
+       // MultipartBody.Part fotox = MultipartBody.Part.createFormData("photo", PreferenceUtils.getFirstName(getApplicationContext())+".jpg", requestFile1);
 
         APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
-        Call<ModelUpdateDataSiswa> postAdd = apiInterface.updateDataSiswaRequiredFoto(
-
+        Call<ModelUpdateDataSiswa> postAdd = apiInterface.updateDataSiswaRequired(
+                apikey,
                 PreferenceUtils.getIdSiswa(getApplicationContext()),
                 PreferenceUtils.getUserId(getApplicationContext()),
                 PreferenceUtils.getIdSekolahSiswa(getApplicationContext()),
@@ -410,7 +410,9 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
                 editAlamat.getText().toString(),
                 editEmail.getText().toString(),
                 editTelp.getText().toString(),
-                fotox
+               // fotox,
+                editFirstName.getText().toString(),
+                "0"
         );
 
         postAdd.enqueue(new Callback<ModelUpdateDataSiswa>() {
@@ -419,9 +421,7 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
 
                 if (response.isSuccessful() ) {
                     try {
-
                         getSiswa();
-
                     } catch (Exception e){
                         e.printStackTrace();
                     }

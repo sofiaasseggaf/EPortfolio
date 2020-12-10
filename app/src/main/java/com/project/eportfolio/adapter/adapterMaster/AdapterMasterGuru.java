@@ -1,7 +1,5 @@
 package com.project.eportfolio.adapter.adapterMaster;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,10 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.project.eportfolio.R;
-import com.project.eportfolio.adapter.adapterPortfolio.AdapterListForumEdukasi;
-import com.project.eportfolio.model.grade.MsGrade;
 import com.project.eportfolio.model.guru.MsGuru;
-import com.project.eportfolio.model.siswa.MsMurid;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -40,7 +35,6 @@ public class AdapterMasterGuru extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ((Penampung)holder).namaList.setText(dataItemList.get(position).getFirstname()+" "+dataItemList.get(position).getLastname());
-        ImageView imgList = ((Penampung)holder).imgList;
         try{
             ImageView image = ((Penampung)holder).imgList;
             Picasso.get().load("https://eportofolio.id/uploads/ms_guru/"+dataItemList.get(position).getPhoto()).into(image);

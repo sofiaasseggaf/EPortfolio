@@ -31,26 +31,13 @@ public class Data implements Serializable, Parcelable
 
     }
     ;
-    private final static long serialVersionUID = -2580164872265547048L;
+    private final static long serialVersionUID = -2022948459535419466L;
 
     protected Data(Parcel in) {
         in.readList(this.msMurid, (MsMurid.class.getClassLoader()));
     }
 
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
     public Data() {
-    }
-
-    /**
-     * 
-     * @param msMurid
-     */
-    public Data(List<MsMurid> msMurid) {
-        super();
-        this.msMurid = msMurid;
     }
 
     public List<MsMurid> getMsMurid() {

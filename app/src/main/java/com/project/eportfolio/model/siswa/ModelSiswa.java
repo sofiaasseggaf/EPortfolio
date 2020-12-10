@@ -39,7 +39,7 @@ public class ModelSiswa implements Serializable, Parcelable
 
     }
     ;
-    private final static long serialVersionUID = 4096445836471057353L;
+    private final static long serialVersionUID = -7656393733669903785L;
 
     protected ModelSiswa(Parcel in) {
         this.status = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
@@ -48,26 +48,7 @@ public class ModelSiswa implements Serializable, Parcelable
         this.total = ((Integer) in.readValue((Integer.class.getClassLoader())));
     }
 
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
     public ModelSiswa() {
-    }
-
-    /**
-     * 
-     * @param total
-     * @param data
-     * @param message
-     * @param status
-     */
-    public ModelSiswa(Boolean status, String message, Data data, Integer total) {
-        super();
-        this.status = status;
-        this.message = message;
-        this.data = data;
-        this.total = total;
     }
 
     public Boolean getStatus() {

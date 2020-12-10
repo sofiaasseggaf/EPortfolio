@@ -4,17 +4,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Parcelable;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.gson.Gson;
-import com.project.eportfolio.model.guru.MsGuru;
-import com.project.eportfolio.model.siswa.MsMurid;
-import com.project.eportfolio.student.HomeStudent;
-import com.project.eportfolio.teacher.HomeTeacher;
 
 public class SplashScreen extends AppCompatActivity {
 

@@ -105,7 +105,7 @@ public class MsMurid implements Serializable, Parcelable
 
     }
     ;
-    private final static long serialVersionUID = 2354913465146543554L;
+    private final static long serialVersionUID = -6071149912404890786L;
 
     protected MsMurid(Parcel in) {
         this.id = ((String) in.readValue((String.class.getClassLoader())));
@@ -136,70 +136,7 @@ public class MsMurid implements Serializable, Parcelable
         this.isactive = ((Object) in.readValue((Object.class.getClassLoader())));
     }
 
-    /**
-     * No args constructor for use in serialization
-     * 
-     */
     public MsMurid() {
-    }
-
-    /**
-     * 
-     * @param firstname
-     * @param gender
-     * @param city
-     * @param createddate
-     * @param isactive
-     * @param userid
-     * @param password
-     * @param province
-     * @param updatedate
-     * @param createdby
-     * @param postalcode
-     * @param nis
-     * @param id
-     * @param village
-     * @param email
-     * @param sekolahid
-     * @param address
-     * @param photo
-     * @param kelasid
-     * @param ttl
-     * @param lastname
-     * @param religion
-     * @param phone
-     * @param updateby
-     * @param district
-     * @param midname
-     */
-    public MsMurid(String id, String userid, String sekolahid, String kelasid, String firstname, String midname, String lastname, String nis, String gender, String ttl, String religion, String province, String city, String district, String village, String address, String postalcode, String phone, String email, Object password, String photo, String createdby, String createddate, String updateby, String updatedate, Object isactive) {
-        super();
-        this.id = id;
-        this.userid = userid;
-        this.sekolahid = sekolahid;
-        this.kelasid = kelasid;
-        this.firstname = firstname;
-        this.midname = midname;
-        this.lastname = lastname;
-        this.nis = nis;
-        this.gender = gender;
-        this.ttl = ttl;
-        this.religion = religion;
-        this.province = province;
-        this.city = city;
-        this.district = district;
-        this.village = village;
-        this.address = address;
-        this.postalcode = postalcode;
-        this.phone = phone;
-        this.email = email;
-        this.password = password;
-        this.photo = photo;
-        this.createdby = createdby;
-        this.createddate = createddate;
-        this.updateby = updateby;
-        this.updatedate = updatedate;
-        this.isactive = isactive;
     }
 
     public String getId() {

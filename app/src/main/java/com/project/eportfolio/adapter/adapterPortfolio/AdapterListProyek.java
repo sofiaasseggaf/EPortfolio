@@ -37,7 +37,7 @@ public class AdapterListProyek extends RecyclerView.Adapter<RecyclerView.ViewHol
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ((Penampung)holder).mapelListProyek.setText(dataItemList.get(position).getMapelid());
         ((Penampung)holder).kelasListProyek.setText(dataItemList.get(position).getKelas());
-        ((Penampung)holder).semesterListProyek.setText(dataItemList.get(position).getSemester());
+        ((Penampung)holder).semesterListProyek.setText("SEMESTER"+dataItemList.get(position).getSemester());
         ((Penampung)holder).predikatListproyek.setText("Predikat : " + dataItemList.get(position).getPredikat());
         ((Penampung)holder).narasiListProyek.setText(dataItemList.get(position).getNarasi());
         ((Penampung)holder).tglListProyek.setText(dataItemList.get(position).getTanggal());

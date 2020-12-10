@@ -137,6 +137,7 @@ public class ProfileStudent extends AppCompatActivity {
             }
         });
 
+        /*
         btnEditPrivacy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -151,6 +152,8 @@ public class ProfileStudent extends AppCompatActivity {
                 }
             }
         });
+        */
+
 
         btnLogout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -181,6 +184,7 @@ public class ProfileStudent extends AppCompatActivity {
     public void deleteDataMurid() {
 
         PreferenceUtils.saveIdSiswa(null, getApplicationContext());
+        PreferenceUtils.saveUserId(null, getApplicationContext());
         PreferenceUtils.savePassword("", getApplicationContext());
         PreferenceUtils.saveUsername("", getApplicationContext());
         PreferenceUtils.saveIdSekolahSiswa(null, getApplicationContext());

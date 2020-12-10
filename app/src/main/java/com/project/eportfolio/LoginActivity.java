@@ -1,7 +1,6 @@
 package com.project.eportfolio;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -211,6 +210,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void saveDataGuru(){
         PreferenceUtils.saveIdGuru(userGuru.getIdGuru(), getApplicationContext());
+        PreferenceUtils.saveUserId(idUser, getApplicationContext());
         PreferenceUtils.savePassword(password,getApplicationContext());
         PreferenceUtils.saveUsername(username, getApplicationContext());
         PreferenceUtils.saveIdSekolahGuru(userGuru.getSekolahid(), getApplicationContext());
@@ -242,6 +242,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void saveDataMurid(){
         PreferenceUtils.saveIdSiswa(userSiswa.getId(), getApplicationContext());
+        PreferenceUtils.saveUserId(idUser, getApplicationContext());
         PreferenceUtils.savePassword(password,getApplicationContext());
         PreferenceUtils.saveUsername(username, getApplicationContext());
         PreferenceUtils.saveIdSekolahSiswa(userSiswa.getSekolahid(), getApplicationContext());

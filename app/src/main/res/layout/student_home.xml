@@ -294,7 +294,7 @@
         android:id="@+id/framelayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#25009688"
+        android:background="#A9009688"
         android:visibility="visible">
 
         <ProgressBar

@@ -6,8 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,7 +13,6 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.transition.Slide;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,16 +59,12 @@ import com.project.eportfolio.model.siswa.ModelSiswa;
 import com.project.eportfolio.model.siswa.MsMurid;
 import com.project.eportfolio.model.strategi.ModelStrategi;
 import com.project.eportfolio.model.strategi.MsStrategi;
-import com.project.eportfolio.student.InputStudent;
 import com.project.eportfolio.utility.FileCompressor;
 import com.project.eportfolio.utility.PreferenceUtils;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -84,9 +77,6 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.Query;
-
-import static android.os.Environment.getExternalStoragePublicDirectory;
 
 public class InputTeacher extends AppCompatActivity {
 

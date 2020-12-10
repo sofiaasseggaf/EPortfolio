@@ -13,17 +13,12 @@ import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.R;
 import com.project.eportfolio.adapter.adapterPortfolio.AdapterListKarya;
-import com.project.eportfolio.adapter.adapterPortfolio.AdapterListProyek;
 import com.project.eportfolio.model.portfolio.ModelPortofolio;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
-import com.project.eportfolio.model.siswa.MsMurid;
 import com.project.eportfolio.model.strategi.ModelStrategi;
 import com.project.eportfolio.model.strategi.MsStrategi;
-import com.project.eportfolio.student.HomeStudent;
 import com.project.eportfolio.student.PortfolioStudent;
 import com.project.eportfolio.utility.PreferenceUtils;
-
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;

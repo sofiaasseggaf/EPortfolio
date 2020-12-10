@@ -191,7 +191,7 @@ public class HomeTeacher extends AppCompatActivity {
 
     public void getPortfolio() {
         final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
-        final Call<ModelPortofolio> dataSiswax = apiInterface.getDataPortfolio(  apikey, 1000);
+        final Call<ModelPortofolio> dataSiswax = apiInterface.getDataPortfolio(  apikey, 10000);
 
         dataSiswax.enqueue(new Callback<ModelPortofolio>() {
             @Override
@@ -200,10 +200,9 @@ public class HomeTeacher extends AppCompatActivity {
                 dataModelPortfolio = response.body();
 
                 if (response.body()!=null) {
-
-                    for (int i = 0; i < dataModelPortfolio.getData().getTrPortofolio().size(); i++) {
-                        if (dataModelPortfolio.getData().getTrPortofolio().get(i).getGuruid()
-                                .equalsIgnoreCase(PreferenceUtils.getIdGuru(getApplicationContext()))) {
+                    String id = PreferenceUtils.getUserId(getApplicationContext());
+                    for (int i = 0; i < dataModelPortfolio.getTotal(); i++) {
+                        if (id.equalsIgnoreCase(dataModelPortfolio.getData().getTrPortofolio().get(i).getGuruid())) {
                             listPortofolio.add(dataModelPortfolio.getData().getTrPortofolio().get(i));
                             //LIST SEMUA PORTFOLIO YG DIUPLOAD SAMA GURU YG LOGIN
                         }

@@ -23,7 +23,6 @@ public class APIClient {
 
     public static Retrofit getClient() {
 
-
      Interceptor interceptor = new Interceptor() {
             @Override
             public okhttp3.Response intercept(Chain chain) throws IOException {
