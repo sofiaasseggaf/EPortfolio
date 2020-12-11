@@ -226,6 +226,7 @@ public class ProfileStudent extends AppCompatActivity {
         PreferenceUtils.saveSekolahWebsite(null, getApplicationContext());
 
         Intent a = new Intent(ProfileStudent.this, LoginActivity.class);
+        a.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(a);
         finish();
     }

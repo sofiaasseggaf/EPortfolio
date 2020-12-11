@@ -1,6 +1,9 @@
 package com.project.eportfolio;
 
+import android.app.ActivityOptions;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +12,7 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.project.eportfolio.APIService.APIClient;
@@ -22,6 +26,7 @@ import com.project.eportfolio.model.siswa.MsMurid;
 import com.project.eportfolio.model.user.ModelUser;
 import com.project.eportfolio.student.HomeStudent;
 import com.project.eportfolio.teacher.HomeTeacher;
+import com.project.eportfolio.teacher.ProfileTeacher;
 import com.project.eportfolio.utility.PreferenceUtils;
 
 import retrofit2.Call;
@@ -404,4 +409,27 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Anda Mau Menutup Aplikasi")
+                .setCancelable(false)
+                .setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        LoginActivity.super.onBackPressed();
+                        finish();
+                        finishAffinity();
+                    }
+                })
+
+                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog =builder.create();
+        alertDialog.show();
+    }
 }

@@ -7,14 +7,14 @@
 
     <ImageView
         android:id="@+id/img"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@drawable/logo"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="260dp">
+        android:layout_centerVertical="true">
     </ImageView>
 
-    <TextView
+   <!-- <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Student ePortfolio"
@@ -24,6 +24,6 @@
         android:layout_below="@id/img"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp">
-    </TextView>
+    </TextView>-->
 
 </RelativeLayout>

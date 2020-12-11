@@ -208,6 +208,7 @@ public class ProfileTeacher extends AppCompatActivity {
         PreferenceUtils.saveSekolahWebsite(null, getApplicationContext());
 
         Intent a = new Intent(ProfileTeacher.this, LoginActivity.class);
+        a.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(a);
         finish();
     }
