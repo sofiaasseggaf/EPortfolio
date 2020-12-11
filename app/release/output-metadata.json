@@ -1,0 +1,90 @@
+{
+  "version": 2,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.project.eportfolio",
+  "variantName": "processReleaseResources",
+  "elements": [
+    {
+      "type": "UNIVERSAL",
+      "filters": [],
+      "versionCode": 1,
+      "versionName": "1.0",
+      "outputFile": "app-universal-release.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "DENSITY",
+          "value": "mdpi"
+        }
+      ],
+      "versionCode": 3001,
+      "versionName": "1.0",
+      "outputFile": "app-mdpi-release.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "DENSITY",
+          "value": "ldpi"
+        }
+      ],
+      "versionCode": 2001,
+      "versionName": "1.0",
+      "outputFile": "app-ldpi-release.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "DENSITY",
+          "value": "xxxhdpi"
+        }
+      ],
+      "versionCode": 6001,
+      "versionName": "1.0",
+      "outputFile": "app-xxxhdpi-release.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "DENSITY",
+          "value": "xxhdpi"
+        }
+      ],
+      "versionCode": 5001,
+      "versionName": "1.0",
+      "outputFile": "app-xxhdpi-release.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "DENSITY",
+          "value": "hdpi"
+        }
+      ],
+      "versionCode": 1001,
+      "versionName": "1.0",
+      "outputFile": "app-hdpi-release.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "DENSITY",
+          "value": "xhdpi"
+        }
+      ],
+      "versionCode": 4001,
+      "versionName": "1.0",
+      "outputFile": "app-xhdpi-release.apk"
+    }
+  ]
+}
