@@ -2,7 +2,7 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.project.eportfolio">
+    package="com.project.studentportfolio">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- Include following permission if you want to cache images on SD card -->
@@ -28,7 +28,7 @@
         tools:ignore="HardcodedDebugMode"
         android:requestLegacyExternalStorage="true">
 
-        <activity android:name=".SplashScreen">
+        <activity android:name="com.project.studentportfolio.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,39 +36,39 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".utility.PreferenceUtils" />
+        <activity android:name="com.project.studentportfolio.LoginActivity" />
+        <activity android:name="com.project.studentportfolio.utility.PreferenceUtils" />
 
-        <activity android:name=".student.HomeStudent" />
-        <activity android:name=".student.InputStudent"/>
-        <activity android:name=".student.PortfolioStudent"/>
-        <activity android:name=".student.ProfileStudent"/>
-        <activity android:name=".student.ProfileStudentSettingEdit" />
-        <activity android:name=".student.ProfileStudentSettingPrivacy" />
+        <activity android:name="com.project.studentportfolio.student.HomeStudent" />
+        <activity android:name="com.project.studentportfolio.student.InputStudent"/>
+        <activity android:name="com.project.studentportfolio.student.PortfolioStudent"/>
+        <activity android:name="com.project.studentportfolio.student.ProfileStudent"/>
+        <activity android:name="com.project.studentportfolio.student.ProfileStudentSettingEdit" />
+        <activity android:name="com.project.studentportfolio.student.ProfileStudentSettingPrivacy" />
 
-        <activity android:name=".student.portfolio.ForumEdukasi" />
-        <activity android:name=".student.portfolio.Karya" />
-        <activity android:name=".student.portfolio.Organisasi" />
-        <activity android:name=".student.portfolio.Penghargaan" />
-        <activity android:name=".student.portfolio.Proyek" />
-        <activity android:name=".student.portfolio.UnjukKerja" />
+        <activity android:name="com.project.studentportfolio.student.portfolio.ForumEdukasi" />
+        <activity android:name="com.project.studentportfolio.student.portfolio.Karya" />
+        <activity android:name="com.project.studentportfolio.student.portfolio.Organisasi" />
+        <activity android:name="com.project.studentportfolio.student.portfolio.Penghargaan" />
+        <activity android:name="com.project.studentportfolio.student.portfolio.Proyek" />
+        <activity android:name="com.project.studentportfolio.student.portfolio.UnjukKerja" />
 
-        <activity android:name=".teacher.HomeTeacher" />
-        <activity android:name=".teacher.InputTeacher" />
-        <activity android:name=".teacher.MasterTeacher" />
-        <activity android:name=".teacher.ProfileTeacher"/>
-        <activity android:name=".teacher.ProfileTeacherSettingEdit" />
-        <activity android:name=".teacher.ProfileTeacherSettingPrivacy" />
+        <activity android:name="com.project.studentportfolio.teacher.HomeTeacher" />
+        <activity android:name="com.project.studentportfolio.teacher.InputTeacher" />
+        <activity android:name="com.project.studentportfolio.teacher.MasterTeacher" />
+        <activity android:name="com.project.studentportfolio.teacher.ProfileTeacher"/>
+        <activity android:name="com.project.studentportfolio.teacher.ProfileTeacherSettingEdit" />
+        <activity android:name="com.project.studentportfolio.teacher.ProfileTeacherSettingPrivacy" />
 
-        <activity android:name=".teacher.master.DataGuru" />
-        <activity android:name=".teacher.master.DataKelas" />
-        <activity android:name=".teacher.master.DataMapel" />
-        <activity android:name=".teacher.master.DataMurid" />
-        <activity android:name=".teacher.master.DataPortfolio" />
+        <activity android:name="com.project.studentportfolio.teacher.master.DataGuru" />
+        <activity android:name="com.project.studentportfolio.teacher.master.DataKelas" />
+        <activity android:name="com.project.studentportfolio.teacher.master.DataMapel" />
+        <activity android:name="com.project.studentportfolio.teacher.master.DataMurid" />
+        <activity android:name="com.project.studentportfolio.teacher.master.DataPortfolio" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.project.eportfolio.fileprovider"
+            android:authorities="com.project.studentportfolio.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

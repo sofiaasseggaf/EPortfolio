@@ -4,7 +4,7 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.project.eportfolio",
+  "applicationId": "com.project.studentportfolio",
   "variantName": "processReleaseResources",
   "elements": [
     {
@@ -19,12 +19,12 @@
       "filters": [
         {
           "filterType": "DENSITY",
-          "value": "mdpi"
+          "value": "xxxhdpi"
         }
       ],
-      "versionCode": 3001,
+      "versionCode": 6001,
       "versionName": "1.0",
-      "outputFile": "app-mdpi-release.apk"
+      "outputFile": "app-xxxhdpi-release.apk"
     },
     {
       "type": "ONE_OF_MANY",
@@ -43,12 +43,12 @@
       "filters": [
         {
           "filterType": "DENSITY",
-          "value": "xxxhdpi"
+          "value": "mdpi"
         }
       ],
-      "versionCode": 6001,
+      "versionCode": 3001,
       "versionName": "1.0",
-      "outputFile": "app-xxxhdpi-release.apk"
+      "outputFile": "app-mdpi-release.apk"
     },
     {
       "type": "ONE_OF_MANY",

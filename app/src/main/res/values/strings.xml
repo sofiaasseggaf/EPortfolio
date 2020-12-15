@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ePortfolio Student</string>
+    <string name="app_name">Student Portfolio</string>
 
     <string name="strategi_prompt">Choose a Strategy</string>
     <string-array name="list_strategi">
