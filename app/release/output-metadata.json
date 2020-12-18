@@ -4,15 +4,27 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.project.studentportfolio",
+  "applicationId": "com.project.eportfolio",
   "variantName": "processReleaseResources",
   "elements": [
     {
       "type": "UNIVERSAL",
       "filters": [],
-      "versionCode": 1,
-      "versionName": "1.0",
+      "versionCode": 4,
+      "versionName": "1.1",
       "outputFile": "app-universal-release.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "DENSITY",
+          "value": "mdpi"
+        }
+      ],
+      "versionCode": 3004,
+      "versionName": "1.1",
+      "outputFile": "app-mdpi-release.apk"
     },
     {
       "type": "ONE_OF_MANY",
@@ -22,8 +34,8 @@
           "value": "xxxhdpi"
         }
       ],
-      "versionCode": 6001,
-      "versionName": "1.0",
+      "versionCode": 6004,
+      "versionName": "1.1",
       "outputFile": "app-xxxhdpi-release.apk"
     },
     {
@@ -34,21 +46,9 @@
           "value": "ldpi"
         }
       ],
-      "versionCode": 2001,
-      "versionName": "1.0",
+      "versionCode": 2004,
+      "versionName": "1.1",
       "outputFile": "app-ldpi-release.apk"
-    },
-    {
-      "type": "ONE_OF_MANY",
-      "filters": [
-        {
-          "filterType": "DENSITY",
-          "value": "mdpi"
-        }
-      ],
-      "versionCode": 3001,
-      "versionName": "1.0",
-      "outputFile": "app-mdpi-release.apk"
     },
     {
       "type": "ONE_OF_MANY",
@@ -58,8 +58,8 @@
           "value": "xxhdpi"
         }
       ],
-      "versionCode": 5001,
-      "versionName": "1.0",
+      "versionCode": 5004,
+      "versionName": "1.1",
       "outputFile": "app-xxhdpi-release.apk"
     },
     {
@@ -70,8 +70,8 @@
           "value": "hdpi"
         }
       ],
-      "versionCode": 1001,
-      "versionName": "1.0",
+      "versionCode": 1004,
+      "versionName": "1.1",
       "outputFile": "app-hdpi-release.apk"
     },
     {
@@ -82,8 +82,8 @@
           "value": "xhdpi"
         }
       ],
-      "versionCode": 4001,
-      "versionName": "1.0",
+      "versionCode": 4004,
+      "versionName": "1.1",
       "outputFile": "app-xhdpi-release.apk"
     }
   ]
