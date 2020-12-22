@@ -136,7 +136,8 @@ public class ProfileTeacherSettingEdit extends AppCompatActivity {
         btnSaveFotoProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                thread2();
+                Toast.makeText(ProfileTeacherSettingEdit.this, "Trial Version", Toast.LENGTH_SHORT).show();
+                //thread2();
             }
         });
 
@@ -144,8 +145,8 @@ public class ProfileTeacherSettingEdit extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                       // Toast.makeText(ProfileTeacherSettingEdit.this, "Trial Version", Toast.LENGTH_SHORT).show();
-
+                       Toast.makeText(ProfileTeacherSettingEdit.this, "Trial Version", Toast.LENGTH_SHORT).show();
+/*
                         if (editFirstName.getText().toString()!=null && editMidName.getText().toString()!=null  && editLastName.getText().toString()!=null  &&
                                 editNip.getText().toString()!=null && editJk.getText().toString()!=null && editAlamat.getText().toString()!=null &&
                                 editEmail.getText().toString()!=null && editTelp.getText().toString()!=null) {
@@ -153,6 +154,7 @@ public class ProfileTeacherSettingEdit extends AppCompatActivity {
                         } else {
                             Toast.makeText(ProfileTeacherSettingEdit.this, "Lengkapi Data Terlebih Dahulu !", Toast.LENGTH_SHORT).show();
                         }
+                        */
                     }
         });
 
