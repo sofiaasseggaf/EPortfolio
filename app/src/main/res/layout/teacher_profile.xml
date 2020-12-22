@@ -41,7 +41,6 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="HIMALAYATI JAE HOO"
                     android:textColor="#ffffff"/>
                 <TextView
                     android:id="@+id/sekolahProfile"
@@ -50,7 +49,6 @@
                     android:textSize="14sp"
                     android:fontFamily="@font/montserrat_regular"
                     android:layout_marginTop="5dp"
-                    android:text="SMA ADI LUHUR"
                     android:textColor="#ffffff"/>
                 <TextView
                     android:id="@+id/nipProfile"
@@ -59,7 +57,6 @@
                     android:textSize="14sp"
                     android:fontFamily="@font/montserrat_regular"
                     android:layout_marginTop="5dp"
-                    android:text="SMA ADI LUHUR"
                     android:textColor="#ffffff"/>
             </LinearLayout>
         </LinearLayout>
@@ -71,7 +68,7 @@
             android:layout_below="@id/top"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_marginTop="40dp">
+            android:layout_marginTop="80dp">
 
             <LinearLayout
                 android:id="@+id/btnLogout"

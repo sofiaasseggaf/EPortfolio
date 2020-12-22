@@ -7,7 +7,7 @@
     android:layout_height="wrap_content"
     android:background="@color/colorFont2"
     android:gravity="center_vertical"
-    android:layout_margin="10dp"
+    android:layout_margin="5dp"
     android:padding="10dp">
 
     <ImageView
@@ -27,7 +27,7 @@
             android:id="@+id/namaMasterPortfolio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Rachel Green"
+            android:text=" "
             android:textSize="7pt"
             android:fontFamily="@font/montserrat_regular"
             android:textColor="@color/colorFont"/>
@@ -36,7 +36,7 @@
             android:id="@+id/mapelMasterPortfolio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Matematika"
+            android:text=" "
             android:textSize="7pt"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/montserrat_regular"
@@ -46,7 +46,7 @@
             android:id="@+id/strategiMasterPortfolio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Unjuk Kerja"
+            android:text=" "
             android:textSize="7pt"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/montserrat_regular"
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:text="10/02/2020"
             android:textSize="7pt"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:gravity="right"
             android:fontFamily="@font/montserrat_regular"
             android:textColor="@color/colorFont"/>

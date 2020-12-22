@@ -37,6 +37,7 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
+import com.project.eportfolio.APIService.AppUtil;
 import com.project.eportfolio.R;
 import com.project.eportfolio.model.guru.ModelGuru;
 import com.project.eportfolio.model.guru.ModelUpdateDataGuru;
@@ -50,9 +51,12 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.ButterKnife;
+import okhttp3.MediaType;
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -60,7 +64,7 @@ import retrofit2.Response;
 public class ProfileTeacherSettingEdit extends AppCompatActivity {
 
     LinearLayout btnSimpan;
-    TextView btnUbahFotoProfile, namaGuru, nipGuru;
+    TextView btnUbahFotoProfile, btnSaveFotoProfile, namaGuru, nipGuru;
     EditText editFirstName, editMidName, editLastName, editNik, editNip, editJk, editEmail, editAlamat, editTelp;
     ImageView imgGuru;
     MsGuru dataGuru;
@@ -90,6 +94,7 @@ public class ProfileTeacherSettingEdit extends AppCompatActivity {
         namaGuru = findViewById(R.id.namaGuru);
         nipGuru = findViewById(R.id.nipGuru);
         btnUbahFotoProfile = findViewById(R.id.btnUbahFotoProfile);
+        btnSaveFotoProfile = findViewById(R.id.btnSaveFotoProfile);
         imgGuru = findViewById(R.id.imgGuru);
 
         editFirstName = findViewById(R.id.editFirstName);
@@ -128,20 +133,26 @@ public class ProfileTeacherSettingEdit extends AppCompatActivity {
             }
         });
 
+        btnSaveFotoProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                thread2();
+            }
+        });
+
         btnSimpan.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
 
-                        Toast.makeText(ProfileTeacherSettingEdit.this, "Trial Version", Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(ProfileTeacherSettingEdit.this, "Trial Version", Toast.LENGTH_SHORT).show();
 
-
-                        /*if (editFirstName.getText().toString()!=null && editMidName.getText().toString()!=null  && editLastName.getText().toString()!=null  &&
+                        if (editFirstName.getText().toString()!=null && editMidName.getText().toString()!=null  && editLastName.getText().toString()!=null  &&
                                 editNip.getText().toString()!=null && editJk.getText().toString()!=null && editAlamat.getText().toString()!=null &&
                                 editEmail.getText().toString()!=null && editTelp.getText().toString()!=null) {
                             thread();
                         } else {
                             Toast.makeText(ProfileTeacherSettingEdit.this, "Lengkapi Data Terlebih Dahulu !", Toast.LENGTH_SHORT).show();
-                        }*/
+                        }
                     }
         });
 
@@ -274,6 +285,9 @@ public class ProfileTeacherSettingEdit extends AppCompatActivity {
                                 //.placeholder(R.drawable.profile_pic_place_holder))
                         )
                         .into(imgGuru);
+                btnSaveFotoProfile.setClickable(true);
+                btnSaveFotoProfile.setTextColor((getResources().getColor(R.color.blue)));
+
             } else if (requestCode == REQUEST_GALLERY_PHOTO) {
                 Uri selectedImage = data.getData();
                 try {
@@ -288,6 +302,8 @@ public class ProfileTeacherSettingEdit extends AppCompatActivity {
                                 //.placeholder(R.drawable.profile_pic_place_holder))
                         )
                         .into(imgGuru);
+                btnSaveFotoProfile.setClickable(true);
+                btnSaveFotoProfile.setTextColor((getResources().getColor(R.color.blue)));
             }
         }
     }
@@ -311,6 +327,10 @@ public class ProfileTeacherSettingEdit extends AppCompatActivity {
 
 
     public void setDataProfile(){
+
+        btnSaveFotoProfile.setClickable(false);
+        btnSaveFotoProfile.setTextColor((getResources().getColor(R.color.colorFont2)));
+
         namaGuru.setText(PreferenceUtils.getFirstName(getApplicationContext()) + " " +
                 PreferenceUtils.getMidName(getApplicationContext()) + " " +
                 PreferenceUtils.getLastName(getApplicationContext()));
@@ -344,12 +364,24 @@ public class ProfileTeacherSettingEdit extends AppCompatActivity {
         }).start();
     }
 
+    private void thread2() {
+
+        findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                updateDataGuruFoto();
+            }
+        }).start();
+    }
+
 
     private void updateDataGuruRequired(){
 
         APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
         Call<ModelUpdateDataGuru> postAdd = apiInterface.updateDataGuruRequired(
 
+                apikey,
                 PreferenceUtils.getIdGuru(getApplicationContext()),
                 PreferenceUtils.getUserId(getApplicationContext()),
                 PreferenceUtils.getIdSekolahGuru(getApplicationContext()),
@@ -360,8 +392,12 @@ public class ProfileTeacherSettingEdit extends AppCompatActivity {
                 editNip.getText().toString(),
                 editJk.getText().toString(),
                 editAlamat.getText().toString(),
+                editTelp.getText().toString(),
                 editEmail.getText().toString(),
-                editTelp.getText().toString());
+                editFirstName.getText().toString(),
+                "0"
+        );
+
 
         postAdd.enqueue(new Callback<ModelUpdateDataGuru>() {
             @Override
@@ -381,6 +417,54 @@ public class ProfileTeacherSettingEdit extends AppCompatActivity {
             }
         });
     }
+
+    private void updateDataGuruFoto(){
+
+        if (mPhotoFile!=null){
+            byte[] bImg1 = AppUtil.FiletoByteArray(mPhotoFile);
+            RequestBody requestFile1 = RequestBody.create(MediaType.parse("image/jpeg"),bImg1);
+            fotox = MultipartBody.Part.createFormData("photo", mFileName + ".jpg", requestFile1);
+        }
+
+        APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
+        Call<ModelUpdateDataGuru> postAdd = apiInterface.updateDataGuruFoto(
+
+                apikey,
+                PreferenceUtils.getIdGuru(getApplicationContext()),
+                PreferenceUtils.getUserId(getApplicationContext()),
+                PreferenceUtils.getIdSekolahGuru(getApplicationContext()),
+                PreferenceUtils.getFirstName(getApplicationContext()),
+                PreferenceUtils.getMidName(getApplicationContext()),
+                PreferenceUtils.getLastName(getApplicationContext()),
+                PreferenceUtils.getNik(getApplicationContext()),
+                PreferenceUtils.getNip(getApplicationContext()),
+                PreferenceUtils.getJk(getApplicationContext()),
+                PreferenceUtils.getAddress(getApplicationContext()),
+                PreferenceUtils.getEmail(getApplicationContext()),
+                PreferenceUtils.getTlp(getApplicationContext()),
+                fotox
+        );
+
+
+        postAdd.enqueue(new Callback<ModelUpdateDataGuru>() {
+            @Override
+            public void onResponse(Call<ModelUpdateDataGuru> call, Response<ModelUpdateDataGuru> response) {
+                getGuru();
+            }
+
+            @Override
+            public void onFailure(Call<ModelUpdateDataGuru> call, Throwable t) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(ProfileTeacherSettingEdit.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
+                    }
+                });
+                call.cancel();
+            }
+        });
+    }
+
 
     public void getGuru() {
         final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
@@ -418,7 +502,7 @@ public class ProfileTeacherSettingEdit extends AppCompatActivity {
             public void run() {
                 findViewById(R.id.framelayout).setVisibility(View.GONE);
                 Toast.makeText(ProfileTeacherSettingEdit.this, "Data Selesai di Input", Toast.LENGTH_SHORT).show();
-                Intent a = new Intent(ProfileTeacherSettingEdit.this, ProfileTeacher.class);
+                Intent a = new Intent(ProfileTeacherSettingEdit.this, ProfileTeacherSettingEdit.class);
                 startActivity(a);
                 finish();
             }

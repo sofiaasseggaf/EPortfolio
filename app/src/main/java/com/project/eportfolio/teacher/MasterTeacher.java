@@ -20,6 +20,7 @@ import com.project.eportfolio.teacher.master.DataKelas;
 import com.project.eportfolio.teacher.master.DataMapel;
 import com.project.eportfolio.teacher.master.DataMurid;
 import com.project.eportfolio.teacher.master.DataPortfolio;
+import com.project.eportfolio.teacher.master.DataPortfolioDuaModel;
 
 public class MasterTeacher extends AppCompatActivity {
 
@@ -119,7 +120,7 @@ public class MasterTeacher extends AppCompatActivity {
         btnDataPortfolio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent a = new Intent(MasterTeacher.this, DataPortfolio.class);
+                Intent a = new Intent(MasterTeacher.this, DataPortfolioDuaModel.class);
                 startActivity(a);
                 finish();
             }

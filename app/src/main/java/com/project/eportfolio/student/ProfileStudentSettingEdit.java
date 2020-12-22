@@ -39,6 +39,7 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
+import com.project.eportfolio.APIService.AppUtil;
 import com.project.eportfolio.R;
 import com.project.eportfolio.model.siswa.ModelSiswa;
 import com.project.eportfolio.model.siswa.ModelUpdateDataSiswa;
@@ -57,14 +58,19 @@ import java.util.Date;
 import java.util.List;
 
 import butterknife.ButterKnife;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.project.eportfolio.APIService.AppUtil.*;
+
 public class ProfileStudentSettingEdit extends AppCompatActivity {
 
     LinearLayout btnSimpan;
-    TextView btnUbahFotoProfile, namaSiswa, nisSiswa;
+    TextView btnUbahFotoProfile, btnSaveFotoProfile, namaSiswa, nisSiswa;
     EditText editFirstName, editMidName, editLastName, editTtl, editNis, editJk, editAlamat, editEmail, editTelp;
     ImageView imgSiswa;
     ModelSiswa dataModelSiswa;
@@ -72,6 +78,7 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
     // mPhotoFile itu file yg dipake buat update data
     // mPhotofile bisa diambil dari foto awal di ImageVIew pake void createTempFile
     // mPhotofile bisa diambil dari camera/galery
+    MultipartBody.Part fotox;
     File photoFile, mPhotoFile;
     String mFileName;
     FileCompressor mCompressor;
@@ -92,6 +99,7 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
         namaSiswa = findViewById(R.id.namaSiswa);
         nisSiswa = findViewById(R.id.nisSiswa);
         btnUbahFotoProfile = findViewById(R.id.btnUbahFotoProfile);
+        btnSaveFotoProfile = findViewById(R.id.btnSaveFotoProfile);
         imgSiswa = findViewById(R.id.fotoSiswa);
         btnSimpan = findViewById(R.id.btnSimpan);
 
@@ -131,28 +139,36 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
             }
         });
 
+        btnSaveFotoProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                thread2();
+            }
+        });
 
         btnSimpan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(ProfileStudentSettingEdit.this, "Trial Version", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(ProfileStudentSettingEdit.this, "Trial Version", Toast.LENGTH_SHORT).show();
 
-                /*if (!editFirstName.getText().toString().equalsIgnoreCase("") && !editMidName.getText().toString().equalsIgnoreCase("")  && !editLastName.getText().toString().equalsIgnoreCase("")  &&
+                if (!editFirstName.getText().toString().equalsIgnoreCase("") && !editMidName.getText().toString().equalsIgnoreCase("")  && !editLastName.getText().toString().equalsIgnoreCase("")  &&
                         !editTtl.getText().toString().equalsIgnoreCase("") && !editJk.getText().toString().equalsIgnoreCase("") && !editAlamat.getText().toString().equalsIgnoreCase("") &&
                         !editEmail.getText().toString().equalsIgnoreCase("") && !editTelp.getText().toString().equalsIgnoreCase("")
-                        //&& mPhotoFile!=null
                 ) {
                     thread();
                 } else {
                     Toast.makeText(ProfileStudentSettingEdit.this, "Lengkapi Data Terlebih Dahulu !", Toast.LENGTH_SHORT).show();
-                }*/
+                }
             }
         });
 
     }
 
     private void setDataProfile(){
+
+        btnSaveFotoProfile.setClickable(false);
+        btnSaveFotoProfile.setTextColor((getResources().getColor(R.color.colorFont2)));
 
         namaSiswa.setText(PreferenceUtils.getFirstName(getApplicationContext()) + " " +
                 PreferenceUtils.getMidName(getApplicationContext()) + " " +
@@ -317,6 +333,8 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
                                 //.placeholder(R.drawable.profile_pic_place_holder))
                         )
                         .into(imgSiswa);
+                btnSaveFotoProfile.setClickable(true);
+                btnSaveFotoProfile.setTextColor((getResources().getColor(R.color.blue)));
 
             } else if (requestCode == REQUEST_GALLERY_PHOTO) {
                 Uri selectedImage = data.getData();
@@ -332,6 +350,9 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
                                 //.placeholder(R.drawable.profile_pic_place_holder))
                         )
                         .into(imgSiswa);
+
+                btnSaveFotoProfile.setClickable(true);
+                btnSaveFotoProfile.setTextColor((getResources().getColor(R.color.blue)));
             }
         }
     }
@@ -357,7 +378,17 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                updateDataSiswaFoto();
+                updateDataSiswaRequired();
+            }
+        }).start();
+    }
+
+    private void thread2() {
+        findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                updateDataSiswaRequiredFoto();
             }
         }).start();
     }
@@ -383,13 +414,16 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
         return file;
     }
 
-    //send post data with image
-    private void updateDataSiswaFoto(){
+    //send post data without image
+    private void updateDataSiswaRequired(){
 
-
-       // byte[] bImg1 = AppUtil.FiletoByteArray(mPhotoFile);
-       // RequestBody requestFile1 = RequestBody.create(MediaType.parse("image/jpeg"),bImg1);
-       // MultipartBody.Part fotox = MultipartBody.Part.createFormData("photo", PreferenceUtils.getFirstName(getApplicationContext())+".jpg", requestFile1);
+/*
+        if (mPhotoFile!=null) {
+            byte[] bImg1 = FiletoByteArray(mPhotoFile);
+            RequestBody requestFile1 = RequestBody.create(MediaType.parse("image/jpeg"), bImg1);
+            MultipartBody.Part fotox = MultipartBody.Part.createFormData("photo", PreferenceUtils.getFirstName(getApplicationContext()) + ".jpg", requestFile1);
+        }
+        */
 
         APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
         Call<ModelUpdateDataSiswa> postAdd = apiInterface.updateDataSiswaRequired(
@@ -453,6 +487,79 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
             e.printStackTrace();
         }*/
     }
+
+    //send post data with image
+    private void updateDataSiswaRequiredFoto(){
+
+        if (mPhotoFile!=null) {
+            byte[] bImg1 = FiletoByteArray(mPhotoFile);
+            RequestBody requestFile1 = RequestBody.create(MediaType.parse("image/jpeg"), bImg1);
+            fotox = MultipartBody.Part.createFormData("photo", PreferenceUtils.getFirstName(getApplicationContext()) + ".jpg", requestFile1);
+        }
+
+        APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
+        Call<ModelUpdateDataSiswa> postAdd = apiInterface.updateDataSiswaRequiredFoto(
+                apikey,
+                PreferenceUtils.getIdSiswa(getApplicationContext()),
+                PreferenceUtils.getUserId(getApplicationContext()),
+                PreferenceUtils.getIdSekolahSiswa(getApplicationContext()),
+                PreferenceUtils.getIdKelas(getApplicationContext()),
+                editFirstName.getText().toString(),
+                editMidName.getText().toString(),
+                editLastName.getText().toString(),
+                editNis.getText().toString(),
+                editJk.getText().toString(),
+                editTtl.getText().toString(),
+                editAlamat.getText().toString(),
+                editEmail.getText().toString(),
+                editTelp.getText().toString(),
+                fotox,
+                editFirstName.getText().toString(),
+                "0"
+        );
+
+        postAdd.enqueue(new Callback<ModelUpdateDataSiswa>() {
+            @Override
+            public void onResponse(Call<ModelUpdateDataSiswa> call, Response<ModelUpdateDataSiswa> response) {
+
+                if (response.isSuccessful() ) {
+                    try {
+                        getSiswa();
+                    } catch (Exception e){
+                        e.printStackTrace();
+                    }
+                } else {
+                    findViewById(R.id.framelayout).setVisibility(View.GONE);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(ProfileStudentSettingEdit.this, "Gagal Update Data", Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ModelUpdateDataSiswa> call, Throwable t) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(ProfileStudentSettingEdit.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
+                    }
+                });
+                call.cancel();
+            }
+        });
+
+        /*try {
+            postAdd.execute();
+            getSiswa();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+    }
+
 
     public void getSiswa() {
         final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);

@@ -165,6 +165,15 @@ public class InputTeacher extends AppCompatActivity {
         rbPoint3.setEnabled(false);
         rbPoint4.setEnabled(false);
         txtNilai.setEnabled(false);
+        sp_strategi.setEnabled(false);
+        sp_kategori.setEnabled(false);
+        txtJudul.setEnabled(false);
+        sp_tahun_ajaran.setEnabled(false);
+        sp_semester.setEnabled(false);
+        sp_kelas.setEnabled(false);
+        sp_mapel.setEnabled(false);
+        sp_siswa.setEnabled(false);
+        txtNarasi.setEnabled(false);
 
         first();
 
@@ -962,6 +971,7 @@ public class InputTeacher extends AppCompatActivity {
         }
 
     }
+
 
 
 

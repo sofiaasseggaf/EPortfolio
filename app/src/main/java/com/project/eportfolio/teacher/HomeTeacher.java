@@ -193,7 +193,7 @@ public class HomeTeacher extends AppCompatActivity {
                 dataModelPortfolio = response.body();
 
                 if (response.body()!=null) {
-                    String id = PreferenceUtils.getUserId(getApplicationContext());
+                    String id = PreferenceUtils.getIdGuru(getApplicationContext());
                     for (int i = 0; i < dataModelPortfolio.getTotal(); i++) {
                         if (id.equalsIgnoreCase(dataModelPortfolio.getData().getTrPortofolio().get(i).getGuruid())) {
                             listPortofolio.add(dataModelPortfolio.getData().getTrPortofolio().get(i));

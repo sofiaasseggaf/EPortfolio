@@ -224,6 +224,7 @@ public interface APIInterfacesRest {
     @FormUrlEncoded
     @POST("api/ms_guru/update")
     Call<ModelUpdateDataGuru> updateDataGuruRequired(
+            @Header("X-Api-Key") String apikey,
             @Field("id_guru") String id_guru,
             @Field("userid") String userid,
             @Field("sekolahid") String sekolahid,
@@ -234,14 +235,18 @@ public interface APIInterfacesRest {
             @Field("nip") String nip,
             @Field("gender") String gender,
             @Field("address") String address,
+            @Field("phone") String phone,
             @Field("email") String email,
-            @Field("phone") String phone
+            @Field("updateby") String updateby,
+            @Field("updatedate") String updatedate
+
     );
 
 
     @Multipart
     @POST("api/ms_guru/update")
     Call<ModelUpdateDataGuru> updateDataGuruFoto(
+            @Header("X-Api-Key") String apikey,
             @Part("id_guru") String id_guru,
             @Part("userid") String userid,
             @Part("sekolahid") String sekolahid,

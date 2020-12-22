@@ -65,6 +65,7 @@
         <activity android:name="com.project.eportfolio.teacher.master.DataMapel" />
         <activity android:name="com.project.eportfolio.teacher.master.DataMurid" />
         <activity android:name="com.project.eportfolio.teacher.master.DataPortfolio" />
+        <activity android:name="com.project.eportfolio.teacher.master.DataPortfolioDuaModel" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

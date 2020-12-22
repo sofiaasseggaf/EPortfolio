@@ -70,7 +70,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginLeft="10dp">
                         <TextView
                             android:id="@+id/namaSiswa"
@@ -95,6 +95,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Ubah Foto Profile"
+                            android:textSize="12sp"
+                            android:layout_marginTop="10dp"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:textColor="#536DFE"/>
+
+                        <TextView
+                            android:id="@+id/btnSaveFotoProfile"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Simpan Foto Profile"
                             android:textSize="12sp"
                             android:layout_marginTop="10dp"
                             android:fontFamily="@font/montserrat_regular"

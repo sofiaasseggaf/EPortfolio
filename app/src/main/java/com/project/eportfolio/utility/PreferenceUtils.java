@@ -365,7 +365,7 @@ public class PreferenceUtils extends AppCompatActivity {
     public static boolean saveNip(String nip, Context context){
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor prefsEditor = prefs.edit();
-        prefsEditor.putString(Constants.KEY_NIK, nip);
+        prefsEditor.putString(Constants.KEY_NIP, nip);
         prefsEditor.apply();
         return true;
     }
