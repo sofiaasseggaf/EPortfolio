@@ -27,7 +27,7 @@ import com.project.eportfolio.R;
 import com.project.eportfolio.adapter.adapterPortfolio.AdapterSliderPortfolio;
 import com.project.eportfolio.model.portfolio.ModelPortofolio;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
-import com.project.eportfolio.teacher.master.DataPortfolio;
+import com.project.eportfolio.teacher.master.DataPortfolioDuaModel;
 import com.project.eportfolio.utility.PreferenceUtils;
 import com.squareup.picasso.Picasso;
 
@@ -93,7 +93,7 @@ public class HomeTeacher extends AppCompatActivity {
         txtMorePortfolioGuru.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent a = new Intent(HomeTeacher.this, DataPortfolio.class);
+                Intent a = new Intent(HomeTeacher.this, DataPortfolioDuaModel.class);
                 if(Build.VERSION.SDK_INT>20){
                     ActivityOptions options =
                             ActivityOptions.makeSceneTransitionAnimation(HomeTeacher.this);
@@ -193,7 +193,7 @@ public class HomeTeacher extends AppCompatActivity {
                 dataModelPortfolio = response.body();
 
                 if (response.body()!=null) {
-                    String id = PreferenceUtils.getIdGuru(getApplicationContext());
+                    String id = PreferenceUtils.getUserId(getApplicationContext());
                     for (int i = 0; i < dataModelPortfolio.getTotal(); i++) {
                         if (id.equalsIgnoreCase(dataModelPortfolio.getData().getTrPortofolio().get(i).getGuruid())) {
                             listPortofolio.add(dataModelPortfolio.getData().getTrPortofolio().get(i));

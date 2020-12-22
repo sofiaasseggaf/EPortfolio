@@ -19,7 +19,6 @@ import com.project.eportfolio.teacher.master.DataGuru;
 import com.project.eportfolio.teacher.master.DataKelas;
 import com.project.eportfolio.teacher.master.DataMapel;
 import com.project.eportfolio.teacher.master.DataMurid;
-import com.project.eportfolio.teacher.master.DataPortfolio;
 import com.project.eportfolio.teacher.master.DataPortfolioDuaModel;
 
 public class MasterTeacher extends AppCompatActivity {

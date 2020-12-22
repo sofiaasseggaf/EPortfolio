@@ -17,6 +17,7 @@
         android:layout_height="120dp"/>
 
     <LinearLayout
+        android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -29,7 +30,8 @@
             android:layout_height="wrap_content"
             android:text=" "
             android:textSize="7pt"
-            android:fontFamily="@font/montserrat_regular"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/montserrat_bold"
             android:textColor="@color/colorFont"/>
 
         <TextView
@@ -56,45 +58,51 @@
             android:id="@+id/predikatMasterPortfolio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Predikat : A"
+            android:text=" "
             android:textSize="7pt"
             android:layout_marginTop="5dp"
             android:fontFamily="@font/montserrat_regular"
             android:textColor="@color/colorFont"/>
 
-        <TextView
-            android:id="@+id/narasiMasterPortfolio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Narasi Singkat"
-            android:textSize="7pt"
-            android:layout_marginTop="5dp"
-            android:minLines="3"
-            android:fontFamily="@font/montserrat_regular"
-            android:textColor="@color/colorFont"/>
-
-        <TextView
-            android:id="@+id/tglMasterPortfolio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="10/02/2020"
-            android:textSize="7pt"
-            android:layout_marginTop="10dp"
-            android:gravity="right"
-            android:fontFamily="@font/montserrat_regular"
-            android:textColor="@color/colorFont"/>
 
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tglMasterPortfolio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="10/02/2020"
+        android:textSize="7pt"
+        android:layout_marginTop="10dp"
+        android:gravity="right|bottom"
+        android:layout_below="@id/narasiMasterPortfolio"
+        android:layout_alignParentRight="true"
+        android:fontFamily="@font/montserrat_regular"
+        android:textColor="@color/colorFont"/>
+
+    <TextView
         android:id="@+id/judulMasterPortfolio"
-        android:layout_width="120dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Kemampuan Seni dalam Berbahasa"
         android:textSize="7pt"
-        android:layout_marginTop="5dp"
-        android:fontFamily="@font/montserrat_bold"
+        android:layout_marginTop="10dp"
         android:layout_below="@id/imgMasterPortfolio"
+        android:fontFamily="@font/montserrat_bold"
         android:textColor="@color/colorFont"/>
+
+
+    <TextView
+        android:id="@+id/narasiMasterPortfolio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="sdsdsds "
+        android:textSize="7pt"
+        android:layout_marginTop="5dp"
+        android:minLines="3"
+        android:layout_below="@id/judulMasterPortfolio"
+        android:fontFamily="@font/montserrat_regular"
+        android:textColor="@color/colorFont"/>
+
 
 </RelativeLayout>

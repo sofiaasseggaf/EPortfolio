@@ -1,4 +1,4 @@
-package com.project.eportfolio.adapter.adapterduamodel;
+package com.project.eportfolio.adapter.adapterMaster;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.project.eportfolio.R;
-import com.project.eportfolio.adapter.adapterMaster.AdapterMasterPortfolio;
 import com.project.eportfolio.model.matapelajaran.MsMatapelajaran;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
 import com.project.eportfolio.model.siswa.MsMurid;
@@ -46,43 +45,38 @@ public class AdapterMasterPortfolioDuaModel extends RecyclerView.Adapter<Recycle
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
-        String muridid = dataListTrPortfolio.get(position).getMuridid().toString();
-        String mapelid = dataListTrPortfolio.get(position).getMapelid();
-        boolean done = false;
 
-        while (done){
-            for (int i=0; i<dataListMsMurid.size(); i++){
-                try{
-                    if (dataListMsMurid.get(i).getId().equalsIgnoreCase(muridid)){
-                        ((Penampung)holder).namaMasterPortfolio.setText(dataListMsMurid.get(position).getFirstname()+dataListMsMurid.get(position).getLastname());
-                        done = true;
-                    }
-                    else {
-                        ((Penampung)holder).namaMasterPortfolio.setText("ID Siswa : "+dataListTrPortfolio.get(position).getMuridid().toString());
-                    }
-                } catch (Exception a){
-
+        for (int i=0; i<dataListMsMurid.size(); i++){
+            try{
+                if (dataListTrPortfolio.get(position).getMuridid().toString().equalsIgnoreCase(dataListMsMurid.get(i).getId())){
+                    ((Penampung)holder).namaMasterPortfolio.setText(dataListMsMurid.get(i).getFirstname()+" "+dataListMsMurid.get(i).getLastname());
+                    break;
                 }
-            }
+                else {
+                    ((Penampung)holder).namaMasterPortfolio.setText("ID Siswa : "+dataListTrPortfolio.get(position).getMuridid().toString());
+                }
+            } catch (Exception a){ }
         }
 
 
         for (int i=0; i<dataListMapel.size(); i++){
             try {
-                if (dataListMapel.get(i).getId().equalsIgnoreCase(mapelid)){
+                if (dataListTrPortfolio.get(position).getMapelid().equalsIgnoreCase(dataListMapel.get(i).getId())){
                     ((Penampung)holder).mapelMasterPortfolio.setText(dataListMapel.get(i).getName());
                     break;
                 }
-            } catch (Exception a){
-
-            }
+                else {
+                    ((Penampung)holder).mapelMasterPortfolio.setText("ID Mata Pelajaran : "+dataListTrPortfolio.get(position).getMapelid().toString());
+                }
+            } catch (Exception a){ }
 
         }
+
 
         for (int i=0; i<dataListStrategi.size(); i++){
             try{
                 if (dataListTrPortfolio.get(position).getStrategiid().equalsIgnoreCase(dataListStrategi.get(i).getIdStrategi())){
-                    ((Penampung)holder).mapelMasterPortfolio.setText(dataListStrategi.get(i).getNameStrategi());
+                    ((Penampung)holder).strategiMasterPortfolio.setText(dataListStrategi.get(i).getNameStrategi());
                 }
             } catch (Exception a){
 
@@ -90,7 +84,7 @@ public class AdapterMasterPortfolioDuaModel extends RecyclerView.Adapter<Recycle
 
         }
 
-        ((Penampung)holder).predikatMasterPortfolio.setText("Predikat : " + dataListTrPortfolio.get(position).getPredikat());
+        ((Penampung)holder).predikatMasterPortfolio.setText("Predikat : " + dataListTrPortfolio.get(position).getPredikatMutu());
         ((Penampung)holder).narasiMasterPortfolio.setText(dataListTrPortfolio.get(position).getNarasi());
         ((Penampung)holder).tglMasterPortfolio.setText(dataListTrPortfolio.get(position).getTanggal());
         ((Penampung)holder).judulMasterPortfolio.setText(dataListTrPortfolio.get(position).getJudulKd());
