@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.transition.Slide;
@@ -90,6 +91,9 @@ public class ProfileTeacherSettingEdit extends AppCompatActivity {
         ButterKnife.bind(this);
         mCompressor = new FileCompressor(this);
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         btnSimpan = findViewById(R.id.btnSimpan);
         namaGuru = findViewById(R.id.namaGuru);
         nipGuru = findViewById(R.id.nipGuru);
@@ -145,16 +149,12 @@ public class ProfileTeacherSettingEdit extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                       Toast.makeText(ProfileTeacherSettingEdit.this, "Trial Version", Toast.LENGTH_SHORT).show();
-/*
-                        if (editFirstName.getText().toString()!=null && editMidName.getText().toString()!=null  && editLastName.getText().toString()!=null  &&
-                                editNip.getText().toString()!=null && editJk.getText().toString()!=null && editAlamat.getText().toString()!=null &&
-                                editEmail.getText().toString()!=null && editTelp.getText().toString()!=null) {
+                       //Toast.makeText(ProfileTeacherSettingEdit.this, "Trial Version", Toast.LENGTH_SHORT).show();
+                        if (editFirstName.getText().toString()!=null && editNik.getText().toString()!=null) {
                             thread();
                         } else {
-                            Toast.makeText(ProfileTeacherSettingEdit.this, "Lengkapi Data Terlebih Dahulu !", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ProfileTeacherSettingEdit.this, "Lengkapi Nama Depan & NIK  !", Toast.LENGTH_SHORT).show();
                         }
-                        */
                     }
         });
 
@@ -384,9 +384,9 @@ public class ProfileTeacherSettingEdit extends AppCompatActivity {
         Call<ModelUpdateDataGuru> postAdd = apiInterface.updateDataGuruRequired(
 
                 apikey,
-                PreferenceUtils.getIdGuru(getApplicationContext()),
-                PreferenceUtils.getUserId(getApplicationContext()),
-                PreferenceUtils.getIdSekolahGuru(getApplicationContext()),
+                Integer.parseInt(PreferenceUtils.getIdGuru(getApplicationContext())),
+                Integer.parseInt(PreferenceUtils.getUserId(getApplicationContext())),
+                Integer.parseInt(PreferenceUtils.getIdSekolahGuru(getApplicationContext())),
                 editFirstName.getText().toString(),
                 editMidName.getText().toString(),
                 editLastName.getText().toString(),
@@ -404,7 +404,22 @@ public class ProfileTeacherSettingEdit extends AppCompatActivity {
         postAdd.enqueue(new Callback<ModelUpdateDataGuru>() {
             @Override
             public void onResponse(Call<ModelUpdateDataGuru> call, Response<ModelUpdateDataGuru> response) {
-                getGuru();
+                try {
+                    if (response.body() != null) {
+                         getGuru();
+                    } else {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                findViewById(R.id.framelayout).setVisibility(View.GONE);
+                                Toast.makeText(ProfileTeacherSettingEdit.this, "gagal update data", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+               // getGuru();
             }
 
             @Override
@@ -412,6 +427,7 @@ public class ProfileTeacherSettingEdit extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        findViewById(R.id.framelayout).setVisibility(View.GONE);
                         Toast.makeText(ProfileTeacherSettingEdit.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
                     }
                 });

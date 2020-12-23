@@ -225,9 +225,9 @@ public interface APIInterfacesRest {
     @POST("api/ms_guru/update")
     Call<ModelUpdateDataGuru> updateDataGuruRequired(
             @Header("X-Api-Key") String apikey,
-            @Field("id_guru") String id_guru,
-            @Field("userid") String userid,
-            @Field("sekolahid") String sekolahid,
+            @Field("id_guru") int id_guru,
+            @Field("userid") int userid,
+            @Field("sekolahid") int sekolahid,
             @Field("firstname") String firstname,
             @Field("midname") String midname,
             @Field("lastname") String lastname,

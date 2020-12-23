@@ -20,7 +20,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class APIClient {
 
     private static Retrofit retrofit = null;
-
     public static Retrofit getClient() {
 
      Interceptor interceptor = new Interceptor() {
@@ -29,14 +28,13 @@ public class APIClient {
                 Request newRequest = chain
                         .request()
                         .newBuilder()
+                        .addHeader("Content-Type", "application/json")
                         .addHeader("X-Api-Key", "7826470ABBA476706DB24D47C6A6ED64")
 //                        .addHeader("Authorization", "Bearer " + "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjp7ImlkIjoiMSJ9LCJpYXQiOjE1ODAwMTI5MTAsImV4cCI6MTU4MDAxNDcxMH0.ZNIc9vEGe2I_toLGN7rJ_e9HZY895dqt-gs-uxGXBvQ")
                         .build();
                 return chain.proceed(newRequest);
             }
         };
-
-
         /*HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);*/
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor).build();
@@ -48,10 +46,8 @@ public class APIClient {
         retrofit = new Retrofit.Builder()
                 .baseUrl("https://eportofolio.id/")
                 .addConverterFactory(GsonConverterFactory.create(gson))
-
                 .client(client)
                 .build();
-
         return retrofit;
     }
 }
