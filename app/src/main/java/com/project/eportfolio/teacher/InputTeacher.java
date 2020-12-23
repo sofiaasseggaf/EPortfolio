@@ -92,7 +92,7 @@ public class InputTeacher extends AppCompatActivity {
     RadioButton rbPoint4, rbPoint3, rbPoint2, rbPoint1;
     ImageView imgPortofolio;
     int nilai;
-    String kat;
+    String kat, inputNamaKelas;
 
     File photoFile, mPhotoFile;
     FileCompressor mCompressor;
@@ -117,6 +117,7 @@ public class InputTeacher extends AppCompatActivity {
 
     ModelSiswa dataModelSiswa;
     List<MsMurid> listSiswa = new ArrayList<>();
+    List<MsMurid> listSiswa2 = new ArrayList<>();
 
     ModelMasterRubrik dataMasterRubrik;
     List<MsRubrik> listRubrik = new ArrayList<>();
@@ -165,14 +166,6 @@ public class InputTeacher extends AppCompatActivity {
         imgPortofolio = findViewById(R.id.imgPortofolio);
 
 
-        txtJudul.setEnabled(false);
-        sp_tahun_ajaran.setEnabled(false);
-        sp_semester.setEnabled(false);
-        sp_kelas.setEnabled(false);
-        sp_mapel.setEnabled(false);
-        sp_siswa.setEnabled(false);
-        txtNarasi.setEnabled(false);
-
         first();
 
         txtNilai.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -180,30 +173,30 @@ public class InputTeacher extends AppCompatActivity {
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 boolean handled = false;
                 if (actionId == EditorInfo.IME_NULL && event.getAction() == KeyEvent.ACTION_DOWN) {
-                        // Handle pressing "Enter" key here
-                        if (!txtNilai.getText().toString().equalsIgnoreCase("")) {
+                    // Handle pressing "Enter" key here
+                    if (!txtNilai.getText().toString().equalsIgnoreCase("")) {
 
-                            nilai = Integer.parseInt(txtNilai.getText().toString());
+                        nilai = Integer.parseInt(txtNilai.getText().toString());
 
-                            if (nilai > 0 && nilai <=50) {
-                                txtPredikat.setText("E");
-                            } else if (nilai > 50 && nilai <= 60) {
-                                txtPredikat.setText("D");
-                            } else if (nilai > 60 && nilai <= 70) {
-                                txtPredikat.setText("C");
-                            } else if (nilai > 70 && nilai <= 85) {
-                                txtPredikat.setText("B");
-                            } else if (nilai > 85 && nilai <= 100) {
-                                txtPredikat.setText("A");
-                            } else if (nilai > 100) {
-                                txtPredikat.setText("-");
-                            }
-                        } else {
-                            handled = false;
+                        if (nilai > 0 && nilai <=50) {
+                            txtPredikat.setText("E");
+                        } else if (nilai > 50 && nilai <= 60) {
+                            txtPredikat.setText("D");
+                        } else if (nilai > 60 && nilai <= 70) {
+                            txtPredikat.setText("C");
+                        } else if (nilai > 70 && nilai <= 85) {
+                            txtPredikat.setText("B");
+                        } else if (nilai > 85 && nilai <= 100) {
+                            txtPredikat.setText("A");
+                        } else if (nilai > 100) {
+                            txtPredikat.setText("-");
                         }
-
-                        handled = true;
+                    } else {
+                        handled = false;
                     }
+
+                    handled = true;
+                }
 
                 return handled;
             }
@@ -288,7 +281,7 @@ public class InputTeacher extends AppCompatActivity {
                             } catch (Exception a){ }
                         }
 
-                        if (!inputIdKategori.equalsIgnoreCase("")){
+                        if (!inputIdKategori.equalsIgnoreCase("") || inputIdKategori!=null){
                             try {
                                 for(int i=0; i<dataModelKategoriStrategi.getTotal(); i++){
                                     if (dataModelKategoriStrategi.getData().getMsKategoristrategi().get(i).getIdKategori().equalsIgnoreCase(inputIdKategori)) {
@@ -337,6 +330,113 @@ public class InputTeacher extends AppCompatActivity {
 
         }
 
+        if (listkelas!=null){
+            try {
+                sp_kelas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        listSiswa2.clear();
+                        if (listkelas!=null){
+                            for (int a=0; a<listkelas.size(); a++){
+                                if (listkelas.get(a).getName().equalsIgnoreCase(String.valueOf(listkelas.get(position).getName()))){
+                                    inputIdKelas = listkelas.get(a).getId();
+                                    inputNamaKelas = listkelas.get(a).getName();
+                                    if (!inputIdKelas.equalsIgnoreCase("") || inputIdKelas!=null){
+                                        try{
+                                            for(int i=0; i<listSiswa.size(); i++){
+                                                if (listSiswa.get(i).getKelasid().equalsIgnoreCase(inputIdKelas)) {
+                                                    listSiswa2.add(listSiswa.get(i));
+                                                }
+                                            }
+                                        } catch (Exception i){ }
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (listSiswa2!=null){
+                            ArrayAdapter<MsMurid> adapterSiswax = new ArrayAdapter<MsMurid>(InputTeacher.this, android.R.layout.simple_spinner_dropdown_item,listSiswa2)
+                            {
+                                @Override
+                                public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                                    View v = super.getDropDownView(position, convertView, parent);
+                                    ((TextView)v).setText(listSiswa2.get(position).getFirstname()+"  "+listSiswa2.get(position).getLastname());
+                                    return v;
+                                }
+
+                                @NonNull
+                                @Override
+                                public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                                    View v = super.getDropDownView(position, convertView, parent);
+                                    ((TextView)v).setText(listSiswa2.get(position).getFirstname()+"  "+listSiswa2.get(position).getLastname());
+                                    return v;
+                                }
+                            };
+                            adapterSiswax.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            sp_siswa.setAdapter(adapterSiswax);
+                        }
+
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+            } catch (Exception a){ }
+
+        }
+
+        if (listSiswa2!=null){
+            sp_siswa.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                    if (listSiswa2!=null){
+                        for (int a=0; a<listSiswa.size(); a++){
+                            String siswa = listSiswa2.get(a).getFirstname()+" "+listSiswa2.get(a).getLastname();
+                            if (siswa.equalsIgnoreCase(String.valueOf(listSiswa2.get(position).getFirstname()+" "+listSiswa2.get(position).getLastname()))){
+                                inputIdSiswa = listSiswa2.get(a).getId();
+                                break;
+                            }
+                        }
+                    }
+
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+        }
+
+        if (listmapel!=null){
+            sp_mapel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                    if (listmapel!=null){
+                        for (int a=0; a<listmapel.size(); a++){
+                            if (listmapel.get(a).getName().equalsIgnoreCase(listmapel.get(position).getName())){
+                                inputIdMapel = listmapel.get(a).getId();
+                                break;
+                            }
+                        }
+                    }
+
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+
+                }
+            });
+        }
+
+
+
         btn_beranda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -383,16 +483,18 @@ public class InputTeacher extends AppCompatActivity {
         btnInputPortfolio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(InputTeacher.this, "Trial Version", Toast.LENGTH_SHORT).show();
-                findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        sendDataPortfolio();
-                    }
-                }).start();
+                if (txtJudul.getText().toString().equalsIgnoreCase("")) {
+                    Toast.makeText(InputTeacher.this, "Lengkapi Judul KD !", Toast.LENGTH_SHORT).show();
+                } else if(inputIdKelas.equalsIgnoreCase("")) {
+                    Toast.makeText(InputTeacher.this, "Pilih Kelas  !", Toast.LENGTH_SHORT).show();
+                } else if (txtPredikat.getText().toString().equalsIgnoreCase("")) {
+                    Toast.makeText(InputTeacher.this, "Lengkapi Nilai !  !", Toast.LENGTH_SHORT).show();
+                } else {
+                    thread();
+                }
             }
         });
+
     }
 
     public void first(){
@@ -401,6 +503,17 @@ public class InputTeacher extends AppCompatActivity {
             @Override
             public void run() {
                 getKelas();
+            }
+        }).start();
+    }
+
+    private void thread() {
+
+        findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                sendDataPortfolio();
             }
         }).start();
     }
@@ -618,6 +731,14 @@ public class InputTeacher extends AppCompatActivity {
                 dataModelSiswa = response.body();
                 if(response.body()!=null){
                     listSiswa.clear();
+                    for (int i=0; i<dataModelSiswa.getTotal(); i++){
+                        try {
+                            if (dataModelSiswa.getData().getMsMurid().get(i).getSekolahid().equalsIgnoreCase(PreferenceUtils.getSekolahId(getApplicationContext()))){
+                                listSiswa.add(dataModelSiswa.getData().getMsMurid().get(i));
+                            }
+                        } catch (Exception a){ }
+                    }
+
                     getMapel();
                 }
             }
@@ -644,7 +765,7 @@ public class InputTeacher extends AppCompatActivity {
                 dataMasterMapel = response.body();
                 if (response.body()!=null){
                     listmapel.clear();
-                   getStrategi();
+                    getStrategi();
                 }
             }
             @Override
@@ -669,7 +790,7 @@ public class InputTeacher extends AppCompatActivity {
                 dataModelStrategi = response.body();
                 if (response.body()!=null){
                     listStrategi.clear();
-                     for (int i = 0; i < dataModelStrategi.getData().getMsStrategi().size(); i++) {
+                    for (int i = 0; i < dataModelStrategi.getData().getMsStrategi().size(); i++) {
                         listStrategi.add(dataModelStrategi.getData().getMsStrategi().get(i));
                     }
                     getKategoriStrategi();
@@ -729,7 +850,7 @@ public class InputTeacher extends AppCompatActivity {
                         @Override
                         public void run() {
                             findViewById(R.id.framelayout).setVisibility(View.GONE);
-                           setSpinnerStrategi();
+                            setSpinnerStrategi();
                         }
                     });
                 }
@@ -805,68 +926,6 @@ public class InputTeacher extends AppCompatActivity {
 
         setSpinnerMapel();
 
-        /*
-        sp_kelas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                for (int a=0; a<listkelas.size(); a++){
-                    if (listkelas.get(a).getName().equalsIgnoreCase(sp_kelas.getSelectedItem().toString())){
-                        inputIdKelas = listkelas.get(a).getId();
-                        for(int i=0; i<dataModelSiswa.getData().getMsMurid().size(); i++){
-                            if (dataModelSiswa.getData().getMsMurid().get(i).getKelasid().equalsIgnoreCase(inputIdKelas)) {
-                                listSiswa.add(dataModelSiswa.getData().getMsMurid().get(i));
-                            }
-                        }
-                    }
-                }
-
-
-                ArrayAdapter<MsMurid> adapterSiswax = new ArrayAdapter<MsMurid>(InputTeacher.this, android.R.layout.simple_spinner_dropdown_item,listSiswa)
-                {
-                    @Override
-                    public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                        View v = super.getDropDownView(position, convertView, parent);
-                        ((TextView)v).setText(listSiswa.get(position).getFirstname()+"  "+listSiswa.get(position).getLastname());
-                        return v;
-                    }
-
-                    @NonNull
-                    @Override
-                    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                        View v = super.getDropDownView(position, convertView, parent);
-                        ((TextView)v).setText(listSiswa.get(position).getFirstname()+"  "+listSiswa.get(position).getLastname());
-                        return v;
-                    }
-                };
-                adapterSiswax.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                sp_siswa.setAdapter(adapterSiswax);
-
-                sp_siswa.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        for (int a=0; a<listSiswa.size(); a++){
-                            String siswa = listSiswa.get(a).getFirstname()+" "+listSiswa.get(a).getLastname();
-                            if (siswa.equalsIgnoreCase(sp_siswa.getSelectedItem().toString())){
-                                inputIdSiswa = listSiswa.get(a).getId();
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                });
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        */
-
     }
 
     private void setSpinnerMapel(){
@@ -901,24 +960,6 @@ public class InputTeacher extends AppCompatActivity {
         adapter_mapel.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_mapel.setAdapter(adapter_mapel);
 
-/*
-        sp_mapel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                for (int a=0; a<listmapel.size(); a++){
-                    if (listmapel.get(a).getName().equalsIgnoreCase(sp_mapel.getSelectedItem().toString())){
-                        inputIdSiswa = listSiswa.get(a).getId();
-                    }
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        */
-
     }
 
 
@@ -949,32 +990,56 @@ public class InputTeacher extends AppCompatActivity {
                 txtPredikat.getText().toString(),
                 txtNarasi.getText().toString(),
                 fotox,
-                inputIdKelas,
+                inputNamaKelas,
                 sp_tahun_ajaran.getSelectedItem().toString(),
                 sp_semester.getSelectedItem().toString(),
                 PreferenceUtils.getFirstName(getApplicationContext()),
                 now,
-                Integer.parseInt(txtPredikat.getText().toString()),
+                Integer.parseInt(txtNilai.getText().toString()),
                 Integer.parseInt(inputIdKelas)
         );
 
-        try {
-            data.execute();
-            if (data!=null){
+        data.enqueue(new Callback<ModelPostPortofolio>() {
+            @Override
+            public void onResponse(Call<ModelPostPortofolio> call, Response<ModelPostPortofolio> response) {
+                try {
+                    if (response.body() != null) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                findViewById(R.id.framelayout).setVisibility(View.GONE);
+                                Toast.makeText(InputTeacher.this, "berhasil input portfolio", Toast.LENGTH_LONG).show();
+                                txtNilai.setText("");
+                                txtPredikat.setText("");
+                                imgPortofolio.setImageBitmap(null);
+                            }
+                        });
+                    } else {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                findViewById(R.id.framelayout).setVisibility(View.GONE);
+                                Toast.makeText(InputTeacher.this, "gagal input portfolio", Toast.LENGTH_LONG).show();
+                            }
+                        });
+                    }
+                } catch (Exception a){
+                    a.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ModelPostPortofolio> call, Throwable t) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
-                        Toast.makeText(InputTeacher.this, "Portfolio Berhasil di Input !", Toast.LENGTH_SHORT).show();
-                        txtNilai.setText("");
-                        txtPredikat.setText("");
-                        imgPortofolio.setImageBitmap(null);
+                        findViewById(R.id.framelayout).setVisibility(View.GONE);
+                        Toast.makeText(InputTeacher.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
                     }
                 });
+                call.cancel();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        });
 
     }
 

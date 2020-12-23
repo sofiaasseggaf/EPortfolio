@@ -359,16 +359,16 @@ public class ProfileTeacherSettingEdit extends AppCompatActivity {
         editTelp.setText(PreferenceUtils.getTlp(getApplicationContext()));
     }
 
-    private void thread() {
+        private void thread() {
 
-        findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                updateDataGuruRequired();
-            }
-        }).start();
-    }
+            findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    updateDataGuruRequired();
+                }
+            }).start();
+        }
 
     private void thread2() {
 
