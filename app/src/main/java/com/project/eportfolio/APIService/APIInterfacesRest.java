@@ -12,7 +12,7 @@ import com.project.eportfolio.model.kategoristrategi.ModelKategoriStrategi;
 import com.project.eportfolio.model.kelas.ModelKelas;
 import com.project.eportfolio.model.matapelajaran.ModelMataPelajaran;
 import com.project.eportfolio.model.portfolio.ModelPortofolio;
-import com.project.eportfolio.model.portfolio.ModelPostPortofolio;
+import com.project.eportfolio.model.portfolio.ModelPostPortfolio;
 import com.project.eportfolio.model.rubrik.ModelMasterRubrik;
 import com.project.eportfolio.model.siswa.ModelSiswa;
 import com.project.eportfolio.model.siswa.ModelUpdateDataSiswa;
@@ -26,6 +26,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -86,12 +87,10 @@ public interface APIInterfacesRest {
 
     @Multipart
     @POST("api/tr_portofolio/add")
-    Call<ModelPostPortofolio> sendDataPortfolioSiswa(
-            @Part("muridid") String muridid,
-            @Part("guruid") String guruid,
-            @Part("mapelid") String mapelid,
+    Call<ModelPostPortfolio> sendDataPortfolioSiswa(
+            @Header("X-Api-Key") String apikey,
+            @Part("muridid") int muridid,
             @Part("strategiid") String strategiid,
-            @Part("rubrikid") String rubrikid,
             @Part("judul_kd") String judul_kd,
             @Part("tanggal") String tanggal,
             @Part("tempat") String tempat,
@@ -99,32 +98,14 @@ public interface APIInterfacesRest {
             @Part MultipartBody.Part foto,
             @Part("createdby") String createdby,
             @Part("createddate") String createddate,
-            @Part("updateby") String updateby,
-            @Part("updatedate") String updatedate
-    );
-
-    @FormUrlEncoded
-    @POST("api/tr_portofolio/add")
-    Call<ModelPostPortofolio> sendDataPortfolioSiswaa(
-            @Field("muridid") String muridid,
-            @Field("guruid") String guruid,
-            @Field("mapelid") String mapelid,
-            @Field("strategiid") String strategiid,
-            @Field("rubrikid") String rubrikid,
-            @Field("judul_kd") String judul_kd,
-            @Field("tanggal") String tanggal,
-            @Field("tempat") String tempat,
-            @Field("narasi") String narasi,
-            @Field ("foto") String foto,
-            @Field("createdby") String createdby,
-            @Field("createddate") String createddate,
-            @Field("updateby") String updateby,
-            @Field("updatedate") String updatedate
+            @Part("predikat") int predikat,
+            @Part("kelasid") int kelasid
     );
 
     @Multipart
-    @POST("api/tr_portfolio/add")
-    Call<ModelPostPortofolio> sendDataPortfolioGuru(
+    @POST("api/tr_portofolio/add")
+    Call<ModelPostPortfolio> sendDataPortfolioGuru(
+            @Header("X-Api-Key") String apikey,
             @Part("muridid") int muridid,
             @Part("guruid") int guruid,
             @Part("mapelid") int mapelid,

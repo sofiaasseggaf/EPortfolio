@@ -41,6 +41,7 @@ public class APIClient {
 
         GsonBuilder gb = new GsonBuilder();
         gb.registerTypeAdapter(String.class, new StringConverter());
+        gb.setLenient();
         Gson gson = gb.create();
 
         retrofit = new Retrofit.Builder()

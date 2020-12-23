@@ -1,13 +1,14 @@
+
 package com.project.eportfolio.model.portfolio;
 
 import java.io.Serializable;
 import android.os.Parcel;
 import android.os.Parcelable;
-
+import android.os.Parcelable.Creator;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ModelPostPortofolio implements Serializable, Parcelable
+public class ModelPostPortfolio implements Serializable, Parcelable
 {
 
     @SerializedName("status")
@@ -16,42 +17,42 @@ public class ModelPostPortofolio implements Serializable, Parcelable
     @SerializedName("message")
     @Expose
     private String message;
-    public final static Creator<ModelPostPortofolio> CREATOR = new Creator<ModelPostPortofolio>() {
+    public final static Creator<ModelPostPortfolio> CREATOR = new Creator<ModelPostPortfolio>() {
 
 
         @SuppressWarnings({
-                "unchecked"
+            "unchecked"
         })
-        public ModelPostPortofolio createFromParcel(Parcel in) {
-            return new ModelPostPortofolio(in);
+        public ModelPostPortfolio createFromParcel(Parcel in) {
+            return new ModelPostPortfolio(in);
         }
 
-        public ModelPostPortofolio[] newArray(int size) {
-            return (new ModelPostPortofolio[size]);
+        public ModelPostPortfolio[] newArray(int size) {
+            return (new ModelPostPortfolio[size]);
         }
 
     }
-            ;
+    ;
     private final static long serialVersionUID = -3246957670320084555L;
 
-    protected ModelPostPortofolio(Parcel in) {
+    protected ModelPostPortfolio(Parcel in) {
         this.status = ((Boolean) in.readValue((Boolean.class.getClassLoader())));
         this.message = ((String) in.readValue((String.class.getClassLoader())));
     }
 
     /**
      * No args constructor for use in serialization
-     *
+     * 
      */
-    public ModelPostPortofolio() {
+    public ModelPostPortfolio() {
     }
 
     /**
-     *
+     * 
      * @param message
      * @param status
      */
-    public ModelPostPortofolio(Boolean status, String message) {
+    public ModelPostPortfolio(Boolean status, String message) {
         super();
         this.status = status;
         this.message = message;

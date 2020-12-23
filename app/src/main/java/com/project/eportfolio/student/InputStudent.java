@@ -39,9 +39,11 @@ import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
+import com.project.eportfolio.APIService.AppUtil;
 import com.project.eportfolio.R;
-import com.project.eportfolio.model.portfolio.ModelPostPortofolio;
 //import com.project.eportfolio.utility.FileCompressor;
+import com.project.eportfolio.model.portfolio.ModelPostPortfolio;
+import com.project.eportfolio.teacher.InputTeacher;
 import com.project.eportfolio.utility.FileCompressor;
 import com.project.eportfolio.utility.PreferenceUtils;
 
@@ -53,7 +55,9 @@ import java.util.List;
 import java.util.Locale;
 
 import butterknife.ButterKnife;
+import okhttp3.MediaType;
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -75,7 +79,7 @@ public class InputStudent extends AppCompatActivity {
 
     static final int REQUEST_TAKE_PHOTO = 1;
     static final int REQUEST_GALLERY_PHOTO = 2;
-
+    String apikey = "7826470ABBA476706DB24D47C6A6ED64";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -147,16 +151,24 @@ public class InputStudent extends AppCompatActivity {
         btnInputPortfolio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(InputStudent.this, "Trial Version", Toast.LENGTH_SHORT).show();
-                /*findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        sendDataPortfolioo();
-                    }
-                }).start();*/
+                if (txtJudul.getText().toString().equalsIgnoreCase("")) {
+                    Toast.makeText(InputStudent.this, "Lengkapi Judul KD !", Toast.LENGTH_SHORT).show();
+                } else {
+                    thread();
+                }
             }
         });
+    }
+
+    private void thread() {
+
+        findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                sendDataPortfolio();
+            }
+        }).start();
     }
 
     private void selectImage() {
@@ -324,169 +336,71 @@ public class InputStudent extends AppCompatActivity {
         }
     }
 
-/*
+
     private void sendDataPortfolio() {
-
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-        String now = formatter.format(new Date());
-
-        if (mPhotoFile != null) {
-            byte[] bImg1 = AppUtil.FiletoByteArray(mPhotoFile);
-            RequestBody requestFile1 = RequestBody.create(MediaType.parse("image/jpeg"), bImg1);
-            fotox = MultipartBody.Part.createFormData("foto", mFileName + ".jpg", requestFile1);
-        }
-
-        APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
-        Call<ModelPostPortofolio> data = apiInterface.sendDataPortfolioSiswa(
-                PreferenceUtils.getIdSiswa(getApplicationContext()),
-                "0",
-                "0",
-                sp_strategi.getSelectedItem().toString(),
-                "0",
-                txtJudul.getText().toString(),
-                now,
-                txtTempat.getText().toString(),
-                txtNarasi.getText().toString(),
-                fotox,
-                PreferenceUtils.getFirstName(getApplicationContext()),
-                now,
-                PreferenceUtils.getFirstName(getApplicationContext()),
-                now
-        );
-
-            data.enqueue(new Callback<ModelPostPortofolio>() {
-                @Override
-                public void onResponse(Call<ModelPostPortofolio> call, Response<ModelPostPortofolio> response) {
-                    if (response.isSuccessful()) {
-                        try {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    findViewById(R.id.framelayout).setVisibility(View.GONE);
-                                    Toast.makeText(InputStudent.this, "Berhasil Input Portofolio", Toast.LENGTH_LONG).show();
-                                }
-                            });
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    } else {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                findViewById(R.id.framelayout).setVisibility(View.GONE);
-                                Toast.makeText(InputStudent.this, "Gagal Input Portofolio", Toast.LENGTH_LONG).show();
-                            }
-                        });
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<ModelPostPortofolio> call, Throwable t) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            findViewById(R.id.framelayout).setVisibility(View.GONE);
-                            Log.d(TAG, "onFailure: "+t.toString());
-                            Toast.makeText(InputStudent.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
-                           // Toast.makeText(InputStudent.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
-                        }
-                    });
-                    call.cancel();
-                }
-            });
-
-
-
-            *//*
-            try{
-            if (data.execute()!=null){
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
-                        Toast.makeText(InputStudent.this, "Portfolio Berhasil di Input !", Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-        } catch (IOException e) {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    findViewById(R.id.framelayout).setVisibility(View.GONE);
-                    Toast.makeText(InputStudent.this, "Portfolio Gagal di Input !", Toast.LENGTH_SHORT).show();
-                }
-            });
-            e.printStackTrace();
-        }*//*
-
-
-    }*/
-
-
-    private void sendDataPortfolioo() {
 
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
             String now = formatter.format(new Date());
 
-           /* if (mPhotoFile != null) {
-                byte[] bImg1 = AppUtil.FiletoByteArray(mPhotoFile);
-                RequestBody requestFile1 = RequestBody.create(MediaType.parse("image/jpeg"), bImg1);
-                fotox = MultipartBody.Part.createFormData("foto", mFileName + ".jpg", requestFile1);
-            }
-*/
+        if (mPhotoFile!=null){
+            byte[] bImg1 = AppUtil.FiletoByteArray(mPhotoFile);
+            RequestBody requestFile1 = RequestBody.create(MediaType.parse("image/jpeg"),bImg1);
+            fotox = MultipartBody.Part.createFormData("foto", mFileName + ".jpg", requestFile1);
+        }
+
             APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
-            Call<ModelPostPortofolio> data = apiInterface.sendDataPortfolioSiswaa(
-                    PreferenceUtils.getIdSiswa(getApplicationContext()),
-                    "0",
-                    "0",
+            Call<ModelPostPortfolio> data = apiInterface.sendDataPortfolioSiswa(
+                    apikey,
+                    Integer.parseInt(PreferenceUtils.getIdSiswa(getApplicationContext())),
                     sp_strategi.getSelectedItem().toString(),
-                    "0",
                     txtJudul.getText().toString(),
                     now,
                     txtTempat.getText().toString(),
                     txtNarasi.getText().toString(),
-                    "foto",
+                    fotox,
                     PreferenceUtils.getFirstName(getApplicationContext()),
                     now,
-                    PreferenceUtils.getFirstName(getApplicationContext()),
-                    now
+                    Integer.parseInt("100"),
+                    Integer.parseInt(PreferenceUtils.getIdKelas(getApplicationContext()))
             );
 
-            data.enqueue(new Callback<ModelPostPortofolio>() {
+            data.enqueue(new Callback<ModelPostPortfolio>() {
                 @Override
-                public void onResponse(Call<ModelPostPortofolio> call, Response<ModelPostPortofolio> response) {
-                    if (response.isSuccessful()) {
-                        try {
+                public void onResponse(Call<ModelPostPortfolio> call, Response<ModelPostPortfolio> response) {
+                    try {
+                        if (response.body() != null) {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
                                     findViewById(R.id.framelayout).setVisibility(View.GONE);
-                                    Toast.makeText(InputStudent.this, "Berhasil Input Portofolio", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(InputStudent.this, "berhasil input portfolio", Toast.LENGTH_LONG).show();
+                                    imgPortofolio.setImageBitmap(null);
+                                    txtJudul.setText("");
+                                    txtNarasi.setText("");
+                                    txtTempat.setText("");
                                 }
                             });
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                        } else {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    findViewById(R.id.framelayout).setVisibility(View.GONE);
+                                    Toast.makeText(InputStudent.this, "gagal input portfolio", Toast.LENGTH_LONG).show();
+                                }
+                            });
                         }
-                    } else {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                findViewById(R.id.framelayout).setVisibility(View.GONE);
-                                Toast.makeText(InputStudent.this, "Gagal Input Portofolio", Toast.LENGTH_LONG).show();
-                            }
-                        });
+                    } catch (Exception a){
+                        a.printStackTrace();
                     }
                 }
 
                 @Override
-                public void onFailure(Call<ModelPostPortofolio> call, Throwable t) {
+                public void onFailure(Call<ModelPostPortfolio> call, Throwable t) {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             findViewById(R.id.framelayout).setVisibility(View.GONE);
-                            Log.d(TAG, "onFailure: "+t.toString());
-                            Toast.makeText(InputStudent.this, ""+t.getMessage(), Toast.LENGTH_SHORT).show();
-                            // Toast.makeText(InputStudent.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
+                            Toast.makeText(InputStudent.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
                         }
                     });
                     call.cancel();
@@ -495,27 +409,7 @@ public class InputStudent extends AppCompatActivity {
 
 
 
-                /*
-                try{
-                if (data.execute()!=null){
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
-                            Toast.makeText(InputStudent.this, "Portfolio Berhasil di Input !", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-                }
-            } catch (IOException e) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        findViewById(R.id.framelayout).setVisibility(View.GONE);
-                        Toast.makeText(InputStudent.this, "Portfolio Gagal di Input !", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                e.printStackTrace();
-            }*/
+
 
 
     }

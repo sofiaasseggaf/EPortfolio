@@ -55,7 +55,7 @@ import com.project.eportfolio.model.kelas.ModelKelas;
 import com.project.eportfolio.model.kelas.MsKela;
 import com.project.eportfolio.model.matapelajaran.ModelMataPelajaran;
 import com.project.eportfolio.model.matapelajaran.MsMatapelajaran;
-import com.project.eportfolio.model.portfolio.ModelPostPortofolio;
+import com.project.eportfolio.model.portfolio.ModelPostPortfolio;
 import com.project.eportfolio.model.rubrik.ModelMasterRubrik;
 import com.project.eportfolio.model.rubrik.MsRubrik;
 import com.project.eportfolio.model.siswa.ModelSiswa;
@@ -206,11 +206,12 @@ public class InputTeacher extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
+                    txtNarasi.setText(deskRubrik1);
+                    inputIdRubrik = idRubrik1;
+                    inputDeskRubrik = deskRubrik1;
                     rbPoint2.setChecked(false);
                     rbPoint3.setChecked(false);
                     rbPoint4.setChecked(false);
-                    //                    inputIdRubrik = idRubrik1;
-                    //                    inputDeskRubrik = deskRubrik1;
 
                 }
             }
@@ -220,6 +221,9 @@ public class InputTeacher extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (rbPoint2.isChecked()){
+                    txtNarasi.setText(deskRubrik2);
+                    inputIdRubrik = idRubrik2;
+                    inputDeskRubrik = deskRubrik2;
                     rbPoint1.setChecked(false);
                     rbPoint3.setChecked(false);
                     rbPoint4.setChecked(false);
@@ -233,6 +237,9 @@ public class InputTeacher extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (rbPoint3.isChecked()){
+                    txtNarasi.setText(deskRubrik3);
+                    inputDeskRubrik = deskRubrik3;
+                    inputIdRubrik = idRubrik3;
                     rbPoint1.setChecked(false);
                     rbPoint2.setChecked(false);
                     rbPoint4.setChecked(false);
@@ -246,6 +253,9 @@ public class InputTeacher extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (rbPoint4.isChecked()){
+                    txtNarasi.setText(deskRubrik4);
+                    inputIdRubrik = idRubrik4;
+                    inputDeskRubrik = deskRubrik4;
                     rbPoint1.setChecked(false);
                     rbPoint2.setChecked(false);
                     rbPoint3.setChecked(false);
@@ -260,6 +270,8 @@ public class InputTeacher extends AppCompatActivity {
                 sp_strategi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                        txtNarasi.setText("");
 
                         if (listStrategi!=null){
                             for (int a=0; a<listStrategi.size(); a++){
@@ -434,7 +446,6 @@ public class InputTeacher extends AppCompatActivity {
                 }
             });
         }
-
 
 
         btn_beranda.setOnClickListener(new View.OnClickListener() {
@@ -975,7 +986,8 @@ public class InputTeacher extends AppCompatActivity {
         }
 
         APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
-        Call<ModelPostPortofolio> data = apiInterface.sendDataPortfolioGuru(
+        Call<ModelPostPortfolio> data = apiInterface.sendDataPortfolioGuru(
+                apikey,
                 Integer.parseInt(inputIdSiswa),
                 Integer.parseInt(PreferenceUtils.getIdGuru(getApplicationContext())),
                 Integer.parseInt(inputIdMapel),
@@ -995,13 +1007,13 @@ public class InputTeacher extends AppCompatActivity {
                 sp_semester.getSelectedItem().toString(),
                 PreferenceUtils.getFirstName(getApplicationContext()),
                 now,
-                Integer.parseInt(txtNilai.getText().toString()),
-                Integer.parseInt(inputIdKelas)
+                Integer.parseInt(txtNilai.getText().toString()), //req
+                Integer.parseInt(inputIdKelas) //req
         );
 
-        data.enqueue(new Callback<ModelPostPortofolio>() {
+        data.enqueue(new Callback<ModelPostPortfolio>() {
             @Override
-            public void onResponse(Call<ModelPostPortofolio> call, Response<ModelPostPortofolio> response) {
+            public void onResponse(Call<ModelPostPortfolio> call, Response<ModelPostPortfolio> response) {
                 try {
                     if (response.body() != null) {
                         runOnUiThread(new Runnable() {
@@ -1029,7 +1041,7 @@ public class InputTeacher extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<ModelPostPortofolio> call, Throwable t) {
+            public void onFailure(Call<ModelPostPortfolio> call, Throwable t) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

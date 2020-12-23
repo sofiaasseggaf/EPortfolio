@@ -40,7 +40,8 @@
         <activity android:name="com.project.eportfolio.utility.PreferenceUtils" />
 
         <activity android:name="com.project.eportfolio.student.HomeStudent" />
-        <activity android:name="com.project.eportfolio.student.InputStudent"/>
+        <activity android:name="com.project.eportfolio.student.InputStudent"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name="com.project.eportfolio.student.PortfolioStudent"/>
         <activity android:name="com.project.eportfolio.student.ProfileStudent"/>
         <activity android:name="com.project.eportfolio.student.ProfileStudentSettingEdit" />
@@ -54,7 +55,8 @@
         <activity android:name="com.project.eportfolio.student.portfolio.UnjukKerja" />
 
         <activity android:name="com.project.eportfolio.teacher.HomeTeacher" />
-        <activity android:name="com.project.eportfolio.teacher.InputTeacher" />
+        <activity android:name="com.project.eportfolio.teacher.InputTeacher"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name="com.project.eportfolio.teacher.MasterTeacher" />
         <activity android:name="com.project.eportfolio.teacher.ProfileTeacher"/>
         <activity android:name="com.project.eportfolio.teacher.ProfileTeacherSettingEdit" />
