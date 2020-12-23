@@ -233,7 +233,7 @@ public class HomeStudent extends AppCompatActivity {
 
                         for(int i=0; i<listPortofolio.size(); i++){
                             try {
-                                if (listPortofolio.get(i).getStrategiid().equalsIgnoreCase("Organisasi")){
+                                if (listPortofolio.get(i).getIdkategori().equalsIgnoreCase("4")){
                                     listOrganisasi.add(listPortofolio.get(i));
                                 }
                             } catch (Exception e){
@@ -243,7 +243,7 @@ public class HomeStudent extends AppCompatActivity {
 
                         for(int i=0; i<listPortofolio.size(); i++){
                             try {
-                                if (listPortofolio.get(i).getStrategiid().equalsIgnoreCase("Penghargaan")){
+                                if (listPortofolio.get(i).getIdkategori().equalsIgnoreCase("5")){
                                     listPenghargaan.add(listPortofolio.get(i));
                                 }
                             } catch (Exception e){
@@ -253,7 +253,7 @@ public class HomeStudent extends AppCompatActivity {
 
                         for(int i=0; i<listPortofolio.size(); i++){
                             try {
-                                if (listPortofolio.get(i).getStrategiid().equalsIgnoreCase("Forum Edukasi")){
+                                if (listPortofolio.get(i).getStrategiid().equalsIgnoreCase("6")){
                                     listForumEdukasi.add(listPortofolio.get(i));
                                 }
                             } catch (Exception e){

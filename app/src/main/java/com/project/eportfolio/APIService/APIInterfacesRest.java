@@ -90,7 +90,7 @@ public interface APIInterfacesRest {
     Call<ModelPostPortfolio> sendDataPortfolioSiswa(
             @Header("X-Api-Key") String apikey,
             @Part("muridid") int muridid,
-            @Part("strategiid") String strategiid,
+            @Part("idkategori") int idkategori,
             @Part("judul_kd") String judul_kd,
             @Part("tanggal") String tanggal,
             @Part("tempat") String tempat,

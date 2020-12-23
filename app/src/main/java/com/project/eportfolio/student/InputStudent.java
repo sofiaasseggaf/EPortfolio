@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -63,6 +64,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
+import static okhttp3.internal.http.HttpDate.format;
 
 public class InputStudent extends AppCompatActivity {
 
@@ -71,6 +73,7 @@ public class InputStudent extends AppCompatActivity {
     EditText txtJudul, txtTempat, txtNarasi;
     Button btnInputPortfolio, btnOpenCamera;
     ImageView imgPortofolio;
+    int idkategori;
 
     File photoFile, mPhotoFile;
     FileCompressor mCompressor;
@@ -158,6 +161,26 @@ public class InputStudent extends AppCompatActivity {
                 }
             }
         });
+/*
+        sp_strategi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                if (sp_strategi.getSelectedItem().toString().equalsIgnoreCase("Organisasi")) {
+                    idkategori = 4;
+                } else if (sp_strategi.getSelectedItem().toString().equalsIgnoreCase("Penghargaan")) {
+                    idkategori = 5;
+                } else if (sp_strategi.getSelectedItem().toString().equalsIgnoreCase("Forum Edukasi")) {
+                    idkategori = 6;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        */
     }
 
     private void thread() {
@@ -342,17 +365,29 @@ public class InputStudent extends AppCompatActivity {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
             String now = formatter.format(new Date());
 
+        SimpleDateFormat foror = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss", Locale.getDefault());
+        String tgl = foror.format(new Date());
+
         if (mPhotoFile!=null){
             byte[] bImg1 = AppUtil.FiletoByteArray(mPhotoFile);
             RequestBody requestFile1 = RequestBody.create(MediaType.parse("image/jpeg"),bImg1);
-            fotox = MultipartBody.Part.createFormData("foto", mFileName + ".jpg", requestFile1);
+            fotox = MultipartBody.Part.createFormData("foto", PreferenceUtils.getFirstName(getApplicationContext())+
+                    "_" + tgl + ".jpg", requestFile1);
         }
+
+       /* if (sp_strategi.getSelectedItem().toString().equalsIgnoreCase("Organisasi")) {
+            idkategori = 4;
+        } else if (sp_strategi.getSelectedItem().toString().equalsIgnoreCase("Penghargaan")) {
+            idkategori = 5;
+        } else if (sp_strategi.getSelectedItem().toString().equalsIgnoreCase("Forum Edukasi")) {
+            idkategori = 6;
+        }*/
 
             APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
             Call<ModelPostPortfolio> data = apiInterface.sendDataPortfolioSiswa(
                     apikey,
                     Integer.parseInt(PreferenceUtils.getIdSiswa(getApplicationContext())),
-                    sp_strategi.getSelectedItem().toString(),
+                    0,
                     txtJudul.getText().toString(),
                     now,
                     txtTempat.getText().toString(),
