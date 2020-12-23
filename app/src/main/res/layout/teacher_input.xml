@@ -64,10 +64,7 @@
                         android:id="@+id/sp_strategi"
                         android:layout_width="match_parent"
                         android:layout_gravity="center"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:textStyle="bold"
-                        android:textSize="14sp"
-                        android:textColor="@color/colorFont"
+                        style="@style/MySpinnerLook"
                         android:layout_height="40dp" />
                 </LinearLayout>
 
@@ -85,13 +82,13 @@
                         android:fontFamily="@font/montserrat_bold"
                         android:layout_gravity="center"
                         android:textSize="14sp"/>
-                    <Spinner
-                        android:id="@+id/sp_kategori"
+                    <TextView
+                        android:id="@+id/txtkategori"
                         android:layout_width="match_parent"
                         android:layout_gravity="center"
                         android:fontFamily="@font/montserrat_regular"
-                        android:textStyle="bold"
-                        android:textSize="14sp"
+                        android:textSize="16sp"
+                        android:gravity="center"
                         android:textColor="@color/colorFont"
                         android:layout_height="40dp" />
                 </LinearLayout>
@@ -528,13 +525,15 @@
                         android:id="@+id/txtNilai"
                         android:layout_width="match_parent"
                         android:layout_gravity="center"
+                        android:gravity="center"
                         android:fontFamily="@font/montserrat_regular"
                         android:textStyle="bold"
                         android:textSize="14sp"
                         android:textColor="@color/colorFont"
                         android:layout_weight="1"
                         android:inputType="number"
-                        android:layout_height="40dp" />
+                        android:layout_height="40dp"
+                        android:imeOptions="actionSend"/>
                 </LinearLayout>
 
                 <RelativeLayout

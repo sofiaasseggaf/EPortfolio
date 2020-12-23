@@ -14,12 +14,15 @@ import android.provider.MediaStore;
 import android.provider.Settings;
 import android.transition.Slide;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -71,6 +74,7 @@ import java.util.List;
 import java.util.Locale;
 
 import butterknife.ButterKnife;
+import butterknife.OnEditorAction;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -82,11 +86,13 @@ public class InputTeacher extends AppCompatActivity {
 
     ImageButton btn_beranda, btn_master, btn_input, btn_profile;
     Button btnInputPortfolio, btnOpenCamera;
-    Spinner sp_mapel, sp_strategi, sp_kelas, sp_siswa, sp_kategori, sp_semester, sp_tahun_ajaran;
+    Spinner sp_mapel, sp_strategi, sp_kelas, sp_siswa, sp_semester, sp_tahun_ajaran; //sp_kategori
     EditText txtJudul, txtNarasi, txtNilai;
-    TextView txtPoint4, txtPoint3, txtPoint2, txtPoint1, txtPredikat;
+    TextView txtPoint4, txtPoint3, txtPoint2, txtPoint1, txtPredikat, txtkategori;
     RadioButton rbPoint4, rbPoint3, rbPoint2, rbPoint1;
     ImageView imgPortofolio;
+    int nilai;
+    String kat;
 
     File photoFile, mPhotoFile;
     FileCompressor mCompressor;
@@ -129,8 +135,6 @@ public class InputTeacher extends AppCompatActivity {
         ButterKnife.bind(this);
         mCompressor = new FileCompressor(this);
 
-//        GRadioGroup gr = new GRadioGroup(rbPoint1, rbPoint2, rbPoint3, rbPoint4);
-
         btn_beranda = findViewById(R.id.btn_home);
         btn_master = findViewById(R.id.btn_master);
         btn_input = findViewById(R.id.btn_input);
@@ -144,7 +148,7 @@ public class InputTeacher extends AppCompatActivity {
         sp_tahun_ajaran = findViewById(R.id.sp_tahun_ajaran);
         sp_semester = findViewById(R.id.sp_semester);
 
-        sp_kategori = findViewById(R.id.sp_kategori);
+        txtkategori = findViewById(R.id.txtkategori);
         sp_strategi = findViewById(R.id.sp_strategi);
         txtJudul = findViewById(R.id.txtJudulKd);
         rbPoint1 = findViewById(R.id.rbPoint1);
@@ -160,13 +164,7 @@ public class InputTeacher extends AppCompatActivity {
         txtNilai = findViewById(R.id.txtNilai);
         imgPortofolio = findViewById(R.id.imgPortofolio);
 
-        rbPoint1.setEnabled(false);
-        rbPoint2.setEnabled(false);
-        rbPoint3.setEnabled(false);
-        rbPoint4.setEnabled(false);
-        txtNilai.setEnabled(false);
-        sp_strategi.setEnabled(false);
-        sp_kategori.setEnabled(false);
+
         txtJudul.setEnabled(false);
         sp_tahun_ajaran.setEnabled(false);
         sp_semester.setEnabled(false);
@@ -176,6 +174,168 @@ public class InputTeacher extends AppCompatActivity {
         txtNarasi.setEnabled(false);
 
         first();
+
+        txtNilai.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                boolean handled = false;
+                if (actionId == EditorInfo.IME_NULL && event.getAction() == KeyEvent.ACTION_DOWN) {
+                        // Handle pressing "Enter" key here
+                        if (!txtNilai.getText().toString().equalsIgnoreCase("")) {
+
+                            nilai = Integer.parseInt(txtNilai.getText().toString());
+
+                            if (nilai > 0 && nilai <=50) {
+                                txtPredikat.setText("E");
+                            } else if (nilai > 50 && nilai <= 60) {
+                                txtPredikat.setText("D");
+                            } else if (nilai > 60 && nilai <= 70) {
+                                txtPredikat.setText("C");
+                            } else if (nilai > 70 && nilai <= 85) {
+                                txtPredikat.setText("B");
+                            } else if (nilai > 85 && nilai <= 100) {
+                                txtPredikat.setText("A");
+                            } else if (nilai > 100) {
+                                txtPredikat.setText("-");
+                            }
+                        } else {
+                            handled = false;
+                        }
+
+                        handled = true;
+                    }
+
+                return handled;
+            }
+        });
+
+        rbPoint1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    rbPoint2.setChecked(false);
+                    rbPoint3.setChecked(false);
+                    rbPoint4.setChecked(false);
+                    //                    inputIdRubrik = idRubrik1;
+                    //                    inputDeskRubrik = deskRubrik1;
+
+                }
+            }
+        });
+
+        rbPoint2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (rbPoint2.isChecked()){
+                    rbPoint1.setChecked(false);
+                    rbPoint3.setChecked(false);
+                    rbPoint4.setChecked(false);
+//                    inputIdRubrik = idRubrik2;
+//                    inputDeskRubrik = deskRubrik2;
+                }
+            }
+        });
+
+        rbPoint3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (rbPoint3.isChecked()){
+                    rbPoint1.setChecked(false);
+                    rbPoint2.setChecked(false);
+                    rbPoint4.setChecked(false);
+//                    inputIdRubrik = idRubrik3;
+//                    inputDeskRubrik = deskRubrik3;
+                }
+            }
+        });
+
+        rbPoint4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (rbPoint4.isChecked()){
+                    rbPoint1.setChecked(false);
+                    rbPoint2.setChecked(false);
+                    rbPoint3.setChecked(false);
+//                    inputIdRubrik = idRubrik4;
+//                    inputDeskRubrik = deskRubrik4;
+                }
+            }
+        });
+
+        if (listStrategi!=null){
+            try {
+                sp_strategi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                        if (listStrategi!=null){
+                            for (int a=0; a<listStrategi.size(); a++){
+                                if (listStrategi.get(a).getNameStrategi().equalsIgnoreCase(String.valueOf(listStrategi.get(position).getNameStrategi()))) {
+                                    inputIdKategori = listStrategi.get(a).getKategoriid();
+                                    inputIdStrategi = listStrategi.get(a).getIdStrategi();
+                                    break;
+                                }
+                            }
+                        }
+
+                        if (!inputIdStrategi.equalsIgnoreCase("") || inputIdStrategi!=null){
+                            try{
+                                for(int i=0; i<dataMasterRubrik.getTotal(); i++){
+                                    if (dataMasterRubrik.getData().getMsRubrik().get(i).getStrategiid().equalsIgnoreCase(inputIdStrategi)) {
+                                        listRubrik.add(dataMasterRubrik.getData().getMsRubrik().get(i));
+                                    }
+                                }
+                            } catch (Exception a){ }
+                        }
+
+                        if (!inputIdKategori.equalsIgnoreCase("")){
+                            try {
+                                for(int i=0; i<dataModelKategoriStrategi.getTotal(); i++){
+                                    if (dataModelKategoriStrategi.getData().getMsKategoristrategi().get(i).getIdKategori().equalsIgnoreCase(inputIdKategori)) {
+                                        kat = dataModelKategoriStrategi.getData().getMsKategoristrategi().get(i).getNameKategori();
+                                        // listKategoriStrategi.add(dataModelKategoriStrategi.getData().getMsKategoristrategi().get(i));
+                                        break;
+                                    }
+                                }
+                            } catch (Exception a){ }
+                        }
+
+                        if (listRubrik!=null){
+                            for (int x=0; x<listRubrik.size(); x++){
+                                if (listRubrik.get(x).getNameRubrik().equalsIgnoreCase("POIN 1")){
+                                    idRubrik1 = listRubrik.get(x).getIdRubrik();
+                                    deskRubrik1 = listRubrik.get(x).getDescRubrik();
+                                } else if (listRubrik.get(x).getNameRubrik().equalsIgnoreCase("POIN 2")){
+                                    idRubrik2 = listRubrik.get(x).getIdRubrik();
+                                    deskRubrik2 = listRubrik.get(x).getDescRubrik();
+
+                                } else if (listRubrik.get(x).getNameRubrik().equalsIgnoreCase("POIN 3")){
+                                    idRubrik3 = listRubrik.get(x).getIdRubrik();
+                                    deskRubrik3 = listRubrik.get(x).getDescRubrik();
+
+                                } else if (listRubrik.get(x).getNameRubrik().equalsIgnoreCase("POIN 4")){
+                                    idRubrik4 = listRubrik.get(x).getIdRubrik();
+                                    deskRubrik4 = listRubrik.get(x).getDescRubrik();
+
+                                }
+                            }
+                        }
+
+                        txtkategori.setText(kat);
+                        txtPoint1.setText(deskRubrik1);
+                        txtPoint2.setText(deskRubrik2);
+                        txtPoint3.setText(deskRubrik3);
+                        txtPoint4.setText(deskRubrik4);
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+            } catch (Exception a){ }
+
+        }
 
         btn_beranda.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -223,8 +383,7 @@ public class InputTeacher extends AppCompatActivity {
         btnInputPortfolio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(InputTeacher.this, "Trial Version", Toast.LENGTH_SHORT).show();
-                /*
+                //Toast.makeText(InputTeacher.this, "Trial Version", Toast.LENGTH_SHORT).show();
                 findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
                 new Thread(new Runnable() {
                     @Override
@@ -232,8 +391,6 @@ public class InputTeacher extends AppCompatActivity {
                         sendDataPortfolio();
                     }
                 }).start();
-                */
-
             }
         });
     }
@@ -572,9 +729,7 @@ public class InputTeacher extends AppCompatActivity {
                         @Override
                         public void run() {
                             findViewById(R.id.framelayout).setVisibility(View.GONE);
-                           // setSpinnerKelas();
-                           // setSpinnerMapel();
-                           // setSpinnerStrategi();
+                           setSpinnerStrategi();
                         }
                     });
                 }
@@ -593,7 +748,35 @@ public class InputTeacher extends AppCompatActivity {
     }
 
 
+    private void setSpinnerStrategi(){
 
+        ArrayAdapter<MsStrategi> adapter_strategi = new ArrayAdapter<MsStrategi>(
+                InputTeacher.this,
+                android.R.layout.simple_spinner_dropdown_item,
+                listStrategi)
+        {
+            @Override
+            public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View v = super.getDropDownView(position, convertView, parent);
+                ((TextView)v).setText(String.valueOf(listStrategi.get(position).getNameStrategi()));
+                return v;
+            }
+
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View v = super.getDropDownView(position, convertView, parent);
+                ((TextView)v).setText(String.valueOf(listStrategi.get(position).getNameStrategi()));
+                return v;
+            }
+        };
+
+        adapter_strategi.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp_strategi.setAdapter(adapter_strategi);
+
+        setSpinnerKelas();
+
+    }
 
     private void setSpinnerKelas(){
 
@@ -620,6 +803,9 @@ public class InputTeacher extends AppCompatActivity {
         adapter_kelas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_kelas.setAdapter(adapter_kelas);
 
+        setSpinnerMapel();
+
+        /*
         sp_kelas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -679,6 +865,8 @@ public class InputTeacher extends AppCompatActivity {
 
             }
         });
+        */
+
     }
 
     private void setSpinnerMapel(){
@@ -713,6 +901,7 @@ public class InputTeacher extends AppCompatActivity {
         adapter_mapel.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         sp_mapel.setAdapter(adapter_mapel);
 
+/*
         sp_mapel.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -728,179 +917,10 @@ public class InputTeacher extends AppCompatActivity {
 
             }
         });
+        */
+
     }
 
-    private void setSpinnerStrategi(){
-
-        ArrayAdapter<MsStrategi> adapter_strategi = new ArrayAdapter<MsStrategi>(
-                InputTeacher.this,
-                android.R.layout.simple_spinner_dropdown_item,
-                listStrategi)
-        {
-            @Override
-            public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                View v = super.getDropDownView(position, convertView, parent);
-                ((TextView)v).setText(String.valueOf(listStrategi.get(position).getNameStrategi()));
-                return v;
-            }
-
-            @NonNull
-            @Override
-            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                View v = super.getDropDownView(position, convertView, parent);
-                ((TextView)v).setText(String.valueOf(listStrategi.get(position).getNameStrategi()));
-                return v;
-            }
-        };
-
-        adapter_strategi.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        sp_strategi.setAdapter(adapter_strategi);
-
-        sp_strategi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-                for (int a=0; a<listStrategi.size(); a++){
-                    if (listStrategi.get(a).getNameStrategi().equalsIgnoreCase(sp_kategori.getSelectedItem().toString())){
-                        inputIdKategori = listStrategi.get(a).getKategoriid();
-                        for(int i=0; i<dataModelKategoriStrategi.getData().getMsKategoristrategi().size(); i++){
-                            if (dataModelKategoriStrategi.getData().getMsKategoristrategi().get(i).getIdKategori().equalsIgnoreCase(inputIdKategori)) {
-                                listKategoriStrategi.add(dataModelKategoriStrategi.getData().getMsKategoristrategi().get(i));
-                            }
-                        }
-                    }
-                }
-
-
-                ArrayAdapter<MsKategoristrategi> adapter_kategori = new ArrayAdapter<MsKategoristrategi>(
-                        InputTeacher.this,
-                        android.R.layout.simple_spinner_dropdown_item,
-                        listKategoriStrategi)
-                {
-                    @Override
-                    public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                        View v = super.getDropDownView(position, convertView, parent);
-                        ((TextView)v).setText(String.valueOf(listKategoriStrategi.get(position).getNameKategori()));
-                        return v;
-                    }
-
-                    @NonNull
-                    @Override
-                    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                        View v = super.getDropDownView(position, convertView, parent);
-                        ((TextView)v).setText(String.valueOf(listKategoriStrategi.get(position).getNameKategori()));
-                        return v;
-                    }
-                };
-
-                adapter_kategori.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                sp_kategori.setAdapter(adapter_kategori);
-
-                sp_strategi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                        for (int a=0; a<listStrategi.size(); a++){
-                            if (listStrategi.get(a).getNameStrategi().equalsIgnoreCase(sp_strategi.getSelectedItem().toString())){
-                                inputIdStrategi = listStrategi.get(a).getIdStrategi();
-                                for(int i=0; i<dataMasterRubrik.getData().getMsRubrik().size(); i++){
-                                    if (dataMasterRubrik.getData().getMsRubrik().get(i).getStrategiid().equalsIgnoreCase(inputIdStrategi)) {
-                                        listRubrik.add(dataMasterRubrik.getData().getMsRubrik().get(i));
-                                    }
-                                }
-                            }
-                        }
-
-                        if (listRubrik!=null){
-
-                            for (int x=0; x<listRubrik.size(); x++){
-                                if (listRubrik.get(x).getNameRubrik().equalsIgnoreCase("POIN 1")){
-                                    idRubrik1 = listRubrik.get(x).getIdRubrik();
-                                    deskRubrik1 = listRubrik.get(x).getDescRubrik();
-                                    txtPoint1.setText(deskRubrik1);
-                                } else if (listRubrik.get(x).getNameRubrik().equalsIgnoreCase("POIN 2")){
-                                    idRubrik2 = listRubrik.get(x).getIdRubrik();
-                                    deskRubrik2 = listRubrik.get(x).getDescRubrik();
-                                    txtPoint2.setText(deskRubrik2);
-                                } else if (listRubrik.get(x).getNameRubrik().equalsIgnoreCase("POIN 3")){
-                                    idRubrik3 = listRubrik.get(x).getIdRubrik();
-                                    deskRubrik3 = listRubrik.get(x).getDescRubrik();
-                                    txtPoint3.setText(deskRubrik3);
-                                } else if (listRubrik.get(x).getNameRubrik().equalsIgnoreCase("POIN 4")){
-                                    idRubrik4 = listRubrik.get(x).getIdRubrik();
-                                    deskRubrik4 = listRubrik.get(x).getDescRubrik();
-                                    txtPoint4.setText(deskRubrik4);
-                                }
-                            }
-
-                            /*rbPoint1.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    if (rbPoint1.isChecked()){
-                                        rbPoint2.setChecked(false);
-                                        rbPoint3.setChecked(false);
-                                        rbPoint4.setChecked(false);
-                                        inputIdRubrik = idRubrik1;
-                                        inputDeskRubrik = deskRubrik1;
-                                    }
-                                }
-                            });
-
-                            rbPoint2.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    if (rbPoint2.isChecked()){
-                                        rbPoint1.setChecked(false);
-                                        rbPoint3.setChecked(false);
-                                        rbPoint4.setChecked(false);
-                                        inputIdRubrik = idRubrik2;
-                                        inputDeskRubrik = deskRubrik2;
-                                    }
-                                }
-                            });
-
-                            rbPoint3.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    if (rbPoint3.isChecked()){
-                                        rbPoint1.setChecked(false);
-                                        rbPoint2.setChecked(false);
-                                        rbPoint4.setChecked(false);
-                                        inputIdRubrik = idRubrik3;
-                                        inputDeskRubrik = deskRubrik3;
-                                    }
-                                }
-                            });
-
-                            rbPoint4.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    if (rbPoint4.isChecked()){
-                                        rbPoint1.setChecked(false);
-                                        rbPoint2.setChecked(false);
-                                        rbPoint3.setChecked(false);
-                                        inputIdRubrik = idRubrik4;
-                                        inputDeskRubrik = deskRubrik4;
-                                    }
-                                }
-                            });*/
-                        }
-                    }
-
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parent) {
-
-                    }
-                });
-
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-    }
 
     private void sendDataPortfolio(){
 
@@ -913,31 +933,19 @@ public class InputTeacher extends AppCompatActivity {
             fotox = MultipartBody.Part.createFormData("foto", mFileName + ".jpg", requestFile1);
         }
 
-        if (Integer.parseInt(txtNilai.getText().toString())>50&&Integer.parseInt(txtNilai.getText().toString())<=60){
-            txtPredikat.setText("D");
-        } else if (Integer.parseInt(txtNilai.getText().toString())>60&&Integer.parseInt(txtNilai.getText().toString())<=70){
-            txtPredikat.setText("C");
-        } else if (Integer.parseInt(txtNilai.getText().toString())>70&&Integer.parseInt(txtNilai.getText().toString())<=85) {
-            txtPredikat.setText("B");
-        } else if (Integer.parseInt(txtNilai.getText().toString())>85&&Integer.parseInt(txtNilai.getText().toString())<=100) {
-            txtPredikat.setText("A");
-        } else {
-            txtPredikat.setText("E");
-        }
-
         APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
         Call<ModelPostPortofolio> data = apiInterface.sendDataPortfolioGuru(
-                inputIdSiswa,
-                PreferenceUtils.getIdGuru(getApplicationContext()),
-                inputIdMapel,
-                inputIdKategori,
-                inputIdStrategi,
-                inputIdRubrik,
-                txtJudul.getText().toString(),
+                Integer.parseInt(inputIdSiswa),
+                Integer.parseInt(PreferenceUtils.getIdGuru(getApplicationContext())),
+                Integer.parseInt(inputIdMapel),
+                Integer.parseInt(inputIdKategori),
+                Integer.parseInt(inputIdStrategi),
+                Integer.parseInt(inputIdRubrik),
+                txtJudul.getText().toString(), //req
                 inputDeskRubrik,
                 now,
-                "Indonesia",
-                txtNilai.getText().toString(),
+                "Sekolah", //ganti kota
+                Integer.parseInt(txtNilai.getText().toString()),
                 txtPredikat.getText().toString(),
                 txtNarasi.getText().toString(),
                 fotox,
@@ -946,10 +954,8 @@ public class InputTeacher extends AppCompatActivity {
                 sp_semester.getSelectedItem().toString(),
                 PreferenceUtils.getFirstName(getApplicationContext()),
                 now,
-                PreferenceUtils.getFirstName(getApplicationContext()),
-                now,
-                txtPredikat.getText().toString(),
-                inputIdKelas
+                Integer.parseInt(txtPredikat.getText().toString()),
+                Integer.parseInt(inputIdKelas)
         );
 
         try {

@@ -125,17 +125,17 @@ public interface APIInterfacesRest {
     @Multipart
     @POST("api/tr_portfolio/add")
     Call<ModelPostPortofolio> sendDataPortfolioGuru(
-            @Part("muridid") String muridid,
-            @Part("guruid") String guruid,
-            @Part("mapelid") String mapelid,
-            @Part("idkategori") String idkategori,
-            @Part("strategiid") String strategiid,
-            @Part("rubrikid") String rubrikid,
+            @Part("muridid") int muridid,
+            @Part("guruid") int guruid,
+            @Part("mapelid") int mapelid,
+            @Part("idkategori") int idkategori,
+            @Part("strategiid") int strategiid,
+            @Part("rubrikid") int rubrikid,
             @Part("judul_kd") String judul_kd,
             @Part("rubrikdesk") String rubrikdesk,
             @Part("tanggal") String tanggal,
             @Part("tempat") String tempat,
-            @Part("nilai") String nilai,
+            @Part("nilai") int nilai,
             @Part("predikat_mutu") String predikat_mutu,
             @Part("narasi") String narasi,
             @Part MultipartBody.Part foto,
@@ -144,10 +144,8 @@ public interface APIInterfacesRest {
             @Part("semester") String semester,
             @Part("createdby") String createdby,
             @Part("createddate") String createddate,
-            @Part("updateby") String updateby,
-            @Part("updatedate") String updatedate,
-            @Part("predikat") String predikat,
-            @Part("kelasid") String kelasid
+            @Part("predikat") int predikat,
+            @Part("kelasid") int kelasid
     );
 
 
@@ -158,10 +156,10 @@ public interface APIInterfacesRest {
     @POST("api/ms_murid/update")
     Call<ModelUpdateDataSiswa> updateDataSiswaRequired(
             @Header("X-Api-Key") String apikey,
-            @Field("id") String id,
-            @Field("userid") String userid,
-            @Field("sekolahid") String sekolahid,
-            @Field("kelasid") String kelasid,
+            @Field("id") int id,
+            @Field("userid") int userid,
+            @Field("sekolahid") int sekolahid,
+            @Field("kelasid") int kelasid,
             @Field("firstname") String firstname,
             @Field("midname") String midname,
             @Field("lastname") String lastname,
@@ -179,10 +177,10 @@ public interface APIInterfacesRest {
     @POST("api/ms_murid/update")
     Call<ModelUpdateDataSiswa> updateDataSiswaRequiredFoto(
             @Header("X-Api-Key") String apikey,
-            @Part("id") String id,
-            @Part("userid") String userid,
-            @Part("sekolahid") String sekolahid,
-            @Part("kelasid") String kelasid,
+            @Part("id") int id,
+            @Part("userid") int userid,
+            @Part("sekolahid") int sekolahid,
+            @Part("kelasid") int kelasid,
             @Part("firstname") String firstname,
             @Part("midname") String midname,
             @Part("lastname") String lastname,
@@ -247,9 +245,9 @@ public interface APIInterfacesRest {
     @POST("api/ms_guru/update")
     Call<ModelUpdateDataGuru> updateDataGuruFoto(
             @Header("X-Api-Key") String apikey,
-            @Part("id_guru") String id_guru,
-            @Part("userid") String userid,
-            @Part("sekolahid") String sekolahid,
+            @Part("id_guru") int id_guru,
+            @Part("userid") int userid,
+            @Part("sekolahid") int sekolahid,
             @Part("firstname") String firstname,
             @Part("midname") String midname,
             @Part("lastname") String lastname,
@@ -259,7 +257,9 @@ public interface APIInterfacesRest {
             @Part("address") String address,
             @Part("email") String email,
             @Part("phone") String phone,
-            @Part  MultipartBody.Part photo
+            @Part  MultipartBody.Part photo,
+            @Part("updateby") String updateby,
+            @Part("updatedate") String updatedate
     );
 
 

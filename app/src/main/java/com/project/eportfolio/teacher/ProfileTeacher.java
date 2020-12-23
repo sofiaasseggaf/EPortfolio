@@ -61,7 +61,8 @@ public class ProfileTeacher extends AppCompatActivity {
         nipProfile.setText(PreferenceUtils.getNip(getApplicationContext()));
         sekolahProfile.setText(PreferenceUtils.getSekolahNama(getApplicationContext()));
         try{
-            Picasso.get().load("https://eportofolio.id/uploads/ms_guru/"+PreferenceUtils.getPhotoGuru(getApplicationContext())).into(imgProfile);
+            Picasso.get().load(PreferenceUtils.getPhotoGuru(getApplicationContext())).into(imgProfile);
+//            Picasso.get().load("https://eportofolio.id/uploads/ms_guru/"+PreferenceUtils.getPhotoGuru(getApplicationContext())).into(imgProfile);
         } catch (Exception e){
             e.printStackTrace();
         }

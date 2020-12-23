@@ -44,6 +44,7 @@ import com.project.eportfolio.R;
 import com.project.eportfolio.model.siswa.ModelSiswa;
 import com.project.eportfolio.model.siswa.ModelUpdateDataSiswa;
 import com.project.eportfolio.model.siswa.MsMurid;
+import com.project.eportfolio.teacher.ProfileTeacherSettingEdit;
 import com.project.eportfolio.utility.FileCompressor;
 import com.project.eportfolio.utility.PreferenceUtils;
 import com.squareup.picasso.Picasso;
@@ -56,6 +57,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.ButterKnife;
 import okhttp3.MediaType;
@@ -142,6 +144,7 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
         btnSaveFotoProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Toast.makeText(ProfileStudentSettingEdit.this, "trial", Toast.LENGTH_SHORT).show();
                 thread2();
             }
         });
@@ -150,15 +153,14 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-               // Toast.makeText(ProfileStudentSettingEdit.this, "Trial Version", Toast.LENGTH_SHORT).show();
-
-                if (!editFirstName.getText().toString().equalsIgnoreCase("") && !editMidName.getText().toString().equalsIgnoreCase("")  && !editLastName.getText().toString().equalsIgnoreCase("")  &&
-                        !editTtl.getText().toString().equalsIgnoreCase("") && !editJk.getText().toString().equalsIgnoreCase("") && !editAlamat.getText().toString().equalsIgnoreCase("") &&
-                        !editEmail.getText().toString().equalsIgnoreCase("") && !editTelp.getText().toString().equalsIgnoreCase("")
-                ) {
-                    thread();
+                if (editFirstName.getText().toString().equalsIgnoreCase("")) {
+                    Toast.makeText(ProfileStudentSettingEdit.this, "Lengkapi Nama Depan !", Toast.LENGTH_SHORT).show();
+                } else if(editNis.getText().toString().equalsIgnoreCase("")) {
+                    Toast.makeText(ProfileStudentSettingEdit.this, "Lengkapi NIS  !", Toast.LENGTH_SHORT).show();
+                } else if (editFirstName.getText().toString().equalsIgnoreCase("") && editNis.getText().toString().equalsIgnoreCase("")){
+                    Toast.makeText(ProfileStudentSettingEdit.this, "Lengkapi Nama Depan & NIS  !", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(ProfileStudentSettingEdit.this, "Lengkapi Data Terlebih Dahulu !", Toast.LENGTH_SHORT).show();
+                    thread();
                 }
             }
         });
@@ -176,7 +178,8 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
         nisSiswa.setText("NIS : "+PreferenceUtils.getNis(getApplicationContext()));
         try {
             if (!PreferenceUtils.getPhotoSiswa(getApplicationContext()).equalsIgnoreCase("") || PreferenceUtils.getPhotoSiswa(getApplicationContext())!= null){
-                Picasso.get().load("https://eportofolio.id/uploads/ms_murid/"+PreferenceUtils.getPhotoSiswa(getApplicationContext())).into(new Target() {
+
+                Picasso.get().load(PreferenceUtils.getPhotoSiswa(getApplicationContext())).into(new Target() {
                     @Override
                     public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
                         imgSiswa.setImageBitmap(bitmap);
@@ -190,6 +193,21 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
                     public void onPrepareLoad(Drawable placeHolderDrawable) {
                     }
                 });
+
+                /*Picasso.get().load("https://eportofolio.id/uploads/ms_murid/"+PreferenceUtils.getPhotoSiswa(getApplicationContext())).into(new Target() {
+                    @Override
+                    public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+                        imgSiswa.setImageBitmap(bitmap);
+                        mPhotoFile = createTempFile(bitmap);
+                    }
+                    @Override
+                    public void onBitmapFailed(Exception e, Drawable errorDrawable) {
+                        Toast.makeText(ProfileStudentSettingEdit.this, "Please Upload Your Photo", Toast.LENGTH_LONG).show();
+                    }
+                    @Override
+                    public void onPrepareLoad(Drawable placeHolderDrawable) {
+                    }
+                });*/
             }
         } catch (Exception e){
 
@@ -425,45 +443,46 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
         }
         */
 
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        String now = formatter.format(new Date());
+
         APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
         Call<ModelUpdateDataSiswa> postAdd = apiInterface.updateDataSiswaRequired(
                 apikey,
-                PreferenceUtils.getIdSiswa(getApplicationContext()),
-                PreferenceUtils.getUserId(getApplicationContext()),
-                PreferenceUtils.getIdSekolahSiswa(getApplicationContext()),
-                PreferenceUtils.getIdKelas(getApplicationContext()),
-                editFirstName.getText().toString(),
+                Integer.parseInt(PreferenceUtils.getIdSiswa(getApplicationContext())), //req
+                Integer.parseInt(PreferenceUtils.getUserId(getApplicationContext())), //req
+                Integer.parseInt(PreferenceUtils.getIdSekolahSiswa(getApplicationContext())), //req
+                Integer.parseInt(PreferenceUtils.getIdKelas(getApplicationContext())), //req
+                editFirstName.getText().toString(), //req
                 editMidName.getText().toString(),
                 editLastName.getText().toString(),
-                editNis.getText().toString(),
+                editNis.getText().toString(), //req
                 editJk.getText().toString(),
                 editTtl.getText().toString(),
                 editAlamat.getText().toString(),
                 editEmail.getText().toString(),
                 editTelp.getText().toString(),
-               // fotox,
                 editFirstName.getText().toString(),
-                "0"
+                now
         );
 
         postAdd.enqueue(new Callback<ModelUpdateDataSiswa>() {
             @Override
             public void onResponse(Call<ModelUpdateDataSiswa> call, Response<ModelUpdateDataSiswa> response) {
-
-                if (response.isSuccessful() ) {
-                    try {
+                try {
+                    if (response.body() != null) {
                         getSiswa();
-                    } catch (Exception e){
-                        e.printStackTrace();
+                    } else {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                findViewById(R.id.framelayout).setVisibility(View.GONE);
+                                Toast.makeText(ProfileStudentSettingEdit.this, "gagal update data", Toast.LENGTH_LONG).show();
+                            }
+                        });
                     }
-                } else {
-                    findViewById(R.id.framelayout).setVisibility(View.GONE);
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(ProfileStudentSettingEdit.this, "Gagal Update Data", Toast.LENGTH_LONG).show();
-                        }
-                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
 
@@ -472,70 +491,67 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        findViewById(R.id.framelayout).setVisibility(View.GONE);
                         Toast.makeText(ProfileStudentSettingEdit.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
                     }
                 });
                 call.cancel();
             }
         });
-
-        /*try {
-            postAdd.execute();
-            getSiswa();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
     }
 
     //send post data with image
     private void updateDataSiswaRequiredFoto(){
 
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        String now = formatter.format(new Date());
+
         if (mPhotoFile!=null) {
             byte[] bImg1 = FiletoByteArray(mPhotoFile);
             RequestBody requestFile1 = RequestBody.create(MediaType.parse("image/jpeg"), bImg1);
-            fotox = MultipartBody.Part.createFormData("photo", PreferenceUtils.getFirstName(getApplicationContext()) + ".jpg", requestFile1);
+            fotox = MultipartBody.Part.createFormData("photo", PreferenceUtils.getFirstName(getApplicationContext())+"-"+now + ".jpg", requestFile1);
         }
+
 
         APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
         Call<ModelUpdateDataSiswa> postAdd = apiInterface.updateDataSiswaRequiredFoto(
                 apikey,
-                PreferenceUtils.getIdSiswa(getApplicationContext()),
-                PreferenceUtils.getUserId(getApplicationContext()),
-                PreferenceUtils.getIdSekolahSiswa(getApplicationContext()),
-                PreferenceUtils.getIdKelas(getApplicationContext()),
-                editFirstName.getText().toString(),
-                editMidName.getText().toString(),
-                editLastName.getText().toString(),
-                editNis.getText().toString(),
-                editJk.getText().toString(),
-                editTtl.getText().toString(),
-                editAlamat.getText().toString(),
-                editEmail.getText().toString(),
-                editTelp.getText().toString(),
+                Integer.parseInt(PreferenceUtils.getIdSiswa(getApplicationContext())),
+                Integer.parseInt(PreferenceUtils.getUserId(getApplicationContext())),
+                Integer.parseInt(PreferenceUtils.getIdSekolahSiswa(getApplicationContext())),
+                Integer.parseInt(PreferenceUtils.getIdKelas(getApplicationContext())),
+                PreferenceUtils.getFirstName(getApplicationContext()),
+                PreferenceUtils.getMidName(getApplicationContext()),
+                PreferenceUtils.getLastName(getApplicationContext()),
+                PreferenceUtils.getNis(getApplicationContext()),
+                PreferenceUtils.getJk(getApplicationContext()),
+                PreferenceUtils.getTtl(getApplicationContext()),
+                PreferenceUtils.getAddress(getApplicationContext()),
+                PreferenceUtils.getEmail(getApplicationContext()),
+                PreferenceUtils.getTlp(getApplicationContext()),
                 fotox,
-                editFirstName.getText().toString(),
-                "0"
+                PreferenceUtils.getFirstName(getApplicationContext()),
+                now
         );
 
         postAdd.enqueue(new Callback<ModelUpdateDataSiswa>() {
             @Override
             public void onResponse(Call<ModelUpdateDataSiswa> call, Response<ModelUpdateDataSiswa> response) {
 
-                if (response.isSuccessful() ) {
-                    try {
-                        getSiswa();
-                    } catch (Exception e){
-                        e.printStackTrace();
+                try {
+                    if (response.body() != null) {
+                        getSiswaFoto();
+                    } else {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                findViewById(R.id.framelayout).setVisibility(View.GONE);
+                                Toast.makeText(ProfileStudentSettingEdit.this, "gagal update data", Toast.LENGTH_LONG).show();
+                            }
+                        });
                     }
-                } else {
-                    findViewById(R.id.framelayout).setVisibility(View.GONE);
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(ProfileStudentSettingEdit.this, "Gagal Update Data", Toast.LENGTH_LONG).show();
-                        }
-                    });
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
 
@@ -544,24 +560,50 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+                        findViewById(R.id.framelayout).setVisibility(View.GONE);
                         Toast.makeText(ProfileStudentSettingEdit.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
                     }
                 });
                 call.cancel();
             }
         });
-
-        /*try {
-            postAdd.execute();
-            getSiswa();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
     }
 
+    public void getSiswaFoto() {
+        final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
+        final Call<ModelSiswa> dataSiswax = apiInterface.getDataSiswa(apikey, 1000);
 
-    public void getSiswa() {
+        dataSiswax.enqueue(new Callback<ModelSiswa>() {
+            @Override
+            public void onResponse(Call<ModelSiswa> call, Response<ModelSiswa> response) {
+
+                dataModelSiswa = response.body();
+
+                if (response.body() != null) {
+
+                    for (int a = 0; a < dataModelSiswa.getTotal(); a++) {
+                        try {
+                            if (PreferenceUtils.getIdSiswa(getApplicationContext()).equalsIgnoreCase(dataModelSiswa.getData().getMsMurid().get(a).getId())) {
+                                dataSiswa = dataModelSiswa.getData().getMsMurid().get(a);
+                                saveDataMuridFoto();
+                            }
+                        } catch (Exception e) {
+                        }
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ModelSiswa> call, Throwable t) {
+
+                //Toast.makeText(LoginActivity.this, "Terjadi gangguan koneksi (getSiswa)", Toast.LENGTH_LONG).show();
+                call.cancel();
+            }
+        });
+    }
+
+        public void getSiswa() {
         final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
         final Call<ModelSiswa> dataSiswax = apiInterface.getDataSiswa(apikey, 1000);
 
@@ -615,6 +657,23 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
             public void run() {
                 findViewById(R.id.framelayout).setVisibility(View.GONE);
                 Toast.makeText(ProfileStudentSettingEdit.this, "Update Berhasil", Toast.LENGTH_LONG).show();
+                Intent a = new Intent(ProfileStudentSettingEdit.this, ProfileStudent.class);
+                startActivity(a);
+                finish();
+            }
+        });
+    }
+
+    public void saveDataMuridFoto(){
+
+        PreferenceUtils.savePhotoSiswa(dataSiswa.getPhoto(), getApplicationContext());
+
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                findViewById(R.id.framelayout).setVisibility(View.GONE);
+                Toast.makeText(ProfileStudentSettingEdit.this, "Update Foto Berhasil", Toast.LENGTH_LONG).show();
                 Intent a = new Intent(ProfileStudentSettingEdit.this, ProfileStudent.class);
                 startActivity(a);
                 finish();

@@ -154,7 +154,8 @@ public class HomeTeacher extends AppCompatActivity {
         namaGuru.setText(namaguru);
         nipGuru.setText(PreferenceUtils.getNip(getApplicationContext()));
         try{
-            Picasso.get().load("https://eportofolio.id/uploads/ms_guru/"+PreferenceUtils.getPhotoGuru(getApplicationContext())).into(fotoGuru);
+            Picasso.get().load(PreferenceUtils.getPhotoGuru(getApplicationContext())).into(fotoGuru);
+//            Picasso.get().load("https://eportofolio.id/uploads/ms_guru/"+PreferenceUtils.getPhotoGuru(getApplicationContext())).into(fotoGuru);
         } catch (Exception e){
             e.printStackTrace();
         }
