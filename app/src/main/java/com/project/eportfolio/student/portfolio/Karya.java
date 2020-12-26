@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.project.eportfolio.APIService.APIClient;
@@ -36,6 +38,7 @@ public class Karya extends AppCompatActivity {
     List<TrPortofolio> listKaryaMurid = new ArrayList<>();
     List<MsStrategi> listKarya = new ArrayList<>();
     AdapterListKarya itemList;
+    TextView txtload;
 
     String apikey = "7826470ABBA476706DB24D47C6A6ED64";
 
@@ -45,11 +48,42 @@ public class Karya extends AppCompatActivity {
         setContentView(R.layout.student_portfolio_karya);
 
         rvkarya = findViewById(R.id.rvKarya);
+        txtload = findViewById(R.id.textloading);
         first();
     }
 
     public void first(){
         findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
+        final Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+
+            int count = 0;
+
+            @Override
+            public void run() {
+                count++;
+
+                if (count == 1)
+                {
+                    txtload.setText("Loading Portfolio .");
+                }
+                else if (count == 2)
+                {
+                    txtload.setText("Loading Portfolio . .");
+                }
+                else if (count == 3)
+                {
+                    txtload.setText("Loading Portfolio . . .");
+                }
+
+                if (count == 3)
+                    count = 0;
+
+                handler.postDelayed(this, 1500);
+            }
+        };
+        handler.postDelayed(runnable, 1 * 1000);
+
         new Thread(new Runnable() {
             @Override
             public void run() {

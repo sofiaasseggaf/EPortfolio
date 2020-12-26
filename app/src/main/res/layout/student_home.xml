@@ -89,8 +89,10 @@
                 android:layout_below="@id/rect_profile"
                 android:orientation="vertical"
                 android:background="#E8E8E8"
-                android:paddingLeft="40dp"
-                android:paddingRight="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="10dp"
                 android:paddingTop="20dp"
                 android:layout_marginTop="30dp">
 
@@ -244,11 +246,6 @@
 
             -->
 
-
-
-
-
-
         </RelativeLayout>
 
     </ScrollView>
@@ -294,17 +291,30 @@
     <FrameLayout
         android:id="@+id/framelayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/loading"
+        android:layout_height="200dp"
+        android:layout_marginTop="270dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="#F6F5F5"
         android:visibility="gone">
-        <ProgressBar
+
+        <TextView
+            android:id="@+id/textloading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/montserrat_bold"
+            android:textSize="18sp"
+            android:layout_marginTop="45dp"
+            android:textColor="@color/colorFont"/>
+        <!--<ProgressBar
             style="?android:attr/progressBarStyle"
             android:layout_width="47dp"
             android:layout_height="45dp"
             android:indeterminateDrawable="@drawable/pbstyle"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp">
-        </ProgressBar>
+        </ProgressBar>-->
     </FrameLayout>
 
 </RelativeLayout>

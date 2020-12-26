@@ -179,17 +179,29 @@
     <FrameLayout
         android:id="@+id/framelayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/loading"
+        android:layout_height="200dp"
+        android:background="#F6F5F5"
+        android:layout_marginTop="330dp"
         android:visibility="gone">
-        <ProgressBar
+
+        <TextView
+            android:id="@+id/textloading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/montserrat_bold"
+            android:textSize="18sp"
+            android:layout_marginTop="45dp"
+            android:textColor="@color/colorFont"/>
+
+        <!--<ProgressBar
             style="?android:attr/progressBarStyle"
             android:layout_width="47dp"
             android:layout_height="45dp"
             android:indeterminateDrawable="@drawable/pbstyle"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp">
-        </ProgressBar>
+        </ProgressBar>-->
     </FrameLayout>
 
 </RelativeLayout>

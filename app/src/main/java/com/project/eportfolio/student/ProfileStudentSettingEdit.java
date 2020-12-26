@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.transition.Slide;
@@ -72,7 +73,7 @@ import static com.project.eportfolio.APIService.AppUtil.*;
 public class ProfileStudentSettingEdit extends AppCompatActivity {
 
     LinearLayout btnSimpan;
-    TextView btnUbahFotoProfile, btnSaveFotoProfile, namaSiswa, nisSiswa;
+    TextView btnUbahFotoProfile, btnSaveFotoProfile, namaSiswa, nisSiswa, txtload;
     EditText editFirstName, editMidName, editLastName, editTtl, editNis, editJk, editAlamat, editEmail, editTelp;
     ImageView imgSiswa;
     ModelSiswa dataModelSiswa;
@@ -114,6 +115,8 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
         editAlamat = findViewById(R.id.editAlamat);
         editEmail = findViewById(R.id.editEmail);
         editTelp = findViewById(R.id.editTelp);
+
+        txtload = findViewById(R.id.textloading);
 
         setDataProfile();
 
@@ -393,6 +396,36 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
 
     private void thread() {
         findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
+        final Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+
+            int count = 0;
+
+            @Override
+            public void run() {
+                count++;
+
+                if (count == 1)
+                {
+                    txtload.setText("Updating Profile .");
+                }
+                else if (count == 2)
+                {
+                    txtload.setText("Updating Profile . .");
+                }
+                else if (count == 3)
+                {
+                    txtload.setText("Updating Profile . . .");
+                }
+
+                if (count == 3)
+                    count = 0;
+
+                handler.postDelayed(this, 1500);
+            }
+        };
+        handler.postDelayed(runnable, 1 * 1000);
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -403,6 +436,35 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
 
     private void thread2() {
         findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
+        final Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+
+            int count = 0;
+
+            @Override
+            public void run() {
+                count++;
+
+                if (count == 1)
+                {
+                    txtload.setText("Updating Profile Picture .");
+                }
+                else if (count == 2)
+                {
+                    txtload.setText("Updating Profile Picture . .");
+                }
+                else if (count == 3)
+                {
+                    txtload.setText("Updating Profile Picture . . .");
+                }
+
+                if (count == 3)
+                    count = 0;
+
+                handler.postDelayed(this, 1500);
+            }
+        };
+        handler.postDelayed(runnable, 1 * 1000);
         new Thread(new Runnable() {
             @Override
             public void run() {

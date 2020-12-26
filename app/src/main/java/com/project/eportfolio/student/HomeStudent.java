@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.transition.Slide;
 import android.view.Gravity;
 import android.view.View;
@@ -41,10 +42,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static java.lang.Thread.sleep;
+
 public class HomeStudent extends AppCompatActivity {
 
     ImageButton btn_beranda, btn_portfolio, btn_input, btn_profile;
-    TextView txtUnjukKerja, txtProyek, txtKarya, txtOrganisasi, txtForumEdukasi, txtPenghargaan;
+    TextView txtUnjukKerja, txtProyek, txtKarya, txtOrganisasi, txtForumEdukasi, txtPenghargaan, txtload;
 
     ModelPortofolio dataModelPortfolio;
     List<TrPortofolio> listPortofolio = new ArrayList<>();
@@ -90,7 +93,9 @@ public class HomeStudent extends AppCompatActivity {
         txtUnjukKerja = findViewById(R.id.txtUnjukKerja);
         //rvSliderPortfolioSiswa = findViewById(R.id.rvSliderPortfolioSiswa);
         viewPager = findViewById(R.id.viewPager);
+        txtload = findViewById(R.id.textloading);
 
+        setDataSiswa();
         first();
 
         btn_portfolio.setOnClickListener(new View.OnClickListener() {
@@ -153,10 +158,44 @@ public class HomeStudent extends AppCompatActivity {
             }
         });
 
+
+
     }
 
     private void first(){
         findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
+
+        final Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+
+            int count = 0;
+
+            @Override
+            public void run() {
+                count++;
+
+                if (count == 1)
+                {
+                    txtload.setText("Loading Portfolio .");
+                }
+                else if (count == 2)
+                {
+                    txtload.setText("Loading Portfolio . .");
+                }
+                else if (count == 3)
+                {
+                    txtload.setText("Loading Portfolio . . .");
+                }
+
+                if (count == 3)
+                    count = 0;
+
+                handler.postDelayed(this, 1500);
+            }
+        };
+        handler.postDelayed(runnable, 1 * 1000);
+
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -166,6 +205,7 @@ public class HomeStudent extends AppCompatActivity {
 
         //getdataportfoliosiswa, setelah itu dapet semua baru ke main thread trus set data siswa
     }
+
 
 
     public void getPortfolio() {
@@ -265,7 +305,7 @@ public class HomeStudent extends AppCompatActivity {
                             @Override
                             public void run() {
                                 findViewById(R.id.framelayout).setVisibility(View.GONE);
-                                setDataSiswa();
+                                setDataPortfolio();
                             }
                         });
                     }
@@ -284,6 +324,36 @@ public class HomeStudent extends AppCompatActivity {
                 call.cancel();
             }
         });
+    }
+
+    public void setDataPortfolio(){
+        txtKarya.setText(listKaryaMurid.size() + "   Karya");
+        txtUnjukKerja.setText(listUnjukKerjaMurid.size() + "   Unjuk Kerja");
+        txtProyek.setText(listProyekMurid.size() + "   Proyek");
+        txtOrganisasi.setText(listOrganisasi.size() + "   Organisasi");
+        txtPenghargaan.setText(listPenghargaan.size() + "   Penghargaan");
+        txtForumEdukasi.setText(listForumEdukasi.size() + "   Forum Edukasi");
+
+        if (listPortofolio!=null){
+            try {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        findViewById(R.id.framelayout).setVisibility(View.GONE);
+                        for (int i=0; i<5; i++){
+                            itemList = new AdapterSliderPortfolio(listPortofolio, getApplicationContext());
+                           /* LinearLayoutManager layoutManager
+                                    = new LinearLayoutManager(HomeStudent.this, LinearLayoutManager.HORIZONTAL, false);
+                            rvSliderPortfolioSiswa.setLayoutManager(layoutManager);*/
+                            viewPager.setAdapter(itemList);
+                        }
+                    }
+                });
+            } catch (Exception e){
+
+            }
+
+        }
     }
 
     public void setDataSiswa(){
@@ -330,33 +400,7 @@ public class HomeStudent extends AppCompatActivity {
 
         }
 
-        txtKarya.setText(listKaryaMurid.size() + "   Karya");
-        txtUnjukKerja.setText(listUnjukKerjaMurid.size() + "   Unjuk Kerja");
-        txtProyek.setText(listProyekMurid.size() + "   Proyek");
-        txtOrganisasi.setText(listOrganisasi.size() + "   Organisasi");
-        txtPenghargaan.setText(listPenghargaan.size() + "   Penghargaan");
-        txtForumEdukasi.setText(listForumEdukasi.size() + "   Forum Edukasi");
 
-        if (listPortofolio!=null){
-            try {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        findViewById(R.id.framelayout).setVisibility(View.GONE);
-                        for (int i=0; i<5; i++){
-                            itemList = new AdapterSliderPortfolio(listPortofolio, getApplicationContext());
-                           /* LinearLayoutManager layoutManager
-                                    = new LinearLayoutManager(HomeStudent.this, LinearLayoutManager.HORIZONTAL, false);
-                            rvSliderPortfolioSiswa.setLayoutManager(layoutManager);*/
-                            viewPager.setAdapter(itemList);
-                        }
-                    }
-                });
-            } catch (Exception e){
-
-            }
-
-        }
 
     }
 

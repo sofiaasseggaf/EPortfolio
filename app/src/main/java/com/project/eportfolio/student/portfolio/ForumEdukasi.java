@@ -2,7 +2,9 @@ package com.project.eportfolio.student.portfolio;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -33,6 +35,7 @@ public class ForumEdukasi extends AppCompatActivity {
     List<TrPortofolio> listPortofolio = new ArrayList<>();
     List<TrPortofolio> listForumEdukasiMurid = new ArrayList<>();
     AdapterListForumEdukasi itemList;
+    TextView txtload;
 
     String apikey = "7826470ABBA476706DB24D47C6A6ED64";
 
@@ -42,12 +45,46 @@ public class ForumEdukasi extends AppCompatActivity {
         setContentView(R.layout.student_portfolio_forum_edukasi);
 
         rvForumEdukasi = findViewById(R.id.rvForumEdukasi);
+        txtload = findViewById(R.id.textloading);
         first();
 
     }
 
     public void first(){
         findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
+        final Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+
+            int count = 0;
+
+            @Override
+            public void run() {
+                count++;
+
+                if (count == 1)
+                {
+                    txtload.setText("Loading Portfolio .");
+                }
+                else if (count == 2)
+                {
+                    txtload.setText("Loading Portfolio . .");
+                }
+                else if (count == 3)
+                {
+                    txtload.setText("Loading Portfolio . . .");
+                }
+
+                if (count == 3)
+                    count = 0;
+
+                handler.postDelayed(this, 1500);
+            }
+        };
+        handler.postDelayed(runnable, 1 * 1000);
+
+        //to stop a handler
+        //  handler.removeCallbacksAndMessages(null);
+
         new Thread(new Runnable() {
             @Override
             public void run() {

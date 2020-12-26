@@ -2,7 +2,9 @@ package com.project.eportfolio.student.portfolio;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -33,6 +35,7 @@ public class Organisasi extends AppCompatActivity {
     List<TrPortofolio> listPortofolio = new ArrayList<>();
     List<TrPortofolio> listOrganisasiMurid = new ArrayList<>();
     AdapterListOrganisasi itemList;
+    TextView txtload;
 
     String apikey = "7826470ABBA476706DB24D47C6A6ED64";
 
@@ -42,6 +45,37 @@ public class Organisasi extends AppCompatActivity {
         setContentView(R.layout.student_portfolio_organisasi);
 
         rvOrganisasi = findViewById(R.id.rvOrganisasi);
+        final Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+
+            int count = 0;
+
+            @Override
+            public void run() {
+                count++;
+
+                if (count == 1)
+                {
+                    txtload.setText("Loading Portfolio .");
+                }
+                else if (count == 2)
+                {
+                    txtload.setText("Loading Portfolio . .");
+                }
+                else if (count == 3)
+                {
+                    txtload.setText("Loading Portfolio . . .");
+                }
+
+                if (count == 3)
+                    count = 0;
+
+                handler.postDelayed(this, 1500);
+            }
+        };
+        handler.postDelayed(runnable, 1 * 1000);
+
+        txtload = findViewById(R.id.textloading);
         first();
 
     }

@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.transition.Slide;
@@ -23,6 +24,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -73,6 +75,7 @@ public class InputStudent extends AppCompatActivity {
     EditText txtJudul, txtTempat, txtNarasi;
     Button btnInputPortfolio, btnOpenCamera;
     ImageView imgPortofolio;
+    TextView txtload;
     int idkategori;
 
     File photoFile, mPhotoFile;
@@ -105,6 +108,8 @@ public class InputStudent extends AppCompatActivity {
         btn_portfolio = findViewById(R.id.btn_portfolio);
         btn_input = findViewById(R.id.btn_input);
         btn_profile = findViewById(R.id.btn_profile);
+
+        txtload = findViewById(R.id.textloading);
 
         btn_beranda.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -186,6 +191,36 @@ public class InputStudent extends AppCompatActivity {
     private void thread() {
 
         findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
+        final Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+
+            int count = 0;
+
+            @Override
+            public void run() {
+                count++;
+
+                if (count == 1)
+                {
+                    txtload.setText("Sending Portfolio .");
+                }
+                else if (count == 2)
+                {
+                    txtload.setText("Sending Portfolio . .");
+                }
+                else if (count == 3)
+                {
+                    txtload.setText("Sending Portfolio . . .");
+                }
+
+                if (count == 3)
+                    count = 0;
+
+                handler.postDelayed(this, 1500);
+            }
+        };
+        handler.postDelayed(runnable, 1 * 1000);
+
         new Thread(new Runnable() {
             @Override
             public void run() {
