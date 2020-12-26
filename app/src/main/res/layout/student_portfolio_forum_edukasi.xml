@@ -45,8 +45,10 @@
         android:id="@+id/framelayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#9940DFC4"
         android:visibility="visible">
+        <!--android:background="#9940DFC4"-->
+
+
 
         <TextView
             android:id="@+id/textloading"

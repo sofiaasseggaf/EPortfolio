@@ -2,7 +2,9 @@ package com.project.eportfolio.teacher.master;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -45,6 +47,7 @@ public class DataPortfolioDuaModel extends AppCompatActivity {
     List<MsMatapelajaran> listMapel = new ArrayList<>();
     ModelStrategi dataModelStrategi;
     List<MsStrategi> listStrategi = new ArrayList<>();
+    TextView txtload;
 
     String apikey = "7826470ABBA476706DB24D47C6A6ED64";
 
@@ -54,12 +57,42 @@ public class DataPortfolioDuaModel extends AppCompatActivity {
         setContentView(R.layout.teacher_master_dataportfolio);
 
         rvDataPortfolio = findViewById(R.id.rvDataPortfolio);
+        txtload = findViewById(R.id.textloading);
         first();
 
     }
 
     public void first(){
         findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
+        final Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+
+            int count = 0;
+
+            @Override
+            public void run() {
+                count++;
+
+                if (count == 1)
+                {
+                    txtload.setText("Loading Data Portfolio .");
+                }
+                else if (count == 2)
+                {
+                    txtload.setText("Loading Data Portfolio . .");
+                }
+                else if (count == 3)
+                {
+                    txtload.setText("Loading Data Portfolio . . .");
+                }
+
+                if (count == 3)
+                    count = 0;
+
+                handler.postDelayed(this, 1500);
+            }
+        };
+        handler.postDelayed(runnable, 1 * 1000);
         new Thread(new Runnable() {
             @Override
             public void run() {

@@ -409,7 +409,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/bgunjukkarya"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -418,8 +418,8 @@
             android:orientation="vertical"
             android:gravity="center">
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:src="@drawable/logo"/>
 
             <TextView
@@ -427,8 +427,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="150dp"
-                android:fontFamily="@font/montserrat_bold"
-                android:textSize="28sp"
+                android:fontFamily="@font/montserrat_regular"
+                android:textSize="24sp"
                 android:textColor="#595959"/>
 
         </LinearLayout>

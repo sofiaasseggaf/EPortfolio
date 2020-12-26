@@ -41,35 +41,39 @@
         </LinearLayout>
     </ScrollView>
 
-
     <FrameLayout
         android:id="@+id/framelayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#9940DFC4"
         android:visibility="visible">
+        <!--android:background="#9940DFC4"-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
+
+
+        <TextView
+            android:id="@+id/textloading"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:orientation="vertical"
-            android:gravity="center">
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:src="@drawable/logo"/>
+            android:layout_marginBottom="50dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:textSize="24sp"
+            android:layout_gravity="center|bottom"
+            android:textColor="#595959"/>
+        <!--
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:src="@drawable/logo"/>
 
-            <TextView
-                android:id="@+id/textloading"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="150dp"
-                android:fontFamily="@font/montserrat_bold"
-                android:textSize="28sp"
-                android:textColor="#595959"/>
 
-        </LinearLayout>
+
+                </LinearLayout>-->
 
 
 
@@ -84,6 +88,7 @@
             android:layout_marginBottom="10dp">
         </ProgressBar>-->
     </FrameLayout>
+
 
 
 </RelativeLayout>

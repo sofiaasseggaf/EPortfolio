@@ -422,7 +422,7 @@ public class InputStudent extends AppCompatActivity {
             Call<ModelPostPortfolio> data = apiInterface.sendDataPortfolioSiswa(
                     apikey,
                     Integer.parseInt(PreferenceUtils.getIdSiswa(getApplicationContext())),
-                    0,
+                    Integer.parseInt("0"),
                     txtJudul.getText().toString(),
                     now,
                     txtTempat.getText().toString(),
