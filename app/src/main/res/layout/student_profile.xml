@@ -63,144 +63,139 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@id/top"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginTop="40dp">
-
         <LinearLayout
-            android:id="@+id/btnLogout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:layout_marginTop="60dp"
-            android:orientation="horizontal">
-            <ImageButton
-                android:layout_width="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@id/top"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="90dp">
+
+            <LinearLayout
+                android:id="@+id/btnLogout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="2dp"
-                android:layout_gravity="center"
-                android:background="@drawable/btnlogout"/>
-            <TextView
-                android:layout_width="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:layout_width="30dp"
+                    android:layout_height="25dp"
+                    android:layout_marginLeft="2dp"
+                    android:background="@drawable/btnlogout"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Log Out"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textSize="15sp"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="20dp"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@drawable/garispanjang"/>
+
+            <LinearLayout
+                android:id="@+id/btnEditAccount"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Log Out"
-                android:fontFamily="@font/montserrat_regular"
-                android:textSize="15sp"
-                android:textColor="#000000"
-                android:layout_marginLeft="20dp"
-                android:layout_gravity="center"/>
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@drawable/btnaccount"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Account"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textSize="15sp"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="20dp"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@drawable/garispanjang"/>
+
+            <LinearLayout
+                android:id="@+id/btnEditPrivacy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:layout_width="25dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="2dp"
+                    android:background="@drawable/btnpassword"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Password"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="25dp"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@drawable/garispanjang"/>
+
+            <LinearLayout
+                android:id="@+id/btnAbout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+                <ImageButton
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="2dp"
+                    android:background="@drawable/btnabout"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="About"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textSize="16sp"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="20dp"
+                    android:layout_gravity="center"/>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@drawable/garispanjang"/>
+
         </LinearLayout>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:background="@drawable/garispanjang"/>
-
-        <LinearLayout
-            android:id="@+id/btnEditAccount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal">
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@drawable/btnaccount"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Account"
-                android:fontFamily="@font/montserrat_regular"
-                android:textSize="15sp"
-                android:textColor="#000000"
-                android:layout_marginLeft="30dp"
-                android:layout_gravity="center"/>
-        </LinearLayout>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:background="@drawable/garispanjang"/>
-
-        <LinearLayout
-            android:id="@+id/btnEditPrivacy"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal">
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="2dp"
-                android:background="@drawable/btnpassword"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Password"
-                android:fontFamily="@font/montserrat_regular"
-                android:textSize="16sp"
-                android:textColor="#000000"
-                android:layout_marginLeft="35dp"
-                android:layout_gravity="center"/>
-        </LinearLayout>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:background="@drawable/garispanjang"/>
-
-        <LinearLayout
-            android:id="@+id/btnAbout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:layout_marginTop="5dp"
-            android:orientation="horizontal">
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="2dp"
-                android:background="@drawable/btnabout"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="About"
-                android:fontFamily="@font/montserrat_regular"
-                android:textSize="16sp"
-                android:textColor="#000000"
-                android:layout_marginLeft="35dp"
-                android:layout_gravity="center"/>
-        </LinearLayout>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:background="@drawable/garispanjang"/>
-
-    </LinearLayout>
-
 
     </RelativeLayout>
 

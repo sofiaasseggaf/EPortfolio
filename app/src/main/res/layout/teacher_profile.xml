@@ -66,9 +66,9 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_below="@id/top"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginRight="30dp"
-            android:layout_marginTop="80dp">
+            android:layout_marginTop="90dp">
 
             <LinearLayout
                 android:id="@+id/btnLogout"
