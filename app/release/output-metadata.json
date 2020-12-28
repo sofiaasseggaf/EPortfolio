@@ -10,45 +10,9 @@
     {
       "type": "UNIVERSAL",
       "filters": [],
-      "versionCode": 9,
-      "versionName": "2.0",
+      "versionCode": 10,
+      "versionName": "3.0",
       "outputFile": "app-universal-release.apk"
-    },
-    {
-      "type": "ONE_OF_MANY",
-      "filters": [
-        {
-          "filterType": "DENSITY",
-          "value": "xxxhdpi"
-        }
-      ],
-      "versionCode": 6009,
-      "versionName": "2.0",
-      "outputFile": "app-xxxhdpi-release.apk"
-    },
-    {
-      "type": "ONE_OF_MANY",
-      "filters": [
-        {
-          "filterType": "DENSITY",
-          "value": "xxhdpi"
-        }
-      ],
-      "versionCode": 5009,
-      "versionName": "2.0",
-      "outputFile": "app-xxhdpi-release.apk"
-    },
-    {
-      "type": "ONE_OF_MANY",
-      "filters": [
-        {
-          "filterType": "DENSITY",
-          "value": "ldpi"
-        }
-      ],
-      "versionCode": 2009,
-      "versionName": "2.0",
-      "outputFile": "app-ldpi-release.apk"
     },
     {
       "type": "ONE_OF_MANY",
@@ -58,9 +22,45 @@
           "value": "mdpi"
         }
       ],
-      "versionCode": 3009,
-      "versionName": "2.0",
+      "versionCode": 3010,
+      "versionName": "3.0",
       "outputFile": "app-mdpi-release.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "DENSITY",
+          "value": "xxxhdpi"
+        }
+      ],
+      "versionCode": 6010,
+      "versionName": "3.0",
+      "outputFile": "app-xxxhdpi-release.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "DENSITY",
+          "value": "ldpi"
+        }
+      ],
+      "versionCode": 2010,
+      "versionName": "3.0",
+      "outputFile": "app-ldpi-release.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "DENSITY",
+          "value": "xxhdpi"
+        }
+      ],
+      "versionCode": 5010,
+      "versionName": "3.0",
+      "outputFile": "app-xxhdpi-release.apk"
     },
     {
       "type": "ONE_OF_MANY",
@@ -70,8 +70,8 @@
           "value": "hdpi"
         }
       ],
-      "versionCode": 1009,
-      "versionName": "2.0",
+      "versionCode": 1010,
+      "versionName": "3.0",
       "outputFile": "app-hdpi-release.apk"
     },
     {
@@ -82,8 +82,8 @@
           "value": "xhdpi"
         }
       ],
-      "versionCode": 4009,
-      "versionName": "2.0",
+      "versionCode": 4010,
+      "versionName": "3.0",
       "outputFile": "app-xhdpi-release.apk"
     }
   ]

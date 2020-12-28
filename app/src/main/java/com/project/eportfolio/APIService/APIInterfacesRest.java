@@ -77,6 +77,12 @@ public interface APIInterfacesRest {
     Call<ModelPortofolio> getDataPortfolio(@Query("X-Api-Key") String apikey,
                                            @Query("limit") int limit);
 
+    @GET("api/tr_portofolio/all")
+    Call<ModelPortofolio> getDataPortfolio2(@Query("X-Api-Key") String apikey,
+                                           @Query("limit") int limit,
+                                            @Query("filter") int filter,
+                                            @Query("field") String field);
+
     @GET("api/ms_grade/all")
     Call<ModelGrade> getDataGrade(@Query("X-Api-Key") String apikey,
                                   @Query("limit") int limit);

@@ -50,6 +50,8 @@ public class DataPortfolioDuaModel extends AppCompatActivity {
     TextView txtload;
 
     String apikey = "7826470ABBA476706DB24D47C6A6ED64";
+    String field;
+    int filter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,6 +60,9 @@ public class DataPortfolioDuaModel extends AppCompatActivity {
 
         rvDataPortfolio = findViewById(R.id.rvDataPortfolio);
         txtload = findViewById(R.id.textloading);
+        filter = Integer.parseInt(PreferenceUtils.getUserId(getApplicationContext()));
+        field = "guruid";
+
         first();
 
     }
@@ -103,7 +108,7 @@ public class DataPortfolioDuaModel extends AppCompatActivity {
 
     public void getPortfolio() {
         final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
-        final Call<ModelPortofolio> dataSiswax = apiInterface.getDataPortfolio(  apikey, 1000);
+        final Call<ModelPortofolio> dataSiswax = apiInterface.getDataPortfolio2(  apikey, 1000, filter, field);
 
         dataSiswax.enqueue(new Callback<ModelPortofolio>() {
             @Override
@@ -112,7 +117,7 @@ public class DataPortfolioDuaModel extends AppCompatActivity {
                 if (modelDataPortfolio!=null){
                     for (int i = 0; i < modelDataPortfolio.getTotal(); i++) {
                         try {
-                            String id = PreferenceUtils.getUserId(  getApplicationContext());
+                            String id = PreferenceUtils.getUserId(getApplicationContext());
                             if (id.equalsIgnoreCase(modelDataPortfolio.getData().getTrPortofolio().get(i).getGuruid())) {
                                 listPortfolio.add(modelDataPortfolio.getData().getTrPortofolio().get(i));
                             }
