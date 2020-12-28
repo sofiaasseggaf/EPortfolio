@@ -1050,7 +1050,7 @@ public class InputTeacher extends AppCompatActivity {
         Call<ModelPostPortfolio> data = apiInterface.sendDataPortfolioGuru(
                 apikey,
                 Integer.parseInt(inputIdSiswa),
-                Integer.parseInt(PreferenceUtils.getIdGuru(getApplicationContext())),
+                Integer.parseInt(PreferenceUtils.getUserId(getApplicationContext())),
                 Integer.parseInt(inputIdMapel),
                 Integer.parseInt(inputIdKategori),
                 Integer.parseInt(inputIdStrategi),
