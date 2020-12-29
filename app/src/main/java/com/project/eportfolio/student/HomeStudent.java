@@ -71,7 +71,7 @@ public class HomeStudent extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setAnimation();
+        //setAnimation();
         setContentView(R.layout.student_home);
 
         btn_beranda = findViewById(R.id.btn_home);
@@ -102,14 +102,16 @@ public class HomeStudent extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent a = new Intent(HomeStudent.this, PortfolioStudent.class);
-                if(Build.VERSION.SDK_INT>20){
+                startActivity(a);
+                finish();
+                /*if(Build.VERSION.SDK_INT>20){
                     ActivityOptions options =
                             ActivityOptions.makeSceneTransitionAnimation(HomeStudent.this);
                     startActivity(a,options.toBundle());
                 }else {
                     startActivity(a);
                     finish();
-                }
+                }*/
             }
         });
 
@@ -117,14 +119,16 @@ public class HomeStudent extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent a = new Intent(HomeStudent.this, PortfolioStudent.class);
-                if(Build.VERSION.SDK_INT>20){
+                startActivity(a);
+                finish();
+                /*if(Build.VERSION.SDK_INT>20){
                     ActivityOptions options =
                             ActivityOptions.makeSceneTransitionAnimation(HomeStudent.this);
                     startActivity(a,options.toBundle());
                 }else {
                     startActivity(a);
                     finish();
-                }
+                }*/
             }
         });
 
@@ -132,14 +136,16 @@ public class HomeStudent extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent a = new Intent(HomeStudent.this, InputStudent.class);
-                if(Build.VERSION.SDK_INT>20){
+                startActivity(a);
+                finish();
+                /*if(Build.VERSION.SDK_INT>20){
                     ActivityOptions options =
                             ActivityOptions.makeSceneTransitionAnimation(HomeStudent.this);
                     startActivity(a,options.toBundle());
                 }else {
                     startActivity(a);
                     finish();
-                }
+                }*/
             }
         });
 
@@ -147,14 +153,16 @@ public class HomeStudent extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent a = new Intent(HomeStudent.this, ProfileStudent.class);
-                if(Build.VERSION.SDK_INT>20){
+                startActivity(a);
+                finish();
+                /*if(Build.VERSION.SDK_INT>20){
                     ActivityOptions options =
                             ActivityOptions.makeSceneTransitionAnimation(HomeStudent.this);
                     startActivity(a,options.toBundle());
                 }else {
                     startActivity(a);
                     finish();
-                }
+                }*/
             }
         });
 
@@ -405,7 +413,7 @@ public class HomeStudent extends AppCompatActivity {
     }
 
     //Your Slide animation
-    public void setAnimation(){
+    /*public void setAnimation(){
         if(Build.VERSION.SDK_INT>20) {
             Slide slide = new Slide();
             slide.setSlideEdge(Gravity.LEFT);
@@ -414,7 +422,7 @@ public class HomeStudent extends AppCompatActivity {
             getWindow().setExitTransition(slide);
             getWindow().setEnterTransition(slide);
         }
-    }
+    }*/
 
     @Override
     public void onBackPressed() {

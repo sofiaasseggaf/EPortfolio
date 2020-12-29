@@ -86,7 +86,7 @@ public class ProfileTeacherSettingEdit extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setAnimation();
+        //setAnimation();
         setContentView(R.layout.teacher_profile_setting_edit);
 
         ButterKnife.bind(this);
@@ -649,7 +649,7 @@ public class ProfileTeacherSettingEdit extends AppCompatActivity {
     }
 
 
-    public void setAnimation() {
+    /*public void setAnimation() {
         if (Build.VERSION.SDK_INT > 20) {
             Slide slide = new Slide();
             slide.setSlideEdge(Gravity.LEFT);
@@ -658,17 +658,19 @@ public class ProfileTeacherSettingEdit extends AppCompatActivity {
             getWindow().setExitTransition(slide);
             getWindow().setEnterTransition(slide);
         }
-    }
+    }*/
 
     public void onBackPressed() {
         Intent a = new Intent(ProfileTeacherSettingEdit.this, HomeTeacher.class);
-        if(Build.VERSION.SDK_INT>20){
+        startActivity(a);
+        finish();
+        /*if(Build.VERSION.SDK_INT>20){
             ActivityOptions options =
                     ActivityOptions.makeSceneTransitionAnimation(ProfileTeacherSettingEdit.this);
             startActivity(a,options.toBundle());
         }else {
             startActivity(a);
             finish();
-        }
+        }*/
     }
 }

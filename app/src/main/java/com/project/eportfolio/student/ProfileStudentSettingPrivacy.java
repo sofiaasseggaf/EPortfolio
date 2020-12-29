@@ -46,7 +46,7 @@ public class ProfileStudentSettingPrivacy extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setAnimation();
+        //setAnimation();
         setContentView(R.layout.student_profile_setting_privacy);
 
         editPassLama = findViewById(R.id.editPasswordLama);
@@ -160,7 +160,7 @@ public class ProfileStudentSettingPrivacy extends AppCompatActivity {
     }
 
     //Your Slide animation
-    public void setAnimation(){
+  /*  public void setAnimation(){
         if(Build.VERSION.SDK_INT>20) {
             Slide slide = new Slide();
             slide.setSlideEdge(Gravity.LEFT);
@@ -169,7 +169,7 @@ public class ProfileStudentSettingPrivacy extends AppCompatActivity {
             getWindow().setExitTransition(slide);
             getWindow().setEnterTransition(slide);
         }
-    }
+    }*/
 
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -180,14 +180,16 @@ public class ProfileStudentSettingPrivacy extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int i) {
                         //HomeTeacher.super.onBackPressed();
                         Intent a = new Intent(ProfileStudentSettingPrivacy.this, ProfileStudent.class);
-                        if(Build.VERSION.SDK_INT>20){
+                        startActivity(a);
+                        finish();
+                        /*if(Build.VERSION.SDK_INT>20){
                             ActivityOptions options =
                                     ActivityOptions.makeSceneTransitionAnimation(ProfileStudentSettingPrivacy.this);
                             startActivity(a,options.toBundle());
                         }else {
                             startActivity(a);
                             finish();
-                        }
+                        }*/
                     }
                 })
 

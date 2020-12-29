@@ -29,7 +29,7 @@ public class MasterTeacher extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setAnimation();
+        //setAnimation();
         setContentView(R.layout.teacher_master);
 
         btn_beranda = findViewById(R.id.btn_home);
@@ -53,14 +53,16 @@ public class MasterTeacher extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent a = new Intent(MasterTeacher.this, InputTeacher.class);
-                if(Build.VERSION.SDK_INT>20){
+                startActivity(a);
+                finish();
+                /*if(Build.VERSION.SDK_INT>20){
                     ActivityOptions options =
                             ActivityOptions.makeSceneTransitionAnimation(MasterTeacher.this);
                     startActivity(a,options.toBundle());
                 }else {
                     startActivity(a);
                     finish();
-                }
+                }*/
             }
         });
 
@@ -68,14 +70,16 @@ public class MasterTeacher extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent a = new Intent(MasterTeacher.this, ProfileTeacher.class);
-                if(Build.VERSION.SDK_INT>20){
+                startActivity(a);
+                finish();
+                /*if(Build.VERSION.SDK_INT>20){
                     ActivityOptions options =
                             ActivityOptions.makeSceneTransitionAnimation(MasterTeacher.this);
                     startActivity(a,options.toBundle());
                 }else {
                     startActivity(a);
                     finish();
-                }
+                }*/
             }
         });
 
@@ -128,7 +132,7 @@ public class MasterTeacher extends AppCompatActivity {
     }
 
     //Your Slide animation
-    public void setAnimation(){
+    /*public void setAnimation(){
         if(Build.VERSION.SDK_INT>20) {
             Slide slide = new Slide();
             slide.setSlideEdge(Gravity.LEFT);
@@ -137,17 +141,19 @@ public class MasterTeacher extends AppCompatActivity {
             getWindow().setExitTransition(slide);
             getWindow().setEnterTransition(slide);
         }
-    }
+    }*/
 
     public void onBackPressed() {
         Intent a = new Intent(MasterTeacher.this, HomeTeacher.class);
-        if(Build.VERSION.SDK_INT>20){
+        startActivity(a);
+        finish();
+       /* if(Build.VERSION.SDK_INT>20){
             ActivityOptions options =
                     ActivityOptions.makeSceneTransitionAnimation(MasterTeacher.this);
             startActivity(a,options.toBundle());
         }else {
             startActivity(a);
             finish();
-        }
+        }*/
     }
 }

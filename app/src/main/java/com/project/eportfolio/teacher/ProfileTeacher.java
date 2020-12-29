@@ -36,7 +36,7 @@ public class ProfileTeacher extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setAnimation();
+        //setAnimation();
         setContentView(R.layout.teacher_profile);
 
         btn_beranda = findViewById(R.id.btn_home);
@@ -79,14 +79,16 @@ public class ProfileTeacher extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent a = new Intent(ProfileTeacher.this, MasterTeacher.class);
-                if(Build.VERSION.SDK_INT>20){
+                startActivity(a);
+                finish();
+                /*if(Build.VERSION.SDK_INT>20){
                     ActivityOptions options =
                             ActivityOptions.makeSceneTransitionAnimation(ProfileTeacher.this);
                     startActivity(a,options.toBundle());
                 }else {
                     startActivity(a);
                     finish();
-                }
+                }*/
             }
         });
 
@@ -94,14 +96,16 @@ public class ProfileTeacher extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent a = new Intent(ProfileTeacher.this, InputTeacher.class);
-                if(Build.VERSION.SDK_INT>20){
+                startActivity(a);
+                finish();
+                /*if(Build.VERSION.SDK_INT>20){
                     ActivityOptions options =
                             ActivityOptions.makeSceneTransitionAnimation(ProfileTeacher.this);
                     startActivity(a,options.toBundle());
                 }else {
                     startActivity(a);
                     finish();
-                }
+                }*/
             }
         });
 
@@ -109,14 +113,16 @@ public class ProfileTeacher extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent a = new Intent(ProfileTeacher.this, ProfileTeacherSettingEdit.class);
-                if(Build.VERSION.SDK_INT>20){
+                startActivity(a);
+                finish();
+                /*if(Build.VERSION.SDK_INT>20){
                     ActivityOptions options =
                             ActivityOptions.makeSceneTransitionAnimation(ProfileTeacher.this);
                     startActivity(a,options.toBundle());
                 }else {
                     startActivity(a);
                     finish();
-                }
+                }*/
             }
         });
 
@@ -124,14 +130,16 @@ public class ProfileTeacher extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent a = new Intent(ProfileTeacher.this, ProfileTeacherSettingPrivacy.class);
-                if(Build.VERSION.SDK_INT>20){
+                startActivity(a);
+                finish();
+                /*if(Build.VERSION.SDK_INT>20){
                     ActivityOptions options =
                             ActivityOptions.makeSceneTransitionAnimation(ProfileTeacher.this);
                     startActivity(a,options.toBundle());
                 }else {
                     startActivity(a);
                     finish();
-                }
+                }*/
             }
         });
 
@@ -210,7 +218,7 @@ public class ProfileTeacher extends AppCompatActivity {
         finish();
     }
 
-    public void setAnimation() {
+   /* public void setAnimation() {
         if (Build.VERSION.SDK_INT > 20) {
             Slide slide = new Slide();
             slide.setSlideEdge(Gravity.LEFT);
@@ -219,17 +227,19 @@ public class ProfileTeacher extends AppCompatActivity {
             getWindow().setExitTransition(slide);
             getWindow().setEnterTransition(slide);
         }
-    }
+    }*/
 
     public void onBackPressed() {
         Intent a = new Intent(ProfileTeacher.this, HomeTeacher.class);
-        if(Build.VERSION.SDK_INT>20){
+        startActivity(a);
+        finish();
+        /*if(Build.VERSION.SDK_INT>20){
             ActivityOptions options =
                     ActivityOptions.makeSceneTransitionAnimation(ProfileTeacher.this);
             startActivity(a,options.toBundle());
         }else {
             startActivity(a);
             finish();
-        }
+        }*/
     }
 }

@@ -90,7 +90,7 @@ public class InputStudent extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setAnimation();
+        //setAnimation();
         setContentView(R.layout.student_input);
 
         ButterKnife.bind(this);
@@ -493,14 +493,16 @@ public class InputStudent extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int i) {
                         //HomeTeacher.super.onBackPressed();
                         Intent a = new Intent(InputStudent.this, ProfileStudent.class);
-                        if(Build.VERSION.SDK_INT>20){
+                        startActivity(a);
+                        finish();
+                        /*if(Build.VERSION.SDK_INT>20){
                             ActivityOptions options =
                                     ActivityOptions.makeSceneTransitionAnimation(InputStudent.this);
                             startActivity(a,options.toBundle());
                         }else {
                             startActivity(a);
                             finish();
-                        }
+                        }*/
                     }
                 })
 
@@ -523,14 +525,16 @@ public class InputStudent extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int i) {
                         //HomeTeacher.super.onBackPressed();
                         Intent a = new Intent(InputStudent.this, PortfolioStudent.class);
-                        if(Build.VERSION.SDK_INT>20){
+                        startActivity(a);
+                        finish();
+                        /*if(Build.VERSION.SDK_INT>20){
                             ActivityOptions options =
                                     ActivityOptions.makeSceneTransitionAnimation(InputStudent.this);
                             startActivity(a,options.toBundle());
                         }else {
                             startActivity(a);
                             finish();
-                        }
+                        }*/
                     }
                 })
 
@@ -545,7 +549,7 @@ public class InputStudent extends AppCompatActivity {
     }
 
     //Your Slide animation
-    public void setAnimation(){
+    /*public void setAnimation(){
         if(Build.VERSION.SDK_INT>20) {
             Slide slide = new Slide();
             slide.setSlideEdge(Gravity.LEFT);
@@ -554,7 +558,7 @@ public class InputStudent extends AppCompatActivity {
             getWindow().setExitTransition(slide);
             getWindow().setEnterTransition(slide);
         }
-    }
+    }*/
 
     @Override
     public void onBackPressed() {
@@ -566,14 +570,16 @@ public class InputStudent extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int i) {
                         //HomeTeacher.super.onBackPressed();
                         Intent a = new Intent(InputStudent.this, HomeStudent.class);
-                        if(Build.VERSION.SDK_INT>20){
+                        startActivity(a);
+                        finish();
+                        /*if(Build.VERSION.SDK_INT>20){
                             ActivityOptions options =
                                     ActivityOptions.makeSceneTransitionAnimation(InputStudent.this);
                             startActivity(a,options.toBundle());
                         }else {
                             startActivity(a);
                             finish();
-                        }
+                        }*/
                     }
                 })
 
