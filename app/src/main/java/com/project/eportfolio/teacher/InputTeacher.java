@@ -1048,28 +1048,28 @@ public class InputTeacher extends AppCompatActivity {
 
         APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
         Call<ModelPostPortfolio> data = apiInterface.sendDataPortfolioGuru(
-                apikey,
-                Integer.parseInt(inputIdSiswa),
-                Integer.parseInt(PreferenceUtils.getUserId(getApplicationContext())),
-                Integer.parseInt(inputIdMapel),
-                Integer.parseInt(inputIdKategori),
-                Integer.parseInt(inputIdStrategi),
-                Integer.parseInt(inputIdRubrik),
-                txtJudul.getText().toString(), //req
-                inputDeskRubrik,
-                now,
-                "Sekolah", //ganti kota
-                Integer.parseInt(txtNilai.getText().toString()),
-                txtPredikat.getText().toString(),
-                txtNarasi.getText().toString(),
+                RequestBody.create(MediaType.parse("text/plain"),apikey),
+                RequestBody.create(MediaType.parse("text/plain"),inputIdSiswa),
+                RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getUserId(getApplicationContext())),
+                RequestBody.create(MediaType.parse("text/plain"),inputIdMapel),
+                RequestBody.create(MediaType.parse("text/plain"),inputIdKategori),
+                RequestBody.create(MediaType.parse("text/plain"),inputIdStrategi),
+                RequestBody.create(MediaType.parse("text/plain"),inputIdRubrik),
+                RequestBody.create(MediaType.parse("text/plain"),txtJudul.getText().toString()), //req
+                RequestBody.create(MediaType.parse("text/plain"),inputDeskRubrik),
+                RequestBody.create(MediaType.parse("text/plain"),now),
+                RequestBody.create(MediaType.parse("text/plain"),"Sekolah"), //ganti kota
+                RequestBody.create(MediaType.parse("text/plain"),txtNilai.getText().toString()),
+                RequestBody.create(MediaType.parse("text/plain"),txtPredikat.getText().toString()),
+                RequestBody.create(MediaType.parse("text/plain"),txtNarasi.getText().toString()),
                 fotox,
-                inputNamaKelas,
-                sp_tahun_ajaran.getSelectedItem().toString(),
-                sp_semester.getSelectedItem().toString(),
-                PreferenceUtils.getFirstName(getApplicationContext()),
-                now,
-                Integer.parseInt(txtNilai.getText().toString()), //req
-                Integer.parseInt(inputIdKelas) //req
+                RequestBody.create(MediaType.parse("text/plain"),inputNamaKelas),
+                RequestBody.create(MediaType.parse("text/plain"),sp_tahun_ajaran.getSelectedItem().toString()),
+                RequestBody.create(MediaType.parse("text/plain"),sp_semester.getSelectedItem().toString()),
+                RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getFirstName(getApplicationContext())),
+                RequestBody.create(MediaType.parse("text/plain"),now),
+                RequestBody.create(MediaType.parse("text/plain"),txtNilai.getText().toString()), //req
+                RequestBody.create(MediaType.parse("text/plain"),inputIdKelas) //req
         );
 
         data.enqueue(new Callback<ModelPostPortfolio>() {

@@ -21,6 +21,7 @@ import com.project.eportfolio.model.strategi.ModelStrategi;
 import com.project.eportfolio.model.user.ModelUser;
 
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -94,45 +95,45 @@ public interface APIInterfacesRest {
     @Multipart
     @POST("api/tr_portofolio/add")
     Call<ModelPostPortfolio> sendDataPortfolioSiswa(
-            @Header("X-Api-Key") String apikey,
-            @Part("muridid") int muridid,
-            @Part("idkategori") int idkategori,
-            @Part("judul_kd") String judul_kd,
-            @Part("tanggal") String tanggal,
-            @Part("tempat") String tempat,
-            @Part("narasi") String narasi,
+            @Header("X-Api-Key") RequestBody apikey,
+            @Part("muridid") RequestBody muridid,
+            @Part("idkategori") RequestBody idkategori,
+            @Part("judul_kd") RequestBody judul_kd,
+            @Part("tanggal") RequestBody tanggal,
+            @Part("tempat") RequestBody tempat,
+            @Part("narasi") RequestBody narasi,
             @Part MultipartBody.Part foto,
-            @Part("createdby") String createdby,
-            @Part("createddate") String createddate,
-            @Part("predikat") int predikat,
-            @Part("kelasid") int kelasid
+            @Part("createdby") RequestBody createdby,
+            @Part("createddate") RequestBody createddate,
+            @Part("predikat") RequestBody predikat,
+            @Part("kelasid") RequestBody kelasid
     );
 
     @Multipart
     @POST("api/tr_portofolio/add")
     Call<ModelPostPortfolio> sendDataPortfolioGuru(
-            @Header("X-Api-Key") String apikey,
-            @Part("muridid") int muridid,
-            @Part("guruid") int guruid,
-            @Part("mapelid") int mapelid,
-            @Part("idkategori") int idkategori,
-            @Part("strategiid") int strategiid,
-            @Part("rubrikid") int rubrikid,
-            @Part("judul_kd") String judul_kd,
-            @Part("rubrikdesk") String rubrikdesk,
-            @Part("tanggal") String tanggal,
-            @Part("tempat") String tempat,
-            @Part("nilai") int nilai,
-            @Part("predikat_mutu") String predikat_mutu,
-            @Part("narasi") String narasi,
+            @Header("X-Api-Key") RequestBody apikey,
+            @Part("muridid") RequestBody muridid,
+            @Part("guruid") RequestBody guruid,
+            @Part("mapelid") RequestBody mapelid,
+            @Part("idkategori") RequestBody idkategori,
+            @Part("strategiid") RequestBody strategiid,
+            @Part("rubrikid") RequestBody rubrikid,
+            @Part("judul_kd") RequestBody judul_kd,
+            @Part("rubrikdesk") RequestBody rubrikdesk,
+            @Part("tanggal") RequestBody tanggal,
+            @Part("tempat") RequestBody tempat,
+            @Part("nilai") RequestBody nilai,
+            @Part("predikat_mutu") RequestBody predikat_mutu,
+            @Part("narasi") RequestBody narasi,
             @Part MultipartBody.Part foto,
-            @Part("kelas") String kelas,
-            @Part("th_ajaran") String th_ajaran,
-            @Part("semester") String semester,
-            @Part("createdby") String createdby,
-            @Part("createddate") String createddate,
-            @Part("predikat") int predikat,
-            @Part("kelasid") int kelasid
+            @Part("kelas") RequestBody kelas,
+            @Part("th_ajaran") RequestBody th_ajaran,
+            @Part("semester") RequestBody semester,
+            @Part("createdby") RequestBody createdby,
+            @Part("createddate") RequestBody createddate,
+            @Part("predikat") RequestBody predikat,
+            @Part("kelasid") RequestBody kelasid
     );
 
 
@@ -163,23 +164,23 @@ public interface APIInterfacesRest {
     @Multipart
     @POST("api/ms_murid/update")
     Call<ModelUpdateDataSiswa> updateDataSiswaRequiredFoto(
-            @Header("X-Api-Key") String apikey,
-            @Part("id") int id,
-            @Part("userid") int userid,
-            @Part("sekolahid") int sekolahid,
-            @Part("kelasid") int kelasid,
-            @Part("firstname") String firstname,
-            @Part("midname") String midname,
-            @Part("lastname") String lastname,
-            @Part("nis") String nis,
-            @Part("gender") String gender,
-            @Part("ttl") String ttl,
-            @Part("address") String address,
-            @Part("email") String email,
-            @Part("phone") String phone,
+            @Header("X-Api-Key") RequestBody apikey,
+            @Part("id") RequestBody id,
+            @Part("userid") RequestBody userid,
+            @Part("sekolahid") RequestBody sekolahid,
+            @Part("kelasid") RequestBody kelasid,
+            @Part("firstname") RequestBody firstname,
+            @Part("midname") RequestBody midname,
+            @Part("lastname") RequestBody lastname,
+            @Part("nis") RequestBody nis,
+            @Part("gender") RequestBody gender,
+            @Part("ttl") RequestBody ttl,
+            @Part("address") RequestBody address,
+            @Part("email") RequestBody email,
+            @Part("phone") RequestBody phone,
             @Part  MultipartBody.Part photo,
-            @Part("updateby") String updateby,
-            @Part("updatedate") String updatedate
+            @Part("updateby") RequestBody updateby,
+            @Part("updatedate") RequestBody updatedate
     );
 
     @FormUrlEncoded
@@ -231,22 +232,22 @@ public interface APIInterfacesRest {
     @Multipart
     @POST("api/ms_guru/update")
     Call<ModelUpdateDataGuru> updateDataGuruFoto(
-            @Header("X-Api-Key") String apikey,
-            @Part("id_guru") int id_guru,
-            @Part("userid") int userid,
-            @Part("sekolahid") int sekolahid,
-            @Part("firstname") String firstname,
-            @Part("midname") String midname,
-            @Part("lastname") String lastname,
-            @Part("nik") String nik,
-            @Part("nip") String nip,
-            @Part("gender") String gender,
-            @Part("address") String address,
-            @Part("email") String email,
-            @Part("phone") String phone,
+            @Header("X-Api-Key") RequestBody  apikey,
+            @Part("id_guru") RequestBody id_guru,
+            @Part("userid") RequestBody  userid,
+            @Part("sekolahid") RequestBody  sekolahid,
+            @Part("firstname") RequestBody  firstname,
+            @Part("midname") RequestBody  midname,
+            @Part("lastname") RequestBody  lastname,
+            @Part("nik") RequestBody  nik,
+            @Part("nip") RequestBody  nip,
+            @Part("gender") RequestBody  gender,
+            @Part("address") RequestBody  address,
+            @Part("email") RequestBody  email,
+            @Part("phone") RequestBody  phone,
             @Part  MultipartBody.Part photo,
-            @Part("updateby") String updateby,
-            @Part("updatedate") String updatedate
+            @Part("updateby") RequestBody  updateby,
+            @Part("updatedate") RequestBody  updatedate
     );
 
 

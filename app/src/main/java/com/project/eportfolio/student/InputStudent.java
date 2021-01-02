@@ -420,18 +420,18 @@ public class InputStudent extends AppCompatActivity {
 
             APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
             Call<ModelPostPortfolio> data = apiInterface.sendDataPortfolioSiswa(
-                    apikey,
-                    Integer.parseInt(PreferenceUtils.getIdSiswa(getApplicationContext())),
-                    Integer.parseInt("4"),
-                    txtJudul.getText().toString(),
-                    now,
-                    txtTempat.getText().toString(),
-                    txtNarasi.getText().toString(),
+                    RequestBody.create(MediaType.parse("text/plain"),apikey),
+                    RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getIdSiswa(getApplicationContext())),
+                    RequestBody.create(MediaType.parse("text/plain"),"4"),
+                    RequestBody.create(MediaType.parse("text/plain"),txtJudul.getText().toString()),
+                    RequestBody.create(MediaType.parse("text/plain"),now),
+                    RequestBody.create(MediaType.parse("text/plain"),txtTempat.getText().toString()),
+                    RequestBody.create(MediaType.parse("text/plain"),txtNarasi.getText().toString()),
                     fotox,
-                    PreferenceUtils.getFirstName(getApplicationContext()),
-                    now,
-                    Integer.parseInt("100"),
-                    Integer.parseInt(PreferenceUtils.getIdKelas(getApplicationContext()))
+                    RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getFirstName(getApplicationContext())),
+                    RequestBody.create(MediaType.parse("text/plain"),now),
+                    RequestBody.create(MediaType.parse("text/plain"),"100"),
+                    RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getIdKelas(getApplicationContext()))
             );
 
             data.enqueue(new Callback<ModelPostPortfolio>() {

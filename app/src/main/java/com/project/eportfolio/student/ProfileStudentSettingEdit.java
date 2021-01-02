@@ -577,23 +577,23 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
 
         APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
         Call<ModelUpdateDataSiswa> postAdd = apiInterface.updateDataSiswaRequiredFoto(
-                apikey,
-                Integer.parseInt(PreferenceUtils.getIdSiswa(getApplicationContext())),
-                Integer.parseInt(PreferenceUtils.getUserId(getApplicationContext())),
-                Integer.parseInt(PreferenceUtils.getIdSekolahSiswa(getApplicationContext())),
-                Integer.parseInt(PreferenceUtils.getIdKelas(getApplicationContext())),
-                PreferenceUtils.getFirstName(getApplicationContext()),
-                PreferenceUtils.getMidName(getApplicationContext()),
-                PreferenceUtils.getLastName(getApplicationContext()),
-                PreferenceUtils.getNis(getApplicationContext()),
-                PreferenceUtils.getJk(getApplicationContext()),
-                PreferenceUtils.getTtl(getApplicationContext()),
-                PreferenceUtils.getAddress(getApplicationContext()),
-                PreferenceUtils.getEmail(getApplicationContext()),
-                PreferenceUtils.getTlp(getApplicationContext()),
+                RequestBody.create(MediaType.parse("text/plain"),apikey),
+                RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getIdSiswa(getApplicationContext())),
+                RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getUserId(getApplicationContext())),
+                RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getIdSekolahSiswa(getApplicationContext())),
+                RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getIdKelas(getApplicationContext())),
+                RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getFirstName(getApplicationContext())),
+                RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getMidName(getApplicationContext())),
+                RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getLastName(getApplicationContext())),
+                RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getNis(getApplicationContext())),
+                RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getJk(getApplicationContext())),
+                RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getTtl(getApplicationContext())),
+                RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getAddress(getApplicationContext())),
+                RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getEmail(getApplicationContext())),
+                RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getTlp(getApplicationContext())),
                 fotox,
-                PreferenceUtils.getFirstName(getApplicationContext()),
-                now
+                RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getFirstName(getApplicationContext())),
+                RequestBody.create(MediaType.parse("text/plain"),now)
         );
 
         postAdd.enqueue(new Callback<ModelUpdateDataSiswa>() {
