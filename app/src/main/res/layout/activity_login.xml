@@ -8,6 +8,25 @@
     android:background="@drawable/bglogin"
     tools:context=".LoginActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/colorFont2"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/colorFont2"
+        android:layout_alignParentBottom="true"/>
+
+    <ImageView
+        android:layout_width="110dp"
+        android:layout_height="80dp"
+        android:src="@drawable/nextedu_logo"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"/>
+
     <ImageView
         android:id="@+id/logo"
         android:layout_width="wrap_content"
@@ -138,7 +157,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/background"
-        android:visibility="visible">
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="match_parent"

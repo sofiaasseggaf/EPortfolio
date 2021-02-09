@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.jrizani:JRDateTimePicker:1.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/47f3de73cdc5f77e33b37686c75b6fbe/jetified-JRDateTimePicker-1.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/47f3de73cdc5f77e33b37686c75b6fbe/jetified-JRDateTimePicker-1.0/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/47f3de73cdc5f77e33b37686c75b6fbe/jetified-JRDateTimePicker-1.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4e4ec7f17f6e0378f065169c09846ce3/jetified-JRDateTimePicker-1.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4e4ec7f17f6e0378f065169c09846ce3/jetified-JRDateTimePicker-1.0/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4e4ec7f17f6e0378f065169c09846ce3/jetified-JRDateTimePicker-1.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

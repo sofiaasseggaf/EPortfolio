@@ -1,17 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.Raizlabs.DBFlow:dbflow:4.2.4@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/eb4f3fc0b801e2460cc4bab06016b26b/jetified-dbflow-4.2.4/annotations.zip!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d15399b9174b50074fc468c330adfdd1/jetified-dbflow-4.2.4/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/05259bc0ce1890fb8e66e5bf54d83a14/jetified-dbflow-4.2.4/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/eb4f3fc0b801e2460cc4bab06016b26b/jetified-dbflow-4.2.4/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/eb4f3fc0b801e2460cc4bab06016b26b/jetified-dbflow-4.2.4/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/eb4f3fc0b801e2460cc4bab06016b26b/jetified-dbflow-4.2.4/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/044a92dfb2875fe4417280227746519e/jetified-dbflow-4.2.4/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d15399b9174b50074fc468c330adfdd1/jetified-dbflow-4.2.4/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d15399b9174b50074fc468c330adfdd1/jetified-dbflow-4.2.4/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/d15399b9174b50074fc468c330adfdd1/jetified-dbflow-4.2.4/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/05259bc0ce1890fb8e66e5bf54d83a14/jetified-dbflow-4.2.4/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/05259bc0ce1890fb8e66e5bf54d83a14/jetified-dbflow-4.2.4/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/05259bc0ce1890fb8e66e5bf54d83a14/jetified-dbflow-4.2.4/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
