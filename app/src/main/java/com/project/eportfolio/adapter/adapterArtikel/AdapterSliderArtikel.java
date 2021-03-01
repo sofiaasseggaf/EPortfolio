@@ -41,14 +41,14 @@ public class AdapterSliderArtikel extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, final int position) {
         layoutInflater = LayoutInflater.from(context);
-        View view = layoutInflater.inflate(R.layout.v_slider_portfolio, container, false);
+        View view = layoutInflater.inflate(R.layout.v_slider_artikel, container, false);
         ImageView imageView;
         TextView textView;
-        imageView = view.findViewById(R.id.slider_oase_img);
-        textView = view.findViewById(R.id.slider_oase_title);
+        imageView = view.findViewById(R.id.slider_artikel_img);
+        textView = view.findViewById(R.id.slider_artikel_title);
 
         try{
-            Picasso.get().load(models.get(position).getImage()).into(imageView);
+            Picasso.get().load("https://eportofolio.id/uploads/blog/"+models.get(position).getImage()).into(imageView);
         } catch (Exception e){
             e.printStackTrace();
         }

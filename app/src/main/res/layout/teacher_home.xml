@@ -9,127 +9,193 @@
     android:background="@drawable/bghomeguru"
     tools:context=".teacher.HomeTeacher">
 
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="10dp"
-        android:paddingRight="10dp"
-        android:paddingLeft="10dp">
+        android:layout_marginBottom="60dp"
+        android:layout_marginTop="20dp">
 
-
-    <LinearLayout
-        android:id="@+id/rect_profile"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:orientation="vertical"
-        android:padding="10dp"
-        android:background="@drawable/hometop"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center">
-
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_marginLeft="5dp"
-            android:orientation="horizontal">
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/imgGuru"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                app:civ_border_width="2dp"
-                android:layout_gravity="center"
-                android:scaleType="centerCrop"
-                android:src="@drawable/nopic"
-                app:civ_border_color="#ffffff"/>
+            android:layout_height="match_parent"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp">
+
+
             <LinearLayout
+                android:id="@+id/rect_profile"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/namaGuru"
-                    android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:background="@drawable/hometop"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_gravity="center">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:textColor="@color/colorFont"
-                    android:layout_marginTop="5dp">
-                </TextView>
-                <TextView
-                    android:id="@+id/nipGuru"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:textColor="@color/colorFont"
-                    android:layout_marginTop="10dp">
-                </TextView>
-                <TextView
-                    android:id="@+id/sekolahGuru"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:textColor="@color/colorFont"
-                    android:layout_marginTop="10dp">
-                </TextView>
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="5dp"
+                    android:orientation="horizontal">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imgGuru"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        app:civ_border_width="2dp"
+                        android:layout_gravity="center"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/nopic"
+                        app:civ_border_color="#ffffff"/>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="15dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/namaGuru"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:textColor="@color/colorFont"
+                            android:layout_marginTop="5dp">
+                        </TextView>
+                        <TextView
+                            android:id="@+id/nipGuru"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:textColor="@color/colorFont"
+                            android:layout_marginTop="10dp">
+                        </TextView>
+                        <TextView
+                            android:id="@+id/sekolahGuru"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14sp"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:textColor="@color/colorFont"
+                            android:layout_marginTop="10dp">
+                        </TextView>
+                    </LinearLayout>
+                </LinearLayout>
+
             </LinearLayout>
-        </LinearLayout>
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/txtMorePortfolioGuru"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="more portfolio"
+                android:layout_marginTop="70dp"
+                android:clickable="true"
+                android:layout_below="@id/rect_profile"
+                android:fontFamily="@font/montserrat_bold"/>
 
-        <TextView
-            android:id="@+id/txtMorePortfolioGuru"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="more portfolio"
-            android:layout_marginTop="70dp"
-            android:clickable="true"
-            android:layout_below="@id/rect_profile"
-            android:fontFamily="@font/montserrat_bold"/>
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@id/txtMorePortfolioGuru"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="11dp"
+                android:clipToPadding="false"
+                android:foregroundGravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"></androidx.viewpager.widget.ViewPager>
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_below="@id/txtMorePortfolioGuru"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="11dp"
-            android:clipToPadding="false"
-            android:foregroundGravity="center"
-            android:orientation="horizontal"
-            android:paddingLeft="10dp"></androidx.viewpager.widget.ViewPager>
+            <TextView
+                android:id="@+id/txtMoreArtikelGuru"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="more article"
+                android:layout_marginTop="70dp"
+                android:clickable="true"
+                android:layout_below="@id/viewPager"
+                android:fontFamily="@font/montserrat_bold"/>
 
-        <TextView
-            android:id="@+id/txtMoreArtikelGuru"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:text="more article"
-            android:layout_marginTop="70dp"
-            android:clickable="true"
-            android:layout_below="@id/viewPager"
-            android:fontFamily="@font/montserrat_bold"/>
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPagerArtikel"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@id/txtMoreArtikelGuru"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="11dp"
+                android:clipToPadding="false"
+                android:foregroundGravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"></androidx.viewpager.widget.ViewPager>
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPagerArtikel"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_below="@id/txtMoreArtikelGuru"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="11dp"
-            android:clipToPadding="false"
-            android:foregroundGravity="center"
-            android:orientation="horizontal"
-            android:paddingLeft="10dp"></androidx.viewpager.widget.ViewPager>
+            <FrameLayout
+                android:id="@+id/framelayout"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#F6F5F5"
+                android:layout_below="@id/txtMorePortfolioGuru"
+                android:layout_marginTop="11dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/textloading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textSize="18sp"
+                    android:layout_marginTop="45dp"
+                    android:textColor="@color/colorFont"/>
+
+                <!--<ProgressBar
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="47dp"
+                    android:layout_height="45dp"
+                    android:indeterminateDrawable="@drawable/pbstyle"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp">
+                </ProgressBar>-->
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/framelayout2"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#F6F5F5"
+                android:layout_below="@id/txtMoreArtikelGuru"
+                android:layout_marginTop="11dp"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/textloading2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:textSize="18sp"
+                    android:layout_marginTop="45dp"
+                    android:textColor="@color/colorFont"/>
+
+                <!--<ProgressBar
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="47dp"
+                    android:layout_height="45dp"
+                    android:indeterminateDrawable="@drawable/pbstyle"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp">
+                </ProgressBar>-->
+            </FrameLayout>
 
 
-    </RelativeLayout>
+        </RelativeLayout>
+
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -168,33 +234,5 @@
             android:background="@drawable/profilebotton"/>
 
     </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/framelayout"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="#F6F5F5"
-        android:layout_marginTop="330dp"
-        android:visibility="gone">
-
-        <TextView
-            android:id="@+id/textloading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/montserrat_bold"
-            android:textSize="18sp"
-            android:layout_marginTop="45dp"
-            android:textColor="@color/colorFont"/>
-
-        <!--<ProgressBar
-            style="?android:attr/progressBarStyle"
-            android:layout_width="47dp"
-            android:layout_height="45dp"
-            android:indeterminateDrawable="@drawable/pbstyle"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp">
-        </ProgressBar>-->
-    </FrameLayout>
 
 </RelativeLayout>

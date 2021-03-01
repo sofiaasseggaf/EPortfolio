@@ -37,9 +37,10 @@ public class AdapterArtikel extends  RecyclerView.Adapter<RecyclerView.ViewHolde
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ((Penampung)holder).judulArtikel.setText(dataItemList.get(position).getTitle());
         ((Penampung)holder).isiArtikel.setText(dataItemList.get(position).getContent());
+        ((Penampung)holder).tglArtikel.setText(dataItemList.get(position).getCreatedAt());
         try{
             ImageView image = ((Penampung)holder).fotoArtikel;
-            Picasso.get().load(dataItemList.get(position).getImage()).into(image);
+            Picasso.get().load("\"https://eportofolio.id/uploads/blog/"+dataItemList.get(position).getImage()).into(image);
         } catch (Exception e){
             e.printStackTrace();
         }
@@ -51,12 +52,13 @@ public class AdapterArtikel extends  RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     static class Penampung extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView judulArtikel, isiArtikel;
+        public TextView judulArtikel, isiArtikel, tglArtikel;
         public ImageView fotoArtikel;
         public Penampung(View itemView) {
             super(itemView);
             judulArtikel = itemView.findViewById(R.id.judulArtikel);
             fotoArtikel = itemView.findViewById(R.id.fotoArtikel);
+            tglArtikel = itemView.findViewById(R.id.tglArtikel);
             isiArtikel = itemView.findViewById(R.id.isiArtikel);
         }
         @Override

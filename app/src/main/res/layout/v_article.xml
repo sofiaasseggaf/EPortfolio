@@ -27,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="JUDUL ARTIKEL"
-            android:textSize="7pt"
+            android:textSize="8pt"
             android:fontFamily="@font/montserrat_bold"
             android:textColor="@color/colorFont"/>
 
@@ -39,6 +39,7 @@
             android:textSize="7pt"
             android:layout_marginTop="5dp"
             android:minLines="3"
+            android:maxLines="5"
             android:fontFamily="@font/montserrat_regular"
             android:textColor="@color/colorFont"/>
 
@@ -47,7 +48,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="10/02/2020"
-            android:textSize="7pt"
+            android:textSize="6pt"
             android:layout_marginTop="10dp"
             android:gravity="right|bottom"
             android:layout_alignParentRight="true"

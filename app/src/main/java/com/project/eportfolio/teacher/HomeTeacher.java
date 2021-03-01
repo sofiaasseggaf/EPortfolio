@@ -22,6 +22,8 @@ import com.project.eportfolio.ArtikelActivity;
 import com.project.eportfolio.R;
 import com.project.eportfolio.adapter.adapterArtikel.AdapterSliderArtikel;
 import com.project.eportfolio.adapter.adapterPortfolio.AdapterSliderPortfolio;
+import com.project.eportfolio.model.blog.Blog;
+import com.project.eportfolio.model.blog.ModelBlog;
 import com.project.eportfolio.model.portfolio.ModelPortofolio;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
 import com.project.eportfolio.teacher.master.DataPortfolioDuaModel;
@@ -40,14 +42,17 @@ public class HomeTeacher extends AppCompatActivity {
     ImageButton btn_beranda, btn_master, btn_input, btn_profile;
 
     String namaguru;
-    TextView namaGuru, nipGuru,  txtMorePortfolioGuru, txtload, txtMoreArtikelGuru;
+    TextView namaGuru, nipGuru,  txtMorePortfolioGuru, txtload, txtload2, txtMoreArtikelGuru;
     ImageView fotoGuru;
 
     ModelPortofolio dataModelPortfolio;
+    ModelBlog dataModelBlog;
     List<TrPortofolio> listPortofolio = new ArrayList<>();
+    List<Blog> listBlog = new ArrayList<>();
     AdapterSliderPortfolio itemList;
     AdapterSliderArtikel itemListArtikel;
-    ViewPager viewPager, viewPagerArtikel;
+    ViewPager viewPager;
+    ViewPager viewPagerArtikel;
 
     String apikey = "7826470ABBA476706DB24D47C6A6ED64";
 
@@ -67,8 +72,12 @@ public class HomeTeacher extends AppCompatActivity {
         fotoGuru = findViewById(R.id.imgGuru);
         txtMorePortfolioGuru = findViewById(R.id.txtMorePortfolioGuru);
         txtMorePortfolioGuru.setPaintFlags(txtMorePortfolioGuru.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
+        txtMoreArtikelGuru = findViewById(R.id.txtMoreArtikelGuru);
+        txtMoreArtikelGuru.setPaintFlags(txtMoreArtikelGuru.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         viewPager = findViewById(R.id.viewPager);
         txtload = findViewById(R.id.textloading);
+        txtload2 = findViewById(R.id.textloading2);
+
 //        rvSliderPortfolioGuru = findViewById(R.id.rvSliderPortfolioGuru);
 
         setDataGuru();
@@ -155,31 +164,31 @@ public class HomeTeacher extends AppCompatActivity {
 
     public void first(){
         findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
+        findViewById(R.id.framelayout2).setVisibility(View.VISIBLE);
         final Handler handler = new Handler();
+
         Runnable runnable = new Runnable() {
-
             int count = 0;
-
             @Override
             public void run() {
                 count++;
-
                 if (count == 1)
                 {
                     txtload.setText("Loading Portfolio .");
+                    txtload2.setText("Loading Article .");
                 }
                 else if (count == 2)
                 {
                     txtload.setText("Loading Portfolio . .");
+                    txtload2.setText("Loading Article . .");
                 }
                 else if (count == 3)
                 {
                     txtload.setText("Loading Portfolio . . .");
+                    txtload2.setText("Loading Article . . .");
                 }
-
                 if (count == 3)
                     count = 0;
-
                 handler.postDelayed(this, 1500);
             }
         };
@@ -213,13 +222,34 @@ public class HomeTeacher extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        findViewById(R.id.framelayout).setVisibility(View.GONE);
                         for (int i=0; i<5; i++){
                             itemList = new AdapterSliderPortfolio(listPortofolio, getApplicationContext());
                            /* LinearLayoutManager layoutManager
                                     = new LinearLayoutManager(HomeTeacher.this, LinearLayoutManager.HORIZONTAL, false);
                             rvSliderPortfolioGuru.setLayoutManager(layoutManager);*/
                             viewPager.setAdapter(itemList);
+                        }
+                    }
+                });
+            } catch (Exception e){
+
+            }
+
+        }
+    }
+
+    public void setDataArtikel(){
+        if (listBlog!=null){
+            try {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        for (int i=0; i<5; i++){
+                            itemListArtikel = new AdapterSliderArtikel(listBlog, getApplicationContext());
+                           /* LinearLayoutManager layoutManager
+                                    = new LinearLayoutManager(HomeTeacher.this, LinearLayoutManager.HORIZONTAL, false);
+                            rvSliderPortfolioGuru.setLayoutManager(layoutManager);*/
+                            viewPagerArtikel.setAdapter(itemListArtikel);
                         }
                     }
                 });
@@ -249,18 +279,57 @@ public class HomeTeacher extends AppCompatActivity {
                         }
                     }
 
+                    getArticle();
+
+                }
+            }
+            @Override
+            public void onFailure(Call<ModelPortofolio> call, Throwable t) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        findViewById(R.id.framelayout).setVisibility(View.GONE);
+                        Toast.makeText(HomeTeacher.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
+                    }
+                });
+                call.cancel();
+            }
+        });
+    }
+
+    public void getArticle() {
+        final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
+        final Call<ModelBlog> dataSiswax = apiInterface.getDataBlog(  apikey, 10000);
+
+        dataSiswax.enqueue(new Callback<ModelBlog>() {
+            @Override
+            public void onResponse(Call<ModelBlog> call, Response<ModelBlog> response) {
+
+                dataModelBlog = response.body();
+
+                if (response.body()!=null) {
+                    for (int i = 0; i < dataModelBlog.getTotal(); i++) {
+                        listBlog.add(dataModelBlog.getData().getBlog().get(i));
+                    }
+                }
+
+                if (listBlog!=null){
+
+
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             findViewById(R.id.framelayout).setVisibility(View.GONE);
+                            findViewById(R.id.framelayout2).setVisibility(View.GONE);
                             setDataPortfolio();
+                            setDataArtikel();
                         }
                     });
 
                 }
             }
             @Override
-            public void onFailure(Call<ModelPortofolio> call, Throwable t) {
+            public void onFailure(Call<ModelBlog> call, Throwable t) {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
