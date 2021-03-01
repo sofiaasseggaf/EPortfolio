@@ -1,16 +1,11 @@
 package com.project.eportfolio.teacher;
 
-import android.app.ActivityOptions;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Paint;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.transition.Slide;
-import android.view.Gravity;
 import android.view.View;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,12 +14,13 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
+import com.project.eportfolio.ArtikelActivity;
 import com.project.eportfolio.R;
+import com.project.eportfolio.adapter.adapterArtikel.AdapterSliderArtikel;
 import com.project.eportfolio.adapter.adapterPortfolio.AdapterSliderPortfolio;
 import com.project.eportfolio.model.portfolio.ModelPortofolio;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
@@ -44,14 +40,14 @@ public class HomeTeacher extends AppCompatActivity {
     ImageButton btn_beranda, btn_master, btn_input, btn_profile;
 
     String namaguru;
-    TextView namaGuru, nipGuru,  txtMorePortfolioGuru, txtload;
+    TextView namaGuru, nipGuru,  txtMorePortfolioGuru, txtload, txtMoreArtikelGuru;
     ImageView fotoGuru;
 
     ModelPortofolio dataModelPortfolio;
     List<TrPortofolio> listPortofolio = new ArrayList<>();
     AdapterSliderPortfolio itemList;
-    RecyclerView rvSliderPortfolioGuru;
-    ViewPager viewPager;
+    AdapterSliderArtikel itemListArtikel;
+    ViewPager viewPager, viewPagerArtikel;
 
     String apikey = "7826470ABBA476706DB24D47C6A6ED64";
 
@@ -109,6 +105,15 @@ public class HomeTeacher extends AppCompatActivity {
                     startActivity(a);
                     finish();
                 }*/
+            }
+        });
+
+        txtMoreArtikelGuru.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent a = new Intent(HomeTeacher.this, ArtikelActivity.class);
+                startActivity(a);
+                finish();
             }
         });
 

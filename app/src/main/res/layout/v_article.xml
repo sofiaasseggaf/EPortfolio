@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:layout_margin="5dp"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/fotoArtikel"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"/>
+
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_below="@id/fotoArtikel">
+
+        <TextView
+            android:id="@+id/judulArtikel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="JUDUL ARTIKEL"
+            android:textSize="7pt"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/colorFont"/>
+
+        <TextView
+            android:id="@+id/isiArtikel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Isi Artikel"
+            android:textSize="7pt"
+            android:layout_marginTop="5dp"
+            android:minLines="3"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@color/colorFont"/>
+
+        <TextView
+            android:id="@+id/tglArtikel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="10/02/2020"
+            android:textSize="7pt"
+            android:layout_marginTop="10dp"
+            android:gravity="right|bottom"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/montserrat_regular"
+            android:textColor="@color/colorFont"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -42,7 +42,6 @@ public class DataMurid extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.teacher_master_datamurid);
-
         rvDataMurid = findViewById(R.id.rvDataMurid);
         txtload = findViewById(R.id.textloading);
        first();

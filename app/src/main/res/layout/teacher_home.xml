@@ -105,36 +105,29 @@
             android:orientation="horizontal"
             android:paddingLeft="10dp"></androidx.viewpager.widget.ViewPager>
 
-        <!-- <androidx.recyclerview.widget.RecyclerView
-             android:id="@+id/rvSliderPortfolioGuru"
-             android:layout_width="match_parent"
-             android:layout_height="150dp"
-             android:layout_below="@id/txtMorePortfolioGuru"
-             android:layout_marginTop="5dp"
-             android:paddingLeft="10dp"
-             android:orientation="horizontal">
-         </androidx.recyclerview.widget.RecyclerView>-->
-
-       <!-- <TextView
+        <TextView
             android:id="@+id/txtMoreArtikelGuru"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:text="more article"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="70dp"
             android:clickable="true"
             android:layout_below="@id/viewPager"
             android:fontFamily="@font/montserrat_bold"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvArtikelGuru"
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPagerArtikel"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="200dp"
             android:layout_below="@id/txtMoreArtikelGuru"
-            android:layout_marginTop="5dp"
-            android:paddingLeft="10dp"
-            android:orientation="horizontal">
-        </androidx.recyclerview.widget.RecyclerView>-->
+            android:layout_centerVertical="true"
+            android:layout_marginTop="11dp"
+            android:clipToPadding="false"
+            android:foregroundGravity="center"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"></androidx.viewpager.widget.ViewPager>
+
 
     </RelativeLayout>
 

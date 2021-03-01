@@ -38,6 +38,7 @@
 
         <activity android:name="com.project.eportfolio.LoginActivity" />
         <activity android:name="com.project.eportfolio.utility.PreferenceUtils" />
+        <activity android:name=".ArtikelActivity" />
 
         <activity android:name="com.project.eportfolio.student.HomeStudent" />
         <activity android:name="com.project.eportfolio.student.InputStudent"
