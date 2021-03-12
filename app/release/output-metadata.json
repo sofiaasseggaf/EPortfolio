@@ -4,15 +4,87 @@
     "type": "APK",
     "kind": "Directory"
   },
-  "applicationId": "com.project.eportfolio",
+  "applicationId": "com.project.eps",
   "variantName": "processReleaseResources",
   "elements": [
     {
-      "type": "SINGLE",
+      "type": "UNIVERSAL",
       "filters": [],
-      "versionCode": 16,
-      "versionName": "3.3",
-      "outputFile": "app-release.apk"
+      "versionCode": 20,
+      "versionName": "20.0.0",
+      "outputFile": "app-universal-release.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "DENSITY",
+          "value": "xxxhdpi"
+        }
+      ],
+      "versionCode": 6020,
+      "versionName": "20.0.0",
+      "outputFile": "app-xxxhdpi-release.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "DENSITY",
+          "value": "ldpi"
+        }
+      ],
+      "versionCode": 2020,
+      "versionName": "20.0.0",
+      "outputFile": "app-ldpi-release.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "DENSITY",
+          "value": "mdpi"
+        }
+      ],
+      "versionCode": 3020,
+      "versionName": "20.0.0",
+      "outputFile": "app-mdpi-release.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "DENSITY",
+          "value": "xxhdpi"
+        }
+      ],
+      "versionCode": 5020,
+      "versionName": "20.0.0",
+      "outputFile": "app-xxhdpi-release.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "DENSITY",
+          "value": "xhdpi"
+        }
+      ],
+      "versionCode": 4020,
+      "versionName": "20.0.0",
+      "outputFile": "app-xhdpi-release.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "DENSITY",
+          "value": "hdpi"
+        }
+      ],
+      "versionCode": 1020,
+      "versionName": "20.0.0",
+      "outputFile": "app-hdpi-release.apk"
     }
   ]
 }

@@ -57,7 +57,7 @@ public class ProfileTeacherSettingPrivacy extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(ProfileTeacherSettingPrivacy.this, "Trial Version", Toast.LENGTH_SHORT).show();
-                /*if (editPassLama.getText().toString().equalsIgnoreCase(PreferenceUtils.getPassword(getApplicationContext()))){
+               /* if (editPassLama.getText().toString().equalsIgnoreCase(PreferenceUtils.getPassword(getApplicationContext()))){
                     if (editPassBaru.getText().toString().equalsIgnoreCase(editPassBaruu.getText().toString())){
                         findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
                         new Thread(new Runnable() {
@@ -76,25 +76,19 @@ public class ProfileTeacherSettingPrivacy extends AppCompatActivity {
             }
         });
     }
+/*
 
     private void updatePasswordGuru(){
 
         APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
         Call<ModelUpdateDataGuru> postAdd = apiInterface.updatePasswordGuru(
 
-                PreferenceUtils.getIdGuru(getApplicationContext()),
-                PreferenceUtils.getUserId(getApplicationContext()),
+                apikey,
                 PreferenceUtils.getIdSekolahGuru(getApplicationContext()),
-                PreferenceUtils.getFirstName(getApplicationContext()),
-                PreferenceUtils.getMidName(getApplicationContext()),
-                PreferenceUtils.getLastName(getApplicationContext()),
-                PreferenceUtils.getNik(getApplicationContext()),
-                PreferenceUtils.getNip(getApplicationContext()),
-                PreferenceUtils.getJk(getApplicationContext()),
-                PreferenceUtils.getAddress(getApplicationContext()),
                 PreferenceUtils.getEmail(getApplicationContext()),
-                PreferenceUtils.getTlp(getApplicationContext()),
-                editPassBaru.getText().toString()
+                editPassBaru,
+                PreferenceUtils.getUsername(getApplicationContext()),
+                PreferenceUtils.getUserId(getApplicationContext())
         );
 
         postAdd.enqueue(new Callback<ModelUpdateDataGuru>() {
@@ -115,6 +109,7 @@ public class ProfileTeacherSettingPrivacy extends AppCompatActivity {
             }
         });
     }
+*/
 
     public void getGuru() {
         final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);

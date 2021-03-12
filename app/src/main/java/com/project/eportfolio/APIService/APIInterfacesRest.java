@@ -255,23 +255,27 @@ public interface APIInterfacesRest {
             @Part("updatedate") RequestBody  updatedate
     );
 
+/*
 
     @FormUrlEncoded
-    @POST("api/ms_guru/update")
-    Call<ModelUpdateDataGuru> updatePasswordGuru(
-            @Field("id_guru") String id_guru,
-            @Field("userid") String userid,
-            @Field("sekolahid") String sekolahid,
-            @Field("firstname") String firstname,
-            @Field("midname") String midname,
-            @Field("lastname") String lastname,
-            @Field("nik") String nik,
-            @Field("nip") String nip,
-            @Field("gender") String gender,
-            @Field("address") String address,
-            @Field("email") String email,
-            @Field("phone") String phone,
-            @Field("password") String password
-    );
-}
+    @POST("api/aauth_users/update")
+    Call<ModelUpdateAauthUsers> updatePasswordGuru(
 
+            @Header("X-Api-Key") String apikey,
+            @Field("id_sekolah") String id_sekolah,
+            @Field("email") String email,
+            //@Field("group_id") String group_id,
+            //@Field("oauth_uid") String oauth_uid,
+            //@Field("oauth_provider") String oauth_provider,
+            //@Field("pass") String pass,
+            @Field("keypass") String keypass,
+            @Field("username") String username,
+            //@Field("full_name") String full_name,
+            //@Field("avatar") String avatar,
+            //@Field("foto") String foto,
+            @Field("id") String id
+    );
+
+*/
+
+}

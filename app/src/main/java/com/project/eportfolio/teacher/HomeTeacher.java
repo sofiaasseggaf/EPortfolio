@@ -72,11 +72,11 @@ public class HomeTeacher extends AppCompatActivity {
         fotoGuru = findViewById(R.id.imgGuru);
         txtMorePortfolioGuru = findViewById(R.id.txtMorePortfolioGuru);
         txtMorePortfolioGuru.setPaintFlags(txtMorePortfolioGuru.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
-        txtMoreArtikelGuru = findViewById(R.id.txtMoreArtikelGuru);
-        txtMoreArtikelGuru.setPaintFlags(txtMoreArtikelGuru.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+       // txtMoreArtikelGuru = findViewById(R.id.txtMoreArtikelGuru);
+        //txtMoreArtikelGuru.setPaintFlags(txtMoreArtikelGuru.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
         viewPager = findViewById(R.id.viewPager);
         txtload = findViewById(R.id.textloading);
-        txtload2 = findViewById(R.id.textloading2);
+       // txtload2 = findViewById(R.id.textloading2);
 
 //        rvSliderPortfolioGuru = findViewById(R.id.rvSliderPortfolioGuru);
 
@@ -116,6 +116,7 @@ public class HomeTeacher extends AppCompatActivity {
                 }*/
             }
         });
+/*
 
         txtMoreArtikelGuru.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,6 +127,7 @@ public class HomeTeacher extends AppCompatActivity {
             }
         });
 
+*/
         btn_input.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -164,7 +166,7 @@ public class HomeTeacher extends AppCompatActivity {
 
     public void first(){
         findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
-        findViewById(R.id.framelayout2).setVisibility(View.VISIBLE);
+      //  findViewById(R.id.framelayout2).setVisibility(View.VISIBLE);
         final Handler handler = new Handler();
 
         Runnable runnable = new Runnable() {
@@ -175,17 +177,17 @@ public class HomeTeacher extends AppCompatActivity {
                 if (count == 1)
                 {
                     txtload.setText("Loading Portfolio .");
-                    txtload2.setText("Loading Article .");
+               //     txtload2.setText("Loading Article .");
                 }
                 else if (count == 2)
                 {
                     txtload.setText("Loading Portfolio . .");
-                    txtload2.setText("Loading Article . .");
+                //    txtload2.setText("Loading Article . .");
                 }
                 else if (count == 3)
                 {
                     txtload.setText("Loading Portfolio . . .");
-                    txtload2.setText("Loading Article . . .");
+                //    txtload2.setText("Loading Article . . .");
                 }
                 if (count == 3)
                     count = 0;
@@ -320,9 +322,9 @@ public class HomeTeacher extends AppCompatActivity {
                         @Override
                         public void run() {
                             findViewById(R.id.framelayout).setVisibility(View.GONE);
-                            findViewById(R.id.framelayout2).setVisibility(View.GONE);
+                            //findViewById(R.id.framelayout2).setVisibility(View.GONE);
                             setDataPortfolio();
-                            setDataArtikel();
+                            //setDataArtikel();
                         }
                     });
 
