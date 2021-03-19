@@ -16,7 +16,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="20dp"
+            android:padding="15dp"
             android:orientation="vertical">
 
             <TextView
@@ -50,6 +50,10 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/roundedinput"
+                    android:paddingLeft="7dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="2dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -72,6 +76,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:background="@drawable/roundedinput"
+                    android:paddingLeft="7dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="2dp"
                     android:layout_marginTop="15dp">
 
                     <TextView
@@ -97,6 +105,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
+                    android:background="@drawable/roundedinput"
+                    android:paddingLeft="7dp"
+                    android:paddingRight="5dp"
+                    android:paddingBottom="2dp"
                     android:layout_marginTop="15dp">
                     <TextView
                         android:layout_width="100dp"
@@ -113,8 +125,11 @@
                         android:fontFamily="@font/montserrat_regular"
                         android:textStyle="bold"
                         android:textSize="14sp"
+                        android:lines="3"
+                        android:gravity="top|left"
+                        android:maxLines="10"
                         android:textColor="@color/colorFont"
-                        android:layout_height="40dp" />
+                        android:layout_height="wrap_content" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -141,6 +156,11 @@
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:orientation="horizontal"
+                      android:background="@drawable/roundedinput"
+                      android:paddingLeft="7dp"
+                      android:paddingRight="5dp"
+                      android:paddingBottom="3dp"
+                      android:paddingTop="3dp"
                       android:layout_marginTop="15dp">
                       <TextView
                           android:layout_width="100dp"
@@ -167,6 +187,10 @@
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:orientation="horizontal"
+                      android:background="@drawable/roundedinput"
+                      android:paddingLeft="7dp"
+                      android:paddingRight="5dp"
+                      android:paddingBottom="2dp"
                       android:layout_marginTop="15dp">
                       <TextView
                           android:layout_width="100dp"
@@ -193,6 +217,10 @@
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:orientation="horizontal"
+                      android:background="@drawable/roundedinput"
+                      android:paddingLeft="7dp"
+                      android:paddingRight="5dp"
+                      android:paddingBottom="2dp"
                       android:layout_marginTop="15dp">
 
                       <TextView
@@ -218,6 +246,11 @@
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:orientation="horizontal"
+                      android:background="@drawable/roundedinput"
+                      android:paddingLeft="7dp"
+                      android:paddingRight="5dp"
+                      android:paddingBottom="3dp"
+                      android:paddingTop="3dp"
                       android:layout_marginTop="15dp">
                       <TextView
                           android:layout_width="100dp"
@@ -242,6 +275,11 @@
                       android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:orientation="horizontal"
+                      android:background="@drawable/roundedinput"
+                      android:paddingLeft="7dp"
+                      android:paddingRight="5dp"
+                      android:paddingBottom="3dp"
+                      android:paddingTop="3dp"
                       android:layout_marginTop="15dp">
                       <TextView
                           android:layout_width="100dp"
@@ -472,15 +510,18 @@
                         android:fontFamily="@font/montserrat_bold"
                         android:layout_marginTop="10dp"
                         android:textSize="14sp"/>
+
                     <EditText
                         android:id="@+id/txtNarasi"
                         android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/montserrat_regular"
-                        android:textSize="12sp"
-                        android:minLines="5"
+                        android:lines="5"
+                        android:gravity="top|left"
+                        android:maxLines="10"
                         android:textColor="@color/colorFont"
-                        android:layout_height="wrap_content" />
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <LinearLayout
