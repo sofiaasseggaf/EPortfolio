@@ -7,81 +7,288 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".student.HomeStudent"
-    android:background="@drawable/bghomeguru">
+    android:background="#ffffff">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="60dp"
-        android:layout_marginTop="20dp">
+        android:layout_marginBottom="60dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingBottom="50dp">
 
-            <LinearLayout
-                android:id="@+id/rect_profile"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:padding="10dp"
-                android:orientation="vertical"
-                android:background="@drawable/rounded_ll"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rect_home"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="115dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hai,"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textColor="#ffffff">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/namaSiswa"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="24sp"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textColor="#ffffff"
+                        android:text="Sofia Asseggaf"
+                        android:layout_marginTop="5dp">
+                    </TextView>
+                </LinearLayout>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgSiswa"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    app:civ_border_width="2dp"
+                    android:src="@drawable/nopic"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    app:civ_border_color="#ffffff"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rlsearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rect_search"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="200dp">
+
+                <EditText
+                    android:id="@+id/txtSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="Looking for . . ."
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="14sp"
+                    android:layout_centerVertical="true"
+                    android:background="#ffffff"
+                    android:layout_marginLeft="35dp"/>
+
+                <ImageButton
+                    android:id="@+id/btn_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="50dp"
+                    android:background="@drawable/icon_search"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="4"
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="20dp"
-                android:layout_gravity="center">
+                android:orientation="horizontal"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/rlsearch">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:orientation="horizontal">
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/imgSiswa"
-                        android:layout_width="130dp"
-                        android:layout_height="130dp"
-                        app:civ_border_width="2dp"
-                        android:src="@drawable/nopic"
-                        android:layout_gravity="center"
-                        app:civ_border_color="#ffffff"/>
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal">
+                    <ImageButton
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="20dp"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Hai,"
-                            android:textSize="14sp"
-                            android:fontFamily="@font/montserrat_regular"
-                            android:textColor="@color/colorFont"
-                            android:layout_marginTop="12dp">
-                        </TextView>
-                        <TextView
-                            android:id="@+id/namaSiswa"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="16sp"
-                            android:fontFamily="@font/montserrat_bold"
-                            android:textColor="@color/colorFont"
-                            android:layout_marginTop="5dp">
-                        </TextView>
-                        <TextView
-                            android:id="@+id/nisSiswa"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="12sp"
-                            android:fontFamily="@font/montserrat_regular"
-                            android:textColor="@color/colorFont"
-                            android:layout_marginTop="10dp">
-                        </TextView>
-                    </LinearLayout>
+                        android:background="@drawable/icon_karya"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textSize="12sp"
+                        android:text="Karya"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal">
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/icon_unjuk_kerja"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textSize="12sp"
+                        android:text="Unjuk Kerja"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal">
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/icon_project"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textSize="12sp"
+                        android:text="Project"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal">
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/icon_achievment"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textSize="12sp"
+                        android:text="Achievment"/>
                 </LinearLayout>
 
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/ll2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="4"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="30dp"
+                android:orientation="horizontal"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/ll1">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal">
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/icon_class"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textSize="12sp"
+                        android:text="Kelas"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal">
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/icon_guru"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textSize="12sp"
+                        android:text="Guru"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal">
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/icon_mata_pelajaran"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textSize="12sp"
+                        android:text="Mata Pelajaran"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal">
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/icon_article"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textSize="12sp"
+                        android:text="Article"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/btn_banner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/banner"
+                android:layout_below="@id/ll2"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"/>
+
+
+<!--
             <LinearLayout
                 android:id="@+id/disemester"
                 android:layout_width="match_parent"
@@ -182,69 +389,70 @@
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/txtMorePortfolioSiswa"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:text="more portfolio"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="15dp"
-                android:clickable="true"
-                android:layout_below="@id/disemester"
-                android:fontFamily="@font/montserrat_bold"/>
-
-
-            <androidx.viewpager.widget.ViewPager
-                android:foregroundGravity="center"
-                android:id="@+id/viewPager"
-                android:layout_marginTop="10dp"
-                android:layout_centerInParent="true"
-                android:clipToPadding="false"
-                android:layout_below="@id/txtMorePortfolioSiswa"
-                android:paddingLeft="10dp"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="200dp">
-            </androidx.viewpager.widget.ViewPager>
-
-           <!-- <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvSliderPortfolioSiswa"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/txtMorePortfolioSiswa"
-                android:layout_marginTop="5dp"
-                android:paddingLeft="10dp"
-                android:orientation="horizontal">
-            </androidx.recyclerview.widget.RecyclerView>
 -->
 
-
-            <!--
-
             <TextView
-                android:id="@+id/txtMoreArtikelSiswa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Article"
+                android:layout_below="@id/btn_banner"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="14sp"
+                android:textColor="#000000"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"/>
+
+            <TextView
+                android:id="@+id/txtMoreArticleGuru"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="More Articles"
+                android:layout_below="@id/btn_banner"
                 android:layout_alignParentRight="true"
-                android:text="more article"
-                android:layout_marginTop="30dp"
-                android:clickable="true"
-                android:layout_below="@id/rvSliderPortfolioSiswa"
-                android:fontFamily="@font/montserrat_bold"/>
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="12sp"
+                android:textColor="#DF5532"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="30dp"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvArtikelSiswa"
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPagerArticleStudent"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_below="@id/txtMoreArtikelSiswa"
-                android:layout_marginTop="5dp"
-                android:paddingLeft="10dp"
-                android:orientation="horizontal">
-            </androidx.recyclerview.widget.RecyclerView>
+                android:layout_height="200dp"
+                android:layout_below="@id/txtMoreArticleGuru"
+                android:layout_marginTop="20dp"
+                android:clipToPadding="false"
+                android:foregroundGravity="center"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"></androidx.viewpager.widget.ViewPager>
 
-            -->
+            <FrameLayout
+                android:id="@+id/framelayout"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="20dp"
+                android:layout_below="@id/txtMoreArticleGuru"
+                android:background="#FFFFFF"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/textloading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="30dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textSize="18sp"
+                    android:textColor="#DF5532"/>
+                <!--<ProgressBar
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="47dp"
+                    android:layout_height="45dp"
+                    android:indeterminateDrawable="@drawable/pbstyle"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="10dp">
+                </ProgressBar>-->
+            </FrameLayout>
 
         </RelativeLayout>
 
@@ -252,69 +460,95 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:gravity="center_horizontal"
-        android:background="@color/colorFont2">
+        android:paddingTop="20dp"
+        android:background="@drawable/rect_bottombar">
 
-        <ImageButton
-            android:id="@+id/btn_home"
-            android:layout_width="20dp"
-            android:layout_height="25dp"
-            android:layout_marginRight="65dp"
-            android:layout_gravity="center"
-            android:background="@drawable/berandabotton"/>
-        <ImageButton
-            android:id="@+id/btn_portfolio"
-            android:layout_width="40dp"
-            android:layout_height="25dp"
-            android:layout_marginRight="65dp"
-            android:layout_gravity="center"
-            android:background="@drawable/btnportfolio"/>
-        <ImageButton
-            android:id="@+id/btn_input"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginRight="65dp"
-            android:layout_gravity="center"
-            android:background="@drawable/inputbotton"/>
-        <ImageButton
-            android:id="@+id/btn_profile"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_gravity="center"
-            android:background="@drawable/profilebotton"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/btn_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_home_active"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="#DF5532"
+                android:textSize="12sp"
+                android:text="Home"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/btn_portfolio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_portfolio_unactive"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="12sp"
+                android:text="Portfolio"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/btn_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_input"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="12sp"
+                android:text="Input"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/btn_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_profile"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="12sp"
+                android:text="Profile"/>
+        </LinearLayout>
 
     </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/framelayout"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginTop="270dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:background="#F6F5F5"
-        android:visibility="gone">
-
-        <TextView
-            android:id="@+id/textloading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/montserrat_bold"
-            android:textSize="18sp"
-            android:layout_marginTop="45dp"
-            android:textColor="@color/colorFont"/>
-        <!--<ProgressBar
-            style="?android:attr/progressBarStyle"
-            android:layout_width="47dp"
-            android:layout_height="45dp"
-            android:indeterminateDrawable="@drawable/pbstyle"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp">
-        </ProgressBar>-->
-    </FrameLayout>
 
 </RelativeLayout>

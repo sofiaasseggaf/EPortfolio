@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
-
-ext.densityCodes = ['hdpi' : 1, 'ldpi' : 2, 'mdpi' : 3, 'xhdpi' : 4, 'xxhdpi' : 5, 'xxxhdpi' : 6]
 import com.android.build.OutputFile
+ext.densityCodes = ['hdpi' : 1, 'ldpi' : 2, 'mdpi' : 3, 'xhdpi' : 4, 'xxhdpi' : 5, 'xxxhdpi' : 6]
+
 
 
 android {
@@ -22,8 +22,8 @@ android {
         applicationId "com.project.eps"
         minSdkVersion 24
         targetSdkVersion 29
-        versionCode 21
-        versionName "20.0.0"
+        versionCode 1
+        versionName "1.0.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -62,7 +62,7 @@ android {
                     project.ext.densityCodes.get(output.getFilter(OutputFile.DENSITY))
             if(baseDensityVersionCode != null){
                 output.versionCodeOverride =
-                        baseDensityVersionCode * 1000 + variant.versionCode
+                        baseDensityVersionCode * 1100 + variant.versionCode
             }
         }
     }
