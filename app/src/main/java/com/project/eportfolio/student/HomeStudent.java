@@ -63,7 +63,7 @@ public class HomeStudent extends AppCompatActivity {
     RecyclerView rvSliderPortfolioSiswa;
 
     String namasiswa;
-    TextView namaSiswa, nisSiswa, txtMorePortfolioSiswa;
+    TextView namaSiswa, nisSiswa;
     ImageView fotoSiswa;
 
     String apikey = "7826470ABBA476706DB24D47C6A6ED64";
@@ -82,8 +82,8 @@ public class HomeStudent extends AppCompatActivity {
         namaSiswa = findViewById(R.id.namaSiswa);
         nisSiswa = findViewById(R.id.nisSiswa);
         fotoSiswa = findViewById(R.id.imgSiswa);
-        txtMorePortfolioSiswa = findViewById(R.id.txtMorePortfolioSiswa);
-        txtMorePortfolioSiswa.setPaintFlags(txtMorePortfolioSiswa.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
+
+/*
 
         txtForumEdukasi = findViewById(R.id.txtForumEdukasi);
         txtKarya = findViewById(R.id.txtKarya);
@@ -91,6 +91,9 @@ public class HomeStudent extends AppCompatActivity {
         txtPenghargaan = findViewById(R.id.txtPenghargaan);
         txtProyek = findViewById(R.id.txtProyek);
         txtUnjukKerja = findViewById(R.id.txtUnjukKerja);
+
+*/
+
         //rvSliderPortfolioSiswa = findViewById(R.id.rvSliderPortfolioSiswa);
         viewPager = findViewById(R.id.viewPager);
         txtload = findViewById(R.id.textloading);
@@ -115,22 +118,25 @@ public class HomeStudent extends AppCompatActivity {
             }
         });
 
+/*
         txtMorePortfolioSiswa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent a = new Intent(HomeStudent.this, PortfolioStudent.class);
                 startActivity(a);
                 finish();
-                /*if(Build.VERSION.SDK_INT>20){
+                *//*if(Build.VERSION.SDK_INT>20){
                     ActivityOptions options =
                             ActivityOptions.makeSceneTransitionAnimation(HomeStudent.this);
                     startActivity(a,options.toBundle());
                 }else {
                     startActivity(a);
                     finish();
-                }*/
+                }*//*
             }
         });
+
+      */
 
         btn_input.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -335,6 +341,8 @@ public class HomeStudent extends AppCompatActivity {
     }
 
     public void setDataPortfolio(){
+
+/*
         txtKarya.setText(listKaryaMurid.size() + "   Karya");
         txtUnjukKerja.setText(listUnjukKerjaMurid.size() + "   Unjuk Kerja");
         txtProyek.setText(listProyekMurid.size() + "   Proyek");
@@ -342,6 +350,7 @@ public class HomeStudent extends AppCompatActivity {
         txtPenghargaan.setText(listPenghargaan.size() + "   Penghargaan");
         txtForumEdukasi.setText(listForumEdukasi.size() + "   Forum Edukasi");
 
+ */
         if (listPortofolio!=null){
             try {
                 runOnUiThread(new Runnable() {

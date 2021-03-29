@@ -48,12 +48,10 @@
         <activity android:name="com.project.eportfolio.student.ProfileStudentSettingEdit" />
         <activity android:name="com.project.eportfolio.student.ProfileStudentSettingPrivacy" />
 
-        <activity android:name="com.project.eportfolio.student.portfolio.ForumEdukasi" />
-        <activity android:name="com.project.eportfolio.student.portfolio.Karya" />
-        <activity android:name="com.project.eportfolio.student.portfolio.Organisasi" />
-        <activity android:name="com.project.eportfolio.student.portfolio.Penghargaan" />
-        <activity android:name="com.project.eportfolio.student.portfolio.Proyek" />
-        <activity android:name="com.project.eportfolio.student.portfolio.UnjukKerja" />
+        <activity android:name="com.project.eportfolio.student.portfoliogagal.achievement.ForumEdukasi" />
+        <activity android:name="com.project.eportfolio.student.portfoliogagal.achievement.Organisasi" />
+        <activity android:name="com.project.eportfolio.student.portfoliogagal.achievement.Penghargaan" />
+        <activity android:name="com.project.eportfolio.student.portfoliogagal.UnjukKerja" />
 
         <activity android:name="com.project.eportfolio.teacher.HomeTeacher" />
         <activity android:name="com.project.eportfolio.teacher.InputTeacher"

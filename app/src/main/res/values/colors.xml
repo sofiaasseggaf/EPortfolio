@@ -7,4 +7,7 @@
     <color name="colorFont2">#F1F1F1</color>
     <color name="blue">#FF536DFE</color>
     <color name="white">#FFFFFF</color>
+    <color name="font">#303030</color>
+    <color name="fontcolor">#D6D1D5</color>
+    <color name="oren">#DF5532</color>
 </resources>

@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".student.InputStudent"
-    android:background="@drawable/bghome">
+    android:background="#ffffff">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -17,172 +17,164 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="20dp"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <FrameLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Input Portfolio"
-                android:textColor="@color/colorFont"
-                android:fontFamily="@font/montserrat_bold"
-                android:textSize="12pt"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"/>
+                android:background="@drawable/rect_login"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
-                android:layout_marginTop="70dp"
+                android:padding="20dp"
                 android:orientation="vertical">
 
-                <LinearLayout
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="14sp"
+                    android:textColor="@color/font"
+                    android:text="Strategi"/>
+
+                <Spinner
+                    android:id="@+id/sp_strategi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:text="Strategi"
-                        android:textColor="@color/colorFont"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:layout_gravity="center"
-                        android:textSize="14sp"/>
-                    <Spinner
-                        android:id="@+id/sp_strategi"
-                        android:layout_width="match_parent"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:textStyle="bold"
-                        android:textSize="14sp"
-                        android:textColor="@color/colorFont"
-                        android:prompt="@string/strategi_prompt"
-                        android:entries="@array/list_strategi"
-                        android:layout_height="40dp" />
-                </LinearLayout>
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="14sp"
+                    android:textColor="@color/font"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/rect_spinner" />
 
-                <LinearLayout
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="14sp"
+                    android:textColor="@color/font"
+                    android:layout_marginTop="15dp"
+                    android:text="Judul"/>
+
+                <EditText
+                    android:id="@+id/txtJudul"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="15dp">
-                    <TextView
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:text="Judul"
-                        android:textColor="@color/colorFont"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:layout_gravity="center"
-                        android:textSize="14sp"/>
-                    <EditText
-                        android:id="@+id/txtJudul"
-                        android:layout_width="match_parent"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:textStyle="bold"
-                        android:textSize="14sp"
-                        android:textColor="@color/colorFont"
-                        android:layout_height="40dp" />
-                </LinearLayout>
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="14sp"
+                    android:textColor="@color/font"
+                    android:hint="Masukkan Judul Portfolio"
+                    android:paddingLeft="10dp"
+                    android:background="@drawable/rect_spinner"
+                    android:layout_marginTop="10dp" />
 
-                <LinearLayout
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="14sp"
+                    android:textColor="@color/font"
+                    android:layout_marginTop="15dp"
+                    android:text="Tempat"/>
+
+                <EditText
+                    android:id="@+id/txtTempat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="15dp">
-                    <TextView
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:text="Tempat"
-                        android:textColor="@color/colorFont"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:layout_gravity="center"
-                        android:textSize="14sp"/>
-                    <EditText
-                        android:id="@+id/txtTempat"
-                        android:layout_width="match_parent"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:textStyle="bold"
-                        android:textSize="14sp"
-                        android:textColor="@color/colorFont"
-                        android:layout_height="40dp" />
-                </LinearLayout>
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="14sp"
+                    android:textColor="@color/font"
+                    android:background="@drawable/rect_spinner"
+                    android:paddingLeft="10dp"
+                    android:hint="Masukkan Tempat"
+                    android:layout_marginTop="10dp" />
 
-                <LinearLayout
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="14sp"
+                    android:textColor="@color/font"
+                    android:layout_marginTop="15dp"
+                    android:text="Narasi"/>
+
+                <EditText
+                    android:id="@+id/txtNarasi"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="15dp">
-                    <TextView
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:text="Narasi"
-                        android:textColor="@color/colorFont"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:layout_marginTop="10dp"
-                        android:textSize="14sp"/>
-                    <EditText
-                        android:id="@+id/txtNarasi"
-                        android:layout_width="match_parent"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:textStyle="bold"
-                        android:textSize="14sp"
-                        android:minLines="5"
-                        android:textColor="@color/colorFont"
-                        android:layout_height="wrap_content" />
-                </LinearLayout>
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="14sp"
+                    android:minLines="5"
+                    android:textColor="@color/font"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:hint="Masukkan Narasi"
+                    android:gravity="top|left"
+                    android:background="@drawable/rect_spinner"
+                    android:layout_marginTop="10dp" />
 
-                <RelativeLayout
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="14sp"
+                    android:textColor="@color/font"
+                    android:layout_marginTop="15dp"
+                    android:text="Input Media"/>
+
+
+                <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorFont2"
-                    android:layout_marginTop="20dp">
-                    <TextView
-                        android:id="@+id/input"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
-                        android:text="Input Media"
-                        android:textColor="@color/colorFont"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:textSize="14sp"/>
-                    <Button
-                        android:id="@+id/btnOpenCamera"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
-                        android:layout_marginRight="30dp"
-                        android:text="Open Camera"
-                        android:layout_marginTop="15dp"
-                        android:layout_below="@id/input"
-                        android:background="#86FFFFFF">
-                    </Button>
+                    android:background="@drawable/rect_input_media"
+                    android:layout_marginTop="10dp">
 
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center">
+                        <ImageButton
+                            android:id="@+id/btnOpenCamera"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@drawable/icon_camera">
+                        </ImageButton>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Open Camera"
+                            android:fontFamily="@font/roboto_regular"
+                            android:textColor="@color/font"
+                            android:textSize="14sp"/>
+                    </LinearLayout>
                     <ImageView
                         android:id="@+id/imgPortofolio"
                         android:layout_width="match_parent"
                         android:layout_height="200dp"
                         android:layout_marginLeft="30dp"
                         android:layout_marginRight="30dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginBottom="15dp"
-                        android:layout_below="@id/btnOpenCamera">
+                        android:layout_marginTop="25dp"
+                        android:layout_marginBottom="25dp">
                     </ImageView>
 
-                </RelativeLayout>
+                </FrameLayout>
 
-                <Button
+                <ImageButton
                     android:id="@+id/btnInputPortfolio"
-                    android:layout_width="200dp"
-                    android:layout_height="80dp"
-                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:background="@drawable/iconlogin"
+                    android:background="@drawable/btn_input_portfolio"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="INPUT"
                     android:textColor="#ffffff"
@@ -197,39 +189,96 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:gravity="center_horizontal"
-        android:background="@color/colorFont2">
+        android:paddingTop="20dp"
+        android:background="@drawable/rect_bottombar">
 
-        <ImageButton
-            android:id="@+id/btn_home"
-            android:layout_width="20dp"
-            android:layout_height="25dp"
-            android:layout_marginRight="65dp"
-            android:layout_gravity="center"
-            android:background="@drawable/berandabotton"/>
-        <ImageButton
-            android:id="@+id/btn_portfolio"
-            android:layout_width="40dp"
-            android:layout_height="25dp"
-            android:layout_marginRight="65dp"
-            android:layout_gravity="center"
-            android:background="@drawable/btnportfolio"/>
-        <ImageButton
-            android:id="@+id/btn_input"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginRight="65dp"
-            android:layout_gravity="center"
-            android:background="@drawable/inputbotton"/>
-        <ImageButton
-            android:id="@+id/btn_profile"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_gravity="center"
-            android:background="@drawable/profilebotton"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/btn_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_home_inactive"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/fontcolor"
+                android:textSize="12sp"
+                android:text="Home"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/btn_portfolio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_portfolio_unactive"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/fontcolor"
+                android:textSize="12sp"
+                android:text="Portfolio"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/btn_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_input_active"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/oren"
+                android:textSize="12sp"
+                android:text="Input"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/btn_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_profile"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/fontcolor"
+                android:textSize="12sp"
+                android:text="Profile"/>
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -246,6 +295,7 @@
             android:layout_gravity="center"
             android:orientation="vertical"
             android:gravity="center">
+
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="150dp"

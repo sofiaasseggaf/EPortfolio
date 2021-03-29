@@ -433,7 +433,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_below="@id/txtMoreArticleGuru"
                 android:background="#FFFFFF"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/textloading"
@@ -504,6 +504,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/fontcolor"
                 android:textSize="12sp"
                 android:text="Portfolio"/>
         </LinearLayout>
@@ -523,6 +524,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:textColor="@color/fontcolor"
                 android:fontFamily="@font/roboto_regular"
                 android:textSize="12sp"
                 android:text="Input"/>
@@ -544,6 +546,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/fontcolor"
                 android:textSize="12sp"
                 android:text="Profile"/>
         </LinearLayout>

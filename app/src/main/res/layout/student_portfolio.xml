@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".student.PortfolioStudent"
     android:background="#ffffff"
     android:layout_height="match_parent">
@@ -10,29 +11,51 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingRight="20dp"
-        android:paddingLeft="20dp"
         android:layout_marginBottom="60dp">
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="80dp">
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/text"
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/rect_top"/>
+
+            <TextView
+                android:id="@+id/txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Portfolio"
-                android:fontFamily="@font/montserrat_regular"
-                android:textSize="14pt"
-                android:gravity="center"
-                android:layout_marginTop="15dp"/>
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="18sp"
+                android:layout_marginTop="50dp"
+                android:layout_marginLeft="30dp"/>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayoutPortfolio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txt"
+                android:layout_marginTop="15dp"
+                app:tabMode="fixed"
+                app:tabGravity="fill"
+                app:tabIndicator="@color/oren"/>
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPagerPortfolio"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_below="@id/tabLayoutPortfolio"
+                android:layout_marginTop="10dp"/>
+
+            <!--
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@id/text">
+                android:layout_marginTop="200dp"
+                android:layout_centerHorizontal="true">
 
                 <LinearLayout
                     android:id="@+id/btn_unjuk_kerja"
@@ -153,45 +176,105 @@
                 </LinearLayout>
 
             </RelativeLayout>
+
+            -->
+
         </RelativeLayout>
     </ScrollView>
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:gravity="center_horizontal"
-        android:background="@color/colorFont2">
+        android:paddingTop="20dp"
+        android:background="@drawable/rect_bottombar">
 
-        <ImageButton
-            android:id="@+id/btn_home"
-            android:layout_width="20dp"
-            android:layout_height="25dp"
-            android:layout_marginRight="65dp"
-            android:layout_gravity="center"
-            android:background="@drawable/berandabotton"/>
-        <ImageButton
-            android:id="@+id/btn_portfolio"
-            android:layout_width="40dp"
-            android:layout_height="25dp"
-            android:layout_marginRight="65dp"
-            android:layout_gravity="center"
-            android:background="@drawable/btnportfolio"/>
-        <ImageButton
-            android:id="@+id/btn_input"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginRight="65dp"
-            android:layout_gravity="center"
-            android:background="@drawable/inputbotton"/>
-        <ImageButton
-            android:id="@+id/btn_profile"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_gravity="center"
-            android:background="@drawable/profilebotton"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/btn_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_home_inactive"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/fontcolor"
+                android:textSize="12sp"
+                android:text="Home"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/btn_portfolio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_portfolio_active"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/oren"
+                android:textSize="12sp"
+                android:text="Portfolio"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/btn_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_input"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/fontcolor"
+                android:textSize="12sp"
+                android:text="Input"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/btn_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_profile"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/fontcolor"
+                android:textSize="12sp"
+                android:text="Profile"/>
+        </LinearLayout>
 
     </LinearLayout>
 
@@ -199,16 +282,20 @@
         android:id="@+id/framelayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/loading"
-        android:visibility="gone">
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="62dp"
+        android:visibility="visible"
+        android:background="#6DEFEFEF">
+
         <ProgressBar
             style="?android:attr/progressBarStyle"
-            android:layout_width="47dp"
-            android:layout_height="45dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:indeterminateDrawable="@drawable/pbstyle"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp">
         </ProgressBar>
+
     </FrameLayout>
 
 </RelativeLayout>

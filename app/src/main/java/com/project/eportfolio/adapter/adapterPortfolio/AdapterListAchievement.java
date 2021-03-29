@@ -16,29 +16,29 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class AdapterListPenghargaan extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class AdapterListAchievement extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<TrPortofolio> dataItemList;
 
-    public AdapterListPenghargaan(List<TrPortofolio> dataItemList){
+    public AdapterListAchievement(List<TrPortofolio> dataItemList){
         this.dataItemList = dataItemList;
     }
 
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.v_portfolio_list_penghargaan, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.v_portfolio_list_forum_edukasi, parent, false);
         Penampung penampung = new Penampung(view);
         return penampung;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ((Penampung)holder).judulListPenghargaan.setText(dataItemList.get(position).getJudulKd());
-        ((Penampung)holder).narasiListPenghargaan.setText(dataItemList.get(position).getNarasi());
-        ((Penampung)holder).tglListPenghargaan.setText(dataItemList.get(position).getTanggal());
+    public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
+        ((Penampung)holder).judulListForumEdukasi.setText(dataItemList.get(position).getJudulKd());
+        ((Penampung)holder).narasiListForumEdukasi.setText(dataItemList.get(position).getNarasi());
+        ((Penampung)holder).tglListForumEdukasi.setText(dataItemList.get(position).getTanggal());
         try{
-            ImageView image = ((Penampung)holder).imgListPenghargaan;
+            ImageView image = ((Penampung)holder).imgListForumEdukasi;
             Picasso.get().load(dataItemList.get(position).getFoto().toString()).into(image);
         } catch (Exception e){
             e.printStackTrace();
@@ -51,18 +51,18 @@ public class AdapterListPenghargaan extends RecyclerView.Adapter<RecyclerView.Vi
     }
 
     static class Penampung extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView judulListPenghargaan, narasiListPenghargaan, tglListPenghargaan;
-        public ImageView imgListPenghargaan;
+        public TextView judulListForumEdukasi, narasiListForumEdukasi, tglListForumEdukasi;
+        public ImageView imgListForumEdukasi;
         public Penampung(View itemView) {
             super(itemView);
-            judulListPenghargaan = itemView.findViewById(R.id.judulListPenghargaan);
-            narasiListPenghargaan = itemView.findViewById(R.id.narasiListPenghargaan);
-            tglListPenghargaan = itemView.findViewById(R.id.tglListPenghargaan);
-            imgListPenghargaan = itemView.findViewById(R.id.imgListPenghargaan);
+            judulListForumEdukasi = itemView.findViewById(R.id.judulListForumEdukasi);
+            narasiListForumEdukasi = itemView.findViewById(R.id.narasiListForumEdukasi);
+            tglListForumEdukasi = itemView.findViewById(R.id.tglListForumEdukasi);
+            imgListForumEdukasi = itemView.findViewById(R.id.imgListForumEdukasi);
         }
         @Override
         public void onClick(View v) {
-            Log.d("onclick", "onClick " + getLayoutPosition() + " " + judulListPenghargaan.getText());
+            Log.d("onclick", "onClick " + getLayoutPosition() + " " + judulListForumEdukasi.getText());
         }
     }
 }

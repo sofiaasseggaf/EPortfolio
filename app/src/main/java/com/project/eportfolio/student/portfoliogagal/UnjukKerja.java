@@ -1,8 +1,4 @@
-package com.project.eportfolio.student.portfolio;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+package com.project.eportfolio.student.portfoliogagal;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,10 +7,15 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.R;
-import com.project.eportfolio.adapter.adapterPortfolio.AdapterListProyek;
+import com.project.eportfolio.adapter.adapterPortfolio.AdapterListUnjukKerja;
 import com.project.eportfolio.model.portfolio.ModelPortofolio;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
 import com.project.eportfolio.model.strategi.ModelStrategi;
@@ -29,25 +30,25 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Proyek extends AppCompatActivity {
+public class UnjukKerja extends AppCompatActivity {
 
-    RecyclerView rvproyek;
+    RecyclerView rvunjukkerja;
     ModelPortofolio dataModelPortfolio;
     ModelStrategi dataModelStrategi;
     List<TrPortofolio> listPortofolio = new ArrayList<>();
-    List<TrPortofolio> listProyekMurid = new ArrayList<>();
-    List<MsStrategi> listProyek = new ArrayList<>();
-    AdapterListProyek itemList;
+    List<TrPortofolio> listUnjukKerjaMurid = new ArrayList<>();
+    List<MsStrategi> listUnjukKerja = new ArrayList<>();
+    AdapterListUnjukKerja itemList;
     TextView txtload;
 
     String apikey = "7826470ABBA476706DB24D47C6A6ED64";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.student_portfolio_proyek);
+        setContentView(R.layout.student_portfolio_unjuk_kerja);
 
-        rvproyek = findViewById(R.id.rvProyek);
+        rvunjukkerja = findViewById(R.id.rvUnjukKerja);
         txtload = findViewById(R.id.textloading);
         first();
     }
@@ -102,8 +103,8 @@ public class Proyek extends AppCompatActivity {
                 dataModelStrategi = response.body();
                 if (response.body()!=null) {
                     for(int i=0; i<dataModelStrategi.getData().getMsStrategi().size(); i++){
-                        if (dataModelStrategi.getData().getMsStrategi().get(i).getKategoriid().equalsIgnoreCase("2")){
-                            listProyek.add(dataModelStrategi.getData().getMsStrategi().get(i));
+                        if (dataModelStrategi.getData().getMsStrategi().get(i).getKategoriid().equalsIgnoreCase("1")){
+                            listUnjukKerja.add(dataModelStrategi.getData().getMsStrategi().get(i));
                         }
                     }
                     getPortfolio();
@@ -115,7 +116,7 @@ public class Proyek extends AppCompatActivity {
                     @Override
                     public void run() {
                         findViewById(R.id.framelayout).setVisibility(View.GONE);
-                        Toast.makeText(Proyek.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
+                        Toast.makeText(UnjukKerja.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
                     }
                 });
                 call.cancel();
@@ -145,33 +146,32 @@ public class Proyek extends AppCompatActivity {
                         } catch (Exception e){
 
                         }
-
                     }
 
-                    if(listPortofolio==null) {
-                        Toast.makeText(Proyek.this, "Kamu Tidak Memiliki Portofolio Proyek", Toast.LENGTH_SHORT).show();
+                    if(listPortofolio==null){
+                        Toast.makeText(UnjukKerja.this, "Kamu Tidak Memiliki Portofolio Unjuk Kerja", Toast.LENGTH_SHORT).show();
+
                     } else {
                         for(int i=0; i<listPortofolio.size(); i++){
                             try {
-                                if (listPortofolio.get(i).getIdkategori().equalsIgnoreCase("2")){
-                                    listProyekMurid.add(listPortofolio.get(i));
+                                if (listPortofolio.get(i).getIdkategori().equalsIgnoreCase("1")){
+                                    listUnjukKerjaMurid.add(listPortofolio.get(i));
                                 }
-                            } catch (Exception e){
+
+                            }catch (Exception e){
 
                             }
                         }
                     }
 
-
-
-                    if (listProyekMurid!=null){
+                    if (listUnjukKerjaMurid!=null){
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 findViewById(R.id.framelayout).setVisibility(View.GONE);
-                                itemList = new AdapterListProyek(listProyekMurid);
-                                rvproyek.setLayoutManager(new LinearLayoutManager(Proyek.this));
-                                rvproyek.setAdapter(itemList);
+                                itemList = new AdapterListUnjukKerja(listUnjukKerjaMurid);
+                                rvunjukkerja.setLayoutManager(new LinearLayoutManager(UnjukKerja.this));
+                                rvunjukkerja.setAdapter(itemList);
                             }
                         });
                     } else {
@@ -179,7 +179,7 @@ public class Proyek extends AppCompatActivity {
                             @Override
                             public void run() {
                                 findViewById(R.id.framelayout).setVisibility(View.GONE);
-                                Toast.makeText(Proyek.this, "Tidak Memiliki Proyek", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(UnjukKerja.this, "Tidak Memiliki Unjuk Kerja", Toast.LENGTH_SHORT).show();
                                 /*try {
                             JSONObject jObjError = new JSONObject(response.errorBody().string());
                             Toast.makeText(Karya.this, jObjError.getString("message"), Toast.LENGTH_LONG).show();
@@ -220,7 +220,7 @@ public class Proyek extends AppCompatActivity {
                     @Override
                     public void run() {
                         findViewById(R.id.framelayout).setVisibility(View.GONE);
-                        Toast.makeText(Proyek.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
+                        Toast.makeText(UnjukKerja.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
                     }
                 });
                 call.cancel();
@@ -228,9 +228,12 @@ public class Proyek extends AppCompatActivity {
         });
     }
 
+
+
+
     @Override
     public void onBackPressed() {
-        Intent a = new Intent(Proyek.this, PortfolioStudent.class);
+        Intent a = new Intent(UnjukKerja.this, PortfolioStudent.class);
         startActivity(a);
         finish();
     }
