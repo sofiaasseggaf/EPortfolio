@@ -1,5 +1,7 @@
 package com.project.eportfolio.utility;
 
+import android.graphics.Bitmap;
+
 public class Constants {
 
     public static String KEY_ID = "id";
@@ -69,4 +71,79 @@ public class Constants {
 
     public static String KEY_NAMA_MAPEL = "nama_mapel";
 
+
+    public static final class HTTP {
+        public static final String BASE_URL = "https://eportofolio.id/uploads/tr_portofolio/";
+    }
+
+
+    public static final class DATABASE {
+
+        public static final String DB_NAME = "portfolio";
+        public static final int DB_VERSION = 1;
+        public static final String TABLE_NAME = "sunjukkarya";
+
+        public static final String DROP_QUERY = "DROP TABLE IF EXIST " + TABLE_NAME;
+
+        public static final String GET_PORTFOLIO_QUERY = "SELECT * FROM " + TABLE_NAME;
+
+        public static final String ID = "id";
+        public static final String MURIDID = "muridid";
+        public static final String GURUID = "guruid";
+        public static final String MAPELID = "mapelid";
+        public static final String IDKATEGORI = "idkategori";
+        public static final String STRATEGIID = "strategiid";
+        public static final String RUBRIKID = "rubrikid";
+        public static final String JUDUL_KD = "judul_kd";
+        public static final String RUBRIKDESK = "rubrikdesk";
+        public static final String TANGGAL = "tanggal";
+        public static final String TEMPAT = "tempat";
+        public static final String NILAI = "nilai";
+        public static final String PREDIKAT_MUTU = "predikat_mutu";
+        public static final String NARASI = "narasi";
+        public static final String FOTO = "foto";
+        public static final String KELAS = "kelas";
+        public static final String TH_AJARAN = "th_ajaran";
+        public static final String SEMESTER = "semester";
+        public static final String CREATEDBY = "createdby";
+        public static final String CREATEDDATE = "createddate";
+        public static final String UPDATEBY = "updateby";
+        public static final String UPDATEDATE = "updatedate";
+        public static final String PREDIKAT = "predikat";
+        public static final String KELASID = "kelasid";
+
+        public static final String CREATE_TABLE_QUERY = "CREATE TABLE " + TABLE_NAME + "" +
+                "(" + ID + " INTEGER PRIMARY KEY not null," +
+                MURIDID + " TEXT not null," +
+                GURUID + " TEXT not null," +
+                MAPELID + " TEXT not null," +
+                IDKATEGORI + " TEXT not null," +
+                STRATEGIID + " TEXT not null," +
+                RUBRIKID + " TEXT not null)," +
+                JUDUL_KD + " TEXT not null," +
+                RUBRIKDESK + " TEXT not null," +
+                TANGGAL + " TEXT not null," +
+                TEMPAT + " TEXT not null," +
+                NILAI + " TEXT not null," +
+                PREDIKAT_MUTU + " TEXT not null)," +
+                NARASI + " TEXT not null," +
+                FOTO + " TEXT not null," +
+                KELAS + " TEXT not null," +
+                TH_AJARAN + " TEXT not null," +
+                SEMESTER + " TEXT not null," +
+                CREATEDBY + " TEXT not null)," +
+                CREATEDDATE + " TEXT not null," +
+                UPDATEBY + " TEXT not null," +
+                UPDATEDATE + " TEXT not null," +
+                PREDIKAT + " TEXT not null," +
+                KELASID + " TEXT not null";
+    }
+
+    public static final class REFERENCE {
+        public static final String PORTFOLIO = Config.PACKAGE_NAME + "portfolio";
+    }
+
+    public static final class Config {
+        public static final String PACKAGE_NAME = "com.project.eportfolio.";
+    }
 }

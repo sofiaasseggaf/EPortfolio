@@ -14,14 +14,17 @@ import com.project.eportfolio.R;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterListUnjukKerja extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<TrPortofolio> dataItemList;
+    private final ClickLIstenerUnjukKerja mListener;
 
-    public AdapterListUnjukKerja(List<TrPortofolio> dataItemList){
-        this.dataItemList = dataItemList;
+    public AdapterListUnjukKerja(ClickLIstenerUnjukKerja listener){
+        dataItemList = new ArrayList<>();
+        mListener = listener;
     }
 
     @NonNull
@@ -54,10 +57,11 @@ public class AdapterListUnjukKerja extends RecyclerView.Adapter<RecyclerView.Vie
         return dataItemList == null ? 0 : dataItemList.size();
     }
 
-    static class Penampung extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class Penampung extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView mapelListUnjukKerja, kelasListUnjukKerja, semesterListUnjukKerja,
                 predikatListUnjukKerja, narasiListUnjukKerja, judulListUnjukKerja, tglListUnjukKerja;
         public ImageView imgListUnjukKerja;
+
         public Penampung(View itemView) {
             super(itemView);
             mapelListUnjukKerja = itemView.findViewById(R.id.mapelListUnjukKerja);
@@ -71,7 +75,20 @@ public class AdapterListUnjukKerja extends RecyclerView.Adapter<RecyclerView.Vie
         }
         @Override
         public void onClick(View v) {
-            Log.d("onclick", "onClick " + getLayoutPosition() + " " + judulListUnjukKerja.getText());
+            mListener.onClick(getLayoutPosition());
         }
+    }
+
+    public void addPortfolio(TrPortofolio portofolio) {
+        dataItemList.add(portofolio);
+        notifyDataSetChanged();
+    }
+
+    public TrPortofolio getSelectedUnjukKerja(int position) {
+        return dataItemList.get(position);
+    }
+
+    public interface ClickLIstenerUnjukKerja {
+        void onClick(int position);
     }
 }

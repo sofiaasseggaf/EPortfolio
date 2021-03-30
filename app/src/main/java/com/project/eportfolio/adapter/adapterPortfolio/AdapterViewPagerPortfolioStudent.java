@@ -1,4 +1,4 @@
-package com.project.eportfolio.adapter;
+package com.project.eportfolio.adapter.adapterPortfolio;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

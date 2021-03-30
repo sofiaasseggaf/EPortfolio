@@ -11,6 +11,8 @@ import com.google.gson.annotations.SerializedName;
 public class TrPortofolio implements Serializable, Parcelable
 {
 
+    private boolean isFromDatabase;
+
     @SerializedName("id")
     @Expose
     private String id;
@@ -411,6 +413,14 @@ public class TrPortofolio implements Serializable, Parcelable
 
     public int describeContents() {
         return  0;
+    }
+
+    public boolean isFromDatabase() {
+        return isFromDatabase;
+    }
+
+    public void setFromDatabase(boolean fromDatabase) {
+        isFromDatabase = fromDatabase;
     }
 
 }

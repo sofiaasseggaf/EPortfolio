@@ -1,7 +1,12 @@
 package com.project.eportfolio.student;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -15,6 +20,8 @@ import com.google.android.material.tabs.TabLayout;
 import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.R;
+import com.project.eportfolio.adapter.adapterPortfolio.AdapterListUnjukKerja;
+import com.project.eportfolio.databases.PortfolioDatabase;
 import com.project.eportfolio.model.portfolio.ModelPortofolio;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
 import com.project.eportfolio.model.strategi.ModelStrategi;
@@ -23,9 +30,13 @@ import com.project.eportfolio.student.portfoliofragment.FragmentAchievement;
 import com.project.eportfolio.student.portfoliofragment.FragmentKarya;
 import com.project.eportfolio.student.portfoliofragment.FragmentProyek;
 import com.project.eportfolio.student.portfoliofragment.FragmentUnjukKerja;
-import com.project.eportfolio.adapter.AdapterViewPagerPortfolioStudent;
+import com.project.eportfolio.adapter.adapterPortfolio.AdapterViewPagerPortfolioStudent;
+import com.project.eportfolio.utility.Constants;
+import com.project.eportfolio.utility.NetworkCheck;
 import com.project.eportfolio.utility.PreferenceUtils;
 
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,6 +49,10 @@ public class PortfolioStudent extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private AdapterViewPagerPortfolioStudent adapterViewPagerPortfolioStudent;
+
+    private PortfolioDatabase mDatabase;
+    private AdapterListUnjukKerja portfolioAdapter;
+    private ProgressDialog mDialog;
 
     ImageButton btn_beranda, btn_portfolio, btn_input, btn_profile;
 
@@ -94,7 +109,12 @@ public class PortfolioStudent extends AppCompatActivity {
         viewPager.setAdapter(adapterViewPagerPortfolioStudent);
         tabLayout.setupWithViewPager(viewPager);
 
-        first();
+        if (NetworkCheck.isNetworkAvailable(getApplicationContext())){
+            first();
+        } else {
+            Toast.makeText(this, "No Connection", Toast.LENGTH_SHORT).show();
+        }
+
 
         btn_beranda.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,6 +186,7 @@ public class PortfolioStudent extends AppCompatActivity {
         }).start();
     }
 
+
     public void getStrategi() {
         final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
         final Call<ModelStrategi> dataSiswax = apiInterface.getDataStrategi( apikey, 1000);
@@ -226,10 +247,22 @@ public class PortfolioStudent extends AppCompatActivity {
                         } catch (Exception e){ }
                     }
 
+
+
                     if(listPortofolio==null){
                         Toast.makeText(PortfolioStudent.this, "Kamu Tidak Memiliki Portofolio", Toast.LENGTH_SHORT).show();
                     } else {
 
+                        for (int i = 0; i < listPortofolio.size(); i++) {
+                            TrPortofolio portofolio = listPortofolio.get(i);
+
+                            SaveIntoDatabase task = new SaveIntoDatabase();
+                            task.execute(portofolio);
+
+                            portfolioAdapter.addPortfolio(portofolio);
+                        }
+
+                        /*
 
                         for(int i=0; i<listPortofolio.size(); i++){
                             try {
@@ -264,7 +297,7 @@ public class PortfolioStudent extends AppCompatActivity {
 
                         // MASUKIN LIST UNJUK KERJA DI SQLITE
 
-                        /*
+
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -274,7 +307,7 @@ public class PortfolioStudent extends AppCompatActivity {
                                 rvunjukkerja.setAdapter(itemList);
                             }
                         });
-                        */
+
 
                     } else {
                         runOnUiThread(new Runnable() {
@@ -292,7 +325,7 @@ public class PortfolioStudent extends AppCompatActivity {
 
                         // MASUKIN LIST PROJECT DI SQLITE
 
-                        /*runOnUiThread(new Runnable() {
+                        runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 findViewById(R.id.framelayout).setVisibility(View.GONE);
@@ -301,7 +334,6 @@ public class PortfolioStudent extends AppCompatActivity {
                                 rvproyek.setAdapter(itemList);
                             }
                         });
-                        */
 
                     } else {
                         runOnUiThread(new Runnable() {
@@ -318,7 +350,7 @@ public class PortfolioStudent extends AppCompatActivity {
 
                         // MASUKIN LIST KARYA DI SQLITE
 
-                        /*runOnUiThread(new Runnable() {
+                        runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 findViewById(R.id.framelayout).setVisibility(View.GONE);
@@ -326,7 +358,7 @@ public class PortfolioStudent extends AppCompatActivity {
                                 rvkarya.setLayoutManager(new LinearLayoutManager(PortfolioStudent.this));
                                 rvkarya.setAdapter(itemList);
                             }
-                        });*/
+                        });
 
                     } else {
                         runOnUiThread(new Runnable() {
@@ -339,7 +371,8 @@ public class PortfolioStudent extends AppCompatActivity {
                     }
 
 
-
+*/
+                    }
 
 
                     /*
@@ -379,7 +412,53 @@ public class PortfolioStudent extends AppCompatActivity {
         });
     }
 
+    public boolean getNetworkAvailability() {
+        return NetworkCheck.isNetworkAvailable(getApplicationContext());
+    }
 
+
+    public void onDeliverAllPortfolio(List<TrPortofolio> portofolio){
+
+    }
+
+
+    public void onDeliverPortfolio(TrPortofolio portofolio) {
+        portfolioAdapter.addPortfolio(portofolio);
+    }
+
+
+    public void onHideDialog() {
+        mDialog.dismiss();
+    }
+
+    public class SaveIntoDatabase extends AsyncTask<TrPortofolio, Void, Void> {
+
+
+        private final String TAG = SaveIntoDatabase.class.getSimpleName();
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(TrPortofolio... params) {
+
+            TrPortofolio portofolio = params[0];
+
+            try {
+                InputStream stream = new URL(Constants.HTTP.BASE_URL + portofolio.getFoto()).openStream();
+                Bitmap bitmap = BitmapFactory.decodeStream(stream);
+                portofolio.setFoto(bitmap);
+                mDatabase.addPortfolio(portofolio);
+
+            } catch (Exception e) {
+                Log.d(TAG, e.getMessage());
+            }
+
+            return null;
+        }
+    }
 
 
     @Override
