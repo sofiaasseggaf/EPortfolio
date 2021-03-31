@@ -107,7 +107,7 @@ public class UnjukKerja extends AppCompatActivity {
                             listUnjukKerja.add(dataModelStrategi.getData().getMsStrategi().get(i));
                         }
                     }
-                    getPortfolio();
+                    //getPortfolio();
                 }
             }
             @Override
@@ -124,7 +124,7 @@ public class UnjukKerja extends AppCompatActivity {
         });
     }
 
-    public void getPortfolio() {
+  /*  public void getPortfolio() {
         final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
         final Call<ModelPortofolio> dataSiswax = apiInterface.getDataPortfolio(  apikey, 1000);
 
@@ -169,7 +169,7 @@ public class UnjukKerja extends AppCompatActivity {
                             @Override
                             public void run() {
                                 findViewById(R.id.framelayout).setVisibility(View.GONE);
-                                itemList = new AdapterListUnjukKerja(listUnjukKerjaMurid);
+                                itemList = new AdapterListUnjukKerja(,listUnjukKerjaMurid);
                                 rvunjukkerja.setLayoutManager(new LinearLayoutManager(UnjukKerja.this));
                                 rvunjukkerja.setAdapter(itemList);
                             }
@@ -180,18 +180,18 @@ public class UnjukKerja extends AppCompatActivity {
                             public void run() {
                                 findViewById(R.id.framelayout).setVisibility(View.GONE);
                                 Toast.makeText(UnjukKerja.this, "Tidak Memiliki Unjuk Kerja", Toast.LENGTH_SHORT).show();
-                                /*try {
+                                *//*try {
                             JSONObject jObjError = new JSONObject(response.errorBody().string());
                             Toast.makeText(Karya.this, jObjError.getString("message"), Toast.LENGTH_LONG).show();
                         } catch (Exception e) {
                             Toast.makeText(Karya.this, e.getMessage(), Toast.LENGTH_LONG).show();
-                        }*/
+                        }*//*
 
                             }
                         });
                     }
 
-                    /*
+                    *//*
                     for(int i=0; i<listPortofolio.size(); i++){
                         if (listPortofolio.get(i).getStrategiid().equalsIgnoreCase("Organisasi")){
                             listOrganisasi.add(listPortofolio.get(i));
@@ -209,7 +209,7 @@ public class UnjukKerja extends AppCompatActivity {
                             listForumEdukasi.add(listPortofolio.get(i));
                         }
                     }
-*/
+*//*
 
 
                 }
@@ -226,8 +226,9 @@ public class UnjukKerja extends AppCompatActivity {
                 call.cancel();
             }
         });
-    }
 
+
+    }*/
 
 
 
@@ -237,4 +238,5 @@ public class UnjukKerja extends AppCompatActivity {
         startActivity(a);
         finish();
     }
+
 }

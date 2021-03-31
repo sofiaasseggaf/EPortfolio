@@ -63,7 +63,8 @@ public class HomeStudent extends AppCompatActivity {
     RecyclerView rvSliderPortfolioSiswa;
 
     String namasiswa;
-    TextView namaSiswa, nisSiswa;
+    TextView namaSiswa;
+    //TextView nisSiswa;
     ImageView fotoSiswa;
 
     String apikey = "7826470ABBA476706DB24D47C6A6ED64";
@@ -80,7 +81,7 @@ public class HomeStudent extends AppCompatActivity {
         btn_profile = findViewById(R.id.btn_profile);
 
         namaSiswa = findViewById(R.id.namaSiswa);
-        nisSiswa = findViewById(R.id.nisSiswa);
+        //nisSiswa = findViewById(R.id.nisSiswa);
         fotoSiswa = findViewById(R.id.imgSiswa);
 
 /*
@@ -319,7 +320,7 @@ public class HomeStudent extends AppCompatActivity {
                             @Override
                             public void run() {
                                 findViewById(R.id.framelayout).setVisibility(View.GONE);
-                                setDataPortfolio();
+                                //setDataPortfolio();
                             }
                         });
                     }
@@ -379,7 +380,7 @@ public class HomeStudent extends AppCompatActivity {
                 PreferenceUtils.getMidName(getApplicationContext()) + " " +
                 PreferenceUtils.getLastName(getApplicationContext());
         namaSiswa.setText(namasiswa);
-        nisSiswa.setText("NIS : "+PreferenceUtils.getNis(getApplicationContext()));
+        //nisSiswa.setText("NIS : "+PreferenceUtils.getNis(getApplicationContext()));
         try{
         if (!PreferenceUtils.getPhotoSiswa(getApplicationContext()).equalsIgnoreCase("") || PreferenceUtils.getPhotoSiswa(getApplicationContext())!=null){
 

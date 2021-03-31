@@ -14,5 +14,16 @@
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 
+    <!--
+    <style name="MyCustomTabLayout" parent="Widget.Design.TabLayout">
+        <item name="tabTextAppearance">@style/MyCustomTabText</item>
+        <item name="tabSelectedTextColor">@color/service_tab_selected_text_color</item>
+    </style>
+    -->
+
+    <style name="MyCustomTabText">
+        <item name="android:textSize">12sp</item>
+    </style>
+
 
 </resources>

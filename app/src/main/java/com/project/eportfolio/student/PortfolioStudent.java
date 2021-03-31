@@ -14,6 +14,8 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
@@ -85,29 +87,10 @@ public class PortfolioStudent extends AppCompatActivity {
 
         tabLayout = findViewById(R.id.tabLayoutPortfolio);
         viewPager = findViewById(R.id.viewPagerPortfolio);
-        adapterViewPagerPortfolioStudent = new AdapterViewPagerPortfolioStudent(getSupportFragmentManager());
 
-        // tambahkan fragment disini
-
-        adapterViewPagerPortfolioStudent.AddFragment(new FragmentUnjukKerja(), "Unjuk Kerja");
-        adapterViewPagerPortfolioStudent.AddFragment(new FragmentKarya(), "Karya");
-        adapterViewPagerPortfolioStudent.AddFragment(new FragmentProyek(), "Proyek");
-        adapterViewPagerPortfolioStudent.AddFragment(new FragmentAchievement(), "Achievement");
-
-        // tambahkan icon fragment disini
-
-        tabLayout.getTabAt(0).setIcon(R.drawable.icon_unjuk_kerja);
-        tabLayout.getTabAt(1).setIcon(R.drawable.icon_karya);
-        tabLayout.getTabAt(2).setIcon(R.drawable.icon_project);
-        tabLayout.getTabAt(3).setIcon(R.drawable.icon_achievment);
-
+        setupViewPager(viewPager);
         // hapus shadow dari action bar
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setElevation(0);
-
-        viewPager.setAdapter(adapterViewPagerPortfolioStudent);
-        tabLayout.setupWithViewPager(viewPager);
 
         if (NetworkCheck.isNetworkAvailable(getApplicationContext())){
             first();
@@ -141,6 +124,52 @@ public class PortfolioStudent extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void setupViewPager(ViewPager viewPager) {
+        adapterViewPagerPortfolioStudent = new AdapterViewPagerPortfolioStudent(getSupportFragmentManager());
+        adapterViewPagerPortfolioStudent.AddFragment(new FragmentUnjukKerja(), "Unjuk Kerja");
+        adapterViewPagerPortfolioStudent.AddFragment(new FragmentKarya(), "Karya");
+        adapterViewPagerPortfolioStudent.AddFragment(new FragmentProyek(), "Proyek");
+        adapterViewPagerPortfolioStudent.AddFragment(new FragmentAchievement(), "Achievement");
+        viewPager.setAdapter(adapterViewPagerPortfolioStudent);
+        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.getTabAt(0).setIcon(R.drawable.icon_unjuk_kerja);
+        tabLayout.getTabAt(1).setIcon(R.drawable.icon_karya);
+        tabLayout.getTabAt(2).setIcon(R.drawable.icon_project);
+        tabLayout.getTabAt(3).setIcon(R.drawable.icon_achievment);
+
+        //ActionBar actionBar = getSupportActionBar();
+        //actionBar.setElevation(0);
+    }
+
+    class ViewPagerAdapter extends AdapterViewPagerPortfolioStudent {
+        private final List<Fragment> mFragmentList = new ArrayList<>();
+        private final List<String> mFragmentTitleList = new ArrayList<>();
+
+        public ViewPagerAdapter(FragmentManager manager) {
+            super(manager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            return mFragmentList.get(position);
+        }
+
+        @Override
+        public int getCount() {
+            return mFragmentList.size();
+        }
+
+        public void addFrag(Fragment fragment, String title) {
+            mFragmentList.add(fragment);
+            mFragmentTitleList.add(title);
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return mFragmentTitleList.get(position);
+        }
     }
 
     public void first(){
@@ -259,7 +288,7 @@ public class PortfolioStudent extends AppCompatActivity {
                             SaveIntoDatabase task = new SaveIntoDatabase();
                             task.execute(portofolio);
 
-                            portfolioAdapter.addPortfolio(portofolio);
+                            //portfolioAdapter.addPortfolio(portofolio);
                         }
 
                         /*

@@ -20,6 +20,8 @@ import com.project.eportfolio.databases.PortfolioDatabase;
 import com.project.eportfolio.databases.PortfolioFetchListener;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
 import com.project.eportfolio.utility.Constants;
+import com.tonyodev.fetch2.Fetch;
+import com.tonyodev.fetch2.FetchConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +32,7 @@ public class FragmentUnjukKerja extends Fragment implements AdapterListUnjukKerj
     AdapterListUnjukKerja itemList;
     PortfolioDatabase mDatabase;
     List<TrPortofolio> listPortfolio = new ArrayList<>();
-
+    Fetch fetch;
     View v;
 
     public FragmentUnjukKerja() {
@@ -42,6 +44,8 @@ public class FragmentUnjukKerja extends Fragment implements AdapterListUnjukKerj
         v = inflater.inflate(R.layout.student_portfolio_unjuk_kerja, container, false);
         rvunjukkerja = v.findViewById(R.id.rvUnjukKerja);
 
+        //itemList.reset();
+
         if (listPortfolio!=null){
 
            /* for(int i=0; i<listPortfolio.size(); i++){
@@ -52,14 +56,22 @@ public class FragmentUnjukKerja extends Fragment implements AdapterListUnjukKerj
                 }catch (Exception e){ }
             }*/
 
-            itemList = new AdapterListUnjukKerja(this);
+            itemList = new AdapterListUnjukKerja(this, listPortfolio);
             rvunjukkerja.setLayoutManager(new LinearLayoutManager(getActivity()));
             rvunjukkerja.setAdapter(itemList);
 
-            mDatabase.fetchPortfolio(this);
+            //mDatabase.fetchPortfolio(this);
 
         } else {
-                Toast.makeText(getContext(), "Tidak Memiliki Unjuk Kerja", Toast.LENGTH_SHORT).show();}
+            Toast.makeText(getContext(), "Tidak Memiliki Unjuk Kerja", Toast.LENGTH_SHORT).show();
+        }
+
+
+
+        FetchConfiguration fetchConfiguration = new FetchConfiguration.Builder(getContext())
+                .setDownloadConcurrentLimit(3)
+                .build();
+        fetch = Fetch.Impl.getInstance(fetchConfiguration);
 
         return v;
     }

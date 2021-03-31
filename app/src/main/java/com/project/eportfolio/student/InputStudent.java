@@ -73,7 +73,7 @@ public class InputStudent extends AppCompatActivity {
     ImageButton btn_beranda, btn_portfolio, btn_input, btn_profile;
     Spinner sp_strategi;
     EditText txtJudul, txtTempat, txtNarasi;
-    Button btnInputPortfolio, btnOpenCamera;
+    ImageButton btnInputPortfolio, btnOpenCamera;
     ImageView imgPortofolio;
     TextView txtload;
     int idkategori;

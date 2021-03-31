@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,7 +36,7 @@ import retrofit2.Response;
 public class LoginActivity extends AppCompatActivity {
 
     EditText txtUsername, txtPassword;
-    Button btnLogin;
+    ImageButton btnLogin;
     RadioButton rbStudent, rbTeacher;
     String username, password, idUser;
     TextView txtload;

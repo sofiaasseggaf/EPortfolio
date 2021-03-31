@@ -8,18 +8,10 @@
     android:background="#ffffff"
     android:layout_height="match_parent">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="60dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
             <FrameLayout
+                android:id="@+id/fl"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="160dp"
                 android:background="@drawable/rect_top"/>
 
             <TextView
@@ -37,17 +29,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txt"
-                android:layout_marginTop="15dp"
+               android:layout_marginTop="15dp"
+                app:tabTextAppearance="@style/MyCustomTabText"
                 app:tabMode="fixed"
                 app:tabGravity="fill"
                 app:tabIndicator="@color/oren"/>
 
-            <androidx.viewpager.widget.ViewPager
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/fl"
+        android:layout_marginBottom="60dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <androidx.viewpager.widget.ViewPager
                 android:id="@+id/viewPagerPortfolio"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_below="@id/tabLayoutPortfolio"
-                android:layout_marginTop="10dp"/>
+                android:layout_height="match_parent"
+            android:layout_marginTop="5dp"/>
 
             <!--
 
@@ -282,9 +284,9 @@
         android:id="@+id/framelayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="165dp"
         android:layout_marginBottom="62dp"
-        android:visibility="visible"
+        android:visibility="gone"
         android:background="#6DEFEFEF">
 
         <ProgressBar

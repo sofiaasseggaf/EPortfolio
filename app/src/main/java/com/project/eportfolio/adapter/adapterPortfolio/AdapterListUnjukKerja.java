@@ -22,8 +22,8 @@ public class AdapterListUnjukKerja extends RecyclerView.Adapter<RecyclerView.Vie
     private List<TrPortofolio> dataItemList;
     private final ClickLIstenerUnjukKerja mListener;
 
-    public AdapterListUnjukKerja(ClickLIstenerUnjukKerja listener){
-        dataItemList = new ArrayList<>();
+    public AdapterListUnjukKerja(ClickLIstenerUnjukKerja listener, List<TrPortofolio> dataItemList ){
+        this.dataItemList = dataItemList;
         mListener = listener;
     }
 
@@ -81,6 +81,10 @@ public class AdapterListUnjukKerja extends RecyclerView.Adapter<RecyclerView.Vie
 
     public void addPortfolio(TrPortofolio portofolio) {
         dataItemList.add(portofolio);
+        notifyDataSetChanged();
+    }
+    public void reset() {
+        dataItemList.clear();
         notifyDataSetChanged();
     }
 
