@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgprofileedit"
+    android:background="#ffffff"
     tools:context=".student.ProfileStudentSettingEdit">
 
     <ScrollView
@@ -16,423 +16,305 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="20dp"
             android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/upper_edit_profile"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="My Profile"
-                    android:textColor="@color/colorFont"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:textSize="18pt"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="10dp"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="You are an active account"
-                    android:textColor="@color/colorFont"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:textSize="6pt"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="10dp">
-                </TextView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="1000dp"
                 android:orientation="vertical"
-                android:layout_marginBottom="30dp">
+                android:padding="20dp"
+                android:layout_marginBottom="60dp">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="50dp"
-                    android:layout_marginRight="20dp">
-
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        android:id="@+id/fotoSiswa"
-                        android:layout_width="100dp"
-                        android:layout_height="83dp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/nopic"
-                        app:civ_border_color="#f7f7f7"
-                        app:civ_border_width="2dp" />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="10dp">
-                        <TextView
-                            android:id="@+id/namaSiswa"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="16sp"
-                            android:fontFamily="@font/montserrat_bold"
-                            android:textColor="@color/colorFont"/>
-                        <TextView
-                            android:id="@+id/nisSiswa"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="12sp"
-                            android:layout_marginTop="10dp"
-                            android:fontFamily="@font/montserrat_regular"
-                            android:textColor="@color/colorFont"/>
-
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
+                    android:id="@+id/top"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginTop="15dp"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
-                    android:weightSum="2">
+                    android:layout_gravity="center">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/fotoSiswa"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        app:civ_border_width="2dp"
+                        android:src="@drawable/nopic"
+                        app:civ_border_color="#ffffff"/>
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/roundedll"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center_vertical"
-                        android:paddingRight="3dp"
-                        android:paddingLeft="3dp"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp"
-                        android:orientation="horizontal">
+                        android:orientation="vertical"
+                        android:layout_marginLeft="15dp"
+                        android:layout_gravity="center_vertical">
                         <TextView
-                            android:id="@+id/btnUbahFotoProfile"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/namaSiswa"
+                            android:layout_width="200dp"
                             android:layout_height="wrap_content"
-                            android:text="Ubah Foto Profile"
-                            android:textSize="12sp"
-                            android:fontFamily="@font/montserrat_regular"
-                            android:textColor="#0027FF"
-                            android:textAlignment="center"
-                            android:layout_weight="1"/>
-                    </LinearLayout>
-                    <TextView
-                        android:layout_width="10dp"
-                        android:layout_height="wrap_content"/>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/roundedll"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center_vertical"
-                        android:paddingRight="3dp"
-                        android:paddingLeft="3dp"
-                        android:paddingTop="5dp"
-                        android:paddingBottom="5dp">
-                        <TextView
-                            android:id="@+id/btnSaveFotoProfile"
-                            android:layout_width="wrap_content"
+                            android:textSize="22sp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textColor="@color/font"
+                            android:text="Sofia Asseggaf"
+                            android:maxLines="2">
+                        </TextView>
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Simpan Foto Profile"
-                            android:textSize="12sp"
-                            android:fontFamily="@font/montserrat_regular"
-                            android:textColor="#0027FF"
-                            android:textAlignment="center"
-                            android:layout_weight="1"/>
+                            android:orientation="horizontal"
+                            android:layout_marginRight="20dp"
+                            android:layout_marginTop="10dp"
+                            android:weightSum="2">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@drawable/roundedll"
+                                android:padding="5dp"
+                                android:gravity="center"
+                                android:layout_marginRight="5dp"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:id="@+id/btnUbahFotoProfile"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Ubah Foto Profile"
+                                    android:textSize="12sp"
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:textColor="#ffffff"
+                                    android:textAlignment="center"/>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:background="@drawable/roundedll"
+                                android:padding="5dp"
+                                android:gravity="center"
+                                android:orientation="horizontal">
+                                <TextView
+                                    android:id="@+id/btnSaveFotoProfile"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Simpan Foto Profile"
+                                    android:textSize="12sp"
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:textColor="#ffffff"
+                                    android:textAlignment="center"/>
+                            </LinearLayout>
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="3dp"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/garispanjang"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
-                    android:layout_marginTop="20dp">
+                    android:layout_marginTop="30dp">
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Nama Depan"
-                        android:textColor="@color/colorFont"
-                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="@color/font"
+                        android:fontFamily="@font/roboto_regular"
                         android:textSize="14sp"/>
                     <EditText
                         android:id="@+id/editFirstName"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:fontFamily="@font/montserrat_regular"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
                         android:textSize="14sp"
-                        android:background="@drawable/kotakinputprofile">
-                    </EditText>
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="3dp"
-                        android:background="@drawable/garispanjang"/>
+                        android:background="@drawable/rect_spinner"
+                        android:layout_marginTop="10dp"/>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
                     android:layout_marginTop="20dp">
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Nama Tengah"
-                        android:textColor="@color/colorFont"
-                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="@color/font"
+                        android:fontFamily="@font/roboto_regular"
                         android:textSize="14sp"/>
                     <EditText
                         android:id="@+id/editMiddleName"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:fontFamily="@font/montserrat_regular"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
                         android:textSize="14sp"
-                        android:background="@drawable/kotakinputprofile">
-                    </EditText>
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="3dp"
-                        android:background="@drawable/garispanjang"/>
+                        android:background="@drawable/rect_spinner"
+                        android:layout_marginTop="10dp"/>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
                     android:layout_marginTop="20dp">
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Nama Belakang"
-                        android:textColor="@color/colorFont"
-                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="@color/font"
+                        android:fontFamily="@font/roboto_regular"
                         android:textSize="14sp"/>
                     <EditText
                         android:id="@+id/editLastName"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:fontFamily="@font/montserrat_regular"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
                         android:textSize="14sp"
-                        android:background="@drawable/kotakinputprofile">
-                    </EditText>
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="3dp"
-                        android:background="@drawable/garispanjang"/>
+                        android:background="@drawable/rect_spinner"
+                        android:layout_marginTop="10dp"/>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
                     android:layout_marginTop="20dp">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Tempat Tanggal Lahir"
-                        android:textColor="@color/colorFont"
-                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="@color/font"
+                        android:fontFamily="@font/roboto_regular"
                         android:textSize="14sp"/>
                     <EditText
                         android:id="@+id/editTtl"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:fontFamily="@font/montserrat_regular"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
                         android:textSize="14sp"
-                        android:background="@drawable/kotakinputprofile">
+                        android:background="@drawable/rect_spinner"
+                        android:layout_marginTop="10dp">
                     </EditText>
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="3dp"
-                        android:background="@drawable/garispanjang"/>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
                     android:layout_marginTop="20dp">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Nomor Induk Siswa"
-                        android:textColor="@color/colorFont"
-                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="@color/font"
+                        android:fontFamily="@font/roboto_regular"
                         android:textSize="14sp"/>
                     <EditText
                         android:id="@+id/editNis"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:fontFamily="@font/montserrat_regular"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
                         android:textSize="14sp"
-                        android:background="@drawable/kotakinputprofile">
-                    </EditText>
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="3dp"
-                        android:background="@drawable/garispanjang"/>
+                        android:background="@drawable/rect_spinner"
+                        android:layout_marginTop="10dp"/>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
                     android:layout_marginTop="20dp">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Jenis Kelamin"
-                        android:textColor="@color/colorFont"
-                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="@color/font"
+                        android:fontFamily="@font/roboto_regular"
                         android:textSize="14sp"/>
                     <EditText
                         android:id="@+id/editJk"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:fontFamily="@font/montserrat_regular"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
                         android:textSize="14sp"
-                        android:background="@drawable/kotakinputprofile">
-                    </EditText>
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="3dp"
-                        android:background="@drawable/garispanjang"/>
+                        android:background="@drawable/rect_spinner"
+                        android:layout_marginTop="10dp"/>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
                     android:layout_marginTop="20dp">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Email"
-                        android:textColor="@color/colorFont"
-                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="@color/font"
+                        android:fontFamily="@font/roboto_regular"
                         android:textSize="14sp"/>
                     <EditText
                         android:id="@+id/editEmail"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:fontFamily="@font/montserrat_regular"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
                         android:textSize="14sp"
-                        android:background="@drawable/kotakinputprofile">
-                    </EditText>
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="3dp"
-                        android:background="@drawable/garispanjang"/>
+                        android:background="@drawable/rect_spinner"
+                        android:layout_marginTop="10dp"/>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
                     android:layout_marginTop="20dp">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Alamat"
-                        android:textColor="@color/colorFont"
-                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="@color/font"
+                        android:fontFamily="@font/roboto_regular"
                         android:textSize="14sp"/>
                     <EditText
                         android:id="@+id/editAlamat"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:fontFamily="@font/montserrat_regular"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
                         android:textSize="14sp"
-                        android:background="@drawable/kotakinputprofile">
-                    </EditText>
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="3dp"
-                        android:background="@drawable/garispanjang"/>
+                        android:background="@drawable/rect_spinner"
+                        android:layout_marginTop="10dp"/>
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
                     android:layout_marginTop="20dp">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="No. Handphone"
-                        android:textColor="@color/colorFont"
-                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="@color/font"
+                        android:fontFamily="@font/roboto_regular"
                         android:textSize="14sp"/>
                     <EditText
                         android:id="@+id/editTelp"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:fontFamily="@font/montserrat_regular"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
                         android:textSize="14sp"
-                        android:background="@drawable/kotakinputprofile">
-                    </EditText>
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="3dp"
-                        android:background="@drawable/garispanjang"/>
+                        android:background="@drawable/rect_spinner"
+                        android:layout_marginTop="10dp"/>
                 </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/btnSimpan"
-                    android:layout_width="200dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="35dp"
-                    android:background="@drawable/bgproyek"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Edit Profile"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="35dp"
-                        android:textColor="#606060"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/montserrat_regular"/>
-                    <ImageView
-                        android:layout_width="15dp"
-                        android:layout_height="15dp"
-                        android:background="@drawable/btneditprofileicon"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="35dp"/>
-                </LinearLayout>
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/btn_save"
+                    android:layout_marginTop="30dp"
+                    android:orientation="horizontal"/>
 
 
             </LinearLayout>
