@@ -210,14 +210,15 @@
                     <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/icon_class"/>
+                        android:background="@drawable/icon_mata_pelajaran"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/roboto_regular"
                         android:textSize="12sp"
-                        android:text="Kelas"/>
+                        android:maxLines="2"
+                        android:text="Mata Pelajaran"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -248,14 +249,15 @@
                     <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/icon_mata_pelajaran"/>
+                        android:background="@drawable/icon_article"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/roboto_regular"
                         android:textSize="12sp"
-                        android:text="Mata Pelajaran"/>
+                        android:textAlignment="center"
+                        android:text="Artikel"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -267,14 +269,14 @@
                     <ImageButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/icon_article"/>
+                        android:background="@drawable/icon_calendar"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/roboto_regular"
                         android:textSize="12sp"
-                        android:text="Article"/>
+                        android:text="Kalender"/>
                 </LinearLayout>
 
             </LinearLayout>
@@ -406,7 +408,7 @@
                 android:layout_marginTop="30dp"/>
 
             <TextView
-                android:id="@+id/txtMoreArticleGuru"
+                android:id="@+id/txtMoreArticleSiswa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="More Articles"
@@ -422,7 +424,7 @@
                 android:id="@+id/viewPagerArticleStudent"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:layout_below="@id/txtMoreArticleGuru"
+                android:layout_below="@id/txtMoreArticleSiswa"
                 android:layout_marginTop="20dp"
                 android:clipToPadding="false"
                 android:foregroundGravity="center"
@@ -434,7 +436,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_marginTop="20dp"
-                android:layout_below="@id/txtMoreArticleGuru"
+                android:layout_below="@id/txtMoreArticleSiswa"
                 android:background="#FFFFFF"
                 android:visibility="gone">
 

@@ -5,138 +5,159 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgmaster"
+    android:background="#ffffff"
     tools:context=".teacher.MasterTeacher">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/upper_master"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="60dp"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="50dp"
+        android:orientation="vertical">
+
+
 
         <LinearLayout
             android:id="@+id/btnDataMurid"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:background="@drawable/bgbtndatamurid"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rect_siswa"
             android:layout_marginTop="100dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Data Murid"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:textSize="10pt"
-                android:fontFamily="@font/montserrat_bold"/>
-        </LinearLayout>
+            android:orientation="horizontal"/>
 
         <LinearLayout
             android:id="@+id/btnDataGuru"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:background="@drawable/bgbtndataguru"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rect_guru"
             android:layout_marginTop="15dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Data Guru"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:textSize="10pt"
-                android:fontFamily="@font/montserrat_bold"/>
-        </LinearLayout>
+            android:orientation="horizontal"/>
 
         <LinearLayout
             android:id="@+id/btnDataKelas"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:background="@drawable/bgbtndatakelas"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rect_kelas"
             android:layout_marginTop="15dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Data Kelas"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:textSize="10pt"
-                android:fontFamily="@font/montserrat_bold"/>
-        </LinearLayout>
+            android:orientation="horizontal"/>
 
         <LinearLayout
             android:id="@+id/btnDataMapel"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:background="@drawable/bgbtndatamapel"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rect_mapel"
             android:layout_marginTop="15dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Data Mapel"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:textSize="10pt"
-                android:fontFamily="@font/montserrat_bold"/>
-        </LinearLayout>
+            android:orientation="horizontal"/>
 
         <LinearLayout
             android:id="@+id/btnDataPortfolio"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:background="@drawable/bgbtndataportfolio"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rect_portfolio"
             android:layout_marginTop="15dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Data Portfolio"
-                android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
-                android:textSize="10pt"
-                android:fontFamily="@font/montserrat_bold"/>
-        </LinearLayout>
+            android:orientation="horizontal"/>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:gravity="center_horizontal"
-        android:background="@color/colorFont2">
+        android:paddingTop="20dp"
+        android:background="@drawable/rect_bottombar">
 
-        <ImageButton
-            android:id="@+id/btn_home"
-            android:layout_width="20dp"
-            android:layout_height="25dp"
-            android:layout_marginRight="65dp"
-            android:layout_gravity="center"
-            android:background="@drawable/berandabotton"/>
-        <ImageButton
-            android:id="@+id/btn_master"
-            android:layout_width="40dp"
-            android:layout_height="25dp"
-            android:layout_marginRight="65dp"
-            android:layout_gravity="center"
-            android:background="@drawable/btnmaster"/>
-        <ImageButton
-            android:id="@+id/btn_input"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginRight="65dp"
-            android:layout_gravity="center"
-            android:background="@drawable/inputbotton"/>
-        <ImageButton
-            android:id="@+id/btn_profile"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_gravity="center"
-            android:background="@drawable/profilebotton"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/btn_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_home_inactive"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/fontcolor"
+                android:textSize="12sp"
+                android:text="Home"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/btn_master"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_data_master_active"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/oren"
+                android:textSize="12sp"
+                android:text="Master"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/btn_input"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_input"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/fontcolor"
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="12sp"
+                android:text="Input"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageButton
+                android:id="@+id/btn_profile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/icon_profile"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/roboto_regular"
+                android:textColor="@color/fontcolor"
+                android:textSize="12sp"
+                android:text="Profile"/>
+        </LinearLayout>
 
     </LinearLayout>
 
