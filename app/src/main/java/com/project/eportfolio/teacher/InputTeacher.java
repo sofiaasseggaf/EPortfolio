@@ -1,7 +1,6 @@
 package com.project.eportfolio.teacher;
 
 import android.Manifest;
-import android.app.ActivityOptions;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -13,12 +12,9 @@ import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import android.transition.Slide;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.DecelerateInterpolator;
 import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -27,6 +23,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -75,7 +72,6 @@ import java.util.List;
 import java.util.Locale;
 
 import butterknife.ButterKnife;
-import butterknife.OnEditorAction;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -86,10 +82,11 @@ import retrofit2.Response;
 public class InputTeacher extends AppCompatActivity {
 
     ImageButton btn_beranda, btn_master, btn_input, btn_profile;
-    Button btnInputPortfolio, btnOpenCamera;
+    ImageButton btnInputPortfolio, btnOpenCamera;
     Spinner sp_mapel, sp_strategi, sp_kelas, sp_siswa, sp_semester, sp_tahun_ajaran; //sp_kategori
     EditText txtJudul, txtNarasi, txtNilai;
-    TextView txtPoint4, txtPoint3, txtPoint2, txtPoint1, txtPredikat, txtkategori;
+    TextView txtPoint4, txtPoint3, txtPoint2, txtPoint1, txtkategori;
+    LinearLayout predikat_a, predikat_b, predikat_c, predikat_d;
     RadioButton rbPoint4, rbPoint3, rbPoint2, rbPoint1;
     ImageView imgPortofolio;
     int nilai;
@@ -134,7 +131,7 @@ public class InputTeacher extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setAnimation();
-        setContentView(R.layout.teacher_input);
+        setContentView(R.layout.teacher_input_a);
 
         ButterKnife.bind(this);
         mCompressor = new FileCompressor(this);
@@ -164,7 +161,7 @@ public class InputTeacher extends AppCompatActivity {
         txtPoint2 = findViewById(R.id.txtPoint2);
         txtPoint1 = findViewById(R.id.txtPoint1);
         txtNarasi= findViewById(R.id.txtNarasi);
-        txtPredikat = findViewById(R.id.txtPredikat);
+        //txtPredikat = findViewById(R.id.txtPredikat);
         txtNilai = findViewById(R.id.txtNilai);
         imgPortofolio = findViewById(R.id.imgPortofolio);
         txtload = findViewById(R.id.textloading);
@@ -181,7 +178,7 @@ public class InputTeacher extends AppCompatActivity {
 
                         nilai = Integer.parseInt(txtNilai.getText().toString());
 
-                        if (nilai > 0 && nilai <=50) {
+                        /*if (nilai > 0 && nilai <=50) {
                             txtPredikat.setText("E");
                         } else if (nilai > 50 && nilai <= 60) {
                             txtPredikat.setText("D");
@@ -193,7 +190,7 @@ public class InputTeacher extends AppCompatActivity {
                             txtPredikat.setText("A");
                         } else if (nilai > 100) {
                             txtPredikat.setText("-");
-                        }
+                        }*/
                     } else {
                         handled = false;
                     }
@@ -501,8 +498,8 @@ public class InputTeacher extends AppCompatActivity {
                     Toast.makeText(InputTeacher.this, "Lengkapi Judul KD !", Toast.LENGTH_SHORT).show();
                 } else if(inputIdKelas.equalsIgnoreCase("")) {
                     Toast.makeText(InputTeacher.this, "Pilih Kelas  !", Toast.LENGTH_SHORT).show();
-                } else if (txtPredikat.getText().toString().equalsIgnoreCase("")) {
-                    Toast.makeText(InputTeacher.this, "Lengkapi Nilai !  !", Toast.LENGTH_SHORT).show();
+                /*} else if (txtPredikat.getText().toString().equalsIgnoreCase("")) {
+                    Toast.makeText(InputTeacher.this, "Lengkapi Nilai !  !", Toast.LENGTH_SHORT).show();*/
                 } else {
                     thread();
                 }
@@ -1058,9 +1055,9 @@ public class InputTeacher extends AppCompatActivity {
                 RequestBody.create(MediaType.parse("text/plain"),txtJudul.getText().toString()), //req
                 RequestBody.create(MediaType.parse("text/plain"),inputDeskRubrik),
                 RequestBody.create(MediaType.parse("text/plain"),now),
-                RequestBody.create(MediaType.parse("text/plain"),"Sekolah"), //ganti kota
+                RequestBody.create(MediaType.parse("text/plain"),"Sekolah"), // ganti kota
                 RequestBody.create(MediaType.parse("text/plain"),txtNilai.getText().toString()),
-                RequestBody.create(MediaType.parse("text/plain"),txtPredikat.getText().toString()),
+                RequestBody.create(MediaType.parse("text/plain"),"A"), // isi sesuai linear layout predikat yg dipilih
                 RequestBody.create(MediaType.parse("text/plain"),txtNarasi.getText().toString()),
                 fotox,
                 RequestBody.create(MediaType.parse("text/plain"),inputNamaKelas),
@@ -1083,7 +1080,7 @@ public class InputTeacher extends AppCompatActivity {
                                 findViewById(R.id.framelayout).setVisibility(View.GONE);
                                 Toast.makeText(InputTeacher.this, "berhasil input portfolio", Toast.LENGTH_LONG).show();
                                 txtNilai.setText("");
-                                txtPredikat.setText("");
+                                //txtPredikat.setText("");
                                 imgPortofolio.setImageBitmap(null);
                             }
                         });

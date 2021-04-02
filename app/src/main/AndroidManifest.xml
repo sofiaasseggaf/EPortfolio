@@ -40,15 +40,18 @@
         <activity android:name="com.project.eportfolio.utility.PreferenceUtils" />
         <activity android:name=".ArtikelActivity" />
 
-        <activity android:name="com.project.eportfolio.student.HomeStudent" />
+        <activity android:name="com.project.eportfolio.student.HomeStudent"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name="com.project.eportfolio.student.InputStudent"
             android:windowSoftInputMode="stateHidden"/>
-        <activity android:name="com.project.eportfolio.student.PortfolioStudent"/>
+        <activity android:name="com.project.eportfolio.student.portfolio.PortfolioStudentUnjukKerja"/>
+        <activity android:name="com.project.eportfolio.student.portfolio.PortfolioStudentKarya"/>
+        <activity android:name="com.project.eportfolio.student.portfolio.PortfolioStudentProject"/>
+        <activity android:name="com.project.eportfolio.student.portfolio.PortfolioStudentAchievement"/>
         <activity android:name="com.project.eportfolio.student.ProfileStudent"/>
         <activity android:name="com.project.eportfolio.student.ProfileStudentSettingEdit" />
         <activity android:name="com.project.eportfolio.student.ProfileStudentSettingPrivacy" />
 
-        <activity android:name="com.project.eportfolio.student.portfoliogagal.UnjukKerja" />
 
         <activity android:name="com.project.eportfolio.teacher.HomeTeacher" />
         <activity android:name="com.project.eportfolio.teacher.InputTeacher"

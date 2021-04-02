@@ -31,6 +31,8 @@ import com.project.eportfolio.R;
 import com.project.eportfolio.adapter.adapterPortfolio.AdapterSliderPortfolio;
 import com.project.eportfolio.model.portfolio.ModelPortofolio;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
+import com.project.eportfolio.student.portfolio.PortfolioStudentProject;
+import com.project.eportfolio.student.portfolio.PortfolioStudentUnjukKerja;
 import com.project.eportfolio.utility.PreferenceUtils;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -96,16 +98,16 @@ public class HomeStudent extends AppCompatActivity {
 */
 
         //rvSliderPortfolioSiswa = findViewById(R.id.rvSliderPortfolioSiswa);
-        viewPager = findViewById(R.id.viewPager);
+        //viewPager = findViewById(R.id.viewPager);
         txtload = findViewById(R.id.textloading);
 
         setDataSiswa();
-        first();
+        //first();
 
         btn_portfolio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent a = new Intent(HomeStudent.this, PortfolioStudent.class);
+                Intent a = new Intent(HomeStudent.this, PortfolioStudentProject.class);
                 startActivity(a);
                 finish();
                 /*if(Build.VERSION.SDK_INT>20){

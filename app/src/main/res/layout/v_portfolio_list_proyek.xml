@@ -30,8 +30,7 @@
             android:text="Matematika"
             android:textSize="7pt"
             android:layout_marginTop="5dp"
-            android:fontFamily="@font/montserrat_regular"
-            android:textColor="@color/colorFont"/>
+            android:fontFamily="@font/montserrat_regular"/>
 
         <TextView
             android:id="@+id/kelasListProyek"
@@ -40,8 +39,7 @@
             android:text="kelas X"
             android:textSize="7pt"
             android:layout_marginTop="5dp"
-            android:fontFamily="@font/montserrat_regular"
-            android:textColor="@color/colorFont"/>
+            android:fontFamily="@font/montserrat_regular"/>
 
         <TextView
             android:id="@+id/semesterListProyek"
@@ -50,8 +48,7 @@
             android:text="Semester 1"
             android:textSize="7pt"
             android:layout_marginTop="5dp"
-            android:fontFamily="@font/montserrat_regular"
-            android:textColor="@color/colorFont"/>
+            android:fontFamily="@font/montserrat_regular"/>
 
         <TextView
             android:id="@+id/predikatListProyek"
@@ -60,8 +57,7 @@
             android:text="Predikat : A"
             android:textSize="7pt"
             android:layout_marginTop="5dp"
-            android:fontFamily="@font/montserrat_regular"
-            android:textColor="@color/colorFont"/>
+            android:fontFamily="@font/montserrat_regular"/>
 
         <TextView
             android:id="@+id/narasiListProyek"
@@ -71,8 +67,7 @@
             android:textSize="7pt"
             android:layout_marginTop="5dp"
             android:minLines="6"
-            android:fontFamily="@font/montserrat_regular"
-            android:textColor="@color/colorFont"/>
+            android:fontFamily="@font/montserrat_regular"/>
 
         <TextView
             android:id="@+id/tglListProyek"
@@ -82,8 +77,7 @@
             android:textSize="7pt"
             android:layout_marginTop="5dp"
             android:gravity="right"
-            android:fontFamily="@font/montserrat_regular"
-            android:textColor="@color/colorFont"/>
+            android:fontFamily="@font/montserrat_regular"/>
 
     </LinearLayout>
 
@@ -95,7 +89,6 @@
         android:textSize="7pt"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/montserrat_bold"
-        android:layout_below="@id/imgListProyek"
-        android:textColor="@color/colorFont"/>
+        android:layout_below="@id/imgListProyek"/>
 
 </RelativeLayout>

@@ -20,6 +20,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -72,7 +73,7 @@ import static com.project.eportfolio.APIService.AppUtil.*;
 
 public class ProfileStudentSettingEdit extends AppCompatActivity {
 
-    LinearLayout btnSimpan;
+    ImageButton btnSimpan;
     TextView btnUbahFotoProfile, btnSaveFotoProfile, namaSiswa, nisSiswa, txtload;
     EditText editFirstName, editMidName, editLastName, editTtl, editNis, editJk, editAlamat, editEmail, editTelp;
     ImageView imgSiswa;
@@ -100,7 +101,7 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
         mCompressor = new FileCompressor(this);
 
         namaSiswa = findViewById(R.id.namaSiswa);
-        nisSiswa = findViewById(R.id.nisSiswa);
+        //nisSiswa = findViewById(R.id.nisSiswa);
         btnUbahFotoProfile = findViewById(R.id.btnUbahFotoProfile);
         btnSaveFotoProfile = findViewById(R.id.btnSaveFotoProfile);
         imgSiswa = findViewById(R.id.fotoSiswa);
@@ -173,7 +174,7 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
     private void setDataProfile(){
 
         btnSaveFotoProfile.setClickable(false);
-        btnSaveFotoProfile.setTextColor((getResources().getColor(R.color.colorFont2)));
+        btnSaveFotoProfile.setTextColor((getResources().getColor(R.color.fontcolor)));
 
         namaSiswa.setText(PreferenceUtils.getFirstName(getApplicationContext()) + " " +
                 PreferenceUtils.getMidName(getApplicationContext()) + " " +

@@ -53,7 +53,7 @@ public class ArtikelActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_article);
-        rvArtikel = findViewById(R.id.rvArtikel);
+        rvArtikel = findViewById(R.id.rvArticle);
         txtload = findViewById(R.id.textloading);
         first();
     }

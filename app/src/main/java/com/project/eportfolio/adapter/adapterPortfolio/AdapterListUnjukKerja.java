@@ -22,9 +22,9 @@ public class AdapterListUnjukKerja extends RecyclerView.Adapter<RecyclerView.Vie
     private List<TrPortofolio> dataItemList;
     private final ClickLIstenerUnjukKerja mListener;
 
-    public AdapterListUnjukKerja(ClickLIstenerUnjukKerja listener, List<TrPortofolio> dataItemList ){
+    public AdapterListUnjukKerja(Runnable listener, List<TrPortofolio> dataItemList ){
         this.dataItemList = dataItemList;
-        mListener = listener;
+        mListener = (ClickLIstenerUnjukKerja) listener;
     }
 
     @NonNull

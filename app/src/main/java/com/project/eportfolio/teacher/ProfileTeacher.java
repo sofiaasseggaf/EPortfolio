@@ -27,7 +27,7 @@ import com.squareup.picasso.Picasso;
 public class ProfileTeacher extends AppCompatActivity {
 
     ImageButton btn_beranda, btn_master, btn_input, btn_profile;
-    TextView namaProfile, nipProfile, sekolahProfile;
+    TextView namaProfile;
     ImageView imgProfile;
     String namaguru;
 
@@ -51,15 +51,12 @@ public class ProfileTeacher extends AppCompatActivity {
 
         namaProfile = findViewById(R.id.namaProfile);
         imgProfile = findViewById(R.id.imgProfile);
-        nipProfile = findViewById(R.id.nipProfile);
-        sekolahProfile = findViewById(R.id.sekolahProfile);
+
 
         namaguru = PreferenceUtils.getFirstName(getApplicationContext()) + " " +
                 PreferenceUtils.getMidName(getApplicationContext()) + " " +
                 PreferenceUtils.getLastName(getApplicationContext());
         namaProfile.setText(namaguru);
-        nipProfile.setText(PreferenceUtils.getNip(getApplicationContext()));
-        sekolahProfile.setText(PreferenceUtils.getSekolahNama(getApplicationContext()));
         try{
             Picasso.get().load(PreferenceUtils.getPhotoGuru(getApplicationContext())).into(imgProfile);
 //            Picasso.get().load("https://eportofolio.id/uploads/ms_guru/"+PreferenceUtils.getPhotoGuru(getApplicationContext())).into(imgProfile);

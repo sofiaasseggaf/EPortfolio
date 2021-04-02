@@ -243,7 +243,7 @@
                 android:layout_marginTop="50dp"
                 android:fontFamily="@font/roboto_medium"
                 android:textSize="20sp"
-                android:textColor="#DF5532"/>
+                android:textColor="@color/oren"/>
 
         </LinearLayout>
 

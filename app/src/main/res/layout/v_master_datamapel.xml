@@ -17,7 +17,6 @@
         android:text="Matematika"
         android:textSize="10pt"
         android:fontFamily="@font/montserrat_bold"
-        android:layout_gravity="center"
-        android:textColor="@color/colorFont"/>
+        android:layout_gravity="center"/>
 
 </LinearLayout>

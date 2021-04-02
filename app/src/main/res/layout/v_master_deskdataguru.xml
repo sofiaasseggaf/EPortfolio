@@ -35,8 +35,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="HIMALAYATI JAE HOO"
-                android:textColor="@color/colorFont"/>
+                android:text="HIMALAYATI JAE HOO"/>
             <TextView
                 android:id="@+id/sekolahDeskDataGuru"
                 android:layout_width="wrap_content"
@@ -44,8 +43,7 @@
                 android:textSize="14sp"
                 android:fontFamily="@font/montserrat_regular"
                 android:layout_marginTop="5dp"
-                android:text="SMA ADI LUHUR"
-                android:textColor="@color/colorFont"/>
+                android:text="SMA ADI LUHUR"/>
 
         </LinearLayout>
 
@@ -67,7 +65,6 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:text="Alamat"
-                android:textColor="@color/colorFont"
                 android:fontFamily="@font/montserrat_regular"
                 android:layout_gravity="center"
                 android:textSize="14sp"/>
@@ -76,7 +73,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Jl Datuk Ibrahim RT 05 RW 07 NO 99 Condet Jakarta Timur"
-                android:textColor="@color/colorFont"
                 android:fontFamily="@font/montserrat_regular"
                 android:layout_gravity="center"
                 android:textSize="12sp"/>
@@ -91,7 +87,6 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:text="Email"
-                android:textColor="@color/colorFont"
                 android:fontFamily="@font/montserrat_regular"
                 android:layout_gravity="center"
                 android:textSize="14sp"/>
@@ -100,7 +95,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="rachelgreen@outlook.com"
-                android:textColor="@color/colorFont"
                 android:fontFamily="@font/montserrat_regular"
                 android:layout_gravity="center"
                 android:textSize="12sp"/>
@@ -115,7 +109,6 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:text="Telepon"
-                android:textColor="@color/colorFont"
                 android:fontFamily="@font/montserrat_regular"
                 android:layout_gravity="center"
                 android:textSize="14sp"/>
@@ -124,7 +117,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="087798765567"
-                android:textColor="@color/colorFont"
                 android:fontFamily="@font/montserrat_regular"
                 android:layout_gravity="center"
                 android:textSize="12sp"/>

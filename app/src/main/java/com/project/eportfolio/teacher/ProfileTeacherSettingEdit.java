@@ -19,6 +19,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -65,8 +66,8 @@ import retrofit2.Response;
 
 public class ProfileTeacherSettingEdit extends AppCompatActivity {
 
-    LinearLayout btnSimpan;
-    TextView btnUbahFotoProfile, btnSaveFotoProfile, namaGuru, nipGuru, txtload;
+    ImageButton btnSimpan;
+    TextView btnUbahFotoProfile, btnSaveFotoProfile, namaGuru, txtload;
     EditText editFirstName, editMidName, editLastName, editNik, editNip, editJk, editEmail, editAlamat, editTelp;
     ImageView imgGuru;
     MsGuru dataGuru;
@@ -97,7 +98,6 @@ public class ProfileTeacherSettingEdit extends AppCompatActivity {
 
         btnSimpan = findViewById(R.id.btnSimpan);
         namaGuru = findViewById(R.id.namaGuru);
-        nipGuru = findViewById(R.id.nipGuru);
         btnUbahFotoProfile = findViewById(R.id.btnUbahFotoProfile);
         btnSaveFotoProfile = findViewById(R.id.btnSaveFotoProfile);
         imgGuru = findViewById(R.id.imgGuru);
@@ -336,12 +336,11 @@ public class ProfileTeacherSettingEdit extends AppCompatActivity {
     public void setDataProfile(){
 
         btnSaveFotoProfile.setClickable(false);
-        btnSaveFotoProfile.setTextColor((getResources().getColor(R.color.colorFont2)));
+        btnSaveFotoProfile.setTextColor((getResources().getColor(R.color.fontcolor)));
 
         namaGuru.setText(PreferenceUtils.getFirstName(getApplicationContext()) + " " +
                 PreferenceUtils.getMidName(getApplicationContext()) + " " +
                 PreferenceUtils.getLastName(getApplicationContext()));
-        nipGuru.setText(PreferenceUtils.getNip(getApplicationContext()));
 
         try{
             Picasso.get().load(PreferenceUtils.getPhotoGuru(getApplicationContext())).into(imgGuru);

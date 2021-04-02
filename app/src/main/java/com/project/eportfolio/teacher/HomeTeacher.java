@@ -42,7 +42,7 @@ public class HomeTeacher extends AppCompatActivity {
     ImageButton btn_beranda, btn_master, btn_input, btn_profile;
 
     String namaguru;
-    TextView namaGuru, nipGuru,  txtMorePortfolioGuru, txtload, txtload2, txtMoreArtikelGuru;
+    TextView namaGuru, txtMorePortfolioGuru, txtload, txtload2, txtMoreArtikelGuru;
     ImageView fotoGuru;
 
     ModelPortofolio dataModelPortfolio;
@@ -68,20 +68,19 @@ public class HomeTeacher extends AppCompatActivity {
         btn_profile = findViewById(R.id.btn_profile);
 
         namaGuru = findViewById(R.id.namaGuru);
-        nipGuru = findViewById(R.id.nipGuru);
         fotoGuru = findViewById(R.id.imgGuru);
-        txtMorePortfolioGuru = findViewById(R.id.txtMorePortfolioGuru);
-        txtMorePortfolioGuru.setPaintFlags(txtMorePortfolioGuru.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
+        //txtMorePortfolioGuru = findViewById(R.id.txtMorePortfolioGuru);
+       // txtMorePortfolioGuru.setPaintFlags(txtMorePortfolioGuru.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
        // txtMoreArtikelGuru = findViewById(R.id.txtMoreArtikelGuru);
         //txtMoreArtikelGuru.setPaintFlags(txtMoreArtikelGuru.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-        viewPager = findViewById(R.id.viewPager);
+       // viewPager = findViewById(R.id.viewPager);
         txtload = findViewById(R.id.textloading);
        // txtload2 = findViewById(R.id.textloading2);
 
 //        rvSliderPortfolioGuru = findViewById(R.id.rvSliderPortfolioGuru);
 
         setDataGuru();
-        first();
+        //first();
 
         btn_master.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -208,7 +207,7 @@ public class HomeTeacher extends AppCompatActivity {
                 PreferenceUtils.getMidName(getApplicationContext()) + " " +
                 PreferenceUtils.getLastName(getApplicationContext());
         namaGuru.setText(namaguru);
-        nipGuru.setText(PreferenceUtils.getNip(getApplicationContext()));
+        //nipGuru.setText(PreferenceUtils.getNip(getApplicationContext()));
         try{
             Picasso.get().load(PreferenceUtils.getPhotoGuru(getApplicationContext())).into(fotoGuru);
 //            Picasso.get().load("https://eportofolio.id/uploads/ms_guru/"+PreferenceUtils.getPhotoGuru(getApplicationContext())).into(fotoGuru);
@@ -217,6 +216,7 @@ public class HomeTeacher extends AppCompatActivity {
         }
 
     }
+
 
     public void setDataPortfolio(){
         if (listPortofolio!=null){

@@ -19,7 +19,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <FrameLayout
+           <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/rect_login"/>
@@ -50,6 +50,7 @@
                     android:textColor="@color/font"
                     android:layout_marginTop="10dp"
                     android:paddingLeft="10dp"
+                    style="@style/MySpinnerLook"
                     android:background="@drawable/rect_spinner" />
 
                 <TextView
@@ -169,16 +170,21 @@
 
                 </FrameLayout>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Extension file must JPG,JPEG,PNG"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="12sp"/>
+
                 <ImageButton
                     android:id="@+id/btnInputPortfolio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="30dp"
-                    android:background="@drawable/btn_input_portfolio"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="INPUT"
-                    android:textColor="#ffffff"
-                    android:textSize="10pt" />
+                    android:layout_marginBottom="30dp"
+                    android:background="@drawable/btn_input_portfolio_unactive" />
 
 
             </LinearLayout>

@@ -28,8 +28,7 @@
             android:layout_height="wrap_content"
             android:text="JUDUL ARTIKEL"
             android:textSize="8pt"
-            android:fontFamily="@font/montserrat_bold"
-            android:textColor="@color/colorFont"/>
+            android:fontFamily="@font/montserrat_bold"/>
 
         <TextView
             android:id="@+id/isiArtikel"
@@ -40,8 +39,7 @@
             android:layout_marginTop="5dp"
             android:minLines="3"
             android:maxLines="5"
-            android:fontFamily="@font/montserrat_regular"
-            android:textColor="@color/colorFont"/>
+            android:fontFamily="@font/montserrat_regular"/>
 
         <TextView
             android:id="@+id/tglArtikel"
@@ -52,8 +50,7 @@
             android:layout_marginTop="10dp"
             android:gravity="right|bottom"
             android:layout_alignParentRight="true"
-            android:fontFamily="@font/montserrat_regular"
-            android:textColor="@color/colorFont"/>
+            android:fontFamily="@font/montserrat_regular"/>
 
     </LinearLayout>
 

@@ -30,8 +30,7 @@
             android:text="Matematika"
             android:textSize="7pt"
             android:layout_marginTop="5dp"
-            android:fontFamily="@font/montserrat_regular"
-            android:textColor="@color/colorFont"/>
+            android:fontFamily="@font/montserrat_regular"/>
 
         <TextView
             android:id="@+id/kelasListUnjukKerja"
@@ -40,8 +39,7 @@
             android:text="kelas X"
             android:textSize="7pt"
             android:layout_marginTop="5dp"
-            android:fontFamily="@font/montserrat_regular"
-            android:textColor="@color/colorFont"/>
+            android:fontFamily="@font/montserrat_regular"/>
 
         <TextView
             android:id="@+id/semesterListUnjukKerja"
@@ -50,8 +48,7 @@
             android:text="Semester 1"
             android:textSize="7pt"
             android:layout_marginTop="5dp"
-            android:fontFamily="@font/montserrat_regular"
-            android:textColor="@color/colorFont"/>
+            android:fontFamily="@font/montserrat_regular"/>
 
 
         <TextView
@@ -61,8 +58,7 @@
             android:text="Predikat : A"
             android:textSize="7pt"
             android:layout_marginTop="5dp"
-            android:fontFamily="@font/montserrat_regular"
-            android:textColor="@color/colorFont"/>
+            android:fontFamily="@font/montserrat_regular"/>
 
         <TextView
             android:id="@+id/narasiListUnjukKerja"
@@ -72,8 +68,7 @@
             android:textSize="7pt"
             android:layout_marginTop="5dp"
             android:minLines="6"
-            android:fontFamily="@font/montserrat_regular"
-            android:textColor="@color/colorFont"/>
+            android:fontFamily="@font/montserrat_regular"/>
 
         <TextView
             android:id="@+id/tglListUnjukKerja"
@@ -83,8 +78,7 @@
             android:textSize="7pt"
             android:layout_marginTop="5dp"
             android:gravity="right"
-            android:fontFamily="@font/montserrat_regular"
-            android:textColor="@color/colorFont"/>
+            android:fontFamily="@font/montserrat_regular"/>
 
     </LinearLayout>
 
@@ -96,7 +90,6 @@
         android:textSize="7pt"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/montserrat_bold"
-        android:layout_below="@id/imgListUnjukKerja"
-        android:textColor="@color/colorFont"/>
+        android:layout_below="@id/imgListUnjukKerja"/>
 
 </RelativeLayout>

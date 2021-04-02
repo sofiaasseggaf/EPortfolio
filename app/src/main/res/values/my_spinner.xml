@@ -2,8 +2,8 @@
 <resources>
     <style name="MySpinnerLook"
         parent="@android:style/Widget.TextView.SpinnerItem">
-        <item name="android:textSize">10sp</item>
-        <item name="android:textColor">@color/colorFont</item>
-        <item name="android:fontFamily">@font/montserrat_bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/font</item>
+        <item name="android:fontFamily">@font/roboto_regular</item>
     </style>
 </resources>

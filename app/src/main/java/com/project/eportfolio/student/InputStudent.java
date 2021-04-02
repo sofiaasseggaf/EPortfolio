@@ -46,6 +46,7 @@ import com.project.eportfolio.APIService.AppUtil;
 import com.project.eportfolio.R;
 //import com.project.eportfolio.utility.FileCompressor;
 import com.project.eportfolio.model.portfolio.ModelPostPortfolio;
+import com.project.eportfolio.student.portfolio.PortfolioStudentProject;
 import com.project.eportfolio.teacher.InputTeacher;
 import com.project.eportfolio.utility.FileCompressor;
 import com.project.eportfolio.utility.PreferenceUtils;
@@ -524,7 +525,7 @@ public class InputStudent extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
                         //HomeTeacher.super.onBackPressed();
-                        Intent a = new Intent(InputStudent.this, PortfolioStudent.class);
+                        Intent a = new Intent(InputStudent.this, PortfolioStudentProject.class);
                         startActivity(a);
                         finish();
                         /*if(Build.VERSION.SDK_INT>20){

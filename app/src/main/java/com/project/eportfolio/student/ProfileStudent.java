@@ -24,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.project.eportfolio.LoginActivity;
 import com.project.eportfolio.R;
+import com.project.eportfolio.student.portfolio.PortfolioStudentProject;
 import com.project.eportfolio.utility.PreferenceUtils;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -54,8 +55,8 @@ public class ProfileStudent extends AppCompatActivity {
         btnAbout = findViewById(R.id.btnAbout);
 
         namaProfile = findViewById(R.id.namaProfile);
-        nisProfile = findViewById(R.id.nisProfile);
-        sekolahProfile = findViewById(R.id.sekolahProfile);
+        //nisProfile = findViewById(R.id.nisProfile);
+        //sekolahProfile = findViewById(R.id.sekolahProfile);
         imgProfile = findViewById(R.id.imgProfile);
 
         namasiswa = PreferenceUtils.getFirstName(getApplicationContext()) + " " +
@@ -112,7 +113,7 @@ public class ProfileStudent extends AppCompatActivity {
         btn_portfolio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent a = new Intent(ProfileStudent.this, PortfolioStudent.class);
+                Intent a = new Intent(ProfileStudent.this, PortfolioStudentProject.class);
                 startActivity(a);
                 finish();
                 /*if(Build.VERSION.SDK_INT>20){
