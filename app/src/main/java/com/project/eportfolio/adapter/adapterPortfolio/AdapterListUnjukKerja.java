@@ -38,10 +38,10 @@ public class AdapterListUnjukKerja extends RecyclerView.Adapter<RecyclerView.Vie
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ((Penampung)holder).mapelListUnjukKerja.setText(dataItemList.get(position).getMapelid());
-        ((Penampung)holder).kelasListUnjukKerja.setText(dataItemList.get(position).getKelas());
-        ((Penampung)holder).semesterListUnjukKerja.setText("SEMESTER"+dataItemList.get(position).getSemester());
+        //((Penampung)holder).kelasListUnjukKerja.setText(dataItemList.get(position).getKelas());
+        //((Penampung)holder).semesterListUnjukKerja.setText("SEMESTER"+dataItemList.get(position).getSemester());
         ((Penampung)holder).predikatListUnjukKerja.setText(dataItemList.get(position).getPredikat());
-        ((Penampung)holder).narasiListUnjukKerja.setText(dataItemList.get(position).getNarasi());
+        //((Penampung)holder).narasiListUnjukKerja.setText(dataItemList.get(position).getNarasi());
         ((Penampung)holder).judulListUnjukKerja.setText(dataItemList.get(position).getJudulKd());
         ((Penampung)holder).tglListUnjukKerja.setText(dataItemList.get(position).getTanggal());
         try{
@@ -58,17 +58,16 @@ public class AdapterListUnjukKerja extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     public class Penampung extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView mapelListUnjukKerja, kelasListUnjukKerja, semesterListUnjukKerja,
-                predikatListUnjukKerja, narasiListUnjukKerja, judulListUnjukKerja, tglListUnjukKerja;
+        public TextView mapelListUnjukKerja, predikatListUnjukKerja, judulListUnjukKerja, tglListUnjukKerja;
         public ImageView imgListUnjukKerja;
 
         public Penampung(View itemView) {
             super(itemView);
             mapelListUnjukKerja = itemView.findViewById(R.id.mapelListUnjukKerja);
             predikatListUnjukKerja = itemView.findViewById(R.id.predikatListUnjukKerja);
-            kelasListUnjukKerja = itemView.findViewById(R.id.kelasListUnjukKerja);
-            semesterListUnjukKerja = itemView.findViewById(R.id.semesterListUnjukKerja);
-            narasiListUnjukKerja = itemView.findViewById(R.id.narasiListUnjukKerja);
+            //kelasListUnjukKerja = itemView.findViewById(R.id.kelasListUnjukKerja);
+            //semesterListUnjukKerja = itemView.findViewById(R.id.semesterListUnjukKerja);
+            //narasiListUnjukKerja = itemView.findViewById(R.id.narasiListUnjukKerja);
             judulListUnjukKerja = itemView.findViewById(R.id.judulListUnjukKerja);
             tglListUnjukKerja = itemView.findViewById(R.id.tglListUnjukKerja);
             imgListUnjukKerja = itemView.findViewById(R.id.imgListUnjukKerja);

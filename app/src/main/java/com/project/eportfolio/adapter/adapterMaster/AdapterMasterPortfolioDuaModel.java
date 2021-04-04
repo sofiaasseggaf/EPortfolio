@@ -49,7 +49,7 @@ public class AdapterMasterPortfolioDuaModel extends RecyclerView.Adapter<Recycle
         for (int i=0; i<dataListMsMurid.size(); i++){
             try{
                 if (dataListTrPortfolio.get(position).getMuridid().toString().equalsIgnoreCase(dataListMsMurid.get(i).getId())){
-                    ((Penampung)holder).namaMasterPortfolio.setText(dataListMsMurid.get(i).getFirstname()+" "+dataListMsMurid.get(i).getLastname());
+                    ((Penampung)holder).namaMasterPortfolio.setText("Oleh " + dataListMsMurid.get(i).getFirstname()+" "+dataListMsMurid.get(i).getLastname());
                     break;
                 }
                 else {
@@ -72,7 +72,7 @@ public class AdapterMasterPortfolioDuaModel extends RecyclerView.Adapter<Recycle
 
         }
 
-
+/*
         for (int i=0; i<dataListStrategi.size(); i++){
             try{
                 if (dataListTrPortfolio.get(position).getStrategiid().equalsIgnoreCase(dataListStrategi.get(i).getIdStrategi())){
@@ -83,10 +83,11 @@ public class AdapterMasterPortfolioDuaModel extends RecyclerView.Adapter<Recycle
             }
 
         }
+        */
 
         ((Penampung)holder).predikatMasterPortfolio.setText("Predikat : " + dataListTrPortfolio.get(position).getPredikatMutu());
-        ((Penampung)holder).narasiMasterPortfolio.setText(dataListTrPortfolio.get(position).getNarasi());
-        ((Penampung)holder).tglMasterPortfolio.setText(dataListTrPortfolio.get(position).getTanggal());
+        //((Penampung)holder).narasiMasterPortfolio.setText(dataListTrPortfolio.get(position).getNarasi());
+        //((Penampung)holder).tglMasterPortfolio.setText(dataListTrPortfolio.get(position).getTanggal());
         ((Penampung)holder).judulMasterPortfolio.setText(dataListTrPortfolio.get(position).getJudulKd());
 
         try{
@@ -109,11 +110,11 @@ public class AdapterMasterPortfolioDuaModel extends RecyclerView.Adapter<Recycle
             super(itemView);
             namaMasterPortfolio = itemView.findViewById(R.id.namaMasterPortfolio);
             mapelMasterPortfolio = itemView.findViewById(R.id.mapelMasterPortfolio);
-            strategiMasterPortfolio = itemView.findViewById(R.id.strategiMasterPortfolio);
+            //strategiMasterPortfolio = itemView.findViewById(R.id.strategiMasterPortfolio);
             predikatMasterPortfolio = itemView.findViewById(R.id.predikatMasterPortfolio);
-            narasiMasterPortfolio = itemView.findViewById(R.id.narasiMasterPortfolio);
+            //narasiMasterPortfolio = itemView.findViewById(R.id.narasiMasterPortfolio);
             judulMasterPortfolio = itemView.findViewById(R.id.judulMasterPortfolio);
-            tglMasterPortfolio = itemView.findViewById(R.id.tglMasterPortfolio);
+            //tglMasterPortfolio = itemView.findViewById(R.id.tglMasterPortfolio);
             imgMasterPortfolio = itemView.findViewById(R.id.imgMasterPortfolio);
         }
         @Override

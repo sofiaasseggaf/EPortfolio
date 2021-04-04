@@ -34,10 +34,10 @@ public class AdapterListProyek extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         ((Penampung)holder).mapelListProyek.setText(dataItemList.get(position).getMapelid());
-        ((Penampung)holder).kelasListProyek.setText(dataItemList.get(position).getKelas());
-        ((Penampung)holder).semesterListProyek.setText("SEMESTER"+dataItemList.get(position).getSemester());
+        //((Penampung)holder).kelasListProyek.setText(dataItemList.get(position).getKelas());
+        //((Penampung)holder).semesterListProyek.setText("SEMESTER"+dataItemList.get(position).getSemester());
         ((Penampung)holder).predikatListproyek.setText("Predikat : " + dataItemList.get(position).getPredikat());
-        ((Penampung)holder).narasiListProyek.setText(dataItemList.get(position).getNarasi());
+        //((Penampung)holder).narasiListProyek.setText(dataItemList.get(position).getNarasi());
         ((Penampung)holder).tglListProyek.setText(dataItemList.get(position).getTanggal());
         ((Penampung)holder).judulListProyek.setText(dataItemList.get(position).getJudulKd());
         try{
@@ -54,16 +54,15 @@ public class AdapterListProyek extends RecyclerView.Adapter<RecyclerView.ViewHol
     }
 
     static class Penampung extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView mapelListProyek,  kelasListProyek, semesterListProyek,
-                predikatListproyek, narasiListProyek, judulListProyek, tglListProyek;
+        public TextView mapelListProyek, predikatListproyek, judulListProyek, tglListProyek;
         public ImageView imgListProyek;
         public Penampung(View itemView) {
             super(itemView);
             mapelListProyek = itemView.findViewById(R.id.mapelListProyek);
-            kelasListProyek = itemView.findViewById(R.id.kelasListProyek);
-            semesterListProyek = itemView.findViewById(R.id.semesterListProyek);
+            //kelasListProyek = itemView.findViewById(R.id.kelasListProyek);
+            //semesterListProyek = itemView.findViewById(R.id.semesterListProyek);
             predikatListproyek = itemView.findViewById(R.id.predikatListProyek);
-            narasiListProyek = itemView.findViewById(R.id.narasiListProyek);
+            //narasiListProyek = itemView.findViewById(R.id.narasiListProyek);
             judulListProyek = itemView.findViewById(R.id.judulListProyek);
             tglListProyek = itemView.findViewById(R.id.tglListProyek);
             imgListProyek = itemView.findViewById(R.id.imgListProyek);

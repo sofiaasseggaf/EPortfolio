@@ -1,94 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/rounded_p1"
-    android:gravity="center_vertical"
-    android:layout_margin="10dp"
-    android:padding="10dp">
+    android:background="@drawable/rect_list_portfolio"
+    android:layout_marginBottom="15dp">
 
     <ImageView
         android:id="@+id/imgListKarya"
-        android:layout_width="120dp"
-        android:src="@drawable/nopic"
-        android:layout_height="120dp"/>
+        android:src="@drawable/rect_list_img_portfolio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_toRightOf="@id/imgListKarya"
-        android:layout_marginLeft="15dp">
+        android:layout_margin="10dp">
 
         <TextView
-            android:id="@+id/mapelListKarya"
+            android:id="@+id/judulListKarya"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kemampuan Seni dalam Berbahasa dan Merangkum Tulisan"
+            android:layout_alignParentTop="true"
+            android:textSize="16sp"
+            android:lines="2"
+            android:maxLines="4"
+            android:fontFamily="@font/roboto_medium"/>
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Matematika"
-            android:textSize="7pt"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/montserrat_regular"/>
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/kelasListKarya"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="kelas X"
-            android:textSize="7pt"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/montserrat_regular"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/semesterListKarya"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Semester 1"
-            android:textSize="7pt"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/montserrat_regular"/>
+                <TextView
+                    android:id="@+id/mapelListKarya"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="BAHASA SUNDA"
+                    android:textSize="10sp"
+                    android:textColor="@color/font"
+                    android:fontFamily="@font/roboto_regular"/>
 
+                <TextView
+                    android:id="@+id/tglListKarya"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="20/12/2020"
+                    android:textSize="10sp"
+                    android:textColor="@color/fontdarkgrey"
+                    android:layout_marginTop="3dp"
+                    android:fontFamily="@font/roboto_medium"/>
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/predikatListKarya"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Predikat : A"
-            android:textSize="7pt"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/montserrat_regular"/>
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/rect_list_predikat_portfolio">
+                <TextView
+                    android:id="@+id/predikatListKarya"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="#ffffff"
+                    android:text="A"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/roboto_medium"/>
+            </FrameLayout>
 
-        <TextView
-            android:id="@+id/narasiListKarya"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Narasi Singkat"
-            android:textSize="7pt"
-            android:layout_marginTop="5dp"
-            android:minLines="6"
-            android:fontFamily="@font/montserrat_regular"/>
+        </RelativeLayout>
 
-        <TextView
-            android:id="@+id/tglListKarya"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="10/02/2020"
-            android:textSize="7pt"
-            android:layout_marginTop="5dp"
-            android:gravity="right"/>
+    </RelativeLayout>
 
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/judulListKarya"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:text="Kemampuan Seni dalam Berbahasa"
-        android:textSize="7pt"
-        android:layout_marginTop="10dp"
-        android:fontFamily="@font/montserrat_bold"
-        android:layout_below="@id/imgListKarya"/>
-
-</RelativeLayout>
+</LinearLayout>

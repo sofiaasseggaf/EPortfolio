@@ -5,61 +5,80 @@
     android:orientation="vertical"
     android:layout_width="350dp"
     android:layout_height="550dp"
-    android:paddingTop="30dp"
-    android:paddingBottom="30dp"
-    android:padding="15dp"
     android:layout_gravity="center"
-    android:background="@drawable/bghome">
+    android:paddingBottom="15dp"
+    android:background="#ffffff">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:background="@drawable/upper"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_margin="10dp"
+        android:padding="10dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imgDeskDataGuru"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:src="@drawable/profilepicture"
-            app:civ_border_width="3dp"
-            app:civ_border_color="#ffffff"/>
-        <LinearLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@drawable/nopic"
+            app:civ_border_width="2dp"
+            android:layout_gravity="center_vertical"/>
+
+
+        <TextView
+            android:id="@+id/namaDeskDataGuru"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="70dp"
-            android:layout_marginLeft="10dp">
-            <TextView
-                android:id="@+id/namaDeskDataGuru"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:fontFamily="@font/montserrat_bold"
-                android:text="HIMALAYATI JAE HOO"/>
-            <TextView
-                android:id="@+id/sekolahDeskDataGuru"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:fontFamily="@font/montserrat_regular"
-                android:layout_marginTop="5dp"
-                android:text="SMA ADI LUHUR"/>
-
-        </LinearLayout>
-
+            android:text="Rachel Green"
+            android:textSize="24sp"
+            android:fontFamily="@font/roboto_medium"
+            android:lines="2"
+            android:maxLines="3"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="15dp"/>
     </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="15dp"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:text="Sekolah"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_gravity="center"
+                android:textSize="14sp"/>
+            <TextView
+                android:id="@+id/sekolahDeskDataGuru"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SMA ADI LUHUR"
+                android:fontFamily="@font/montserrat_regular"
+                android:layout_gravity="center"
+                android:textSize="12sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:orientation="horizontal">
             <TextView
                 android:layout_width="120dp"

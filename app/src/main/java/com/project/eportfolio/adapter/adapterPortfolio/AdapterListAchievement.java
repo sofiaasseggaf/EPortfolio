@@ -27,18 +27,18 @@ public class AdapterListAchievement extends RecyclerView.Adapter<RecyclerView.Vi
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.v_portfolio_list_forum_edukasi, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.v_portfolio_list_achievement, parent, false);
         Penampung penampung = new Penampung(view);
         return penampung;
     }
 
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
-        ((Penampung)holder).judulListForumEdukasi.setText(dataItemList.get(position).getJudulKd());
-        ((Penampung)holder).narasiListForumEdukasi.setText(dataItemList.get(position).getNarasi());
-        ((Penampung)holder).tglListForumEdukasi.setText(dataItemList.get(position).getTanggal());
+        ((Penampung)holder).judulListAchievement.setText(dataItemList.get(position).getJudulKd());
+        ((Penampung)holder).tempatListAchievement.setText(dataItemList.get(position).getTempat());
+        ((Penampung)holder).tglListAchievement.setText(dataItemList.get(position).getTanggal());
         try{
-            ImageView image = ((Penampung)holder).imgListForumEdukasi;
+            ImageView image = ((Penampung)holder).imgListAchievement;
             Picasso.get().load(dataItemList.get(position).getFoto().toString()).into(image);
         } catch (Exception e){
             e.printStackTrace();
@@ -51,18 +51,18 @@ public class AdapterListAchievement extends RecyclerView.Adapter<RecyclerView.Vi
     }
 
     static class Penampung extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView judulListForumEdukasi, narasiListForumEdukasi, tglListForumEdukasi;
-        public ImageView imgListForumEdukasi;
+        public TextView judulListAchievement, tempatListAchievement, tglListAchievement;
+        public ImageView imgListAchievement;
         public Penampung(View itemView) {
             super(itemView);
-            judulListForumEdukasi = itemView.findViewById(R.id.judulListForumEdukasi);
-            narasiListForumEdukasi = itemView.findViewById(R.id.narasiListForumEdukasi);
-            tglListForumEdukasi = itemView.findViewById(R.id.tglListForumEdukasi);
-            imgListForumEdukasi = itemView.findViewById(R.id.imgListForumEdukasi);
+            judulListAchievement = itemView.findViewById(R.id.judulListAchievement);
+            tempatListAchievement = itemView.findViewById(R.id.tempatListAchievement);
+            tglListAchievement = itemView.findViewById(R.id.tglListAchievement);
+            imgListAchievement = itemView.findViewById(R.id.imgListAchievement);
         }
         @Override
         public void onClick(View v) {
-            Log.d("onclick", "onClick " + getLayoutPosition() + " " + judulListForumEdukasi.getText());
+            Log.d("onclick", "onClick " + getLayoutPosition() + " " + judulListAchievement.getText());
         }
     }
 }

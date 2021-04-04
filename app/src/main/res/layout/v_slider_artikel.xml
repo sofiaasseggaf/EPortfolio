@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="250dp"
+    android:layout_width="240dp"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="10dp">
+    android:layout_marginRight="20dp"
+    android:orientation="vertical">
     <ImageView
         android:id="@+id/slider_artikel_img"
         android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:src="@drawable/nopic"
+        android:layout_height="wrap_content"
+        android:src="@drawable/rect_img_article"
         android:layout_gravity="center">
     </ImageView>
     <TextView
@@ -17,11 +17,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Aturan mencukur rambut saat mengunjungi tanah suci"
-        android:textColor="#2E2E2E"
-        android:layout_marginTop="15dp"
-        android:layout_gravity="center"
-        android:textAlignment="center"
-        android:fontFamily="@font/montserrat_regular"
+        android:textColor="@color/font"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/roboto_regular"
         android:textSize="14sp">
 
     </TextView>

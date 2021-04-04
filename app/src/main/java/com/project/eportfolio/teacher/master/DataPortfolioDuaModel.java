@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -249,7 +251,7 @@ public class DataPortfolioDuaModel extends AppCompatActivity {
                         public void run() {
                             findViewById(R.id.framelayout).setVisibility(View.GONE);
                             itemList = new AdapterMasterPortfolioDuaModel(listPortfolio, listsiswa, listMapel, listStrategi);
-                            rvDataPortfolio.setLayoutManager(new LinearLayoutManager(DataPortfolioDuaModel.this));
+                            rvDataPortfolio.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
                             rvDataPortfolio.setAdapter(itemList);
                         }
                     });

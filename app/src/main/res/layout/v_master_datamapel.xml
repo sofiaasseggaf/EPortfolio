@@ -15,8 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Matematika"
-        android:textSize="10pt"
-        android:fontFamily="@font/montserrat_bold"
+        android:textSize="20sp"
+        android:fontFamily="@font/roboto_medium"
         android:layout_gravity="center"/>
 
 </LinearLayout>

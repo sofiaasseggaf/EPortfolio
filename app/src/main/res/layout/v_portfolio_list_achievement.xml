@@ -9,7 +9,7 @@
     android:layout_marginBottom="15dp">
 
     <ImageView
-        android:id="@+id/imgListArticle"
+        android:id="@+id/imgListAchievement"
         android:src="@drawable/rect_list_img_portfolio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
@@ -21,7 +21,7 @@
         android:layout_margin="10dp">
 
         <TextView
-            android:id="@+id/judulListArticle"
+            android:id="@+id/judulListAchievement"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Kemampuan Seni dalam Berbahasa dan Merangkum Tulisan"
@@ -32,11 +32,9 @@
             android:fontFamily="@font/roboto_medium"/>
 
         <RelativeLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
             android:orientation="horizontal">
 
             <LinearLayout
@@ -46,26 +44,41 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tempatListArticle"
+                    android:id="@+id/tempatListAchievement"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Jakarta"
-                    android:textSize="14sp"
+                    android:textSize="10sp"
                     android:textColor="@color/font"
                     android:fontFamily="@font/roboto_regular"/>
 
                 <TextView
-                    android:id="@+id/tglListArticle"
+                    android:id="@+id/tglListAchievement"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="20/12/2020"
-                    android:textSize="14sp"
+                    android:textSize="10sp"
                     android:textColor="@color/fontdarkgrey"
                     android:layout_marginTop="3dp"
                     android:fontFamily="@font/roboto_medium"/>
             </LinearLayout>
 
-
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/rect_list_predikat_portfolio">
+                <TextView
+                    android:id="@+id/predikatListAchievement"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:textColor="#ffffff"
+                    android:text="A"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/roboto_medium"/>
+            </FrameLayout>
 
         </RelativeLayout>
 

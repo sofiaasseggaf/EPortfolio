@@ -1,101 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:background="@drawable/roundedgrey"
+    android:background="@drawable/rect_master_portfolio"
     android:gravity="center_vertical"
-    android:layout_margin="5dp"
+    android:layout_marginRight="30dp"
     android:padding="10dp">
 
     <ImageView
         android:id="@+id/imgMasterPortfolio"
-        android:layout_width="120dp"
-        android:src="@drawable/nopic"
-        android:layout_height="120dp"/>
-
-    <LinearLayout
-        android:id="@+id/ll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_toRightOf="@id/imgMasterPortfolio"
-        android:layout_marginLeft="15dp">
-
-        <TextView
-            android:id="@+id/namaMasterPortfolio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=" "
-            android:textSize="7pt"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/montserrat_bold"/>
-
-        <TextView
-            android:id="@+id/mapelMasterPortfolio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=" "
-            android:textSize="7pt"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/montserrat_regular"/>
-
-        <TextView
-            android:id="@+id/strategiMasterPortfolio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=" "
-            android:textSize="7pt"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/montserrat_regular"/>
-
-        <TextView
-            android:id="@+id/predikatMasterPortfolio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=" "
-            android:textSize="7pt"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/montserrat_regular"/>
-
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tglMasterPortfolio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="10/02/2020"
-        android:textSize="7pt"
-        android:layout_marginTop="10dp"
-        android:gravity="right|bottom"
-        android:layout_below="@id/narasiMasterPortfolio"
-        android:layout_alignParentRight="true"
-        android:fontFamily="@font/montserrat_regular"/>
+        android:layout_width="wrap_content"
+        android:src="@drawable/rect_img_master_portfolio"
+        android:layout_height="wrap_content"/>
 
     <TextView
         android:id="@+id/judulMasterPortfolio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Kemampuan Seni dalam Berbahasa"
-        android:textSize="7pt"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/imgMasterPortfolio"
-        android:fontFamily="@font/montserrat_bold"/>
+        android:text="Kemampuan Merangkum Tulisan"
+        android:textSize="14sp"
+        android:layout_marginTop="5dp"
+        android:lines="2"
+        android:maxLines="4"
+        android:textColor="@color/font"
+        android:fontFamily="@font/roboto_medium"/>
 
-
-    <TextView
-        android:id="@+id/narasiMasterPortfolio"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="sdsdsds "
-        android:textSize="7pt"
-        android:layout_marginTop="5dp"
-        android:minLines="3"
-        android:layout_below="@id/judulMasterPortfolio"
-        android:fontFamily="@font/montserrat_regular"/>
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/mapelMasterPortfolio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="BAHASA SUNDA"
+                android:textSize="10sp"
+                android:textColor="@color/font"
+                android:fontFamily="@font/roboto_regular"/>
+
+            <TextView
+                android:id="@+id/namaMasterPortfolio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Oleh Al-Baiqi Samaan"
+                android:textSize="10sp"
+                android:textColor="@color/fontdarkgrey"
+                android:layout_marginTop="3dp"
+                android:fontFamily="@font/roboto_medium"/>
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/rect_predikat_master_portfolio">
+            <TextView
+                android:id="@+id/predikatMasterPortfolio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textColor="#ffffff"
+                android:text="A"
+                android:textSize="14sp"
+                android:fontFamily="@font/roboto_medium"/>
+        </FrameLayout>
+
+    </RelativeLayout>
 
 
-</RelativeLayout>
+</LinearLayout>

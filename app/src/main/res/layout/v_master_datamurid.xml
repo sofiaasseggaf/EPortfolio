@@ -23,9 +23,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Rachel Green"
-            android:textSize="8pt"
-            android:fontFamily="@font/montserrat_bold"
-            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:fontFamily="@font/roboto_medium"
             android:layout_marginLeft="15dp"/>
 
 </LinearLayout>
