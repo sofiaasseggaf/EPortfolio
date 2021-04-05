@@ -74,7 +74,7 @@ import static com.project.eportfolio.APIService.AppUtil.*;
 public class ProfileStudentSettingEdit extends AppCompatActivity {
 
     ImageButton btnSimpan;
-    TextView btnUbahFotoProfile, btnSaveFotoProfile, namaSiswa, nisSiswa, txtload;
+    TextView btnUbahFotoProfile, btnSaveFotoProfile, namaSiswa, txtload;
     EditText editFirstName, editMidName, editLastName, editTtl, editNis, editJk, editAlamat, editEmail, editTelp;
     ImageView imgSiswa;
     ModelSiswa dataModelSiswa;
@@ -179,7 +179,7 @@ public class ProfileStudentSettingEdit extends AppCompatActivity {
         namaSiswa.setText(PreferenceUtils.getFirstName(getApplicationContext()) + " " +
                 PreferenceUtils.getMidName(getApplicationContext()) + " " +
                 PreferenceUtils.getLastName(getApplicationContext()));
-        nisSiswa.setText("NIS : "+PreferenceUtils.getNis(getApplicationContext()));
+        //nisSiswa.setText("NIS : "+PreferenceUtils.getNis(getApplicationContext()));
         try {
             if (!PreferenceUtils.getPhotoSiswa(getApplicationContext()).equalsIgnoreCase("") || PreferenceUtils.getPhotoSiswa(getApplicationContext())!= null){
 

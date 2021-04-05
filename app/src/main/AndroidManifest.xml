@@ -36,36 +36,55 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.project.eportfolio.LoginActivity" />
+        <activity android:name="com.project.eportfolio.LoginActivity"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name="com.project.eportfolio.utility.PreferenceUtils" />
         <activity android:name=".ArtikelActivity" />
 
+
+
         <activity android:name="com.project.eportfolio.student.HomeStudent"
-            android:windowSoftInputMode="stateHidden"/>
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name="com.project.eportfolio.student.InputStudent"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name="com.project.eportfolio.student.portfolio.PortfolioStudentUnjukKerja"/>
-        <activity android:name="com.project.eportfolio.student.portfolio.PortfolioStudentKarya"/>
-        <activity android:name="com.project.eportfolio.student.portfolio.PortfolioStudentProject"/>
-        <activity android:name="com.project.eportfolio.student.portfolio.PortfolioStudentAchievement"/>
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name="com.project.eportfolio.student.ProfileStudent"/>
-        <activity android:name="com.project.eportfolio.student.ProfileStudentSettingEdit" />
-        <activity android:name="com.project.eportfolio.student.ProfileStudentSettingPrivacy" />
+        <activity android:name="com.project.eportfolio.student.ProfileStudentSettingEdit"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name="com.project.eportfolio.student.ProfileStudentSettingPrivacy"
+            android:windowSoftInputMode="stateHidden" />
+
+        <activity android:name="com.project.eportfolio.student.portfolio.PortfolioStudentUnjukKerja"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name="com.project.eportfolio.student.portfolio.PortfolioStudentKarya"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name="com.project.eportfolio.student.portfolio.PortfolioStudentProject"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name="com.project.eportfolio.student.portfolio.PortfolioStudentAchievement"
+            android:windowSoftInputMode="stateHidden" />
 
 
-        <activity android:name="com.project.eportfolio.teacher.HomeTeacher" />
+
+        <activity android:name="com.project.eportfolio.teacher.HomeTeacher"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name="com.project.eportfolio.teacher.InputTeacher"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name="com.project.eportfolio.teacher.MasterTeacher" />
         <activity android:name="com.project.eportfolio.teacher.ProfileTeacher"/>
-        <activity android:name="com.project.eportfolio.teacher.ProfileTeacherSettingEdit" />
-        <activity android:name="com.project.eportfolio.teacher.ProfileTeacherSettingPrivacy" />
+        <activity android:name="com.project.eportfolio.teacher.ProfileTeacherSettingEdit"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name="com.project.eportfolio.teacher.ProfileTeacherSettingPrivacy"
+            android:windowSoftInputMode="stateHidden" />
 
-        <activity android:name="com.project.eportfolio.teacher.master.DataGuru" />
-        <activity android:name="com.project.eportfolio.teacher.master.DataKelas" />
-        <activity android:name="com.project.eportfolio.teacher.master.DataMapel" />
-        <activity android:name="com.project.eportfolio.teacher.master.DataMurid" />
-        <activity android:name="com.project.eportfolio.teacher.master.DataPortfolioDuaModel" />
+        <activity android:name="com.project.eportfolio.teacher.master.DataGuru"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name="com.project.eportfolio.teacher.master.DataKelas"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name="com.project.eportfolio.teacher.master.DataMapel"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name="com.project.eportfolio.teacher.master.DataMurid"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name="com.project.eportfolio.teacher.master.DataPortfolioDuaModel"
+            android:windowSoftInputMode="stateHidden"/>
 
         <provider
             android:name="androidx.core.content.FileProvider"

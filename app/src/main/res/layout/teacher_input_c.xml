@@ -455,7 +455,7 @@
         android:id="@+id/framelayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bgpenghargaan"
+        android:background="#B5EFEFEF"
         android:visibility="gone">
 
         <LinearLayout

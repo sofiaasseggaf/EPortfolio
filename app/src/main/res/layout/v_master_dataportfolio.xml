@@ -13,9 +13,9 @@
 
     <ImageView
         android:id="@+id/imgMasterPortfolio"
-        android:layout_width="wrap_content"
+        android:layout_width="165dp"
         android:src="@drawable/rect_img_master_portfolio"
-        android:layout_height="wrap_content"/>
+        android:layout_height="133dp"/>
 
     <TextView
         android:id="@+id/judulMasterPortfolio"

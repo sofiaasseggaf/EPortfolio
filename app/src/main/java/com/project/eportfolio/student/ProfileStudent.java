@@ -32,11 +32,11 @@ import com.squareup.picasso.Target;
 public class ProfileStudent extends AppCompatActivity {
 
     ImageButton btn_beranda, btn_portfolio, btn_input, btn_profile;
-    TextView namaProfile, nisProfile, sekolahProfile;
+    TextView namaProfile;
     ImageView imgProfile;
     String namasiswa;
 
-    LinearLayout btnEditPrivacy, btnLogout, btnEditAccount, btnAbout;
+    LinearLayout btnEditPrivacy, btnLogout, btnEditAccount, btnAbout, btnContact, btnHelp;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,6 +53,8 @@ public class ProfileStudent extends AppCompatActivity {
         btnEditPrivacy = findViewById(R.id.btnEditPrivacy);
         btnLogout = findViewById(R.id.btnLogout);
         btnAbout = findViewById(R.id.btnAbout);
+        btnContact = findViewById(R.id.btnContact);
+        btnHelp = findViewById(R.id.btnHelp);
 
         namaProfile = findViewById(R.id.namaProfile);
         //nisProfile = findViewById(R.id.nisProfile);
@@ -63,8 +65,8 @@ public class ProfileStudent extends AppCompatActivity {
                 PreferenceUtils.getMidName(getApplicationContext()) + " " +
                 PreferenceUtils.getLastName(getApplicationContext());
         namaProfile.setText(namasiswa);
-        nisProfile.setText("NIS : "+PreferenceUtils.getNis(getApplicationContext()));
-        sekolahProfile.setText(PreferenceUtils.getSekolahNama(getApplicationContext()));
+        //nisProfile.setText("NIS : "+PreferenceUtils.getNis(getApplicationContext()));
+        //sekolahProfile.setText(PreferenceUtils.getSekolahNama(getApplicationContext()));
         try{
             if (!PreferenceUtils.getPhotoSiswa(getApplicationContext()).equalsIgnoreCase("") || PreferenceUtils.getPhotoSiswa(getApplicationContext())!= null){
 
@@ -190,6 +192,20 @@ public class ProfileStudent extends AppCompatActivity {
         });
 
         btnAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ProfileStudent.this, "Trial Version", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btnContact.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ProfileStudent.this, "Trial Version", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btnHelp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(ProfileStudent.this, "Trial Version", Toast.LENGTH_SHORT).show();

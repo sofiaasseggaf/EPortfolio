@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +23,8 @@ import com.project.eportfolio.model.portfolio.TrPortofolio;
 import com.project.eportfolio.model.strategi.ModelStrategi;
 import com.project.eportfolio.model.strategi.MsStrategi;
 import com.project.eportfolio.student.HomeStudent;
+import com.project.eportfolio.student.InputStudent;
+import com.project.eportfolio.student.ProfileStudent;
 import com.project.eportfolio.utility.PreferenceUtils;
 
 import java.util.ArrayList;
@@ -39,7 +43,9 @@ public class PortfolioStudentProject extends AppCompatActivity {
     List<TrPortofolio> listProjectMurid = new ArrayList<>();
     List<MsStrategi> listProject = new ArrayList<>();
     AdapterListProyek itemList;
-    TextView txtload;
+
+    ImageButton btn_beranda, btn_portfolio, btn_input, btn_profile;
+    LinearLayout btn_ll_a, btn_ll_k, btn_ll_p, btn_ll_uk;
 
     String apikey = "7826470ABBA476706DB24D47C6A6ED64";
 
@@ -49,42 +55,75 @@ public class PortfolioStudentProject extends AppCompatActivity {
         setContentView(R.layout.student_portfolio_proyek);
 
         rvProyek = findViewById(R.id.rvProyek);
-        txtload = findViewById(R.id.textloading);
+        btn_beranda = findViewById(R.id.btn_home);
+        btn_portfolio = findViewById(R.id.btn_portfolio);
+        btn_input = findViewById(R.id.btn_input);
+        btn_profile = findViewById(R.id.btn_profile);
+        btn_ll_a = findViewById(R.id.btn_ll_a);
+        btn_ll_k = findViewById(R.id.btn_ll_k);
+        btn_ll_p = findViewById(R.id.btn_ll_p);
+        btn_ll_uk = findViewById(R.id.btn_ll_uk);
+
         first();
+
+        btn_beranda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(PortfolioStudentProject.this, HomeStudent.class);
+                startActivity(a);
+                finish();
+            }
+        });
+
+        btn_input.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(PortfolioStudentProject.this, InputStudent.class);
+                startActivity(a);
+                finish();
+            }
+        });
+
+        btn_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(PortfolioStudentProject.this, ProfileStudent.class);
+                startActivity(a);
+                finish();
+            }
+        });
+
+        btn_ll_a.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(PortfolioStudentProject.this, PortfolioStudentAchievement.class);
+                startActivity(a);
+                finish();
+            }
+        });
+
+        btn_ll_k.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(PortfolioStudentProject.this, PortfolioStudentKarya.class);
+                startActivity(a);
+                finish();
+            }
+        });
+
+        btn_ll_uk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(PortfolioStudentProject.this, PortfolioStudentUnjukKerja.class);
+                startActivity(a);
+                finish();
+            }
+        });
+
     }
 
     public void first(){
         findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
-        final Handler handler = new Handler();
-        Runnable runnable = new Runnable() {
-
-            int count = 0;
-
-            @Override
-            public void run() {
-                count++;
-
-                if (count == 1)
-                {
-                    txtload.setText("Loading Portfolio .");
-                }
-                else if (count == 2)
-                {
-                    txtload.setText("Loading Portfolio . .");
-                }
-                else if (count == 3)
-                {
-                    txtload.setText("Loading Portfolio . . .");
-                }
-
-                if (count == 3)
-                    count = 0;
-
-                handler.postDelayed(this, 1500);
-            }
-        };
-        handler.postDelayed(runnable, 1 * 1000);
-
         new Thread(new Runnable() {
             @Override
             public void run() {

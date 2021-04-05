@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,8 @@ import com.project.eportfolio.R;
 import com.project.eportfolio.adapter.adapterPortfolio.AdapterSliderPortfolio;
 import com.project.eportfolio.model.portfolio.ModelPortofolio;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
+import com.project.eportfolio.student.portfolio.PortfolioStudentAchievement;
+import com.project.eportfolio.student.portfolio.PortfolioStudentKarya;
 import com.project.eportfolio.student.portfolio.PortfolioStudentProject;
 import com.project.eportfolio.student.portfolio.PortfolioStudentUnjukKerja;
 import com.project.eportfolio.utility.PreferenceUtils;
@@ -50,6 +53,8 @@ public class HomeStudent extends AppCompatActivity {
 
     ImageButton btn_beranda, btn_portfolio, btn_input, btn_profile;
     TextView txtUnjukKerja, txtProyek, txtKarya, txtOrganisasi, txtForumEdukasi, txtPenghargaan, txtload;
+    ImageButton btn_home_karya, btn_home_unjukkerja, btn_home_project;
+    ImageButton btn_home_achievement, btn_home_mapel, btn_home_guru, btn_home_artikel, btn_home_kalender;
 
     ModelPortofolio dataModelPortfolio;
     List<TrPortofolio> listPortofolio = new ArrayList<>();
@@ -82,6 +87,15 @@ public class HomeStudent extends AppCompatActivity {
         btn_input = findViewById(R.id.btn_input);
         btn_profile = findViewById(R.id.btn_profile);
 
+        btn_home_karya = findViewById(R.id.btn_home_karya);
+        btn_home_unjukkerja = findViewById(R.id.btn_home_unjukkerja);
+        btn_home_project = findViewById(R.id.btn_home_project);
+        btn_home_achievement = findViewById(R.id.btn_home_achievement);
+        btn_home_mapel = findViewById(R.id.btn_home_mapel);
+        btn_home_guru = findViewById(R.id.btn_home_guru);
+        btn_home_artikel = findViewById(R.id.btn_home_artikel);
+        btn_home_kalender = findViewById(R.id.btn_home_kalender);
+
         namaSiswa = findViewById(R.id.namaSiswa);
         //nisSiswa = findViewById(R.id.nisSiswa);
         fotoSiswa = findViewById(R.id.imgSiswa);
@@ -110,14 +124,6 @@ public class HomeStudent extends AppCompatActivity {
                 Intent a = new Intent(HomeStudent.this, PortfolioStudentProject.class);
                 startActivity(a);
                 finish();
-                /*if(Build.VERSION.SDK_INT>20){
-                    ActivityOptions options =
-                            ActivityOptions.makeSceneTransitionAnimation(HomeStudent.this);
-                    startActivity(a,options.toBundle());
-                }else {
-                    startActivity(a);
-                    finish();
-                }*/
             }
         });
 
@@ -175,7 +181,69 @@ public class HomeStudent extends AppCompatActivity {
             }
         });
 
+        btn_home_karya.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(HomeStudent.this, PortfolioStudentKarya.class);
+                startActivity(a);
+                finish();
+            }
+        });
 
+        btn_home_unjukkerja.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(HomeStudent.this, PortfolioStudentUnjukKerja.class);
+                startActivity(a);
+                finish();
+            }
+        });
+
+        btn_home_project.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(HomeStudent.this, PortfolioStudentProject.class);
+                startActivity(a);
+                finish();
+            }
+        });
+
+        btn_home_achievement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(HomeStudent.this, PortfolioStudentAchievement.class);
+                startActivity(a);
+                finish();
+            }
+        });
+
+        btn_home_mapel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(HomeStudent.this, "Trial Version", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btn_home_guru.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(HomeStudent.this, "Trial Version", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btn_home_artikel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(HomeStudent.this, "Trial Version", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btn_home_kalender.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(HomeStudent.this, "Trial Version", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 

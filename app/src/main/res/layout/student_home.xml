@@ -94,7 +94,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="50dp"
+                    android:layout_marginRight="30dp"
                     android:background="@drawable/icon_search"/>
 
             </RelativeLayout>
@@ -118,6 +118,7 @@
                     android:orientation="vertical"
                     android:gravity="center_horizontal">
                     <ImageButton
+                        android:id="@+id/btn_home_karya"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/icon_karya"/>
@@ -137,6 +138,7 @@
                     android:orientation="vertical"
                     android:gravity="center_horizontal">
                     <ImageButton
+                        android:id="@+id/btn_home_unjukkerja"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/icon_unjuk_kerja"/>
@@ -156,6 +158,7 @@
                     android:orientation="vertical"
                     android:gravity="center_horizontal">
                     <ImageButton
+                        android:id="@+id/btn_home_project"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/icon_project"/>
@@ -175,6 +178,7 @@
                     android:orientation="vertical"
                     android:gravity="center_horizontal">
                     <ImageButton
+                        android:id="@+id/btn_home_achievement"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/icon_achievment"/>
@@ -208,6 +212,7 @@
                     android:orientation="vertical"
                     android:gravity="center_horizontal">
                     <ImageButton
+                        android:id="@+id/btn_home_mapel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/icon_mata_pelajaran"/>
@@ -218,6 +223,7 @@
                         android:fontFamily="@font/roboto_regular"
                         android:textSize="12sp"
                         android:maxLines="2"
+                        android:gravity="center"
                         android:text="Mata Pelajaran"/>
                 </LinearLayout>
 
@@ -228,6 +234,7 @@
                     android:orientation="vertical"
                     android:gravity="center_horizontal">
                     <ImageButton
+                        android:id="@+id/btn_home_guru"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/icon_guru"/>
@@ -247,6 +254,7 @@
                     android:orientation="vertical"
                     android:gravity="center_horizontal">
                     <ImageButton
+                        android:id="@+id/btn_home_artikel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/icon_article"/>
@@ -267,6 +275,7 @@
                     android:orientation="vertical"
                     android:gravity="center_horizontal">
                     <ImageButton
+                        android:id="@+id/btn_home_kalender"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/icon_calendar"/>

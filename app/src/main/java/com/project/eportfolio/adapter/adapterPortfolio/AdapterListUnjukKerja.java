@@ -22,7 +22,7 @@ public class AdapterListUnjukKerja extends RecyclerView.Adapter<RecyclerView.Vie
     private List<TrPortofolio> dataItemList;
     private final ClickLIstenerUnjukKerja mListener;
 
-    public AdapterListUnjukKerja(Runnable listener, List<TrPortofolio> dataItemList ){
+    public AdapterListUnjukKerja(ClickLIstenerUnjukKerja listener, List<TrPortofolio> dataItemList ){
         this.dataItemList = dataItemList;
         mListener = (ClickLIstenerUnjukKerja) listener;
     }
@@ -71,6 +71,8 @@ public class AdapterListUnjukKerja extends RecyclerView.Adapter<RecyclerView.Vie
             judulListUnjukKerja = itemView.findViewById(R.id.judulListUnjukKerja);
             tglListUnjukKerja = itemView.findViewById(R.id.tglListUnjukKerja);
             imgListUnjukKerja = itemView.findViewById(R.id.imgListUnjukKerja);
+
+            itemView.setOnClickListener(this);
         }
         @Override
         public void onClick(View v) {
@@ -78,16 +80,7 @@ public class AdapterListUnjukKerja extends RecyclerView.Adapter<RecyclerView.Vie
         }
     }
 
-    public void addPortfolio(TrPortofolio portofolio) {
-        dataItemList.add(portofolio);
-        notifyDataSetChanged();
-    }
-    public void reset() {
-        dataItemList.clear();
-        notifyDataSetChanged();
-    }
-
-    public TrPortofolio getSelectedUnjukKerja(int position) {
+    public TrPortofolio getSelectedPortfolio(int position) {
         return dataItemList.get(position);
     }
 

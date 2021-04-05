@@ -3,7 +3,10 @@ package com.project.eportfolio.student.portfolio;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Parcelable;
 import android.view.View;
+import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +24,9 @@ import com.project.eportfolio.model.portfolio.TrPortofolio;
 import com.project.eportfolio.model.strategi.ModelStrategi;
 import com.project.eportfolio.model.strategi.MsStrategi;
 import com.project.eportfolio.student.HomeStudent;
+import com.project.eportfolio.student.InputStudent;
+import com.project.eportfolio.student.ProfileStudent;
+import com.project.eportfolio.utility.Constants;
 import com.project.eportfolio.utility.PreferenceUtils;
 
 import java.util.ArrayList;
@@ -30,7 +36,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PortfolioStudentUnjukKerja extends AppCompatActivity {
+public class PortfolioStudentUnjukKerja extends AppCompatActivity implements AdapterListUnjukKerja.ClickLIstenerUnjukKerja, View.OnClickListener {
 
     RecyclerView rvunjukkerja;
     ModelPortofolio dataModelPortfolio;
@@ -39,7 +45,9 @@ public class PortfolioStudentUnjukKerja extends AppCompatActivity {
     List<TrPortofolio> listUnjukKerjaMurid = new ArrayList<>();
     List<MsStrategi> listUnjukKerja = new ArrayList<>();
     AdapterListUnjukKerja itemList;
-    TextView txtload;
+
+    ImageButton btn_beranda, btn_portfolio, btn_input, btn_profile;
+    LinearLayout btn_ll_a, btn_ll_k, btn_ll_p, btn_ll_uk;
 
     String apikey = "7826470ABBA476706DB24D47C6A6ED64";
 
@@ -49,42 +57,75 @@ public class PortfolioStudentUnjukKerja extends AppCompatActivity {
         setContentView(R.layout.student_portfolio_unjuk_kerja);
 
         rvunjukkerja = findViewById(R.id.rvUnjukKerja);
-        txtload = findViewById(R.id.textloading);
+        btn_beranda = findViewById(R.id.btn_home);
+        btn_portfolio = findViewById(R.id.btn_portfolio);
+        btn_input = findViewById(R.id.btn_input);
+        btn_profile = findViewById(R.id.btn_profile);
+        btn_ll_a = findViewById(R.id.btn_ll_a);
+        btn_ll_k = findViewById(R.id.btn_ll_k);
+        btn_ll_p = findViewById(R.id.btn_ll_p);
+        btn_ll_uk = findViewById(R.id.btn_ll_uk);
+
         first();
+
+        btn_beranda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(PortfolioStudentUnjukKerja.this, HomeStudent.class);
+                startActivity(a);
+                finish();
+            }
+        });
+
+        btn_input.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(PortfolioStudentUnjukKerja.this, InputStudent.class);
+                startActivity(a);
+                finish();
+            }
+        });
+
+        btn_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(PortfolioStudentUnjukKerja.this, ProfileStudent.class);
+                startActivity(a);
+                finish();
+            }
+        });
+
+        btn_ll_a.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(PortfolioStudentUnjukKerja.this, PortfolioStudentAchievement.class);
+                startActivity(a);
+                finish();
+            }
+        });
+
+        btn_ll_k.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(PortfolioStudentUnjukKerja.this, PortfolioStudentKarya.class);
+                startActivity(a);
+                finish();
+            }
+        });
+
+        btn_ll_p.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(PortfolioStudentUnjukKerja.this, PortfolioStudentProject.class);
+                startActivity(a);
+                finish();
+            }
+        });
+
     }
 
     public void first(){
         findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
-        final Handler handler = new Handler();
-        Runnable runnable = new Runnable() {
-
-            int count = 0;
-
-            @Override
-            public void run() {
-                count++;
-
-                if (count == 1)
-                {
-                    txtload.setText("Loading Portfolio .");
-                }
-                else if (count == 2)
-                {
-                    txtload.setText("Loading Portfolio . .");
-                }
-                else if (count == 3)
-                {
-                    txtload.setText("Loading Portfolio . . .");
-                }
-
-                if (count == 3)
-                    count = 0;
-
-                handler.postDelayed(this, 1500);
-            }
-        };
-        handler.postDelayed(runnable, 1 * 1000);
-
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -169,7 +210,7 @@ public class PortfolioStudentUnjukKerja extends AppCompatActivity {
                             @Override
                             public void run() {
                                 findViewById(R.id.framelayout).setVisibility(View.GONE);
-                                itemList = new AdapterListUnjukKerja(this, listUnjukKerjaMurid);
+                                itemList = new AdapterListUnjukKerja(PortfolioStudentUnjukKerja.this, listUnjukKerjaMurid);
                                 rvunjukkerja.setLayoutManager(new LinearLayoutManager(PortfolioStudentUnjukKerja.this));
                                 rvunjukkerja.setAdapter(itemList);
                             }
@@ -241,4 +282,16 @@ public class PortfolioStudentUnjukKerja extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    public void onClick(int position) {
+        TrPortofolio selectedPortfolio = itemList.getSelectedPortfolio(position);
+        Intent intent = new Intent(PortfolioStudentUnjukKerja.this, PortfolioDetail.class);
+        intent.putExtra(Constants.REFERENCE.PORTFOLIO, (Parcelable) selectedPortfolio);
+        startActivity(intent);
+    }
+
+    @Override
+    public void onClick(View v) {
+
+    }
 }

@@ -99,22 +99,22 @@ public class HomeTeacher extends AppCompatActivity {
             }
         });
 
-        txtMorePortfolioGuru.setOnClickListener(new View.OnClickListener() {
+        /*txtMorePortfolioGuru.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent a = new Intent(HomeTeacher.this, DataPortfolioDuaModel.class);
                 startActivity(a);
                 finish();
-                /*if(Build.VERSION.SDK_INT>20){
+                *//*if(Build.VERSION.SDK_INT>20){
                     ActivityOptions options =
                             ActivityOptions.makeSceneTransitionAnimation(HomeTeacher.this);
                     startActivity(a,options.toBundle());
                 }else {
                     startActivity(a);
                     finish();
-                }*/
+                }*//*
             }
-        });
+        });*/
 /*
 
         txtMoreArtikelGuru.setOnClickListener(new View.OnClickListener() {

@@ -127,6 +127,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_regular"
                         android:textSize="14sp"
+                        android:paddingLeft="10dp"
                         android:background="@drawable/rect_spinner"
                         android:layout_marginTop="10dp"/>
                 </LinearLayout>
@@ -149,6 +150,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_regular"
                         android:textSize="14sp"
+                        android:paddingLeft="10dp"
                         android:background="@drawable/rect_spinner"
                         android:layout_marginTop="10dp"/>
                 </LinearLayout>
@@ -171,6 +173,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_regular"
                         android:textSize="14sp"
+                        android:paddingLeft="10dp"
                         android:background="@drawable/rect_spinner"
                         android:layout_marginTop="10dp"/>
                 </LinearLayout>
@@ -193,6 +196,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_regular"
                         android:textSize="14sp"
+                        android:paddingLeft="10dp"
                         android:background="@drawable/rect_spinner"
                         android:layout_marginTop="10dp">
                     </EditText>
@@ -216,6 +220,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_regular"
                         android:textSize="14sp"
+                        android:paddingLeft="10dp"
                         android:background="@drawable/rect_spinner"
                         android:layout_marginTop="10dp"/>
                 </LinearLayout>
@@ -238,6 +243,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_regular"
                         android:textSize="14sp"
+                        android:paddingLeft="10dp"
                         android:background="@drawable/rect_spinner"
                         android:layout_marginTop="10dp"/>
                 </LinearLayout>
@@ -260,6 +266,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_regular"
                         android:textSize="14sp"
+                        android:paddingLeft="10dp"
                         android:background="@drawable/rect_spinner"
                         android:layout_marginTop="10dp"/>
                 </LinearLayout>
@@ -282,6 +289,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_regular"
                         android:textSize="14sp"
+                        android:paddingLeft="10dp"
                         android:background="@drawable/rect_spinner"
                         android:layout_marginTop="10dp"/>
                 </LinearLayout>
@@ -304,6 +312,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_regular"
                         android:textSize="14sp"
+                        android:paddingLeft="10dp"
                         android:background="@drawable/rect_spinner"
                         android:layout_marginTop="10dp"/>
                 </LinearLayout>
@@ -327,7 +336,7 @@
         android:id="@+id/framelayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/bgunjukkarya"
+        android:background="#B5EFEFEF"
         android:visibility="gone">
 
         <LinearLayout

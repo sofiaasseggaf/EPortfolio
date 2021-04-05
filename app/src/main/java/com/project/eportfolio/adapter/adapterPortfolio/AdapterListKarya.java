@@ -37,7 +37,7 @@ public class AdapterListKarya extends RecyclerView.Adapter<RecyclerView.ViewHold
         ((Penampung)holder).mapelListKarya.setText(dataItemList.get(position).getMapelid());
         //((Penampung)holder).kelasListKarya.setText(dataItemList.get(position).getKelas());
         //((Penampung)holder).semesterListKarya.setText("SEMESTER"+dataItemList.get(position).getSemester());
-        ((Penampung)holder).predikatListKarya.setText("Predikat : " + dataItemList.get(position).getPredikat());
+        ((Penampung)holder).predikatListKarya.setText(dataItemList.get(position).getPredikat());
         //((Penampung)holder).narasiListKarya.setText(dataItemList.get(position).getNarasi());
         ((Penampung)holder).tglListKarya.setText(dataItemList.get(position).getTanggal());
         ((Penampung)holder).judulListKarya.setText(dataItemList.get(position).getJudulKd());

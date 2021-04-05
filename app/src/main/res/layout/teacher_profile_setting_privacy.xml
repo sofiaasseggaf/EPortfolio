@@ -116,7 +116,7 @@
         android:id="@+id/framelayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/loading"
+        android:background="#B5EFEFEF"
         android:visibility="gone">
         <ProgressBar
             style="?android:attr/progressBarStyle"
