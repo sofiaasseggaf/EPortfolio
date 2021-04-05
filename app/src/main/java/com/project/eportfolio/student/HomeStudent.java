@@ -53,8 +53,8 @@ public class HomeStudent extends AppCompatActivity {
 
     ImageButton btn_beranda, btn_portfolio, btn_input, btn_profile;
     TextView txtUnjukKerja, txtProyek, txtKarya, txtOrganisasi, txtForumEdukasi, txtPenghargaan, txtload;
-    ImageButton btn_home_karya, btn_home_unjukkerja, btn_home_project;
-    ImageButton btn_home_achievement, btn_home_mapel, btn_home_guru, btn_home_artikel, btn_home_kalender;
+    ImageButton btn_home_karya, btn_home_unjukkerja, btn_home_project, btn_home_achievement;
+    ImageButton btn_home_mapel, btn_home_guru, btn_home_artikel, btn_home_kalender;
 
     ModelPortofolio dataModelPortfolio;
     List<TrPortofolio> listPortofolio = new ArrayList<>();

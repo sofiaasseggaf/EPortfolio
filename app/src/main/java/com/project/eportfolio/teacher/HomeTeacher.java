@@ -26,6 +26,11 @@ import com.project.eportfolio.model.blog.Blog;
 import com.project.eportfolio.model.blog.ModelBlog;
 import com.project.eportfolio.model.portfolio.ModelPortofolio;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
+import com.project.eportfolio.model.siswa.ModelUpdateDataSiswa;
+import com.project.eportfolio.teacher.master.DataGuru;
+import com.project.eportfolio.teacher.master.DataKelas;
+import com.project.eportfolio.teacher.master.DataMapel;
+import com.project.eportfolio.teacher.master.DataMurid;
 import com.project.eportfolio.teacher.master.DataPortfolioDuaModel;
 import com.project.eportfolio.utility.PreferenceUtils;
 import com.squareup.picasso.Picasso;
@@ -40,6 +45,8 @@ import retrofit2.Response;
 public class HomeTeacher extends AppCompatActivity {
 
     ImageButton btn_beranda, btn_master, btn_input, btn_profile;
+    ImageButton btn_home_kelas, btn_home_mapel, btn_home_guru, btn_home_siswa;
+    ImageButton btn_home_portfolio, btn_home_master, btn_home_artikel, btn_home_kalender;
 
     String namaguru;
     TextView namaGuru, txtMorePortfolioGuru, txtload, txtload2, txtMoreArtikelGuru;
@@ -67,6 +74,15 @@ public class HomeTeacher extends AppCompatActivity {
         btn_input = findViewById(R.id.btn_input);
         btn_profile = findViewById(R.id.btn_profile);
 
+        btn_home_kelas = findViewById(R.id.btn_home_kelas);
+        btn_home_mapel = findViewById(R.id.btn_home_mapel);
+        btn_home_guru = findViewById(R.id.btn_home_guru);
+        btn_home_siswa = findViewById(R.id.btn_home_siswa);
+        btn_home_portfolio = findViewById(R.id.btn_home_portfolio);
+        btn_home_master = findViewById(R.id.btn_home_master);
+        btn_home_artikel = findViewById(R.id.btn_home_artikel);
+        btn_home_kalender = findViewById(R.id.btn_home_kalender);
+
         namaGuru = findViewById(R.id.namaGuru);
         fotoGuru = findViewById(R.id.imgGuru);
         //txtMorePortfolioGuru = findViewById(R.id.txtMorePortfolioGuru);
@@ -88,14 +104,6 @@ public class HomeTeacher extends AppCompatActivity {
                 Intent a = new Intent(HomeTeacher.this, MasterTeacher.class);
                 startActivity(a);
                 finish();
-                /*if(Build.VERSION.SDK_INT>20){
-                    ActivityOptions options =
-                            ActivityOptions.makeSceneTransitionAnimation(HomeTeacher.this);
-                    startActivity(a,options.toBundle());
-                }else {
-                    startActivity(a);
-                    finish();
-                }*/
             }
         });
 
@@ -158,6 +166,74 @@ public class HomeTeacher extends AppCompatActivity {
                     startActivity(a);
                     finish();
                 }*/
+            }
+        });
+
+        btn_home_kelas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(HomeTeacher.this, DataKelas.class);
+                startActivity(a);
+                finish();
+            }
+        });
+
+        btn_home_mapel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(HomeTeacher.this, DataMapel.class);
+                startActivity(a);
+                finish();
+            }
+        });
+
+        btn_home_guru.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(HomeTeacher.this, DataGuru.class);
+                startActivity(a);
+                finish();
+            }
+        });
+
+        btn_home_siswa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(HomeTeacher.this, DataMurid.class);
+                startActivity(a);
+                finish();
+            }
+        });
+
+        btn_home_portfolio.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(HomeTeacher.this, DataPortfolioDuaModel.class);
+                startActivity(a);
+                finish();
+            }
+        });
+
+        btn_home_master.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(HomeTeacher.this, MasterTeacher.class);
+                startActivity(a);
+                finish();
+            }
+        });
+
+        btn_home_artikel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(HomeTeacher.this, "Trial Version", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        btn_home_kalender.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(HomeTeacher.this, "Trial Version", Toast.LENGTH_SHORT).show();
             }
         });
 

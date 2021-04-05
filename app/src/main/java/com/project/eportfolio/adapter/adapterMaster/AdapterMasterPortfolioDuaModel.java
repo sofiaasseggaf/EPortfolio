@@ -85,7 +85,7 @@ public class AdapterMasterPortfolioDuaModel extends RecyclerView.Adapter<Recycle
         }
         */
 
-        ((Penampung)holder).predikatMasterPortfolio.setText("Predikat : " + dataListTrPortfolio.get(position).getPredikatMutu());
+        ((Penampung)holder).predikatMasterPortfolio.setText(dataListTrPortfolio.get(position).getPredikatMutu());
         //((Penampung)holder).narasiMasterPortfolio.setText(dataListTrPortfolio.get(position).getNarasi());
         //((Penampung)holder).tglMasterPortfolio.setText(dataListTrPortfolio.get(position).getTanggal());
         ((Penampung)holder).judulMasterPortfolio.setText(dataListTrPortfolio.get(position).getJudulKd());

@@ -8,13 +8,14 @@
     android:layout_height="wrap_content"
     android:background="@drawable/rect_master_portfolio"
     android:gravity="center_vertical"
-    android:layout_marginRight="30dp"
+    android:layout_marginLeft="15dp"
+    android:layout_marginBottom="15dp"
     android:padding="10dp">
 
     <ImageView
         android:id="@+id/imgMasterPortfolio"
         android:layout_width="165dp"
-        android:src="@drawable/rect_img_master_portfolio"
+        android:scaleType="centerCrop"
         android:layout_height="133dp"/>
 
     <TextView
@@ -36,9 +37,10 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:layout_marginRight="40dp"
             android:orientation="vertical">
 
             <TextView
