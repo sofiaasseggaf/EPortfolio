@@ -78,17 +78,23 @@
                     android:textColor="@color/font"
                     android:text="Tahun Ajaran"/>
 
-                <Spinner
-                    android:id="@+id/sp_tahun_ajaran"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/roboto_regular"
-                    android:textSize="14sp"
-                    android:textColor="@color/font"
-                    android:layout_marginTop="10dp"
-                    android:paddingLeft="5dp"
-                    android:background="@drawable/rect_spinner" />
+                    android:background="@drawable/rect_spinner"
+                    android:layout_marginTop="10dp">
+                    <Spinner
+                        android:id="@+id/sp_tahun_ajaran"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textSize="14sp"
+                        android:textColor="@color/font"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"/>
+                </LinearLayout>
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -99,19 +105,26 @@
                     android:layout_marginTop="15dp"
                     android:text="Semester"/>
 
-                <Spinner
-                    android:id="@+id/sp_semester"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/roboto_regular"
-                    android:textSize="14sp"
-                    android:textColor="@color/font"
-                    android:layout_marginTop="10dp"
-                    android:entries="@array/list_semester"
-                    android:paddingLeft="5dp"
-                    style="@style/MySpinnerLook"
-                    android:background="@drawable/rect_spinner" />
+                    android:background="@drawable/rect_spinner"
+                    android:layout_marginTop="10dp">
+                    <Spinner
+                        android:id="@+id/sp_semester"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textSize="14sp"
+                        android:textColor="@color/font"
+                        android:entries="@array/list_semester"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        style="@style/MySpinnerLook"/>
+                </LinearLayout>
+
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -122,18 +135,25 @@
                     android:layout_marginTop="15dp"
                     android:text="Kelas"/>
 
-                <Spinner
-                    android:id="@+id/sp_kelas"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/roboto_regular"
-                    android:textSize="14sp"
-                    android:textColor="@color/font"
-                    android:layout_marginTop="10dp"
-                    android:paddingLeft="5dp"
-                    style="@style/MySpinnerLook"
-                    android:background="@drawable/rect_spinner" />
+                    android:background="@drawable/rect_spinner"
+                    android:layout_marginTop="10dp">
+                    <Spinner
+                        android:id="@+id/sp_kelas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textSize="14sp"
+                        android:textColor="@color/font"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        style="@style/MySpinnerLook" />
+                </LinearLayout>
+
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -144,18 +164,25 @@
                     android:layout_marginTop="15dp"
                     android:text="Mata Pelajaran"/>
 
-                <Spinner
-                    android:id="@+id/sp_mapel"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/roboto_regular"
-                    android:textSize="14sp"
-                    android:textColor="@color/font"
-                    android:layout_marginTop="10dp"
-                    android:paddingLeft="5dp"
-                    style="@style/MySpinnerLook"
-                    android:background="@drawable/rect_spinner" />
+                    android:background="@drawable/rect_spinner"
+                    android:layout_marginTop="10dp">
+
+                    <Spinner
+                        android:id="@+id/sp_mapel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textSize="14sp"
+                        android:textColor="@color/font"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        style="@style/MySpinnerLook"/>
+                </LinearLayout>
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -166,18 +193,25 @@
                     android:layout_marginTop="15dp"
                     android:text="Nama Siswa"/>
 
-                <Spinner
-                    android:id="@+id/sp_siswa"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/roboto_regular"
-                    android:textSize="14sp"
-                    android:textColor="@color/font"
-                    android:layout_marginTop="10dp"
-                    android:paddingLeft="5dp"
-                    style="@style/MySpinnerLook"
-                    android:background="@drawable/rect_spinner" />
+                    android:background="@drawable/rect_spinner"
+                    android:layout_marginTop="10dp">
+                    <Spinner
+                        android:id="@+id/sp_siswa"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textSize="14sp"
+                        android:textColor="@color/font"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        style="@style/MySpinnerLook"/>
+                </LinearLayout>
+
+
 
 
                 <ImageButton

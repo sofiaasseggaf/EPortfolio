@@ -144,37 +144,6 @@ public class InputTeacherC extends AppCompatActivity {
 
         first();
 
-        if (!inputIdStrategi.equalsIgnoreCase("") || inputIdStrategi!=null){
-            try{
-                for(int i=0; i<dataMasterRubrik.getTotal(); i++){
-                    if (dataMasterRubrik.getData().getMsRubrik().get(i).getStrategiid().equalsIgnoreCase(inputIdStrategi)) {
-                        listRubrik.add(dataMasterRubrik.getData().getMsRubrik().get(i));
-                    }
-                }
-            } catch (Exception a){ }
-        }
-
-        if (listRubrik!=null){
-            for (int x=0; x<listRubrik.size(); x++){
-                if (listRubrik.get(x).getNameRubrik().equalsIgnoreCase("POIN 1")){
-                    idRubrik1 = listRubrik.get(x).getIdRubrik();
-                    deskRubrik1 = listRubrik.get(x).getDescRubrik();
-                    txtPoint1.setText(deskRubrik1);
-                } else if (listRubrik.get(x).getNameRubrik().equalsIgnoreCase("POIN 2")){
-                    idRubrik2 = listRubrik.get(x).getIdRubrik();
-                    deskRubrik2 = listRubrik.get(x).getDescRubrik();
-                    txtPoint2.setText(deskRubrik2);
-                } else if (listRubrik.get(x).getNameRubrik().equalsIgnoreCase("POIN 3")){
-                    idRubrik3 = listRubrik.get(x).getIdRubrik();
-                    deskRubrik3 = listRubrik.get(x).getDescRubrik();
-                    txtPoint3.setText(deskRubrik3);
-                } else if (listRubrik.get(x).getNameRubrik().equalsIgnoreCase("POIN 4")){
-                    idRubrik4 = listRubrik.get(x).getIdRubrik();
-                    deskRubrik4 = listRubrik.get(x).getDescRubrik();
-                    txtPoint4.setText(deskRubrik4);
-                }
-            }
-        }
 
         if(!txtNarasi.getText().toString().equalsIgnoreCase("") && !txtNilai.getText().toString().equalsIgnoreCase("")){
             btn_simpandanlanjutkan.setBackgroundResource(R.drawable.btn_simpandanlanjutkan_active);
@@ -401,6 +370,38 @@ public class InputTeacherC extends AppCompatActivity {
                         @Override
                         public void run() {
                             findViewById(R.id.framelayout).setVisibility(View.GONE);
+                            if (!inputIdStrategi.equalsIgnoreCase("") || inputIdStrategi!=null){
+                                try{
+                                    for(int i=0; i<dataMasterRubrik.getTotal(); i++){
+                                        if (dataMasterRubrik.getData().getMsRubrik().get(i).getStrategiid().equalsIgnoreCase(inputIdStrategi)) {
+                                            listRubrik.add(dataMasterRubrik.getData().getMsRubrik().get(i));
+                                        }
+                                    }
+
+                                    if (listRubrik!=null){
+                                        for (int x=0; x<listRubrik.size(); x++){
+                                            if (listRubrik.get(x).getNameRubrik().equalsIgnoreCase("POIN 1")){
+                                                idRubrik1 = listRubrik.get(x).getIdRubrik();
+                                                deskRubrik1 = listRubrik.get(x).getDescRubrik();
+                                                txtPoint1.setText(deskRubrik1);
+                                            } else if (listRubrik.get(x).getNameRubrik().equalsIgnoreCase("POIN 2")){
+                                                idRubrik2 = listRubrik.get(x).getIdRubrik();
+                                                deskRubrik2 = listRubrik.get(x).getDescRubrik();
+                                                txtPoint2.setText(deskRubrik2);
+                                            } else if (listRubrik.get(x).getNameRubrik().equalsIgnoreCase("POIN 3")){
+                                                idRubrik3 = listRubrik.get(x).getIdRubrik();
+                                                deskRubrik3 = listRubrik.get(x).getDescRubrik();
+                                                txtPoint3.setText(deskRubrik3);
+                                            } else if (listRubrik.get(x).getNameRubrik().equalsIgnoreCase("POIN 4")){
+                                                idRubrik4 = listRubrik.get(x).getIdRubrik();
+                                                deskRubrik4 = listRubrik.get(x).getDescRubrik();
+                                                txtPoint4.setText(deskRubrik4);
+                                            }
+                                        }
+                                    }
+
+                                } catch (Exception a){ }
+                            }
                         }
                     });
                 }

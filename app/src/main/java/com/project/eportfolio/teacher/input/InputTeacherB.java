@@ -264,7 +264,8 @@ public class InputTeacherB extends AppCompatActivity {
                     a.putExtra("inputIdKategori", inputIdKategori);
                     a.putExtra("inputIdStrategi", inputIdStrategi);
                     a.putExtra("inputTxtJudul", inputTxtJudul);
-                    a.putExtra("inputTahunAjaran", sp_tahun_ajaran.getSelectedItem().toString());
+                    //a.putExtra("inputTahunAjaran", sp_tahun_ajaran.getSelectedItem().toString());
+                    a.putExtra("inputTahunAjaran", "2021");
                     a.putExtra("inputSemester", sp_semester.getSelectedItem().toString());
                     a.putExtra("inputIdKelas", inputIdKelas);
                     a.putExtra("inputNamaKelas", inputNamaKelas);
@@ -395,6 +396,7 @@ public class InputTeacherB extends AppCompatActivity {
                 dataMasterMapel = response.body();
                 if (response.body()!=null){
                     listmapel.clear();
+                    findViewById(R.id.framelayout).setVisibility(View.GONE);
                     setSpinnerKelas();
                 }
             }

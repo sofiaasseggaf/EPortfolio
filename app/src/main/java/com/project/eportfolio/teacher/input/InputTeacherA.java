@@ -290,6 +290,7 @@ public class InputTeacherA extends AppCompatActivity {
                 dataModelKategoriStrategi = response.body();
                 if (response.body()!=null){
                     listKategoriStrategi.clear();
+                    findViewById(R.id.framelayout).setVisibility(View.GONE);
                     /*for (int i = 0; i < dataModelKategoriStrategi.getData().getMsKategoristrategi().size(); i++) {
                         listKategoriStrategi.add(dataModelKategoriStrategi.getData().getMsKategoristrategi().get(i));
                     }*/

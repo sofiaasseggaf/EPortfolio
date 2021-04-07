@@ -140,7 +140,7 @@ public class InputTeacherD extends AppCompatActivity {
         btn_beranda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                keHome();
             }
         });
         btn_master.setOnClickListener(new View.OnClickListener() {
@@ -462,29 +462,6 @@ public class InputTeacherD extends AppCompatActivity {
                                 findViewById(R.id.framelayout).setVisibility(View.GONE);
                                 Toast.makeText(InputTeacherD.this, "berhasil input portfolio", Toast.LENGTH_LONG).show();
                                 imgPortofolio.setImageBitmap(null);
-                                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-                                builder.setMessage("Input Siswa Selanjutnya ?")
-                                        .setCancelable(false)
-                                        .setPositiveButton("YA", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int i) {
-                                                Intent a = new Intent(InputTeacherD.this, InputTeacherB.class);
-                                                a.putExtra("inputIdKategori", inputIdKategori);
-                                                a.putExtra("inputIdStrategi", inputIdStrategi);
-                                                a.putExtra("inputTxtJudul", inputTxtJudul);
-                                                startActivity(a);
-                                                finish();
-                                            }
-                                        })
-
-                                        .setNegativeButton("TIDAK", new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int i) {
-                                                dialog.cancel();
-                                            }
-                                        });
-                                AlertDialog alertDialog = builder.create();
-                                alertDialog.show();
                             }
                         });
                     } else {
@@ -518,6 +495,36 @@ public class InputTeacherD extends AppCompatActivity {
 
 
 
+    public void keHome(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Batal Input Portfolio ?")
+                .setCancelable(false)
+                .setPositiveButton("YA", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        Intent a = new Intent(InputTeacherD.this, HomeTeacher.class);
+                        startActivity(a);
+                        finish();
+                        /*if(Build.VERSION.SDK_INT>20){
+                            ActivityOptions options =
+                                    ActivityOptions.makeSceneTransitionAnimation(InputTeacher.this);
+                            startActivity(a,options.toBundle());
+                        }else {
+                            startActivity(a);
+                            finish();
+                        }*/
+                    }
+                })
+
+                .setNegativeButton("TIDAK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
 
     public void keProfile(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -581,6 +588,32 @@ public class InputTeacherD extends AppCompatActivity {
         alertDialog.show();
     }
 
+    public void keInputB(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Input Siswa Selanjutnya ?")
+                .setCancelable(false)
+                .setPositiveButton("YA", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        Intent a = new Intent(InputTeacherD.this, InputTeacherB.class);
+                        a.putExtra("inputIdKategori", inputIdKategori);
+                        a.putExtra("inputIdStrategi", inputIdStrategi);
+                        a.putExtra("inputTxtJudul", inputTxtJudul);
+                        startActivity(a);
+                        finish();
+                    }
+                })
+
+                .setNegativeButton("SELESAI", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int i) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+    }
+
     //Your Slide animation
    /* public void setAnimation(){
         if(Build.VERSION.SDK_INT>20) {
@@ -596,29 +629,19 @@ public class InputTeacherD extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Selesai Input Portfolio ?")
+        builder.setMessage("Input Siswa Selanjutnya ?")
                 .setCancelable(false)
                 .setPositiveButton("YA", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        Intent a = new Intent(InputTeacherD.this, HomeTeacher.class);
-                        startActivity(a);
-                        finish();
-                        /*if(Build.VERSION.SDK_INT>20){
-                            ActivityOptions options =
-                                    ActivityOptions.makeSceneTransitionAnimation(InputTeacher.this);
-                            startActivity(a,options.toBundle());
-                        }else {
-                            startActivity(a);
-                            finish();
-                        }*/
+                        keInputB();
                     }
                 })
 
-                .setNegativeButton("TIDAK", new DialogInterface.OnClickListener() {
+                .setNegativeButton("SELESAI", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        dialog.cancel();
+                        keHome();
                     }
                 });
         AlertDialog alertDialog = builder.create();
