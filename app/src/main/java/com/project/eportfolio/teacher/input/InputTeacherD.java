@@ -1,4 +1,4 @@
-package com.project.eportfolio.student;
+package com.project.eportfolio.teacher.input;
 
 import android.Manifest;
 import android.content.DialogInterface;
@@ -12,14 +12,23 @@ import android.os.Environment;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,15 +46,29 @@ import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.APIService.AppUtil;
 import com.project.eportfolio.R;
-//import com.project.eportfolio.utility.FileCompressor;
+import com.project.eportfolio.model.kategoristrategi.ModelKategoriStrategi;
+import com.project.eportfolio.model.kategoristrategi.MsKategoristrategi;
+import com.project.eportfolio.model.kelas.ModelKelas;
+import com.project.eportfolio.model.kelas.MsKela;
+import com.project.eportfolio.model.matapelajaran.ModelMataPelajaran;
+import com.project.eportfolio.model.matapelajaran.MsMatapelajaran;
 import com.project.eportfolio.model.portfolio.ModelPostPortfolio;
-import com.project.eportfolio.student.portfolio.PortfolioStudentProject;
+import com.project.eportfolio.model.rubrik.ModelMasterRubrik;
+import com.project.eportfolio.model.rubrik.MsRubrik;
+import com.project.eportfolio.model.siswa.ModelSiswa;
+import com.project.eportfolio.model.siswa.MsMurid;
+import com.project.eportfolio.model.strategi.ModelStrategi;
+import com.project.eportfolio.model.strategi.MsStrategi;
+import com.project.eportfolio.teacher.HomeTeacher;
+import com.project.eportfolio.teacher.MasterTeacher;
+import com.project.eportfolio.teacher.ProfileTeacher;
 import com.project.eportfolio.utility.FileCompressor;
 import com.project.eportfolio.utility.PreferenceUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -58,51 +81,61 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-// import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
-// import static okhttp3.internal.http.HttpDate.format;
+public class InputTeacherD extends AppCompatActivity {
 
-public class InputStudent extends AppCompatActivity {
-
-    ImageButton btn_beranda, btn_portfolio, btn_input, btn_profile;
-    Spinner sp_strategi;
-    EditText txtJudul, txtTempat, txtNarasi;
+    ImageButton btn_beranda, btn_master, btn_input, btn_profile;
     ImageButton btnInputPortfolio, btnOpenCamera;
     ImageView imgPortofolio;
-    TextView txtload;
-    int idkategori;
+    String inputIdStrategi, inputIdKategori, inputTxtJudul, inputTahunAjaran, inputSemester;
+    String inputIdKelas, inputNamaKelas, inputIdMapel, inputIdSiswa, inputIdRubrik, inputDeskRubrik;
+    String inputNilai, inputPredikatMutu, inputTxtNarasi;
 
     File photoFile, mPhotoFile;
     FileCompressor mCompressor;
     String mFileName;
     MultipartBody.Part fotox;
 
+    TextView txtload;
+
     static final int REQUEST_TAKE_PHOTO = 1;
     static final int REQUEST_GALLERY_PHOTO = 2;
+
     String apikey = "7826470ABBA476706DB24D47C6A6ED64";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setAnimation();
-        setContentView(R.layout.student_input);
+        setContentView(R.layout.teacher_input_d);
 
         ButterKnife.bind(this);
         mCompressor = new FileCompressor(this);
 
-        sp_strategi = findViewById(R.id.sp_strategi);
-        txtJudul = findViewById(R.id.txtJudul);
-        txtTempat = findViewById(R.id.txtTempat);
-        txtNarasi = findViewById(R.id.txtNarasi);
-        imgPortofolio = findViewById(R.id.imgPortofolio);
-
-        btnInputPortfolio = findViewById(R.id.btnInputPortfolio);
-        btnOpenCamera = findViewById(R.id.btnOpenCamera);
         btn_beranda = findViewById(R.id.btn_home);
-        btn_portfolio = findViewById(R.id.btn_portfolio);
+        btn_master = findViewById(R.id.btn_master);
         btn_input = findViewById(R.id.btn_input);
         btn_profile = findViewById(R.id.btn_profile);
-
+        btnInputPortfolio = findViewById(R.id.btnInputPortfolio);
+        btnOpenCamera = findViewById(R.id.btnOpenCamera);
+        imgPortofolio = findViewById(R.id.imgPortofolio);
         txtload = findViewById(R.id.textloading);
+
+        Intent intent = getIntent();
+        inputIdStrategi = intent.getStringExtra("inputIdStrategi");
+        inputIdKategori = intent.getStringExtra("inputIdKategori");
+        inputTxtJudul = intent.getStringExtra("inputTxtJudul");
+        inputTahunAjaran = intent.getStringExtra("inputTahunAjaran");
+        inputSemester = intent.getStringExtra("inputSemester");
+        inputIdKelas = intent.getStringExtra("inputIdKelas");
+        inputNamaKelas = intent.getStringExtra("inputNamaKelas");
+        inputIdMapel = intent.getStringExtra("inputIdMapel");
+        inputIdSiswa = intent.getStringExtra("inputIdSiswa");
+        inputIdRubrik = intent.getStringExtra("inputIdRubrik");
+        inputDeskRubrik = intent.getStringExtra("inputDeskRubrik");
+        inputNilai = intent.getStringExtra("inputNilai");
+        inputPredikatMutu = intent.getStringExtra("inputPredikatMutu");
+        inputTxtNarasi = intent.getStringExtra("inputTxtNarasi");
+
 
         btn_beranda.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,14 +143,12 @@ public class InputStudent extends AppCompatActivity {
                 onBackPressed();
             }
         });
-
-        btn_portfolio.setOnClickListener(new View.OnClickListener() {
+        btn_master.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               kePortfolio();
+                keMaster();
             }
         });
-
         btn_profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,17 +162,17 @@ public class InputStudent extends AppCompatActivity {
                 try{
                     if (Build.VERSION.SDK_INT>=23){
                         requestPermissions(new String[] {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, 2);
-                        if (ContextCompat.checkSelfPermission(InputStudent.this,
+                        if (ContextCompat.checkSelfPermission(InputTeacherD.this,
                                 Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                            if  (ContextCompat.checkSelfPermission(InputStudent.this,
+                            if  (ContextCompat.checkSelfPermission(InputTeacherD.this,
                                     Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                                if (ContextCompat.checkSelfPermission(InputStudent.this,
+                                if (ContextCompat.checkSelfPermission(InputTeacherD.this,
                                         Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
                                     selectImage();
                                 }
                             }
                         } else {
-                            Toast.makeText(InputStudent.this, "camera gagal", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(InputTeacherD.this, "camera gagal", Toast.LENGTH_SHORT).show();
                         }
                     }
                 } catch (Exception e){
@@ -152,34 +183,16 @@ public class InputStudent extends AppCompatActivity {
         btnInputPortfolio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (txtJudul.getText().toString().equalsIgnoreCase("")) {
-                    Toast.makeText(InputStudent.this, "Lengkapi Judul KD !", Toast.LENGTH_SHORT).show();
+                if (mPhotoFile==null) {
+                    Toast.makeText(InputTeacherD.this, "Ambil Foto !", Toast.LENGTH_SHORT).show();
                 } else {
                     thread();
                 }
             }
         });
-/*
-        sp_strategi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                if (sp_strategi.getSelectedItem().toString().equalsIgnoreCase("Organisasi")) {
-                    idkategori = 4;
-                } else if (sp_strategi.getSelectedItem().toString().equalsIgnoreCase("Penghargaan")) {
-                    idkategori = 5;
-                } else if (sp_strategi.getSelectedItem().toString().equalsIgnoreCase("Forum Edukasi")) {
-                    idkategori = 6;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-        */
     }
+
 
     private void thread() {
 
@@ -213,7 +226,6 @@ public class InputStudent extends AppCompatActivity {
             }
         };
         handler.postDelayed(runnable, 1 * 1000);
-
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -222,12 +234,15 @@ public class InputStudent extends AppCompatActivity {
         }).start();
     }
 
+
+    // ============ CAMERA AND GALLERY THINGS ================
+
     private void selectImage() {
         final CharSequence[] items = {
                 "Take Photo", "Choose from Library",
                 "Cancel"
         };
-        AlertDialog.Builder builder = new AlertDialog.Builder(InputStudent.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(InputTeacherD.this);
         builder.setItems(items, (dialog, item) -> {
             if (items[item].equals("Take Photo")) {
                 requestStoragePermission(true);
@@ -293,7 +308,7 @@ public class InputStudent extends AppCompatActivity {
             if (photoFile!=null){
                 //pathToFile = photoFile.getAbsolutePath();
                 mPhotoFile = photoFile;
-                Uri photoUri = FileProvider.getUriForFile(InputStudent.this, "com.project.eportfolio.fileprovider", photoFile);
+                Uri photoUri = FileProvider.getUriForFile(InputTeacherD.this, "com.project.eportfolio.fileprovider", photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri);
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
@@ -326,6 +341,7 @@ public class InputStudent extends AppCompatActivity {
      *
      * @throws IOException
      */
+
     private File createImageFile() throws IOException {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
@@ -346,13 +362,16 @@ public class InputStudent extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                Glide.with(InputStudent.this)
+                Glide.with(InputTeacherD.this)
                         .load(mPhotoFile)
                         .apply(new RequestOptions().centerCrop()
                                         .circleCrop()
                                 //.placeholder(R.drawable.profile_pic_place_holder))
                         )
                         .into(imgPortofolio);
+                if(mPhotoFile!=null){
+                    btnInputPortfolio.setBackgroundResource(R.drawable.btn_input_portfolio);
+                }
             } else if (requestCode == REQUEST_GALLERY_PHOTO) {
                 Uri selectedImage = data.getData();
                 try {
@@ -360,13 +379,16 @@ public class InputStudent extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                Glide.with(InputStudent.this)
+                Glide.with(InputTeacherD.this)
                         .load(mPhotoFile)
                         .apply(new RequestOptions().centerCrop()
-                                .circleCrop()
+                                        .circleCrop()
                                 //.placeholder(R.drawable.profile_pic_place_holder))
                         )
                         .into(imgPortofolio);
+                if(mPhotoFile!=null){
+                    btnInputPortfolio.setBackgroundResource(R.drawable.btn_input_portfolio);
+                }
             }
         }
     }
@@ -388,94 +410,114 @@ public class InputStudent extends AppCompatActivity {
     }
 
 
-    private void sendDataPortfolio() {
 
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-            String now = formatter.format(new Date());
+    // =================== GET DATA ================
 
-        SimpleDateFormat foror = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss", Locale.getDefault());
-        String tgl = foror.format(new Date());
+
+    private void sendDataPortfolio(){
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        String now = formatter.format(new Date());
 
         if (mPhotoFile!=null){
             byte[] bImg1 = AppUtil.FiletoByteArray(mPhotoFile);
             RequestBody requestFile1 = RequestBody.create(MediaType.parse("image/jpeg"),bImg1);
-            fotox = MultipartBody.Part.createFormData("foto", PreferenceUtils.getFirstName(getApplicationContext())+
-                    "_" + tgl + ".jpg", requestFile1);
+            fotox = MultipartBody.Part.createFormData("foto", mFileName + ".jpg", requestFile1);
         }
 
-       /* if (sp_strategi.getSelectedItem().toString().equalsIgnoreCase("Organisasi")) {
-            idkategori = 4;
-        } else if (sp_strategi.getSelectedItem().toString().equalsIgnoreCase("Penghargaan")) {
-            idkategori = 5;
-        } else if (sp_strategi.getSelectedItem().toString().equalsIgnoreCase("Forum Edukasi")) {
-            idkategori = 6;
-        }*/
+        APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
+        Call<ModelPostPortfolio> data = apiInterface.sendDataPortfolioGuru(
+                RequestBody.create(MediaType.parse("text/plain"),apikey),
+                RequestBody.create(MediaType.parse("text/plain"),inputIdSiswa),
+                RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getUserId(getApplicationContext())),
+                RequestBody.create(MediaType.parse("text/plain"),inputIdMapel),
+                RequestBody.create(MediaType.parse("text/plain"),inputIdKategori),
+                RequestBody.create(MediaType.parse("text/plain"),inputIdStrategi),
+                RequestBody.create(MediaType.parse("text/plain"),inputIdRubrik),
+                RequestBody.create(MediaType.parse("text/plain"),inputTxtJudul), //req
+                RequestBody.create(MediaType.parse("text/plain"),inputDeskRubrik),
+                RequestBody.create(MediaType.parse("text/plain"),now),
+                RequestBody.create(MediaType.parse("text/plain"),"Sekolah"), // ganti kota
+                RequestBody.create(MediaType.parse("text/plain"),inputNilai),
+                RequestBody.create(MediaType.parse("text/plain"),inputPredikatMutu), // isi sesuai linear layout predikat yg dipilih
+                RequestBody.create(MediaType.parse("text/plain"),inputTxtNarasi),
+                fotox,
+                RequestBody.create(MediaType.parse("text/plain"),inputNamaKelas),
+                RequestBody.create(MediaType.parse("text/plain"),inputTahunAjaran),
+                RequestBody.create(MediaType.parse("text/plain"),inputSemester),
+                RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getFirstName(getApplicationContext())),
+                RequestBody.create(MediaType.parse("text/plain"),now),
+                RequestBody.create(MediaType.parse("text/plain"),inputNilai), //req
+                RequestBody.create(MediaType.parse("text/plain"),inputIdKelas) //req
+        );
 
-            APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
-            Call<ModelPostPortfolio> data = apiInterface.sendDataPortfolioSiswa(
-                    RequestBody.create(MediaType.parse("text/plain"),apikey),
-                    RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getIdSiswa(getApplicationContext())),
-                    RequestBody.create(MediaType.parse("text/plain"),"4"),
-                    RequestBody.create(MediaType.parse("text/plain"),txtJudul.getText().toString()),
-                    RequestBody.create(MediaType.parse("text/plain"),now),
-                    RequestBody.create(MediaType.parse("text/plain"),txtTempat.getText().toString()),
-                    RequestBody.create(MediaType.parse("text/plain"),txtNarasi.getText().toString()),
-                    fotox,
-                    RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getFirstName(getApplicationContext())),
-                    RequestBody.create(MediaType.parse("text/plain"),now),
-                    RequestBody.create(MediaType.parse("text/plain"),"100"),
-                    RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getIdKelas(getApplicationContext()))
-            );
+        data.enqueue(new Callback<ModelPostPortfolio>() {
+            @Override
+            public void onResponse(Call<ModelPostPortfolio> call, Response<ModelPostPortfolio> response) {
+                try {
+                    if (response.body() != null) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                findViewById(R.id.framelayout).setVisibility(View.GONE);
+                                Toast.makeText(InputTeacherD.this, "berhasil input portfolio", Toast.LENGTH_LONG).show();
+                                imgPortofolio.setImageBitmap(null);
+                                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+                                builder.setMessage("Input Siswa Selanjutnya ?")
+                                        .setCancelable(false)
+                                        .setPositiveButton("YA", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int i) {
+                                                Intent a = new Intent(InputTeacherD.this, InputTeacherB.class);
+                                                a.putExtra("inputIdKategori", inputIdKategori);
+                                                a.putExtra("inputIdStrategi", inputIdStrategi);
+                                                a.putExtra("inputTxtJudul", inputTxtJudul);
+                                                startActivity(a);
+                                                finish();
+                                            }
+                                        })
 
-            data.enqueue(new Callback<ModelPostPortfolio>() {
-                @Override
-                public void onResponse(Call<ModelPostPortfolio> call, Response<ModelPostPortfolio> response) {
-                    try {
-                        if (response.body() != null) {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    findViewById(R.id.framelayout).setVisibility(View.GONE);
-                                    Toast.makeText(InputStudent.this, "berhasil input portfolio", Toast.LENGTH_LONG).show();
-                                    imgPortofolio.setImageBitmap(null);
-                                    txtJudul.setText("");
-                                    txtNarasi.setText("");
-                                    txtTempat.setText("");
-                                }
-                            });
-                        } else {
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    findViewById(R.id.framelayout).setVisibility(View.GONE);
-                                    Toast.makeText(InputStudent.this, "gagal input portfolio", Toast.LENGTH_LONG).show();
-                                }
-                            });
-                        }
-                    } catch (Exception a){
-                        a.printStackTrace();
+                                        .setNegativeButton("TIDAK", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int i) {
+                                                dialog.cancel();
+                                            }
+                                        });
+                                AlertDialog alertDialog = builder.create();
+                                alertDialog.show();
+                            }
+                        });
+                    } else {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                findViewById(R.id.framelayout).setVisibility(View.GONE);
+                                Toast.makeText(InputTeacherD.this, "gagal input portfolio", Toast.LENGTH_LONG).show();
+                            }
+                        });
                     }
+                } catch (Exception a){
+                    a.printStackTrace();
                 }
+            }
 
-                @Override
-                public void onFailure(Call<ModelPostPortfolio> call, Throwable t) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            findViewById(R.id.framelayout).setVisibility(View.GONE);
-                            Toast.makeText(InputStudent.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
-                        }
-                    });
-                    call.cancel();
-                }
-            });
-
-
-
-
-
+            @Override
+            public void onFailure(Call<ModelPostPortfolio> call, Throwable t) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        findViewById(R.id.framelayout).setVisibility(View.GONE);
+                        Toast.makeText(InputTeacherD.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
+                    }
+                });
+                call.cancel();
+            }
+        });
 
     }
+
+
+
 
     public void keProfile(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -484,13 +526,12 @@ public class InputStudent extends AppCompatActivity {
                 .setPositiveButton("YA", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        //HomeTeacher.super.onBackPressed();
-                        Intent a = new Intent(InputStudent.this, ProfileStudent.class);
+                        Intent a = new Intent(InputTeacherD.this, ProfileTeacher.class);
                         startActivity(a);
                         finish();
                         /*if(Build.VERSION.SDK_INT>20){
                             ActivityOptions options =
-                                    ActivityOptions.makeSceneTransitionAnimation(InputStudent.this);
+                                    ActivityOptions.makeSceneTransitionAnimation(InputTeacher.this);
                             startActivity(a,options.toBundle());
                         }else {
                             startActivity(a);
@@ -509,20 +550,19 @@ public class InputStudent extends AppCompatActivity {
         alertDialog.show();
     }
 
-    public void kePortfolio() {
+    public void keMaster() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Batal Input Portfolio ?")
                 .setCancelable(false)
                 .setPositiveButton("YA", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        //HomeTeacher.super.onBackPressed();
-                        Intent a = new Intent(InputStudent.this, PortfolioStudentProject.class);
+                        Intent a = new Intent(InputTeacherD.this, MasterTeacher.class);
                         startActivity(a);
                         finish();
-                        /*if(Build.VERSION.SDK_INT>20){
+                       /* if(Build.VERSION.SDK_INT>20){
                             ActivityOptions options =
-                                    ActivityOptions.makeSceneTransitionAnimation(InputStudent.this);
+                                    ActivityOptions.makeSceneTransitionAnimation(InputTeacher.this);
                             startActivity(a,options.toBundle());
                         }else {
                             startActivity(a);
@@ -542,7 +582,7 @@ public class InputStudent extends AppCompatActivity {
     }
 
     //Your Slide animation
-    /*public void setAnimation(){
+   /* public void setAnimation(){
         if(Build.VERSION.SDK_INT>20) {
             Slide slide = new Slide();
             slide.setSlideEdge(Gravity.LEFT);
@@ -556,18 +596,17 @@ public class InputStudent extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Batal Input Portfolio ?")
+        builder.setMessage("Selesai Input Portfolio ?")
                 .setCancelable(false)
                 .setPositiveButton("YA", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int i) {
-                        //HomeTeacher.super.onBackPressed();
-                        Intent a = new Intent(InputStudent.this, HomeStudent.class);
+                        Intent a = new Intent(InputTeacherD.this, HomeTeacher.class);
                         startActivity(a);
                         finish();
                         /*if(Build.VERSION.SDK_INT>20){
                             ActivityOptions options =
-                                    ActivityOptions.makeSceneTransitionAnimation(InputStudent.this);
+                                    ActivityOptions.makeSceneTransitionAnimation(InputTeacher.this);
                             startActivity(a,options.toBundle());
                         }else {
                             startActivity(a);

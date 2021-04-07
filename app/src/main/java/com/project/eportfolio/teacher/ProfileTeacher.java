@@ -1,14 +1,9 @@
 package com.project.eportfolio.teacher;
 
-import android.app.ActivityOptions;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.transition.Slide;
-import android.view.Gravity;
 import android.view.View;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.project.eportfolio.LoginActivity;
 import com.project.eportfolio.R;
+import com.project.eportfolio.teacher.input.InputTeacherA;
 import com.project.eportfolio.utility.PreferenceUtils;
 import com.squareup.picasso.Picasso;
 
@@ -92,7 +88,7 @@ public class ProfileTeacher extends AppCompatActivity {
         btn_input.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent a = new Intent(ProfileTeacher.this, InputTeacher.class);
+                Intent a = new Intent(ProfileTeacher.this, InputTeacherA.class);
                 startActivity(a);
                 finish();
                 /*if(Build.VERSION.SDK_INT>20){

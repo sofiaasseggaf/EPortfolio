@@ -1,13 +1,8 @@
 package com.project.eportfolio.teacher;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.transition.Slide;
-import android.view.Gravity;
 import android.view.View;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
@@ -15,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.project.eportfolio.R;
+import com.project.eportfolio.teacher.input.InputTeacherA;
 import com.project.eportfolio.teacher.master.DataGuru;
 import com.project.eportfolio.teacher.master.DataKelas;
 import com.project.eportfolio.teacher.master.DataMapel;
@@ -52,7 +48,7 @@ public class MasterTeacher extends AppCompatActivity {
         btn_input.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent a = new Intent(MasterTeacher.this, InputTeacher.class);
+                Intent a = new Intent(MasterTeacher.this, InputTeacherA.class);
                 startActivity(a);
                 finish();
                 /*if(Build.VERSION.SDK_INT>20){

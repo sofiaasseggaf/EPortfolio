@@ -66,7 +66,13 @@
 
         <activity android:name="com.project.eportfolio.teacher.HomeTeacher"
             android:windowSoftInputMode="stateHidden"/>
-        <activity android:name="com.project.eportfolio.teacher.InputTeacher"
+        <activity android:name="com.project.eportfolio.teacher.input.InputTeacherA"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name="com.project.eportfolio.teacher.input.InputTeacherB"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name="com.project.eportfolio.teacher.input.InputTeacherC"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name="com.project.eportfolio.teacher.input.InputTeacherD"
             android:windowSoftInputMode="stateHidden"/>
         <activity android:name="com.project.eportfolio.teacher.MasterTeacher" />
         <activity android:name="com.project.eportfolio.teacher.ProfileTeacher"/>

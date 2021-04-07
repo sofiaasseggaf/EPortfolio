@@ -2,7 +2,6 @@ package com.project.eportfolio.teacher;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -18,7 +17,6 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
-import com.project.eportfolio.ArtikelActivity;
 import com.project.eportfolio.R;
 import com.project.eportfolio.adapter.adapterArtikel.AdapterSliderArtikel;
 import com.project.eportfolio.adapter.adapterPortfolio.AdapterSliderPortfolio;
@@ -26,7 +24,7 @@ import com.project.eportfolio.model.blog.Blog;
 import com.project.eportfolio.model.blog.ModelBlog;
 import com.project.eportfolio.model.portfolio.ModelPortofolio;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
-import com.project.eportfolio.model.siswa.ModelUpdateDataSiswa;
+import com.project.eportfolio.teacher.input.InputTeacherA;
 import com.project.eportfolio.teacher.master.DataGuru;
 import com.project.eportfolio.teacher.master.DataKelas;
 import com.project.eportfolio.teacher.master.DataMapel;
@@ -138,7 +136,7 @@ public class HomeTeacher extends AppCompatActivity {
         btn_input.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent a = new Intent(HomeTeacher.this, InputTeacher.class);
+                Intent a = new Intent(HomeTeacher.this, InputTeacherA.class);
                 startActivity(a);
                 finish();
                 /*if(Build.VERSION.SDK_INT>20){
