@@ -18,6 +18,8 @@ import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.R;
 import com.project.eportfolio.adapter.adapterPortfolio.AdapterListKarya;
+import com.project.eportfolio.model.matapelajaran.ModelMataPelajaran;
+import com.project.eportfolio.model.matapelajaran.MsMatapelajaran;
 import com.project.eportfolio.model.portfolio.ModelPortofolio;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
 import com.project.eportfolio.model.strategi.ModelStrategi;
@@ -25,6 +27,7 @@ import com.project.eportfolio.model.strategi.MsStrategi;
 import com.project.eportfolio.student.HomeStudent;
 import com.project.eportfolio.student.InputStudent;
 import com.project.eportfolio.student.ProfileStudent;
+import com.project.eportfolio.teacher.master.DataPortfolioDuaModel;
 import com.project.eportfolio.utility.PreferenceUtils;
 
 import java.util.ArrayList;
@@ -39,9 +42,12 @@ public class PortfolioStudentKarya extends AppCompatActivity {
     RecyclerView rvKarya;
     ModelPortofolio dataModelPortfolio;
     ModelStrategi dataModelStrategi;
+    ModelMataPelajaran modelDataMapel;
+    List<MsMatapelajaran> listMapel = new ArrayList<>();
     List<TrPortofolio> listPortofolio = new ArrayList<>();
     List<TrPortofolio> listKaryaMurid = new ArrayList<>();
     List<MsStrategi> listKarya = new ArrayList<>();
+
     AdapterListKarya itemList;
 
     ImageButton btn_beranda, btn_portfolio, btn_input, btn_profile;
@@ -146,7 +152,7 @@ public class PortfolioStudentKarya extends AppCompatActivity {
                             listKarya.add(dataModelStrategi.getData().getMsStrategi().get(i));
                         }
                     }
-                    getPortfolio();
+                    getMapel();
                 }
             }
             @Override
@@ -155,6 +161,46 @@ public class PortfolioStudentKarya extends AppCompatActivity {
                     @Override
                     public void run() {
                         findViewById(R.id.framelayout).setVisibility(View.GONE);
+                        Toast.makeText(PortfolioStudentKarya.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
+                    }
+                });
+                call.cancel();
+            }
+        });
+    }
+
+    public void getMapel() {
+        final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
+        final Call<ModelMataPelajaran> dataSiswax = apiInterface.getDataMasterMapel(  apikey, 1000);
+
+        dataSiswax.enqueue(new Callback<ModelMataPelajaran>() {
+            @Override
+            public void onResponse(Call<ModelMataPelajaran> call, Response<ModelMataPelajaran> response) {
+
+                modelDataMapel = response.body();
+
+                if (modelDataMapel!=null){
+                    for (int i = 0; i < modelDataMapel.getTotal(); i++) {
+                        try {
+                            if (PreferenceUtils.getIdSekolahSiswa(getApplicationContext())
+                                    .equalsIgnoreCase(modelDataMapel.getData().getMsMatapelajaran().get(i).getSekolahid())) {
+                                listMapel.add(modelDataMapel.getData().getMsMatapelajaran().get(i));
+                            }
+                        } catch (Exception e){
+
+                        }
+                    }
+
+                    if (listMapel!=null){
+                        getPortfolio();
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<ModelMataPelajaran> call, Throwable t) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
                         Toast.makeText(PortfolioStudentKarya.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
                     }
                 });
@@ -208,7 +254,7 @@ public class PortfolioStudentKarya extends AppCompatActivity {
                             @Override
                             public void run() {
                                 findViewById(R.id.framelayout).setVisibility(View.GONE);
-                                itemList = new AdapterListKarya(listKaryaMurid );
+                                itemList = new AdapterListKarya(listKaryaMurid, listMapel );
                                 rvKarya.setLayoutManager(new LinearLayoutManager(PortfolioStudentKarya.this));
                                 rvKarya.setAdapter(itemList);
                             }

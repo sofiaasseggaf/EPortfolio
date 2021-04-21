@@ -19,6 +19,8 @@ import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.R;
 import com.project.eportfolio.adapter.adapterPortfolio.AdapterListUnjukKerja;
+import com.project.eportfolio.model.matapelajaran.ModelMataPelajaran;
+import com.project.eportfolio.model.matapelajaran.MsMatapelajaran;
 import com.project.eportfolio.model.portfolio.ModelPortofolio;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
 import com.project.eportfolio.model.strategi.ModelStrategi;
@@ -36,11 +38,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class PortfolioStudentUnjukKerja extends AppCompatActivity implements AdapterListUnjukKerja.ClickLIstenerUnjukKerja, View.OnClickListener {
+public class PortfolioStudentUnjukKerja extends AppCompatActivity {
 
     RecyclerView rvunjukkerja;
     ModelPortofolio dataModelPortfolio;
     ModelStrategi dataModelStrategi;
+    ModelMataPelajaran modelDataMapel;
+    List<MsMatapelajaran> listMapel = new ArrayList<>();
     List<TrPortofolio> listPortofolio = new ArrayList<>();
     List<TrPortofolio> listUnjukKerjaMurid = new ArrayList<>();
     List<MsStrategi> listUnjukKerja = new ArrayList<>();
@@ -148,7 +152,7 @@ public class PortfolioStudentUnjukKerja extends AppCompatActivity implements Ada
                             listUnjukKerja.add(dataModelStrategi.getData().getMsStrategi().get(i));
                         }
                     }
-                    getPortfolio();
+                    getMapel();
                 }
             }
             @Override
@@ -157,6 +161,46 @@ public class PortfolioStudentUnjukKerja extends AppCompatActivity implements Ada
                     @Override
                     public void run() {
                         findViewById(R.id.framelayout).setVisibility(View.GONE);
+                        Toast.makeText(PortfolioStudentUnjukKerja.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
+                    }
+                });
+                call.cancel();
+            }
+        });
+    }
+
+    public void getMapel() {
+        final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
+        final Call<ModelMataPelajaran> dataSiswax = apiInterface.getDataMasterMapel(  apikey, 1000);
+
+        dataSiswax.enqueue(new Callback<ModelMataPelajaran>() {
+            @Override
+            public void onResponse(Call<ModelMataPelajaran> call, Response<ModelMataPelajaran> response) {
+
+                modelDataMapel = response.body();
+
+                if (modelDataMapel!=null){
+                    for (int i = 0; i < modelDataMapel.getTotal(); i++) {
+                        try {
+                            if (PreferenceUtils.getIdSekolahSiswa(getApplicationContext())
+                                    .equalsIgnoreCase(modelDataMapel.getData().getMsMatapelajaran().get(i).getSekolahid())) {
+                                listMapel.add(modelDataMapel.getData().getMsMatapelajaran().get(i));
+                            }
+                        } catch (Exception e){
+
+                        }
+                    }
+
+                    if (listMapel!=null){
+                        getPortfolio();
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<ModelMataPelajaran> call, Throwable t) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
                         Toast.makeText(PortfolioStudentUnjukKerja.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
                     }
                 });
@@ -210,7 +254,7 @@ public class PortfolioStudentUnjukKerja extends AppCompatActivity implements Ada
                             @Override
                             public void run() {
                                 findViewById(R.id.framelayout).setVisibility(View.GONE);
-                                itemList = new AdapterListUnjukKerja(PortfolioStudentUnjukKerja.this, listUnjukKerjaMurid);
+                                itemList = new AdapterListUnjukKerja(listUnjukKerjaMurid, listMapel);
                                 rvunjukkerja.setLayoutManager(new LinearLayoutManager(PortfolioStudentUnjukKerja.this));
                                 rvunjukkerja.setAdapter(itemList);
                             }
@@ -280,18 +324,5 @@ public class PortfolioStudentUnjukKerja extends AppCompatActivity implements Ada
         Intent a = new Intent(PortfolioStudentUnjukKerja.this, HomeStudent.class);
         startActivity(a);
         finish();
-    }
-
-    @Override
-    public void onClick(int position) {
-        TrPortofolio selectedPortfolio = itemList.getSelectedPortfolio(position);
-        Intent intent = new Intent(PortfolioStudentUnjukKerja.this, PortfolioDetail.class);
-        intent.putExtra(Constants.REFERENCE.PORTFOLIO, (Parcelable) selectedPortfolio);
-        startActivity(intent);
-    }
-
-    @Override
-    public void onClick(View v) {
-
     }
 }

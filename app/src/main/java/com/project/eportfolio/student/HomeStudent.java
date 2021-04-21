@@ -1,21 +1,14 @@
 package com.project.eportfolio.student;
 
-import android.app.ActivityOptions;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.transition.Slide;
-import android.view.Gravity;
 import android.view.View;
-import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -220,14 +213,18 @@ public class HomeStudent extends AppCompatActivity {
         btn_home_mapel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(HomeStudent.this, "Trial Version", Toast.LENGTH_SHORT).show();
+                Intent a = new Intent(HomeStudent.this, MapelStudent.class);
+                startActivity(a);
+                finish();
             }
         });
 
         btn_home_guru.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(HomeStudent.this, "Trial Version", Toast.LENGTH_SHORT).show();
+                Intent a = new Intent(HomeStudent.this, GuruStudent.class);
+                startActivity(a);
+                finish();
             }
         });
 

@@ -81,7 +81,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/mapelListUnjukKerja"
+                    android:id="@+id/mapelDetailPortfolio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="BAHASA SUNDA"
@@ -90,7 +90,7 @@
                     android:fontFamily="@font/roboto_regular"/>
 
                 <TextView
-                    android:id="@+id/tglListUnjukKerja"
+                    android:id="@+id/tglDetailPortfolio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="20/12/2020"
@@ -107,7 +107,7 @@
                 android:layout_centerVertical="true"
                 android:background="@drawable/rect_list_predikat_portfolio">
                 <TextView
-                    android:id="@+id/predikatListUnjukKerja"
+                    android:id="@+id/predikatDetailPortfolio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

@@ -10,14 +10,21 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.project.eportfolio.R;
+import com.project.eportfolio.model.matapelajaran.ModelMataPelajaran;
+import com.project.eportfolio.model.matapelajaran.MsMatapelajaran;
 import com.project.eportfolio.student.HomeStudent;
 import com.project.eportfolio.student.InputStudent;
 import com.project.eportfolio.student.ProfileStudent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PortfolioStudentAchievement extends AppCompatActivity {
 
     ImageButton btn_beranda, btn_portfolio, btn_input, btn_profile;
     LinearLayout btn_ll_a, btn_ll_k, btn_ll_p, btn_ll_uk;
+    ModelMataPelajaran modelDataMapel;
+    List<MsMatapelajaran> listMapel = new ArrayList<>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

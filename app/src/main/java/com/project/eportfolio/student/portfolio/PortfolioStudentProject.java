@@ -18,6 +18,8 @@ import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.R;
 import com.project.eportfolio.adapter.adapterPortfolio.AdapterListProyek;
+import com.project.eportfolio.model.matapelajaran.ModelMataPelajaran;
+import com.project.eportfolio.model.matapelajaran.MsMatapelajaran;
 import com.project.eportfolio.model.portfolio.ModelPortofolio;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
 import com.project.eportfolio.model.strategi.ModelStrategi;
@@ -39,6 +41,8 @@ public class PortfolioStudentProject extends AppCompatActivity {
     RecyclerView rvProyek;
     ModelPortofolio dataModelPortfolio;
     ModelStrategi dataModelStrategi;
+    ModelMataPelajaran modelDataMapel;
+    List<MsMatapelajaran> listMapel = new ArrayList<>();
     List<TrPortofolio> listPortofolio = new ArrayList<>();
     List<TrPortofolio> listProjectMurid = new ArrayList<>();
     List<MsStrategi> listProject = new ArrayList<>();
@@ -146,7 +150,7 @@ public class PortfolioStudentProject extends AppCompatActivity {
                             listProject.add(dataModelStrategi.getData().getMsStrategi().get(i));
                         }
                     }
-                    getPortfolio();
+                    getMapel();
                 }
             }
             @Override
@@ -155,6 +159,46 @@ public class PortfolioStudentProject extends AppCompatActivity {
                     @Override
                     public void run() {
                         findViewById(R.id.framelayout).setVisibility(View.GONE);
+                        Toast.makeText(PortfolioStudentProject.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
+                    }
+                });
+                call.cancel();
+            }
+        });
+    }
+
+    public void getMapel() {
+        final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
+        final Call<ModelMataPelajaran> dataSiswax = apiInterface.getDataMasterMapel(  apikey, 1000);
+
+        dataSiswax.enqueue(new Callback<ModelMataPelajaran>() {
+            @Override
+            public void onResponse(Call<ModelMataPelajaran> call, Response<ModelMataPelajaran> response) {
+
+                modelDataMapel = response.body();
+
+                if (modelDataMapel!=null){
+                    for (int i = 0; i < modelDataMapel.getTotal(); i++) {
+                        try {
+                            if (PreferenceUtils.getIdSekolahSiswa(getApplicationContext())
+                                    .equalsIgnoreCase(modelDataMapel.getData().getMsMatapelajaran().get(i).getSekolahid())) {
+                                listMapel.add(modelDataMapel.getData().getMsMatapelajaran().get(i));
+                            }
+                        } catch (Exception e){
+
+                        }
+                    }
+
+                    if (listMapel!=null){
+                        getPortfolio();
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<ModelMataPelajaran> call, Throwable t) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
                         Toast.makeText(PortfolioStudentProject.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
                     }
                 });
@@ -208,7 +252,7 @@ public class PortfolioStudentProject extends AppCompatActivity {
                             @Override
                             public void run() {
                                 findViewById(R.id.framelayout).setVisibility(View.GONE);
-                                itemList = new AdapterListProyek(listProjectMurid);
+                                itemList = new AdapterListProyek(listProjectMurid, listMapel);
                                 rvProyek.setLayoutManager(new LinearLayoutManager(PortfolioStudentProject.this));
                                 rvProyek.setAdapter(itemList);
                             }

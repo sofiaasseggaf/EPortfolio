@@ -10,7 +10,7 @@
     {
       "type": "UNIVERSAL",
       "filters": [],
-      "versionCode": 23,
+      "versionCode": 1,
       "versionName": "1.0.1",
       "outputFile": "app-universal-release.apk"
     },
@@ -22,21 +22,9 @@
           "value": "xxxhdpi"
         }
       ],
-      "versionCode": 6623,
+      "versionCode": 6601,
       "versionName": "1.0.1",
       "outputFile": "app-xxxhdpi-release.apk"
-    },
-    {
-      "type": "ONE_OF_MANY",
-      "filters": [
-        {
-          "filterType": "DENSITY",
-          "value": "ldpi"
-        }
-      ],
-      "versionCode": 2223,
-      "versionName": "1.0.1",
-      "outputFile": "app-ldpi-release.apk"
     },
     {
       "type": "ONE_OF_MANY",
@@ -46,9 +34,21 @@
           "value": "mdpi"
         }
       ],
-      "versionCode": 3323,
+      "versionCode": 3301,
       "versionName": "1.0.1",
       "outputFile": "app-mdpi-release.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "DENSITY",
+          "value": "ldpi"
+        }
+      ],
+      "versionCode": 2201,
+      "versionName": "1.0.1",
+      "outputFile": "app-ldpi-release.apk"
     },
     {
       "type": "ONE_OF_MANY",
@@ -58,7 +58,7 @@
           "value": "xxhdpi"
         }
       ],
-      "versionCode": 5523,
+      "versionCode": 5501,
       "versionName": "1.0.1",
       "outputFile": "app-xxhdpi-release.apk"
     },
@@ -70,7 +70,7 @@
           "value": "hdpi"
         }
       ],
-      "versionCode": 1123,
+      "versionCode": 1101,
       "versionName": "1.0.1",
       "outputFile": "app-hdpi-release.apk"
     },
@@ -82,7 +82,7 @@
           "value": "xhdpi"
         }
       ],
-      "versionCode": 4423,
+      "versionCode": 4401,
       "versionName": "1.0.1",
       "outputFile": "app-xhdpi-release.apk"
     }

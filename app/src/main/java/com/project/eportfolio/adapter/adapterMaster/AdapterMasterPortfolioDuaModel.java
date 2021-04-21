@@ -68,7 +68,9 @@ public class AdapterMasterPortfolioDuaModel extends RecyclerView.Adapter<Recycle
                 else {
                     ((Penampung)holder).mapelMasterPortfolio.setText("ID Mata Pelajaran : "+dataListTrPortfolio.get(position).getMapelid().toString());
                 }
-            } catch (Exception a){ }
+            } catch (Exception a){
+
+            }
 
         }
 

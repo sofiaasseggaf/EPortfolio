@@ -64,7 +64,7 @@ import retrofit2.Response;
 public class InputStudent extends AppCompatActivity {
 
     ImageButton btn_beranda, btn_portfolio, btn_input, btn_profile;
-    Spinner sp_strategi;
+    //Spinner sp_strategi;
     EditText txtJudul, txtTempat, txtNarasi;
     ImageButton btnInputPortfolio, btnOpenCamera;
     ImageView imgPortofolio;
@@ -89,7 +89,7 @@ public class InputStudent extends AppCompatActivity {
         ButterKnife.bind(this);
         mCompressor = new FileCompressor(this);
 
-        sp_strategi = findViewById(R.id.sp_strategi);
+        //sp_strategi = findViewById(R.id.sp_strategi);
         txtJudul = findViewById(R.id.txtJudul);
         txtTempat = findViewById(R.id.txtTempat);
         txtNarasi = findViewById(R.id.txtNarasi);
@@ -390,42 +390,41 @@ public class InputStudent extends AppCompatActivity {
 
     private void sendDataPortfolio() {
 
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
-            String now = formatter.format(new Date());
-
-        SimpleDateFormat foror = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss", Locale.getDefault());
-        String tgl = foror.format(new Date());
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        String now = formatter.format(new Date());
 
         if (mPhotoFile!=null){
             byte[] bImg1 = AppUtil.FiletoByteArray(mPhotoFile);
             RequestBody requestFile1 = RequestBody.create(MediaType.parse("image/jpeg"),bImg1);
-            fotox = MultipartBody.Part.createFormData("foto", PreferenceUtils.getFirstName(getApplicationContext())+
-                    "_" + tgl + ".jpg", requestFile1);
+            fotox = MultipartBody.Part.createFormData("foto", mFileName + ".jpg", requestFile1);
         }
 
-       /* if (sp_strategi.getSelectedItem().toString().equalsIgnoreCase("Organisasi")) {
-            idkategori = 4;
-        } else if (sp_strategi.getSelectedItem().toString().equalsIgnoreCase("Penghargaan")) {
-            idkategori = 5;
-        } else if (sp_strategi.getSelectedItem().toString().equalsIgnoreCase("Forum Edukasi")) {
-            idkategori = 6;
-        }*/
 
             APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
-            Call<ModelPostPortfolio> data = apiInterface.sendDataPortfolioSiswa(
-                    RequestBody.create(MediaType.parse("text/plain"),apikey),
-                    RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getIdSiswa(getApplicationContext())),
-                    RequestBody.create(MediaType.parse("text/plain"),"4"),
-                    RequestBody.create(MediaType.parse("text/plain"),txtJudul.getText().toString()),
-                    RequestBody.create(MediaType.parse("text/plain"),now),
-                    RequestBody.create(MediaType.parse("text/plain"),txtTempat.getText().toString()),
-                    RequestBody.create(MediaType.parse("text/plain"),txtNarasi.getText().toString()),
-                    fotox,
-                    RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getFirstName(getApplicationContext())),
-                    RequestBody.create(MediaType.parse("text/plain"),now),
-                    RequestBody.create(MediaType.parse("text/plain"),"100"),
-                    RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getIdKelas(getApplicationContext()))
-            );
+        Call<ModelPostPortfolio> data = apiInterface.sendDataPortfolioGuru(
+                RequestBody.create(MediaType.parse("text/plain"),apikey),
+                RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getIdSiswa(getApplicationContext())),
+                RequestBody.create(MediaType.parse("text/plain"),"0"),
+                RequestBody.create(MediaType.parse("text/plain"),"0"),
+                RequestBody.create(MediaType.parse("text/plain"),"0"),
+                RequestBody.create(MediaType.parse("text/plain"),"4"),
+                RequestBody.create(MediaType.parse("text/plain"),"0"),
+                RequestBody.create(MediaType.parse("text/plain"),txtJudul.getText().toString()), //req
+                RequestBody.create(MediaType.parse("text/plain"),"0"),
+                RequestBody.create(MediaType.parse("text/plain"),now),
+                RequestBody.create(MediaType.parse("text/plain"),txtTempat.getText().toString()), // ganti kota
+                RequestBody.create(MediaType.parse("text/plain"),"100"),
+                RequestBody.create(MediaType.parse("text/plain"),"A"), // isi sesuai linear layout predikat yg dipilih
+                RequestBody.create(MediaType.parse("text/plain"),txtNarasi.getText().toString()),
+                fotox,
+                RequestBody.create(MediaType.parse("text/plain"),"0"),
+                RequestBody.create(MediaType.parse("text/plain"),"2021"),
+                RequestBody.create(MediaType.parse("text/plain"),"0"),
+                RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getFirstName(getApplicationContext())),
+                RequestBody.create(MediaType.parse("text/plain"),now),
+                RequestBody.create(MediaType.parse("text/plain"),"100"), //req
+                RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getIdKelas(getApplicationContext())) //req
+        );
 
             data.enqueue(new Callback<ModelPostPortfolio>() {
                 @Override

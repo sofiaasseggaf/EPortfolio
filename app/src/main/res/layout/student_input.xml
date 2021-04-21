@@ -46,16 +46,15 @@
                     android:background="@drawable/rect_spinner"
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal">
-                    <Spinner
-                        android:id="@+id/sp_strategi"
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:fontFamily="@font/roboto_regular"
                         android:textSize="14sp"
+                        android:text="Achievement"
                         android:textColor="@color/font"
-                        android:paddingLeft="10dp"
-                        style="@style/MySpinnerLook" />
+                        android:paddingLeft="10dp"/>
                 </LinearLayout>
 
                 <TextView

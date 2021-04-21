@@ -48,6 +48,10 @@
         <activity android:name="com.project.eportfolio.student.InputStudent"
             android:windowSoftInputMode="stateHidden" />
         <activity android:name="com.project.eportfolio.student.ProfileStudent"/>
+        <activity android:name=".student.MapelStudent"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".student.GuruStudent"
+            android:windowSoftInputMode="stateHidden"/>
         <activity android:name="com.project.eportfolio.student.ProfileStudentSettingEdit"
             android:windowSoftInputMode="stateHidden" />
         <activity android:name="com.project.eportfolio.student.ProfileStudentSettingPrivacy"
@@ -61,6 +65,7 @@
             android:windowSoftInputMode="stateHidden" />
         <activity android:name="com.project.eportfolio.student.portfolio.PortfolioStudentAchievement"
             android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".student.portfolio.PortfolioDetail"></activity>
 
 
 

@@ -1,5 +1,7 @@
 package com.project.eportfolio.adapter.adapterPortfolio;
 
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.project.eportfolio.R;
+import com.project.eportfolio.model.matapelajaran.MsMatapelajaran;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
+import com.project.eportfolio.student.portfolio.PortfolioDetail;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -20,11 +24,14 @@ import java.util.List;
 public class AdapterListUnjukKerja extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private List<TrPortofolio> dataItemList;
-    private final ClickLIstenerUnjukKerja mListener;
+    private List<MsMatapelajaran> dataListMapel;
+    private Context context;
+    public int position;
 
-    public AdapterListUnjukKerja(ClickLIstenerUnjukKerja listener, List<TrPortofolio> dataItemList ){
+    public AdapterListUnjukKerja(List<TrPortofolio> dataItemList,
+                                 List<MsMatapelajaran> dataListMapel){
         this.dataItemList = dataItemList;
-        mListener = (ClickLIstenerUnjukKerja) listener;
+        this.dataListMapel = dataListMapel;
     }
 
     @NonNull
@@ -37,7 +44,21 @@ public class AdapterListUnjukKerja extends RecyclerView.Adapter<RecyclerView.Vie
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ((Penampung)holder).mapelListUnjukKerja.setText(dataItemList.get(position).getMapelid());
+
+        for (int i=0; i<dataListMapel.size(); i++){
+            try {
+                if (dataItemList.get(position).getMapelid().equalsIgnoreCase(dataListMapel.get(i).getId())){
+                    ((Penampung)holder).mapelListUnjukKerja.setText(dataListMapel.get(i).getName());
+                    break;
+                }
+                else {
+                    ((Penampung)holder).mapelListUnjukKerja.setText("ID Mata Pelajaran : "+dataItemList.get(position).getMapelid());
+                }
+            } catch (Exception a){
+
+            }
+
+        }
         //((Penampung)holder).kelasListUnjukKerja.setText(dataItemList.get(position).getKelas());
         //((Penampung)holder).semesterListUnjukKerja.setText("SEMESTER"+dataItemList.get(position).getSemester());
         ((Penampung)holder).predikatListUnjukKerja.setText(dataItemList.get(position).getPredikat());
@@ -50,6 +71,8 @@ public class AdapterListUnjukKerja extends RecyclerView.Adapter<RecyclerView.Vie
         } catch (Exception e){
             e.printStackTrace();
         }
+
+        position = this.position;
     }
 
     @Override
@@ -57,12 +80,13 @@ public class AdapterListUnjukKerja extends RecyclerView.Adapter<RecyclerView.Vie
         return dataItemList == null ? 0 : dataItemList.size();
     }
 
-    public class Penampung extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class Penampung extends RecyclerView.ViewHolder {
         public TextView mapelListUnjukKerja, predikatListUnjukKerja, judulListUnjukKerja, tglListUnjukKerja;
         public ImageView imgListUnjukKerja;
 
         public Penampung(View itemView) {
             super(itemView);
+            context = itemView.getContext();
             mapelListUnjukKerja = itemView.findViewById(R.id.mapelListUnjukKerja);
             predikatListUnjukKerja = itemView.findViewById(R.id.predikatListUnjukKerja);
             //kelasListUnjukKerja = itemView.findViewById(R.id.kelasListUnjukKerja);
@@ -72,19 +96,15 @@ public class AdapterListUnjukKerja extends RecyclerView.Adapter<RecyclerView.Vie
             tglListUnjukKerja = itemView.findViewById(R.id.tglListUnjukKerja);
             imgListUnjukKerja = itemView.findViewById(R.id.imgListUnjukKerja);
 
-            itemView.setOnClickListener(this);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent a = new Intent(context, PortfolioDetail.class);
+                    a.putExtra("idportfolio", dataItemList.get(getAdapterPosition()).getId());
+                    context.startActivity(a);
+                }
+            });
         }
-        @Override
-        public void onClick(View v) {
-            mListener.onClick(getLayoutPosition());
-        }
-    }
 
-    public TrPortofolio getSelectedPortfolio(int position) {
-        return dataItemList.get(position);
     }
-
-    public interface ClickLIstenerUnjukKerja {
-        void onClick(int position);
-    }
-}
+   }
