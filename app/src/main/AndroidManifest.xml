@@ -1,101 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.project.eportfolio">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- Include following permission if you want to cache images on SD card -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <uses-feature android:name="android.hardware.type.watch" />
+
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- Include following permission if you want to cache images on SD card -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
     <uses-feature android:name="android.hardware.camera.flash" />
 
     <application
         android:allowBackup="true"
+        android:debuggable="false"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
-        android:debuggable="false"
-        tools:ignore="HardcodedDebugMode"
-        android:requestLegacyExternalStorage="true">
+        tools:ignore="HardcodedDebugMode">
+        <activity android:name=".student.outputportfolio.OutputPortfolioD"></activity>
+        <activity android:name=".student.outputportfolio.OutputPortfolioC" />
+        <activity android:name=".student.outputportfolio.OutputPortfolioB" />
 
-        <activity android:name="com.project.eportfolio.SplashScreen">
+        <uses-library
+            android:name="com.google.android.wearable"
+            android:required="true" />
+        <!--
+               Set to true if your app is Standalone, that is, it does not require the handheld
+               app to run.
+        -->
+        <meta-data
+            android:name="com.google.android.wearable.standalone"
+            android:value="true" />
+
+        <activity
+            android:name=".student.outputportfolio.OutputPortfolioA"
+            android:label="@string/title_activity_output_portfolio1">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <activity android:name="com.project.eportfolio.LoginActivity"
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".LoginActivity"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name="com.project.eportfolio.utility.PreferenceUtils" />
+        <activity android:name=".utility.PreferenceUtils" />
         <activity android:name=".ArtikelActivity" />
-
-
-
-        <activity android:name="com.project.eportfolio.student.HomeStudent"
+        <activity
+            android:name=".student.HomeStudent"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name="com.project.eportfolio.student.InputStudent"
+        <activity
+            android:name=".student.InputStudent"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name="com.project.eportfolio.student.ProfileStudent"/>
-        <activity android:name=".student.MapelStudent"
+        <activity android:name=".student.ProfileStudent" />
+        <activity
+            android:name=".student.MapelStudent"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".student.GuruStudent"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name="com.project.eportfolio.student.ProfileStudentSettingEdit"
+        <activity
+            android:name=".student.GuruStudent"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name="com.project.eportfolio.student.ProfileStudentSettingPrivacy"
+        <activity
+            android:name=".student.ProfileStudentSettingEdit"
             android:windowSoftInputMode="stateHidden" />
-
-        <activity android:name="com.project.eportfolio.student.portfolio.PortfolioStudentUnjukKerja"
+        <activity
+            android:name=".student.ProfileStudentSettingPrivacy"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name="com.project.eportfolio.student.portfolio.PortfolioStudentKarya"
+        <activity
+            android:name=".student.portfolio.PortfolioStudentUnjukKerja"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name="com.project.eportfolio.student.portfolio.PortfolioStudentProject"
+        <activity
+            android:name=".student.portfolio.PortfolioStudentKarya"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name="com.project.eportfolio.student.portfolio.PortfolioStudentAchievement"
+        <activity
+            android:name=".student.portfolio.PortfolioStudentProject"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".student.portfolio.PortfolioDetail"></activity>
-
-
-
-        <activity android:name="com.project.eportfolio.teacher.HomeTeacher"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name="com.project.eportfolio.teacher.input.InputTeacherA"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name="com.project.eportfolio.teacher.input.InputTeacherB"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name="com.project.eportfolio.teacher.input.InputTeacherC"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name="com.project.eportfolio.teacher.input.InputTeacherD"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name="com.project.eportfolio.teacher.MasterTeacher" />
-        <activity android:name="com.project.eportfolio.teacher.ProfileTeacher"/>
-        <activity android:name="com.project.eportfolio.teacher.ProfileTeacherSettingEdit"
+        <activity
+            android:name=".student.portfolio.PortfolioStudentAchievement"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name="com.project.eportfolio.teacher.ProfileTeacherSettingPrivacy"
+        <activity android:name=".student.portfolio.PortfolioDetail" />
+        <activity
+            android:name=".teacher.HomeTeacher"
             android:windowSoftInputMode="stateHidden" />
-
-        <activity android:name="com.project.eportfolio.teacher.master.DataGuru"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name="com.project.eportfolio.teacher.master.DataKelas"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name="com.project.eportfolio.teacher.master.DataMapel"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name="com.project.eportfolio.teacher.master.DataMurid"
-            android:windowSoftInputMode="stateHidden"/>
-        <activity android:name="com.project.eportfolio.teacher.master.DataPortfolioDuaModel"
-            android:windowSoftInputMode="stateHidden"/>
+        <activity
+            android:name=".teacher.input.InputTeacherA"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".teacher.input.InputTeacherB"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".teacher.input.InputTeacherC"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".teacher.input.InputTeacherD"
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".teacher.MasterTeacher" />
+        <activity android:name=".teacher.ProfileTeacher" />
+        <activity
+            android:name=".teacher.ProfileTeacherSettingEdit"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".teacher.ProfileTeacherSettingPrivacy"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".teacher.master.DataGuru"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".teacher.master.DataKelas"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".teacher.master.DataMapel"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".teacher.master.DataMurid"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".teacher.master.DataPortfolioDuaModel"
+            android:windowSoftInputMode="stateHidden" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
@@ -106,7 +146,6 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
     </application>
 
 </manifest>

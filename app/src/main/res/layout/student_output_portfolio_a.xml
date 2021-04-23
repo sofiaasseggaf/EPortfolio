@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bgoutput1">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Portofolio Siswa"
+            android:fontFamily="@font/roboto_medium"
+            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgOutput"
+            android:layout_width="165dp"
+            android:layout_height="165dp"
+            app:civ_border_width="2dp"
+            android:layout_marginTop="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/nopic"
+            app:civ_border_color="#ffffff"/>
+
+        <TextView
+            android:id="@+id/namaOutput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Albaiqi Dimiati Samaan"
+            android:textAlignment="center"
+            android:lines="2"
+            android:fontFamily="@font/roboto_medium"
+            android:textSize="28sp"
+            android:textColor="@color/white"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="60dp"
+            android:layout_marginLeft="60dp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginLeft="75dp"
+        android:layout_marginBottom="75dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/output_sekolah"
+                android:layout_marginRight="30dp"/>
+            <TextView
+                android:id="@+id/sekolahOutput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SD Silaturahmi Islamic School"
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="14sp"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/output_kelas"
+                android:layout_marginRight="30dp"/>
+            <TextView
+                android:id="@+id/kelasOutput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kelas 5 A - Semester Ganjil"
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="14sp"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/output_alamat"
+                android:layout_marginRight="30dp"/>
+            <TextView
+                android:id="@+id/alamatOutput"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jl. Kalimongso No. 99"
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="14sp"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>
