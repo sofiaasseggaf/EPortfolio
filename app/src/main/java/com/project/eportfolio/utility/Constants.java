@@ -51,6 +51,12 @@ public class Constants {
     public static String SEKOLAH_WEBSITE = "sekolah_website";
     public static String SEKOLAH_EMAIL = "sekolah_email";
 
+    // -------------- DATA KELAS -----------------
+
+    public static String KELAS_ID = "kelas_id";
+    public static String KELAS_NAMA = "kelas_nama";
+
+
     // ---------------- IMAGE --------------------
 
     public static String KEY_IMAGE_SISWA = "image_siswa";

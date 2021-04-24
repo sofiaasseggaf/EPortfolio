@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.project.eportfolio.R;
+import com.project.eportfolio.model.achievement.Achievment;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
 import com.squareup.picasso.Picasso;
 
@@ -18,9 +19,9 @@ import java.util.List;
 
 public class AdapterListAchievement extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private List<TrPortofolio> dataItemList;
+    private List<Achievment> dataItemList;
 
-    public AdapterListAchievement(List<TrPortofolio> dataItemList){
+    public AdapterListAchievement(List<Achievment> dataItemList){
         this.dataItemList = dataItemList;
     }
 
@@ -34,7 +35,7 @@ public class AdapterListAchievement extends RecyclerView.Adapter<RecyclerView.Vi
 
     @Override
     public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, int position) {
-        ((Penampung)holder).judulListAchievement.setText(dataItemList.get(position).getJudulKd());
+        ((Penampung)holder).judulListAchievement.setText(dataItemList.get(position).getJudul());
         ((Penampung)holder).tempatListAchievement.setText(dataItemList.get(position).getTempat());
         ((Penampung)holder).tglListAchievement.setText(dataItemList.get(position).getTanggal());
         try{

@@ -20,6 +20,8 @@ import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.model.guru.ModelGuru;
 import com.project.eportfolio.model.guru.MsGuru;
+import com.project.eportfolio.model.kelas.ModelKelas;
+import com.project.eportfolio.model.kelas.MsKela;
 import com.project.eportfolio.model.sekolah.ModelSekolah;
 import com.project.eportfolio.model.sekolah.MsSekolah;
 import com.project.eportfolio.model.siswa.ModelSiswa;
@@ -45,10 +47,12 @@ public class LoginActivity extends AppCompatActivity {
     ModelUser dataModelUser;
     ModelGuru dataModelGuru;
     ModelSekolah dataModelSekolah;
+    ModelKelas dataModelKelas;
 
     MsMurid userSiswa;
     MsGuru userGuru;
     MsSekolah dataSekolah;
+    MsKela dataKelas;
 
     String apikey = "7826470ABBA476706DB24D47C6A6ED64";
     int bener;
@@ -95,13 +99,10 @@ public class LoginActivity extends AppCompatActivity {
         findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
         final Handler handler = new Handler();
         Runnable runnable = new Runnable() {
-
             int count = 0;
-
             @Override
             public void run() {
                 count++;
-
                 if (count == 1)
                 {
                     txtload.setText("Loading .");
@@ -114,10 +115,8 @@ public class LoginActivity extends AppCompatActivity {
                 {
                     txtload.setText("Loading . . .");
                 }
-
                 if (count == 3)
                     count = 0;
-
                 handler.postDelayed(this, 1500);
             }
         };
@@ -334,6 +333,19 @@ public class LoginActivity extends AppCompatActivity {
         PreferenceUtils.saveSekolahPhone(dataSekolah.getPhone(), getApplicationContext());
         PreferenceUtils.saveSekolahWebsite(dataSekolah.getWebsite(), getApplicationContext());
 
+        for (int x = 0; x < dataModelKelas.getData().getMsKelas().size(); x++) {
+            if (userSiswa.getKelasid().equalsIgnoreCase(dataModelKelas.getData().getMsKelas().get(x).getId())) {
+                dataKelas = dataModelKelas.getData().getMsKelas().get(x);
+                saveDataKelasMurid();
+            }
+        }
+
+    }
+
+    public void saveDataKelasMurid(){
+        PreferenceUtils.saveKelasId(dataKelas.getId(), getApplicationContext());
+        PreferenceUtils.saveKelasNama(dataKelas.getName(), getApplicationContext());
+
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -429,11 +441,33 @@ public class LoginActivity extends AppCompatActivity {
 
                 dataModelSekolah = response.body();
                 if (response.body()!=null){
-                    findViewById(R.id.framelayout).setVisibility(View.GONE);
+                    getKelas();
                 }
             }
             @Override
             public void onFailure(Call<ModelSekolah> call, Throwable t) {
+
+                Toast.makeText(LoginActivity.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
+                call.cancel();
+            }
+        });
+    }
+
+    public void getKelas() {
+        final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
+        final Call<ModelKelas> dataSiswax = apiInterface.getdataKelas( apikey, 1000);
+
+        dataSiswax.enqueue(new Callback<ModelKelas>() {
+            @Override
+            public void onResponse(Call<ModelKelas> call, Response<ModelKelas> response) {
+
+                dataModelKelas = response.body();
+                if (response.body()!=null){
+                    findViewById(R.id.framelayout).setVisibility(View.GONE);
+                }
+            }
+            @Override
+            public void onFailure(Call<ModelKelas> call, Throwable t) {
 
                 Toast.makeText(LoginActivity.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
                 call.cancel();

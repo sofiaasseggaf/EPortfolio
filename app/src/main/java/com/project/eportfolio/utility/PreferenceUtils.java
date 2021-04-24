@@ -485,6 +485,36 @@ public class PreferenceUtils extends AppCompatActivity {
     }
 
 
+    // ----------------- DATA KELAS ----------------
+
+
+    public static boolean saveKelasId(String kelas_id, Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor prefsEditor = prefs.edit();
+        prefsEditor.putString(Constants.KELAS_ID, kelas_id);
+        prefsEditor.apply();
+        return true;
+    }
+
+    public static String getKelasId(Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getString(Constants.KELAS_ID, null);
+    }
+
+    public static boolean saveKelasNama(String kelas_nama, Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor prefsEditor = prefs.edit();
+        prefsEditor.putString(Constants.KELAS_NAMA, kelas_nama);
+        prefsEditor.apply();
+        return true;
+    }
+
+    public static String getKelasNama(Context context){
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getString(Constants.KELAS_NAMA, null);
+    }
+
+
     // ----------------- IMAGE BITMAP ---------------
 
     /*

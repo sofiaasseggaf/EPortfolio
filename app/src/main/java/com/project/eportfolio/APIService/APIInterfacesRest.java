@@ -5,8 +5,10 @@ package com.project.eportfolio.APIService;
  */
 
 
+import com.project.eportfolio.model.achievement.ModelAchievement;
 import com.project.eportfolio.model.blog.ModelBlog;
 import com.project.eportfolio.model.grade.ModelGrade;
+import com.project.eportfolio.model.gradesekolah.ModelGradeSekolah;
 import com.project.eportfolio.model.guru.ModelGuru;
 import com.project.eportfolio.model.guru.ModelUpdateDataGuru;
 import com.project.eportfolio.model.kategoristrategi.ModelKategoriStrategi;
@@ -89,9 +91,19 @@ public interface APIInterfacesRest {
     Call<ModelGrade> getDataGrade(@Query("X-Api-Key") String apikey,
                                   @Query("limit") int limit);
 
+
+    @GET("api/ms_grade_sekolah/all")
+    Call<ModelGradeSekolah> getDataGradeSekolah(@Query("X-Api-Key") String apikey,
+                                                @Query("limit") int limit);
+
     @GET("api/blog/all")
     Call<ModelBlog> getDataBlog(@Query("X-Api-Key") String apikey,
                                 @Query("limit") int limit);
+
+
+    @GET("api/achievment/all")
+    Call<ModelAchievement> getDataAchievement(@Query("X-Api-Key") String apikey,
+                                              @Query("limit") int limit);
 
 
     // ------------------------- POST DATA -------------------------

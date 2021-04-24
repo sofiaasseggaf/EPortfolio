@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -36,14 +36,14 @@
                 android:layout_marginTop="25dp"
                 android:layout_gravity="center">
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imgProfile"
+                    android:id="@+id/imgOutput"
                     android:layout_width="55dp"
                     android:layout_height="55dp"
                     app:civ_border_width="2dp"
                     android:src="@drawable/nopic"
                     app:civ_border_color="#ffffff"/>
                 <TextView
-                    android:id="@+id/namaProfile"
+                    android:id="@+id/namaOutput"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="22sp"
@@ -137,7 +137,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:textColor="#ffffff"
-                        android:text="7"
+                        android:text="-"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:fontFamily="@font/roboto_medium"/>
@@ -182,7 +182,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:textColor="#ffffff"
-                        android:text="7"
+                        android:text="-"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:fontFamily="@font/roboto_medium"/>
@@ -227,7 +227,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:textColor="#ffffff"
-                        android:text="7"
+                        android:text="-"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:fontFamily="@font/roboto_medium"/>
@@ -272,7 +272,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:textColor="#ffffff"
-                        android:text="7"
+                        android:text="-"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:fontFamily="@font/roboto_medium"/>
@@ -318,7 +318,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:textColor="#ffffff"
-                        android:text="7"
+                        android:text="-"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         android:fontFamily="@font/roboto_medium"/>
@@ -328,5 +328,40 @@
         </LinearLayout>
     </ScrollView>
 
+    <FrameLayout
+        android:id="@+id/framelayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:layout_marginTop="265dp"
+        android:background="#B5EFEFEF">
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/logo_student_portfolio_login"/>
+            <ProgressBar
+                style="?android:attr/progressBarStyle"
+                android:layout_width="47dp"
+                android:layout_height="45dp"
+                android:indeterminateDrawable="@drawable/pbstyle"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp">
+            </ProgressBar>
+
+        </LinearLayout>
+
+
+
+
+
+    </FrameLayout>
+
+
+</RelativeLayout>

@@ -25,6 +25,7 @@ import com.project.eportfolio.R;
 import com.project.eportfolio.adapter.adapterPortfolio.AdapterSliderPortfolio;
 import com.project.eportfolio.model.portfolio.ModelPortofolio;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
+import com.project.eportfolio.student.outputportfolio.OutputPortfolioA;
 import com.project.eportfolio.student.portfolio.PortfolioStudentAchievement;
 import com.project.eportfolio.student.portfolio.PortfolioStudentKarya;
 import com.project.eportfolio.student.portfolio.PortfolioStudentProject;
@@ -44,7 +45,7 @@ import static java.lang.Thread.sleep;
 
 public class HomeStudent extends AppCompatActivity {
 
-    ImageButton btn_beranda, btn_portfolio, btn_input, btn_profile;
+    ImageButton btn_beranda, btn_portfolio, btn_input, btn_profile, btn_banner;
     TextView txtUnjukKerja, txtProyek, txtKarya, txtOrganisasi, txtForumEdukasi, txtPenghargaan, txtload;
     ImageButton btn_home_karya, btn_home_unjukkerja, btn_home_project, btn_home_achievement;
     ImageButton btn_home_mapel, btn_home_guru, btn_home_artikel, btn_home_kalender;
@@ -79,6 +80,7 @@ public class HomeStudent extends AppCompatActivity {
         btn_portfolio = findViewById(R.id.btn_portfolio);
         btn_input = findViewById(R.id.btn_input);
         btn_profile = findViewById(R.id.btn_profile);
+        btn_banner = findViewById(R.id.btn_banner);
 
         btn_home_karya = findViewById(R.id.btn_home_karya);
         btn_home_unjukkerja = findViewById(R.id.btn_home_unjukkerja);
@@ -242,53 +244,16 @@ public class HomeStudent extends AppCompatActivity {
             }
         });
 
-    }
-
-    private void first(){
-        findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
-
-        final Handler handler = new Handler();
-        Runnable runnable = new Runnable() {
-
-            int count = 0;
-
+        btn_banner.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void run() {
-                count++;
-
-                if (count == 1)
-                {
-                    txtload.setText("Loading Portfolio .");
-                }
-                else if (count == 2)
-                {
-                    txtload.setText("Loading Portfolio . .");
-                }
-                else if (count == 3)
-                {
-                    txtload.setText("Loading Portfolio . . .");
-                }
-
-                if (count == 3)
-                    count = 0;
-
-                handler.postDelayed(this, 1500);
+            public void onClick(View v) {
+                Intent a = new Intent(HomeStudent.this, OutputPortfolioA.class);
+                startActivity(a);
+                finish();
             }
-        };
-        handler.postDelayed(runnable, 1 * 1000);
+        });
 
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                getPortfolio();
-            }
-        }).start();
-
-        //getdataportfoliosiswa, setelah itu dapet semua baru ke main thread trus set data siswa
     }
-
-
 
     public void getPortfolio() {
         final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
@@ -488,18 +453,6 @@ public class HomeStudent extends AppCompatActivity {
 
 
     }
-
-    //Your Slide animation
-    /*public void setAnimation(){
-        if(Build.VERSION.SDK_INT>20) {
-            Slide slide = new Slide();
-            slide.setSlideEdge(Gravity.LEFT);
-            slide.setDuration(500);
-            slide.setInterpolator(new DecelerateInterpolator());
-            getWindow().setExitTransition(slide);
-            getWindow().setEnterTransition(slide);
-        }
-    }*/
 
     @Override
     public void onBackPressed() {

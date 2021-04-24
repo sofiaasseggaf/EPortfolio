@@ -267,10 +267,20 @@ public class ProfileStudent extends AppCompatActivity {
         PreferenceUtils.saveSekolahPhone(null, getApplicationContext());
         PreferenceUtils.saveSekolahWebsite(null, getApplicationContext());
 
+        deleteDataKelas();
+
+    }
+
+    public void deleteDataKelas() {
+
+        PreferenceUtils.saveKelasId(null, getApplicationContext());
+        PreferenceUtils.saveKelasNama(null, getApplicationContext());
+
         Intent a = new Intent(ProfileStudent.this, LoginActivity.class);
         a.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(a);
         finish();
+
     }
 
    /* public void setAnimation() {
