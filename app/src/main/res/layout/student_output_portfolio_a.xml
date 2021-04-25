@@ -49,8 +49,8 @@
 
 
     <LinearLayout
-        android:layout_marginLeft="75dp"
-        android:layout_marginBottom="75dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginBottom="100dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -64,7 +64,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/output_sekolah"
-                android:layout_marginRight="30dp"/>
+                android:layout_marginRight="20dp"/>
             <TextView
                 android:id="@+id/sekolahOutput"
                 android:layout_width="wrap_content"
@@ -84,7 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/output_kelas"
-                android:layout_marginRight="30dp"/>
+                android:layout_marginRight="20dp"/>
             <TextView
                 android:id="@+id/kelasOutput"
                 android:layout_width="wrap_content"
@@ -104,7 +104,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/output_alamat"
-                android:layout_marginRight="30dp"/>
+                android:layout_marginRight="20dp"/>
             <TextView
                 android:id="@+id/alamatOutput"
                 android:layout_width="wrap_content"

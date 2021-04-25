@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -29,6 +30,7 @@ import com.project.eportfolio.student.HomeStudent;
 import com.project.eportfolio.student.InputStudent;
 import com.project.eportfolio.student.ProfileStudent;
 import com.project.eportfolio.utility.Constants;
+import com.project.eportfolio.utility.OnSwipeTouchListener;
 import com.project.eportfolio.utility.PreferenceUtils;
 
 import java.util.ArrayList;
@@ -49,6 +51,7 @@ public class PortfolioStudentUnjukKerja extends AppCompatActivity {
     List<TrPortofolio> listUnjukKerjaMurid = new ArrayList<>();
     List<MsStrategi> listUnjukKerja = new ArrayList<>();
     AdapterListUnjukKerja itemList;
+    OnSwipeTouchListener onSwipeTouchListener;
 
     ImageButton btn_beranda, btn_portfolio, btn_input, btn_profile;
     LinearLayout btn_ll_a, btn_ll_k, btn_ll_p, btn_ll_uk;
@@ -126,6 +129,33 @@ public class PortfolioStudentUnjukKerja extends AppCompatActivity {
             }
         });
 
+        onSwipeTouchListener = new OnSwipeTouchListener(PortfolioStudentUnjukKerja.this) {
+            public void onSwipeTop() {
+
+            }
+            public void onSwipeRight() {
+                Intent a = new Intent(PortfolioStudentUnjukKerja.this, PortfolioStudentKarya.class);
+                startActivity(a);
+                finish();
+            }
+            public void onSwipeLeft() {
+                Intent a = new Intent(PortfolioStudentUnjukKerja.this, PortfolioStudentAchievement.class);
+                startActivity(a);
+                finish();
+            }
+            public void onSwipeBottom() {
+
+            }
+        };
+
+
+
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev){
+        onSwipeTouchListener.getGestureDetector().onTouchEvent(ev);
+        return super.dispatchTouchEvent(ev);
     }
 
     public void first(){

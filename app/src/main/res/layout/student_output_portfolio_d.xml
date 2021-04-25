@@ -10,10 +10,6 @@
     android:paddingBottom="30dp"
     tools:context=".student.outputportfolio.OutputPortfolioD">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -24,19 +20,10 @@
                 android:layout_height="wrap_content"
                 android:text="Mengajar Mata Pelajaran"
                 android:fontFamily="@font/roboto_medium"
-                android:textSize="24sp"
+                android:textSize="20sp"
                 android:textColor="@color/white"
                 android:layout_marginTop="50dp"
                 android:layout_gravity="center"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2. Mengajar"
-                android:fontFamily="@font/roboto_medium"
-                android:textSize="14sp"
-                android:textColor="@color/white"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="25dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -44,28 +31,29 @@
                 android:fontFamily="@font/roboto_medium"
                 android:textSize="14sp"
                 android:textColor="@color/white"
-                android:layout_marginTop="5dp"
-                android:layout_marginLeft="25dp"/>
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Mempresentasikan Anggota Tubu Pada Gambar"
+                android:text="Mempresentasikan Anggota Tubuh Pada Gambar"
                 android:fontFamily="@font/roboto_medium"
                 android:textSize="14sp"
+                android:lines="2"
                 android:textColor="@color/white"
                 android:layout_marginTop="5dp"
-                android:layout_marginLeft="25dp"/>
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/rect_output_4a"
+                android:background="@drawable/rounded_ll"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="20dp"
-                android:paddingTop="30dp"
-                android:paddingLeft="45dp"
-                android:paddingRight="45dp"
+                android:padding="20dp"
                 android:orientation="horizontal"
                 android:weightSum="2">
                 <LinearLayout
@@ -135,9 +123,11 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/rect_output_4b"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:padding="15dp"
+                android:background="@drawable/rounded_ll"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:paddingLeft="40dp">
@@ -238,13 +228,12 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/rect_output_4c"
-                android:paddingTop="30dp"
-                android:orientation="vertical"
-                android:paddingLeft="40dp"
-                android:paddingRight="30dp">
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:padding="15dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rounded_ll"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -316,7 +305,5 @@
             </LinearLayout>
 
         </LinearLayout>
-
-    </ScrollView>
 
 </LinearLayout>

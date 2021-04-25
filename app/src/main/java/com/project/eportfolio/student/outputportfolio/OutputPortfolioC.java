@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +18,7 @@ import com.project.eportfolio.model.rubrik.ModelMasterRubrik;
 import com.project.eportfolio.model.rubrik.MsRubrik;
 import com.project.eportfolio.student.HomeStudent;
 import com.project.eportfolio.teacher.input.InputTeacherC;
+import com.project.eportfolio.utility.OnSwipeTouchListener;
 import com.project.eportfolio.utility.PreferenceUtils;
 
 import java.util.ArrayList;
@@ -32,6 +34,7 @@ public class OutputPortfolioC extends AppCompatActivity {
     TextView outputNilaiA, outputNilaiB, outputNilaiC, outputNilaiD;
     TextView outputPredikatA, outputPredikatB, outputPredikatC, outputPredikatD;
     String n1, n2, n3, n4, p1, p2, p3, p4;
+    OnSwipeTouchListener onSwipeTouchListener;
 
     ModelMasterRubrik dataMasterRubrik;
     List<MsRubrik> listRubrik = new ArrayList<>();
@@ -62,6 +65,33 @@ public class OutputPortfolioC extends AppCompatActivity {
 
         first();
 
+        onSwipeTouchListener = new OnSwipeTouchListener(OutputPortfolioC.this) {
+            public void onSwipeTop() {
+
+            }
+            public void onSwipeRight() {
+                Intent a = new Intent(OutputPortfolioC.this, OutputPortfolioB.class);
+                startActivity(a);
+                finish();
+            }
+            public void onSwipeLeft() {
+                Intent a = new Intent(OutputPortfolioC.this, OutputPortfolioD.class);
+                startActivity(a);
+                finish();
+            }
+            public void onSwipeBottom() {
+
+            }
+        };
+
+
+
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev){
+        onSwipeTouchListener.getGestureDetector().onTouchEvent(ev);
+        return super.dispatchTouchEvent(ev);
     }
 
     private void first(){

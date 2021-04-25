@@ -25,7 +25,6 @@ public class AdapterListUnjukKerja extends RecyclerView.Adapter<RecyclerView.Vie
 
     private List<TrPortofolio> dataItemList;
     private List<MsMatapelajaran> dataListMapel;
-    private Context context;
     public int position;
 
     public AdapterListUnjukKerja(List<TrPortofolio> dataItemList,
@@ -86,7 +85,6 @@ public class AdapterListUnjukKerja extends RecyclerView.Adapter<RecyclerView.Vie
 
         public Penampung(View itemView) {
             super(itemView);
-            context = itemView.getContext();
             mapelListUnjukKerja = itemView.findViewById(R.id.mapelListUnjukKerja);
             predikatListUnjukKerja = itemView.findViewById(R.id.predikatListUnjukKerja);
             //kelasListUnjukKerja = itemView.findViewById(R.id.kelasListUnjukKerja);
@@ -99,9 +97,9 @@ public class AdapterListUnjukKerja extends RecyclerView.Adapter<RecyclerView.Vie
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent a = new Intent(context, PortfolioDetail.class);
+                    Intent a = new Intent(v.getContext(), PortfolioDetail.class);
                     a.putExtra("idportfolio", dataItemList.get(getAdapterPosition()).getId());
-                    context.startActivity(a);
+                    v.getContext().startActivity(a);
                 }
             });
         }

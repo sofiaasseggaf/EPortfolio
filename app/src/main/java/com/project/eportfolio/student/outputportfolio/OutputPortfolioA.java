@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.project.eportfolio.R;
 import com.project.eportfolio.student.HomeStudent;
 import com.project.eportfolio.student.MapelStudent;
+import com.project.eportfolio.utility.OnSwipeTouchListener;
 import com.project.eportfolio.utility.PreferenceUtils;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -25,6 +26,7 @@ public class OutputPortfolioA extends AppCompatActivity {
     TextView namaOutput, sekolahOutput, kelasOutput, alamatOutput;
     String namasiswa;
     float x1, x2, y1, y2;
+    OnSwipeTouchListener onSwipeTouchListener;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,12 +36,40 @@ public class OutputPortfolioA extends AppCompatActivity {
         namaOutput = findViewById(R.id.namaOutput);
         kelasOutput = findViewById(R.id.kelasOutput);
         alamatOutput = findViewById(R.id.alamatOutput);
+        sekolahOutput = findViewById(R.id.sekolahOutput);
 
         setDataSiswa();
 
+        onSwipeTouchListener = new OnSwipeTouchListener(OutputPortfolioA.this) {
+            public void onSwipeTop() {
+
+            }
+            public void onSwipeRight() {
+                Intent a = new Intent(OutputPortfolioA.this, HomeStudent.class);
+                startActivity(a);
+                finish();
+            }
+            public void onSwipeLeft() {
+                Intent a = new Intent(OutputPortfolioA.this, OutputPortfolioB.class);
+                startActivity(a);
+                finish();
+            }
+            public void onSwipeBottom() {
+
+            }
+        };
+
+
+
     }
 
-    public boolean onTouchEvent(MotionEvent touchEvent) {
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev){
+        onSwipeTouchListener.getGestureDetector().onTouchEvent(ev);
+        return super.dispatchTouchEvent(ev);
+    }
+
+   /* public boolean onTouchEvent(MotionEvent touchEvent) {
         switch(touchEvent.getAction()){
             case MotionEvent.ACTION_DOWN:
                 x1 = touchEvent.getX();
@@ -49,18 +79,20 @@ public class OutputPortfolioA extends AppCompatActivity {
                 x2 = touchEvent.getX();
                 y2 = touchEvent.getY();
                 if(x1 < x2){
-                    Intent a = new Intent(OutputPortfolioA.this, OutputPortfolioB.class);
+                    Intent a = new Intent(OutputPortfolioA.this, HomeStudent.class);
                     startActivity(a);
                     finish();
                 } else if(x1 > x2){
-                    Intent a = new Intent(OutputPortfolioA.this, HomeStudent.class);
+                    Intent a = new Intent(OutputPortfolioA.this, OutputPortfolioB.class);
                     startActivity(a);
                     finish();
                 }
                 break;
         }
-        return false;
-    }
+        return true;
+    }*/
+
+
 
     public void setDataSiswa(){
 

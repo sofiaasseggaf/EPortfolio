@@ -22,6 +22,7 @@ import com.project.eportfolio.model.achievement.ModelAchievement;
 import com.project.eportfolio.model.portfolio.ModelPortofolio;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
 import com.project.eportfolio.student.HomeStudent;
+import com.project.eportfolio.utility.OnSwipeTouchListener;
 import com.project.eportfolio.utility.PreferenceUtils;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -39,7 +40,7 @@ public class OutputPortfolioB extends AppCompatActivity {
     TextView namaOutput, sekolahOutput, kelasOutput;
     String namasiswa;
     TextView outputOrganisasi, outputPenghargaan, outputP, outputK, outputUK;
-    float x1, x2, y1, y2;
+    OnSwipeTouchListener onSwipeTouchListener;
 
     ModelPortofolio dataModelPortfolio;
     ModelAchievement dataModelAchievement;
@@ -61,6 +62,7 @@ public class OutputPortfolioB extends AppCompatActivity {
         imgOutput = findViewById(R.id.imgOutput);
         namaOutput = findViewById(R.id.namaOutput);
         kelasOutput = findViewById(R.id.kelasOutput);
+        sekolahOutput = findViewById(R.id.sekolahOutput);
 
         outputK = findViewById(R.id.outputK);
         outputUK = findViewById(R.id.outputUK);
@@ -70,12 +72,41 @@ public class OutputPortfolioB extends AppCompatActivity {
 
         first();
         setDataSiswa();
+
+        onSwipeTouchListener = new OnSwipeTouchListener(OutputPortfolioB.this) {
+            public void onSwipeTop() {
+
+            }
+            public void onSwipeRight() {
+                Intent a = new Intent(OutputPortfolioB.this, OutputPortfolioA.class);
+                startActivity(a);
+                finish();
+            }
+            public void onSwipeLeft() {
+                Intent a = new Intent(OutputPortfolioB.this, OutputPortfolioC.class);
+                startActivity(a);
+                finish();
+            }
+            public void onSwipeBottom() {
+
+            }
+        };
+
+
+
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev){
+        onSwipeTouchListener.getGestureDetector().onTouchEvent(ev);
+        return super.dispatchTouchEvent(ev);
     }
 
     private void first(){
         findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
         getAchievement();
     }
+
 
     public void getPortfolio() {
         final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
@@ -250,11 +281,11 @@ public class OutputPortfolioB extends AppCompatActivity {
 
     public void setDataPortfolio(){
 
-        outputK.setText(listKaryaMurid.size());
-        outputUK.setText(listUnjukKerjaMurid.size());
-        outputP.setText(listProyekMurid.size());
-        outputOrganisasi.setText(listOrganisasi.size());
-        outputPenghargaan.setText(listPenghargaan.size());
+        outputK.setText(""+listKaryaMurid.size());
+        outputUK.setText(""+listUnjukKerjaMurid.size());
+        outputP.setText(""+listProyekMurid.size());
+        outputOrganisasi.setText(""+listOrganisasi.size());
+        outputPenghargaan.setText(""+listPenghargaan.size());
         //txtForumEdukasi.setText(listForumEdukasi.size() + "   Forum Edukasi");
 
     }
@@ -285,28 +316,6 @@ public class OutputPortfolioB extends AppCompatActivity {
         } catch (Exception e){ }
     }
 
-    public boolean onTouchEvent(MotionEvent touchEvent) {
-        switch(touchEvent.getAction()){
-            case MotionEvent.ACTION_DOWN:
-                x1 = touchEvent.getX();
-                y1 = touchEvent.getY();
-                break;
-            case MotionEvent.ACTION_UP:
-                x2 = touchEvent.getX();
-                y2 = touchEvent.getY();
-                if(x1 < x2){
-                    Intent a = new Intent(OutputPortfolioB.this, OutputPortfolioC.class);
-                    startActivity(a);
-                    finish();
-                } else if(x1 > x2){
-                    Intent a = new Intent(OutputPortfolioB.this, OutputPortfolioA.class);
-                    startActivity(a);
-                    finish();
-                }
-                break;
-        }
-        return false;
-    }
 
     public void onBackPressed() {
         Intent a = new Intent(OutputPortfolioB.this, HomeStudent.class);

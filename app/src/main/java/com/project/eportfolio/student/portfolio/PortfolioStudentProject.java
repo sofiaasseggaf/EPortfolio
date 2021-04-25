@@ -3,6 +3,7 @@ package com.project.eportfolio.student.portfolio;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -27,6 +28,7 @@ import com.project.eportfolio.model.strategi.MsStrategi;
 import com.project.eportfolio.student.HomeStudent;
 import com.project.eportfolio.student.InputStudent;
 import com.project.eportfolio.student.ProfileStudent;
+import com.project.eportfolio.utility.OnSwipeTouchListener;
 import com.project.eportfolio.utility.PreferenceUtils;
 
 import java.util.ArrayList;
@@ -47,6 +49,7 @@ public class PortfolioStudentProject extends AppCompatActivity {
     List<TrPortofolio> listProjectMurid = new ArrayList<>();
     List<MsStrategi> listProject = new ArrayList<>();
     AdapterListProyek itemList;
+    OnSwipeTouchListener onSwipeTouchListener;
 
     ImageButton btn_beranda, btn_portfolio, btn_input, btn_profile;
     LinearLayout btn_ll_a, btn_ll_k, btn_ll_p, btn_ll_uk;
@@ -124,6 +127,31 @@ public class PortfolioStudentProject extends AppCompatActivity {
             }
         });
 
+        onSwipeTouchListener = new OnSwipeTouchListener(PortfolioStudentProject.this) {
+            public void onSwipeTop() {
+
+            }
+            public void onSwipeRight() {
+
+            }
+            public void onSwipeLeft() {
+                Intent a = new Intent(PortfolioStudentProject.this, PortfolioStudentKarya.class);
+                startActivity(a);
+                finish();
+            }
+            public void onSwipeBottom() {
+
+            }
+        };
+
+
+
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev){
+        onSwipeTouchListener.getGestureDetector().onTouchEvent(ev);
+        return super.dispatchTouchEvent(ev);
     }
 
     public void first(){

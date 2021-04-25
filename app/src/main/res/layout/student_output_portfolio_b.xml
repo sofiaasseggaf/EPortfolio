@@ -6,18 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/bgoutput2"
+    android:background="@drawable/bgoutput3"
     tools:context=".student.outputportfolio.OutputPortfolioB">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-            <TextView
+          <!--  <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pencapaian"
@@ -25,7 +22,7 @@
                 android:textSize="24sp"
                 android:textColor="@color/white"
                 android:layout_marginTop="50dp"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"/>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -33,7 +30,7 @@
                 android:orientation="horizontal"
                 android:layout_marginLeft="40dp"
                 android:layout_marginRight="50dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginTop="40dp"
                 android:layout_gravity="center">
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imgOutput"
@@ -46,7 +43,7 @@
                     android:id="@+id/namaOutput"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="22sp"
+                    android:textSize="20sp"
                     android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/white"
                     android:text="Sofia Asseggaf"
@@ -60,20 +57,20 @@
                 android:layout_marginLeft="50dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:orientation="horizontal">
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/output_sekolah"
-                    android:layout_marginRight="30dp"/>
+                    android:layout_marginRight="20dp"/>
                 <TextView
                     android:id="@+id/sekolahOutput"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="SD Silaturahmi Islamic School"
                     android:fontFamily="@font/roboto_regular"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     android:textColor="@color/white"/>
             </LinearLayout>
 
@@ -81,20 +78,20 @@
                 android:layout_marginLeft="50dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="5dp"
                 android:orientation="horizontal">
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/output_kelas"
-                    android:layout_marginRight="30dp"/>
+                    android:layout_marginRight="20dp"/>
                 <TextView
                     android:id="@+id/kelasOutput"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Kelas 5 A - Semester Ganjil"
                     android:fontFamily="@font/roboto_regular"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     android:textColor="@color/white"/>
             </LinearLayout>
 
@@ -138,7 +135,7 @@
                         android:layout_gravity="center"
                         android:textColor="#ffffff"
                         android:text="-"
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         android:textStyle="bold"
                         android:fontFamily="@font/roboto_medium"/>
                 </FrameLayout>
@@ -183,7 +180,8 @@
                         android:layout_gravity="center"
                         android:textColor="#ffffff"
                         android:text="-"
-                        android:textSize="18sp"
+                        android:textAlignment="center"
+                        android:textSize="14sp"
                         android:textStyle="bold"
                         android:fontFamily="@font/roboto_medium"/>
                 </FrameLayout>
@@ -228,7 +226,7 @@
                         android:layout_gravity="center"
                         android:textColor="#ffffff"
                         android:text="-"
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         android:textStyle="bold"
                         android:fontFamily="@font/roboto_medium"/>
                 </FrameLayout>
@@ -273,7 +271,7 @@
                         android:layout_gravity="center"
                         android:textColor="#ffffff"
                         android:text="-"
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         android:textStyle="bold"
                         android:fontFamily="@font/roboto_medium"/>
                 </FrameLayout>
@@ -319,21 +317,21 @@
                         android:layout_gravity="center"
                         android:textColor="#ffffff"
                         android:text="-"
-                        android:textSize="18sp"
+                        android:textSize="14sp"
                         android:textStyle="bold"
                         android:fontFamily="@font/roboto_medium"/>
                 </FrameLayout>
             </RelativeLayout>
 
-        </LinearLayout>
-    </ScrollView>
+
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/framelayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"
-        android:layout_marginTop="265dp"
+        android:layout_marginTop="180dp"
         android:background="#B5EFEFEF">
 
         <LinearLayout
