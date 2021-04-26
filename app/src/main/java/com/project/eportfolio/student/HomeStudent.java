@@ -26,6 +26,7 @@ import com.project.eportfolio.adapter.adapterPortfolio.AdapterSliderPortfolio;
 import com.project.eportfolio.model.portfolio.ModelPortofolio;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
 import com.project.eportfolio.student.outputportfolio.OutputPortfolioA;
+import com.project.eportfolio.student.outputportfolio.OutputPortfolioD;
 import com.project.eportfolio.student.portfolio.PortfolioStudentAchievement;
 import com.project.eportfolio.student.portfolio.PortfolioStudentKarya;
 import com.project.eportfolio.student.portfolio.PortfolioStudentProject;

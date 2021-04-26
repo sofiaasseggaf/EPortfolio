@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bgoutput4"
+    android:layout_marginBottom="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtOutputStrategi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mengajar Mata Pelajaran"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="20sp"
+                android:textColor="@color/white"
+                android:layout_marginTop="50dp"
+                android:layout_gravity="center"/>
+            <TextView
+                android:id="@+id/txtOutputMapel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mata Pelajaran : Bahasa Sunda"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"/>
+            <TextView
+                android:id="@+id/txtOutputJudulKD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mempresentasikan Anggota Tubuh Pada Gambar"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="14sp"
+                android:lines="2"
+                android:textColor="@color/white"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_ll"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:padding="20dp"
+                android:orientation="horizontal"
+                android:weightSum="2">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nilai"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/font"/>
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/output_elipsnilai">
+                        <TextView
+                            android:id="@+id/txtOutputNilai"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textColor="@color/tosca"
+                            android:text="78"
+                            android:textSize="32sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/roboto_medium"/>
+                    </FrameLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Predikat"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/font"/>
+                    <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/output_elipspredikat">
+                        <TextView
+                            android:id="@+id/txtOutputPredikat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textColor="@color/oren"
+                            android:text="B"
+                            android:textSize="32sp"
+                            android:textStyle="bold"
+                            android:fontFamily="@font/roboto_medium"/>
+                    </FrameLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="10dp"
+                android:padding="15dp"
+                android:background="@drawable/rounded_ll"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingLeft="40dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Tanggal"
+                        android:textColor="@color/font"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/txtOutputTanggal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text=":   17 September 2020"
+                        android:textColor="@color/font"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Tempat"
+                        android:textColor="@color/font"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/txtOutputTempat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text=":   Kelas 5A Al Biruni"
+                        android:textColor="@color/font"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="60dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Strategi"
+                        android:textColor="@color/font"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/txtOutputStrategii"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text=":   Teach"
+                        android:textColor="@color/font"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:padding="15dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rounded_ll"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Narasi :"
+                    android:textColor="@color/oren"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textSize="14sp"/>
+
+                <TextView
+                    android:id="@+id/txtOutputNarasi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Kualitas menyimpulkan masalah tepat, atau kerjasama kelompok baik atau tepat membuat ide baru."
+                    android:textColor="@color/font"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textSize="14sp"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/rect_output_4d"
+                android:orientation="horizontal"
+                android:paddingLeft="40dp"
+                android:paddingRight="30dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/output_guru"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:paddingTop="20dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fasilitator"
+                        android:fontFamily="@font/roboto_regular"
+                        android:textSize="14sp"
+                        android:textColor="@color/font"/>
+                    <TextView
+                        android:id="@+id/txtOutputGuru"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rince Mandalasari"
+                        android:textColor="@color/oren"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="18sp"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+</LinearLayout>

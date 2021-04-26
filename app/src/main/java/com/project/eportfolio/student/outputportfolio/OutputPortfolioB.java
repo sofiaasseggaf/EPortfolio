@@ -78,12 +78,12 @@ public class OutputPortfolioB extends AppCompatActivity {
 
             }
             public void onSwipeRight() {
-                Intent a = new Intent(OutputPortfolioB.this, OutputPortfolioA.class);
+                Intent a = new Intent(OutputPortfolioB.this, OutputPortfolioC.class);
                 startActivity(a);
                 finish();
             }
             public void onSwipeLeft() {
-                Intent a = new Intent(OutputPortfolioB.this, OutputPortfolioC.class);
+                Intent a = new Intent(OutputPortfolioB.this, OutputPortfolioD.class);
                 startActivity(a);
                 finish();
             }
