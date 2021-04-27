@@ -30,6 +30,7 @@ import com.project.eportfolio.student.InputStudent;
 import com.project.eportfolio.student.ProfileStudent;
 import com.project.eportfolio.utility.OnSwipeTouchListener;
 import com.project.eportfolio.utility.PreferenceUtils;
+import com.project.eportfolio.utility.RecyclerItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -283,6 +284,21 @@ public class PortfolioStudentProject extends AppCompatActivity {
                                 itemList = new AdapterListProyek(listProjectMurid, listMapel);
                                 rvProyek.setLayoutManager(new LinearLayoutManager(PortfolioStudentProject.this));
                                 rvProyek.setAdapter(itemList);
+                                rvProyek.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), rvProyek,
+                                        new RecyclerItemClickListener.OnItemClickListener() {
+                                            @Override
+                                            public void onItemClick(View view, int position) {
+                                                //Toast.makeText(PortfolioStudentUnjukKerja.this, "this : "+listUnjukKerjaMurid.get(position).getId(), Toast.LENGTH_SHORT).show();
+                                                Intent a = new Intent(PortfolioStudentProject.this, PortfolioDetail.class);
+                                                a.putExtra("idportfolio", listProjectMurid.get(position).getId());
+                                                startActivity(a);
+                                            }
+
+                                            @Override
+                                            public void onLongItemClick(View view, int position) {
+
+                                            }
+                                        }));
                             }
                         });
                     } else {

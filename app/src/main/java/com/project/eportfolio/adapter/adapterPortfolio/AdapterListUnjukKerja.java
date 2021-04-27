@@ -1,6 +1,7 @@
 package com.project.eportfolio.adapter.adapterPortfolio;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,7 +26,6 @@ public class AdapterListUnjukKerja extends RecyclerView.Adapter<RecyclerView.Vie
 
     private List<TrPortofolio> dataItemList;
     private List<MsMatapelajaran> dataListMapel;
-    public int position;
 
     public AdapterListUnjukKerja(List<TrPortofolio> dataItemList,
                                  List<MsMatapelajaran> dataListMapel){
@@ -71,7 +71,6 @@ public class AdapterListUnjukKerja extends RecyclerView.Adapter<RecyclerView.Vie
             e.printStackTrace();
         }
 
-        position = this.position;
     }
 
     @Override
@@ -94,14 +93,6 @@ public class AdapterListUnjukKerja extends RecyclerView.Adapter<RecyclerView.Vie
             tglListUnjukKerja = itemView.findViewById(R.id.tglListUnjukKerja);
             imgListUnjukKerja = itemView.findViewById(R.id.imgListUnjukKerja);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent a = new Intent(v.getContext(), PortfolioDetail.class);
-                    a.putExtra("idportfolio", dataItemList.get(getAdapterPosition()).getId());
-                    v.getContext().startActivity(a);
-                }
-            });
         }
 
     }

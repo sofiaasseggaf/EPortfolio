@@ -80,6 +80,7 @@
             android:name=".student.portfolio.PortfolioStudentAchievement"
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".student.portfolio.PortfolioDetail" />
+        <activity android:name=".student.portfolio.PortfolioStudentAchievement"/>
         <activity
             android:name=".teacher.HomeTeacher"
             android:windowSoftInputMode="stateHidden" />

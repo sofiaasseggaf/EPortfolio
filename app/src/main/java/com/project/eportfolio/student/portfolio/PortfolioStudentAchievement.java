@@ -33,6 +33,7 @@ import com.project.eportfolio.student.outputportfolio.OutputPortfolioA;
 import com.project.eportfolio.student.outputportfolio.OutputPortfolioB;
 import com.project.eportfolio.utility.OnSwipeTouchListener;
 import com.project.eportfolio.utility.PreferenceUtils;
+import com.project.eportfolio.utility.RecyclerItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -202,6 +203,21 @@ public class PortfolioStudentAchievement extends AppCompatActivity {
                                 itemList = new AdapterListAchievement(listAchievement);
                                 rvAchievement.setLayoutManager(new LinearLayoutManager(PortfolioStudentAchievement.this));
                                 rvAchievement.setAdapter(itemList);
+                                rvAchievement.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), rvAchievement,
+                                        new RecyclerItemClickListener.OnItemClickListener() {
+                                            @Override
+                                            public void onItemClick(View view, int position) {
+                                                //Toast.makeText(PortfolioStudentUnjukKerja.this, "this : "+listUnjukKerjaMurid.get(position).getId(), Toast.LENGTH_SHORT).show();
+                                                Intent a = new Intent(PortfolioStudentAchievement.this, PortfolioDetail.class);
+                                                a.putExtra("idportfolioA", listAchievement.get(position).getId());
+                                                startActivity(a);
+                                            }
+
+                                            @Override
+                                            public void onLongItemClick(View view, int position) {
+
+                                            }
+                                        }));
                             }
                         });
                     }

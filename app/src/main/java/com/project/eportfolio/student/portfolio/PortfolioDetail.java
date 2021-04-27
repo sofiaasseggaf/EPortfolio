@@ -65,6 +65,8 @@ public class PortfolioDetail extends AppCompatActivity {
         Intent intent = getIntent();
         idportfolio = intent.getStringExtra("idportfolio");
 
+        first();
+
         imgDetailPortfolio = findViewById(R.id.imgDetailPortfolio);
         judulDetailPortfolio = findViewById(R.id.judulDetailPortfolio);
         narasiDetailPortfolio = findViewById(R.id.narasiDetailPortfolio);
@@ -78,35 +80,6 @@ public class PortfolioDetail extends AppCompatActivity {
 
     public void first(){
         findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
-        final Handler handler = new Handler();
-        Runnable runnable = new Runnable() {
-
-            int count = 0;
-
-            @Override
-            public void run() {
-                count++;
-
-                if (count == 1)
-                {
-                    txtload.setText("Loading Data Portfolio .");
-                }
-                else if (count == 2)
-                {
-                    txtload.setText("Loading Data Portfolio . .");
-                }
-                else if (count == 3)
-                {
-                    txtload.setText("Loading Data Portfolio . . .");
-                }
-
-                if (count == 3)
-                    count = 0;
-
-                handler.postDelayed(this, 1500);
-            }
-        };
-        handler.postDelayed(runnable, 1 * 1000);
         new Thread(new Runnable() {
             @Override
             public void run() {

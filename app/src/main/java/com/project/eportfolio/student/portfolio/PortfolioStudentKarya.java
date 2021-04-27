@@ -31,6 +31,7 @@ import com.project.eportfolio.student.ProfileStudent;
 import com.project.eportfolio.teacher.master.DataPortfolioDuaModel;
 import com.project.eportfolio.utility.OnSwipeTouchListener;
 import com.project.eportfolio.utility.PreferenceUtils;
+import com.project.eportfolio.utility.RecyclerItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -286,6 +287,21 @@ public class PortfolioStudentKarya extends AppCompatActivity {
                                 itemList = new AdapterListKarya(listKaryaMurid, listMapel );
                                 rvKarya.setLayoutManager(new LinearLayoutManager(PortfolioStudentKarya.this));
                                 rvKarya.setAdapter(itemList);
+                                rvKarya.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), rvKarya,
+                                        new RecyclerItemClickListener.OnItemClickListener() {
+                                            @Override
+                                            public void onItemClick(View view, int position) {
+                                                //Toast.makeText(PortfolioStudentUnjukKerja.this, "this : "+listUnjukKerjaMurid.get(position).getId(), Toast.LENGTH_SHORT).show();
+                                                Intent a = new Intent(PortfolioStudentKarya.this, PortfolioDetail.class);
+                                                a.putExtra("idportfolio", listKaryaMurid.get(position).getId());
+                                                startActivity(a);
+                                            }
+
+                                            @Override
+                                            public void onLongItemClick(View view, int position) {
+
+                                            }
+                                        }));
                             }
                         });
                     } else {
