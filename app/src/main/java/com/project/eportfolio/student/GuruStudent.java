@@ -16,11 +16,15 @@ import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.R;
 import com.project.eportfolio.adapter.adapterMaster.AdapterMasterGuru;
+import com.project.eportfolio.detail.GuruMuridDetail;
+import com.project.eportfolio.detail.PortfolioDetail;
 import com.project.eportfolio.model.guru.ModelGuru;
 import com.project.eportfolio.model.guru.MsGuru;
+import com.project.eportfolio.student.portfolio.PortfolioStudentUnjukKerja;
 import com.project.eportfolio.teacher.MasterTeacher;
 import com.project.eportfolio.teacher.master.DataGuru;
 import com.project.eportfolio.utility.PreferenceUtils;
+import com.project.eportfolio.utility.RecyclerItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,7 +104,7 @@ public class GuruStudent extends AppCompatActivity {
                 if (modelDataGuru!=null){
                     for (int i = 0; i < modelDataGuru.getTotal(); i++) {
                         try{
-                            if (PreferenceUtils.getIdSekolahGuru(getApplicationContext())
+                            if (PreferenceUtils.getIdSekolahSiswa(getApplicationContext())
                                     .equalsIgnoreCase(modelDataGuru.getData().getMsGuru().get(i).getSekolahid())) {
                                 listguru.add(modelDataGuru.getData().getMsGuru().get(i));
                             }
@@ -117,6 +121,21 @@ public class GuruStudent extends AppCompatActivity {
                                 itemList = new AdapterMasterGuru(listguru);
                                 rvDataGuru.setLayoutManager(new LinearLayoutManager(GuruStudent.this));
                                 rvDataGuru.setAdapter(itemList);
+                                rvDataGuru.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), rvDataGuru,
+                                        new RecyclerItemClickListener.OnItemClickListener() {
+                                            @Override
+                                            public void onItemClick(View view, int position) {
+                                                //Toast.makeText(PortfolioStudentUnjukKerja.this, "this : "+listUnjukKerjaMurid.get(position).getId(), Toast.LENGTH_SHORT).show();
+                                                Intent a = new Intent(GuruStudent.this, GuruMuridDetail.class);
+                                                a.putExtra("idguru", listguru.get(position).getIdGuru());
+                                                startActivity(a);
+                                            }
+
+                                            @Override
+                                            public void onLongItemClick(View view, int position) {
+
+                                            }
+                                        }));
                             }
                         });
                     }

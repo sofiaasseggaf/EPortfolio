@@ -79,7 +79,7 @@ public class AdapterOutputPortfolio extends RecyclerView.Adapter<RecyclerView.Vi
         ((Penampung)holder).txtOutputNilai.setText(dataListTrPortfolio.get(position).getNilai());
 
         //predikat
-        ((Penampung)holder).txtOutputPredikat.setText(dataListTrPortfolio.get(position).getPredikat());
+        ((Penampung)holder).txtOutputPredikat.setText(dataListTrPortfolio.get(position).getPredikatMutu());
 
         //tanggal
         ((Penampung)holder).txtOutputTanggal.setText(dataListTrPortfolio.get(position).getTanggal());

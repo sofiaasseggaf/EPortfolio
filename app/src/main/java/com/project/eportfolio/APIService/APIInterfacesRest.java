@@ -110,20 +110,17 @@ public interface APIInterfacesRest {
 
 
     @Multipart
-    @POST("api/tr_portofolio/add")
-    Call<ModelPostPortfolio> sendDataPortfolioSiswa(
+    @POST("api/achievment/add")
+    Call<ModelPostPortfolio> sendDataAchievement(
             @Header("X-Api-Key") RequestBody apikey,
+            @Part("sekolahid") RequestBody sekolahid,
             @Part("muridid") RequestBody muridid,
-            @Part("idkategori") RequestBody idkategori,
-            @Part("judul_kd") RequestBody judul_kd,
-            @Part("tanggal") RequestBody tanggal,
-            @Part("tempat") RequestBody tempat,
+            @Part("kategoripo") RequestBody kategoripo,
+            @Part("judul") RequestBody judul,
             @Part("narasi") RequestBody narasi,
-            @Part MultipartBody.Part foto,
-            @Part("createdby") RequestBody createdby,
-            @Part("createddate") RequestBody createddate,
-            @Part("predikat") RequestBody predikat,
-            @Part("kelasid") RequestBody kelasid
+            @Part("tempat") RequestBody tempat,
+            @Part("tanggal") RequestBody tanggal,
+            @Part MultipartBody.Part foto
     );
 
     @Multipart

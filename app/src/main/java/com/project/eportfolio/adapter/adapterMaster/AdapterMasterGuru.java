@@ -37,7 +37,7 @@ public class AdapterMasterGuru extends RecyclerView.Adapter<RecyclerView.ViewHol
         ((Penampung)holder).namaList.setText(dataItemList.get(position).getFirstname()+" "+dataItemList.get(position).getLastname());
         try{
             ImageView image = ((Penampung)holder).imgList;
-            Picasso.get().load("https://eportofolio.id/uploads/ms_guru/"+dataItemList.get(position).getPhoto()).into(image);
+            Picasso.get().load(dataItemList.get(position).getPhoto()).into(image);
         } catch (Exception e){
             e.printStackTrace();
         }

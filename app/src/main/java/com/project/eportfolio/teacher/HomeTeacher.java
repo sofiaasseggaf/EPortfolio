@@ -2,6 +2,7 @@ package com.project.eportfolio.teacher;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -13,10 +14,12 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
+import com.project.eportfolio.ArtikelActivity;
 import com.project.eportfolio.R;
 import com.project.eportfolio.adapter.adapterArtikel.AdapterSliderArtikel;
 import com.project.eportfolio.adapter.adapterPortfolio.AdapterSliderPortfolio;
@@ -24,6 +27,7 @@ import com.project.eportfolio.model.blog.Blog;
 import com.project.eportfolio.model.blog.ModelBlog;
 import com.project.eportfolio.model.portfolio.ModelPortofolio;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
+import com.project.eportfolio.student.HomeStudent;
 import com.project.eportfolio.teacher.input.InputTeacherA;
 import com.project.eportfolio.teacher.master.DataGuru;
 import com.project.eportfolio.teacher.master.DataKelas;
@@ -47,17 +51,13 @@ public class HomeTeacher extends AppCompatActivity {
     ImageButton btn_home_portfolio, btn_home_master, btn_home_artikel, btn_home_kalender;
 
     String namaguru;
-    TextView namaGuru, txtMorePortfolioGuru, txtload, txtload2, txtMoreArtikelGuru;
+    TextView namaGuru, txtloadartikel, txtMoreArtikelGuru;
     ImageView fotoGuru;
 
-    ModelPortofolio dataModelPortfolio;
     ModelBlog dataModelBlog;
-    List<TrPortofolio> listPortofolio = new ArrayList<>();
     List<Blog> listBlog = new ArrayList<>();
-    AdapterSliderPortfolio itemList;
     AdapterSliderArtikel itemListArtikel;
-    ViewPager viewPager;
-    ViewPager viewPagerArtikel;
+    ViewPager viewPagerArticleTeacher;
 
     String apikey = "7826470ABBA476706DB24D47C6A6ED64";
 
@@ -83,18 +83,13 @@ public class HomeTeacher extends AppCompatActivity {
 
         namaGuru = findViewById(R.id.namaGuru);
         fotoGuru = findViewById(R.id.imgGuru);
-        //txtMorePortfolioGuru = findViewById(R.id.txtMorePortfolioGuru);
-       // txtMorePortfolioGuru.setPaintFlags(txtMorePortfolioGuru.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
-       // txtMoreArtikelGuru = findViewById(R.id.txtMoreArtikelGuru);
-        //txtMoreArtikelGuru.setPaintFlags(txtMoreArtikelGuru.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
-       // viewPager = findViewById(R.id.viewPager);
-        txtload = findViewById(R.id.textloading);
-       // txtload2 = findViewById(R.id.textloading2);
-
-//        rvSliderPortfolioGuru = findViewById(R.id.rvSliderPortfolioGuru);
+        txtMoreArtikelGuru = findViewById(R.id.txtMoreArticleGuru);
+        txtMoreArtikelGuru.setPaintFlags(txtMoreArtikelGuru.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        viewPagerArticleTeacher = findViewById(R.id.viewPagerArticleTeacher);
+        txtloadartikel = findViewById(R.id.textloading);
 
         setDataGuru();
-        //first();
+        first();
 
         btn_master.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,7 +116,6 @@ public class HomeTeacher extends AppCompatActivity {
                 }*//*
             }
         });*/
-/*
 
         txtMoreArtikelGuru.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,7 +126,6 @@ public class HomeTeacher extends AppCompatActivity {
             }
         });
 
-*/
         btn_input.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -224,7 +217,9 @@ public class HomeTeacher extends AppCompatActivity {
         btn_home_artikel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(HomeTeacher.this, "Trial Version", Toast.LENGTH_SHORT).show();
+                Intent a = new Intent(HomeTeacher.this, ArtikelActivity.class);
+                startActivity(a);
+                finish();
             }
         });
 
@@ -239,7 +234,6 @@ public class HomeTeacher extends AppCompatActivity {
 
     public void first(){
         findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
-      //  findViewById(R.id.framelayout2).setVisibility(View.VISIBLE);
         final Handler handler = new Handler();
 
         Runnable runnable = new Runnable() {
@@ -249,18 +243,15 @@ public class HomeTeacher extends AppCompatActivity {
                 count++;
                 if (count == 1)
                 {
-                    txtload.setText("Loading Portfolio .");
-               //     txtload2.setText("Loading Article .");
+                    txtloadartikel.setText("Loading Article .");
                 }
                 else if (count == 2)
                 {
-                    txtload.setText("Loading Portfolio . .");
-                //    txtload2.setText("Loading Article . .");
+                    txtloadartikel.setText("Loading Article . .");
                 }
                 else if (count == 3)
                 {
-                    txtload.setText("Loading Portfolio . . .");
-                //    txtload2.setText("Loading Article . . .");
+                    txtloadartikel.setText("Loading Article . . .");
                 }
                 if (count == 3)
                     count = 0;
@@ -271,7 +262,7 @@ public class HomeTeacher extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                getPortfolio();
+                getArticle();
             }
         }).start();
     }
@@ -291,29 +282,6 @@ public class HomeTeacher extends AppCompatActivity {
 
     }
 
-
-    public void setDataPortfolio(){
-        if (listPortofolio!=null){
-            try {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        for (int i=0; i<5; i++){
-                            itemList = new AdapterSliderPortfolio(listPortofolio, getApplicationContext());
-                           /* LinearLayoutManager layoutManager
-                                    = new LinearLayoutManager(HomeTeacher.this, LinearLayoutManager.HORIZONTAL, false);
-                            rvSliderPortfolioGuru.setLayoutManager(layoutManager);*/
-                            viewPager.setAdapter(itemList);
-                        }
-                    }
-                });
-            } catch (Exception e){
-
-            }
-
-        }
-    }
-
     public void setDataArtikel(){
         if (listBlog!=null){
             try {
@@ -325,7 +293,7 @@ public class HomeTeacher extends AppCompatActivity {
                            /* LinearLayoutManager layoutManager
                                     = new LinearLayoutManager(HomeTeacher.this, LinearLayoutManager.HORIZONTAL, false);
                             rvSliderPortfolioGuru.setLayoutManager(layoutManager);*/
-                            viewPagerArtikel.setAdapter(itemListArtikel);
+                            viewPagerArticleTeacher.setAdapter(itemListArtikel);
                         }
                     }
                 });
@@ -334,43 +302,6 @@ public class HomeTeacher extends AppCompatActivity {
             }
 
         }
-    }
-
-    public void getPortfolio() {
-        final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
-        final Call<ModelPortofolio> dataSiswax = apiInterface.getDataPortfolio(  apikey, 10000);
-
-        dataSiswax.enqueue(new Callback<ModelPortofolio>() {
-            @Override
-            public void onResponse(Call<ModelPortofolio> call, Response<ModelPortofolio> response) {
-
-                dataModelPortfolio = response.body();
-
-                if (response.body()!=null) {
-                    String id = PreferenceUtils.getUserId(getApplicationContext());
-                    for (int i = 0; i < dataModelPortfolio.getTotal(); i++) {
-                        if (id.equalsIgnoreCase(dataModelPortfolio.getData().getTrPortofolio().get(i).getGuruid())) {
-                            listPortofolio.add(dataModelPortfolio.getData().getTrPortofolio().get(i));
-                            //LIST SEMUA PORTFOLIO YG DIUPLOAD SAMA GURU YG LOGIN
-                        }
-                    }
-
-                    getArticle();
-
-                }
-            }
-            @Override
-            public void onFailure(Call<ModelPortofolio> call, Throwable t) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        findViewById(R.id.framelayout).setVisibility(View.GONE);
-                        Toast.makeText(HomeTeacher.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
-                    }
-                });
-                call.cancel();
-            }
-        });
     }
 
     public void getArticle() {
@@ -391,14 +322,11 @@ public class HomeTeacher extends AppCompatActivity {
 
                 if (listBlog!=null){
 
-
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
                             findViewById(R.id.framelayout).setVisibility(View.GONE);
-                            //findViewById(R.id.framelayout2).setVisibility(View.GONE);
-                            setDataPortfolio();
-                            //setDataArtikel();
+                            setDataArtikel();
                         }
                     });
 
@@ -418,17 +346,6 @@ public class HomeTeacher extends AppCompatActivity {
         });
     }
 
-    //Your Slide animation
-   /* public void setAnimation(){
-        if(Build.VERSION.SDK_INT>20) {
-            Slide slide = new Slide();
-            slide.setSlideEdge(Gravity.LEFT);
-            slide.setDuration(500);
-            slide.setInterpolator(new DecelerateInterpolator());
-            getWindow().setExitTransition(slide);
-            getWindow().setEnterTransition(slide);
-        }
-    }*/
 
     @Override
     public void onBackPressed() {

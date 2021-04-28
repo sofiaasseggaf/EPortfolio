@@ -1,4 +1,4 @@
-package com.project.eportfolio.student.portfolio;
+package com.project.eportfolio.detail;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,22 +9,12 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.R;
-import com.project.eportfolio.adapter.adapterPortfolio.AdapterListAchievement;
 import com.project.eportfolio.model.achievement.Achievment;
 import com.project.eportfolio.model.achievement.ModelAchievement;
-import com.project.eportfolio.model.matapelajaran.ModelMataPelajaran;
-import com.project.eportfolio.model.matapelajaran.MsMatapelajaran;
-import com.project.eportfolio.model.portfolio.ModelPortofolio;
-import com.project.eportfolio.model.portfolio.TrPortofolio;
-import com.project.eportfolio.model.strategi.ModelStrategi;
-import com.project.eportfolio.model.strategi.MsStrategi;
-import com.project.eportfolio.utility.PreferenceUtils;
-import com.project.eportfolio.utility.RecyclerItemClickListener;
 import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;

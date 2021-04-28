@@ -40,7 +40,7 @@ public class AdapterArtikel extends  RecyclerView.Adapter<RecyclerView.ViewHolde
         ((Penampung)holder).tglArtikel.setText(dataItemList.get(position).getCreatedAt());
         try{
             ImageView image = ((Penampung)holder).fotoArtikel;
-            Picasso.get().load("\"https://eportofolio.id/uploads/blog/"+dataItemList.get(position).getImage()).into(image);
+            Picasso.get().load("https://eportofolio.id/uploads/blog/"+dataItemList.get(position).getImage()).into(image);
         } catch (Exception e){
             e.printStackTrace();
         }

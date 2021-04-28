@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
@@ -8,6 +9,11 @@
     android:layout_gravity="center"
     android:paddingBottom="15dp"
     android:background="#ffffff">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -23,7 +29,7 @@
         android:padding="10dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imgDeskDataMurid"
+            android:id="@+id/imgDeskDataGuru"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@drawable/nopic"
@@ -32,10 +38,9 @@
 
 
         <TextView
-            android:id="@+id/namaDeskDataMurid"
+            android:id="@+id/namaDeskDataGuru"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Rachel Green"
             android:textSize="24sp"
             android:fontFamily="@font/roboto_medium"
             android:lines="2"
@@ -66,10 +71,9 @@
                 android:layout_gravity="center"
                 android:textSize="14sp"/>
             <TextView
-                android:id="@+id/sekolahDeskDataMurid"
+                android:id="@+id/sekolahDeskDataGuru"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="SMA ADI LUHUR"
                 android:fontFamily="@font/montserrat_regular"
                 android:layout_gravity="center"
                 android:textSize="12sp"/>
@@ -88,12 +92,13 @@
                 android:layout_gravity="center"
                 android:textSize="14sp"/>
             <TextView
-                android:id="@+id/alamatDeskDataMurid"
+                android:id="@+id/alamatDeskDataGuru"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Jl Datuk Ibrahim RT 05 RW 07 NO 99 Condet Jakarta Timur"
                 android:fontFamily="@font/montserrat_regular"
-                android:layout_gravity="center"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:lines="4"
                 android:textSize="12sp"/>
         </LinearLayout>
 
@@ -110,10 +115,9 @@
                 android:layout_gravity="center"
                 android:textSize="14sp"/>
             <TextView
-                android:id="@+id/emailDeskDataMurid"
+                android:id="@+id/emailDeskDataGuru"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="rachelgreen@outlook.com"
                 android:fontFamily="@font/montserrat_regular"
                 android:layout_gravity="center"
                 android:textSize="12sp"/>
@@ -132,10 +136,9 @@
                 android:layout_gravity="center"
                 android:textSize="14sp"/>
             <TextView
-                android:id="@+id/tlpDeskDataMurid"
+                android:id="@+id/tlpDeskDataGuru"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="087798765567"
                 android:fontFamily="@font/montserrat_regular"
                 android:layout_gravity="center"
                 android:textSize="12sp"/>
@@ -143,6 +146,24 @@
 
     </LinearLayout>
 
+    </LinearLayout>
 
+    <FrameLayout
+        android:id="@+id/framelayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="#6DEFEFEF">
 
-</LinearLayout>
+        <ProgressBar
+            style="?android:attr/progressBarStyle"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:indeterminateDrawable="@drawable/pbstyle"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp">
+        </ProgressBar>
+
+    </FrameLayout>
+
+</RelativeLayout>

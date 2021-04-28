@@ -22,7 +22,7 @@
 
     <ImageView
         android:id="@+id/imgDetailPortfolio"
-        android:src="@drawable/rect_img_master_portfolio"
+        android:scaleType="centerCrop"
         android:layout_width="160dp"
         android:layout_height="130dp"
         android:layout_marginTop="30dp"
@@ -39,7 +39,6 @@
             android:id="@+id/judulDetailPortfolio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kemampuan Seni dalam Berbahasa dan Merangkum Tulisan"
             android:layout_alignParentTop="true"
             android:gravity="center"
             android:textSize="20sp"
@@ -51,10 +50,9 @@
             android:id="@+id/narasiDetailPortfolio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kemampuan Seni dalam Berbahasa dan Merangkum Tulisan"
             android:layout_below="@id/judulDetailPortfolio"
-            android:layout_marginTop="10dp"
-            android:textSize="16sp"
+            android:layout_marginTop="15dp"
+            android:textSize="14sp"
             android:lines="5"
             android:maxLines="8"
             android:fontFamily="@font/roboto_regular"/>
@@ -63,9 +61,8 @@
             android:id="@+id/strategiDetailPortfolio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kemampuan Narasi"
             android:textSize="14sp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:layout_below="@id/narasiDetailPortfolio"
             android:fontFamily="@font/roboto_medium"/>
 
@@ -73,8 +70,7 @@
             android:id="@+id/nilaiDetailPortfolio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="70"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:layout_marginTop="10dp"
             android:layout_below="@id/strategiDetailPortfolio"
             android:fontFamily="@font/roboto_medium"/>
@@ -96,7 +92,6 @@
                     android:id="@+id/mapelDetailPortfolio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="BAHASA SUNDA"
                     android:textSize="12sp"
                     android:textColor="@color/font"
                     android:fontFamily="@font/roboto_regular"/>
@@ -105,7 +100,6 @@
                     android:id="@+id/tglDetailPortfolio"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="20/12/2020"
                     android:textSize="12sp"
                     android:textColor="@color/fontdarkgrey"
                     android:layout_marginTop="3dp"
@@ -124,7 +118,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textColor="#ffffff"
-                    android:text="A"
                     android:textSize="14sp"
                     android:fontFamily="@font/roboto_medium"/>
             </FrameLayout>

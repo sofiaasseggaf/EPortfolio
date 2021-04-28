@@ -16,10 +16,13 @@ import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.R;
 import com.project.eportfolio.adapter.adapterMaster.AdapterMasterGuru;
+import com.project.eportfolio.detail.GuruMuridDetail;
 import com.project.eportfolio.model.guru.ModelGuru;
 import com.project.eportfolio.model.guru.MsGuru;
+import com.project.eportfolio.student.GuruStudent;
 import com.project.eportfolio.teacher.MasterTeacher;
 import com.project.eportfolio.utility.PreferenceUtils;
+import com.project.eportfolio.utility.RecyclerItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -116,6 +119,21 @@ public class DataGuru extends AppCompatActivity {
                                 itemList = new AdapterMasterGuru(listguru);
                                 rvDataGuru.setLayoutManager(new LinearLayoutManager(DataGuru.this));
                                 rvDataGuru.setAdapter(itemList);
+                                rvDataGuru.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), rvDataGuru,
+                                        new RecyclerItemClickListener.OnItemClickListener() {
+                                            @Override
+                                            public void onItemClick(View view, int position) {
+                                                //Toast.makeText(PortfolioStudentUnjukKerja.this, "this : "+listUnjukKerjaMurid.get(position).getId(), Toast.LENGTH_SHORT).show();
+                                                Intent a = new Intent(DataGuru.this, GuruMuridDetail.class);
+                                                a.putExtra("idguru", listguru.get(position).getIdGuru());
+                                                startActivity(a);
+                                            }
+
+                                            @Override
+                                            public void onLongItemClick(View view, int position) {
+
+                                            }
+                                        }));
                             }
                         });
                     }

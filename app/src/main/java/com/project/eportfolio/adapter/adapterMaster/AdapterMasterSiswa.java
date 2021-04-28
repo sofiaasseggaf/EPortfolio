@@ -38,7 +38,7 @@ public class AdapterMasterSiswa extends RecyclerView.Adapter<RecyclerView.ViewHo
         ((Penampung)holder).namaList.setText(dataItemList.get(position).getFirstname()+" "+dataItemList.get(position).getLastname());
         try{
             ImageView image = ((Penampung)holder).imgList;
-            Picasso.get().load("https://eportofolio.id/uploads/ms_murid/"+dataItemList.get(position).getPhoto()).into(image);
+            Picasso.get().load(dataItemList.get(position).getPhoto()).into(image);
         } catch (Exception e){
             e.printStackTrace();
         }

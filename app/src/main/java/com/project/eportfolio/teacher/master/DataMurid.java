@@ -15,11 +15,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.adapter.adapterMaster.AdapterMasterSiswa;
+import com.project.eportfolio.detail.GuruMuridDetail;
 import com.project.eportfolio.model.siswa.ModelSiswa;
 import com.project.eportfolio.model.siswa.MsMurid;
+import com.project.eportfolio.student.GuruStudent;
 import com.project.eportfolio.teacher.MasterTeacher;
 import com.project.eportfolio.R;
 import com.project.eportfolio.utility.PreferenceUtils;
+import com.project.eportfolio.utility.RecyclerItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,6 +116,21 @@ public class DataMurid extends AppCompatActivity {
                                 itemList = new AdapterMasterSiswa(listsiswa);
                                 rvDataMurid.setLayoutManager(new LinearLayoutManager(DataMurid.this));
                                 rvDataMurid.setAdapter(itemList);
+                                rvDataMurid.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), rvDataMurid,
+                                        new RecyclerItemClickListener.OnItemClickListener() {
+                                            @Override
+                                            public void onItemClick(View view, int position) {
+                                                //Toast.makeText(PortfolioStudentUnjukKerja.this, "this : "+listUnjukKerjaMurid.get(position).getId(), Toast.LENGTH_SHORT).show();
+                                                Intent a = new Intent(DataMurid.this, GuruMuridDetail.class);
+                                                a.putExtra("idmurid", listsiswa.get(position).getId());
+                                                startActivity(a);
+                                            }
+
+                                            @Override
+                                            public void onLongItemClick(View view, int position) {
+
+                                            }
+                                        }));
                             }
                         });
                     }

@@ -20,6 +20,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
+import com.project.eportfolio.ArtikelActivity;
 import com.project.eportfolio.R;
 //import com.project.eportfolio.adapter.adapterPortfolio.AdapterSliderPortfolio;
 import com.project.eportfolio.adapter.adapterPortfolio.AdapterSliderPortfolio;
@@ -147,6 +148,7 @@ public class HomeStudent extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent a = new Intent(HomeStudent.this, InputStudent.class);
+                a.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                 startActivity(a);
                 finish();
                 /*if(Build.VERSION.SDK_INT>20){
@@ -234,7 +236,9 @@ public class HomeStudent extends AppCompatActivity {
         btn_home_artikel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(HomeStudent.this, "Trial Version", Toast.LENGTH_SHORT).show();
+                Intent a = new Intent(HomeStudent.this, ArtikelActivity.class);
+                startActivity(a);
+                finish();
             }
         });
 
@@ -372,39 +376,6 @@ public class HomeStudent extends AppCompatActivity {
                 call.cancel();
             }
         });
-    }
-
-    public void setDataPortfolio(){
-
-/*
-        txtKarya.setText(listKaryaMurid.size() + "   Karya");
-        txtUnjukKerja.setText(listUnjukKerjaMurid.size() + "   Unjuk Kerja");
-        txtProyek.setText(listProyekMurid.size() + "   Proyek");
-        txtOrganisasi.setText(listOrganisasi.size() + "   Organisasi");
-        txtPenghargaan.setText(listPenghargaan.size() + "   Penghargaan");
-        txtForumEdukasi.setText(listForumEdukasi.size() + "   Forum Edukasi");
-
- */
-        if (listPortofolio!=null){
-            try {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        findViewById(R.id.framelayout).setVisibility(View.GONE);
-                        for (int i=0; i<5; i++){
-                            itemList = new AdapterSliderPortfolio(listPortofolio, getApplicationContext());
-                           /* LinearLayoutManager layoutManager
-                                    = new LinearLayoutManager(HomeStudent.this, LinearLayoutManager.HORIZONTAL, false);
-                            rvSliderPortfolioSiswa.setLayoutManager(layoutManager);*/
-                            viewPager.setAdapter(itemList);
-                        }
-                    }
-                });
-            } catch (Exception e){
-
-            }
-
-        }
     }
 
     public void setDataSiswa(){

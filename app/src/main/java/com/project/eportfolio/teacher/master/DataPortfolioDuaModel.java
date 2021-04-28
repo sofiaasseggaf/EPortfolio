@@ -18,6 +18,7 @@ import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.R;
 import com.project.eportfolio.adapter.adapterMaster.AdapterMasterPortfolioDuaModel;
+import com.project.eportfolio.detail.PortfolioDetail;
 import com.project.eportfolio.model.matapelajaran.ModelMataPelajaran;
 import com.project.eportfolio.model.matapelajaran.MsMatapelajaran;
 import com.project.eportfolio.model.portfolio.ModelPortofolio;
@@ -26,8 +27,10 @@ import com.project.eportfolio.model.siswa.ModelSiswa;
 import com.project.eportfolio.model.siswa.MsMurid;
 import com.project.eportfolio.model.strategi.ModelStrategi;
 import com.project.eportfolio.model.strategi.MsStrategi;
+import com.project.eportfolio.student.portfolio.PortfolioStudentUnjukKerja;
 import com.project.eportfolio.teacher.MasterTeacher;
 import com.project.eportfolio.utility.PreferenceUtils;
+import com.project.eportfolio.utility.RecyclerItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -253,6 +256,21 @@ public class DataPortfolioDuaModel extends AppCompatActivity {
                             itemList = new AdapterMasterPortfolioDuaModel(listPortfolio, listsiswa, listMapel, listStrategi);
                             rvDataPortfolio.setLayoutManager(new GridLayoutManager(getApplicationContext(),2));
                             rvDataPortfolio.setAdapter(itemList);
+                            rvDataPortfolio.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), rvDataPortfolio,
+                                    new RecyclerItemClickListener.OnItemClickListener() {
+                                        @Override
+                                        public void onItemClick(View view, int position) {
+                                            //Toast.makeText(PortfolioStudentUnjukKerja.this, "this : "+listUnjukKerjaMurid.get(position).getId(), Toast.LENGTH_SHORT).show();
+                                            Intent a = new Intent(DataPortfolioDuaModel.this, PortfolioDetail.class);
+                                            a.putExtra("idportfolio", listPortfolio.get(position).getId());
+                                            startActivity(a);
+                                        }
+
+                                        @Override
+                                        public void onLongItemClick(View view, int position) {
+
+                                        }
+                                    }));
                         }
                     });
                 }

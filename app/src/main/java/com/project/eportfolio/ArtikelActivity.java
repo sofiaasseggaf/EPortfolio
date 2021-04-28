@@ -17,6 +17,8 @@ import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.adapter.adapterArtikel.AdapterArtikel;
 import com.project.eportfolio.adapter.adapterMaster.AdapterMasterPortfolioDuaModel;
 import com.project.eportfolio.adapter.adapterMaster.AdapterMasterSiswa;
+import com.project.eportfolio.detail.ArtikelDetail;
+import com.project.eportfolio.detail.GuruMuridDetail;
 import com.project.eportfolio.model.blog.Blog;
 import com.project.eportfolio.model.blog.ModelBlog;
 import com.project.eportfolio.model.matapelajaran.ModelMataPelajaran;
@@ -27,10 +29,12 @@ import com.project.eportfolio.model.siswa.ModelSiswa;
 import com.project.eportfolio.model.siswa.MsMurid;
 import com.project.eportfolio.model.strategi.ModelStrategi;
 import com.project.eportfolio.model.strategi.MsStrategi;
+import com.project.eportfolio.student.GuruStudent;
 import com.project.eportfolio.teacher.HomeTeacher;
 import com.project.eportfolio.teacher.MasterTeacher;
 import com.project.eportfolio.teacher.master.DataMurid;
 import com.project.eportfolio.utility.PreferenceUtils;
+import com.project.eportfolio.utility.RecyclerItemClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -121,6 +125,21 @@ public class ArtikelActivity extends AppCompatActivity {
                                 itemList = new AdapterArtikel(listArtikel);
                                 rvArtikel.setLayoutManager(new LinearLayoutManager(ArtikelActivity.this));
                                 rvArtikel.setAdapter(itemList);
+                                rvArtikel.addOnItemTouchListener(new RecyclerItemClickListener(getApplicationContext(), rvArtikel,
+                                        new RecyclerItemClickListener.OnItemClickListener() {
+                                            @Override
+                                            public void onItemClick(View view, int position) {
+                                                //Toast.makeText(PortfolioStudentUnjukKerja.this, "this : "+listUnjukKerjaMurid.get(position).getId(), Toast.LENGTH_SHORT).show();
+                                                Intent a = new Intent(ArtikelActivity.this, ArtikelDetail.class);
+                                                a.putExtra("idartikel", listArtikel.get(position).getId());
+                                                startActivity(a);
+                                            }
+
+                                            @Override
+                                            public void onLongItemClick(View view, int position) {
+
+                                            }
+                                        }));
                             }
                         });
                     }
@@ -133,12 +152,6 @@ public class ArtikelActivity extends AppCompatActivity {
                 call.cancel();
             }
         });
-    }
-
-    public void onBackPressed() {
-        Intent a = new Intent(ArtikelActivity.this, HomeTeacher.class);
-        startActivity(a);
-        finish();
     }
 
 }

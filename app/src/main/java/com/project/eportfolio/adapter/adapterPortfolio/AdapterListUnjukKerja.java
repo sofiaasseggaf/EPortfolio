@@ -1,9 +1,5 @@
 package com.project.eportfolio.adapter.adapterPortfolio;
 
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.project.eportfolio.R;
 import com.project.eportfolio.model.matapelajaran.MsMatapelajaran;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
-import com.project.eportfolio.student.portfolio.PortfolioDetail;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class AdapterListUnjukKerja extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

@@ -2,12 +2,10 @@ package com.project.eportfolio.student.portfolio;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -19,6 +17,7 @@ import com.project.eportfolio.APIService.APIClient;
 import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.R;
 import com.project.eportfolio.adapter.adapterPortfolio.AdapterListProyek;
+import com.project.eportfolio.detail.PortfolioDetail;
 import com.project.eportfolio.model.matapelajaran.ModelMataPelajaran;
 import com.project.eportfolio.model.matapelajaran.MsMatapelajaran;
 import com.project.eportfolio.model.portfolio.ModelPortofolio;

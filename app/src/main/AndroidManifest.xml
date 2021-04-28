@@ -4,10 +4,7 @@
     package="com.project.eportfolio">
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
-
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- Include following permission if you want to cache images on SD card -->
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- Include following permission if you want to cache images on SD card -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -30,12 +27,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="HardcodedDebugMode">
-
-        <activity android:name=".student.outputportfolio.OutputPortfolioD"/>
-        <activity android:name=".student.outputportfolio.OutputPortfolioC" />
-        <activity android:name=".student.outputportfolio.OutputPortfolioB" />
-        <activity android:name=".student.outputportfolio.OutputPortfolioA"/>
-
+        <activity android:name=".detail.ArtikelDetail"></activity>
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -79,8 +71,13 @@
         <activity
             android:name=".student.portfolio.PortfolioStudentAchievement"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".student.portfolio.PortfolioDetail" />
-        <activity android:name=".student.portfolio.PortfolioStudentAchievement"/>
+        <activity android:name=".student.outputportfolio.OutputPortfolioD" />
+        <activity android:name=".student.outputportfolio.OutputPortfolioC" />
+        <activity android:name=".student.outputportfolio.OutputPortfolioB" />
+        <activity android:name=".student.outputportfolio.OutputPortfolioA" />
+        <activity android:name=".detail.PortfolioDetail" />
+        <activity android:name=".detail.PortfolioDetailAchievement" />
+        <activity android:name=".detail.GuruMuridDetail" />
         <activity
             android:name=".teacher.HomeTeacher"
             android:windowSoftInputMode="stateHidden" />
