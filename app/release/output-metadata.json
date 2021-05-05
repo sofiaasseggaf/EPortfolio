@@ -10,21 +10,9 @@
     {
       "type": "UNIVERSAL",
       "filters": [],
-      "versionCode": 1,
-      "versionName": "1.0.1",
+      "versionCode": 2,
+      "versionName": "2.0.0",
       "outputFile": "app-universal-release.apk"
-    },
-    {
-      "type": "ONE_OF_MANY",
-      "filters": [
-        {
-          "filterType": "DENSITY",
-          "value": "xxxhdpi"
-        }
-      ],
-      "versionCode": 6601,
-      "versionName": "1.0.1",
-      "outputFile": "app-xxxhdpi-release.apk"
     },
     {
       "type": "ONE_OF_MANY",
@@ -34,8 +22,8 @@
           "value": "mdpi"
         }
       ],
-      "versionCode": 3301,
-      "versionName": "1.0.1",
+      "versionCode": 3302,
+      "versionName": "2.0.0",
       "outputFile": "app-mdpi-release.apk"
     },
     {
@@ -46,8 +34,8 @@
           "value": "ldpi"
         }
       ],
-      "versionCode": 2201,
-      "versionName": "1.0.1",
+      "versionCode": 2202,
+      "versionName": "2.0.0",
       "outputFile": "app-ldpi-release.apk"
     },
     {
@@ -58,9 +46,21 @@
           "value": "xxhdpi"
         }
       ],
-      "versionCode": 5501,
-      "versionName": "1.0.1",
+      "versionCode": 5502,
+      "versionName": "2.0.0",
       "outputFile": "app-xxhdpi-release.apk"
+    },
+    {
+      "type": "ONE_OF_MANY",
+      "filters": [
+        {
+          "filterType": "DENSITY",
+          "value": "xxxhdpi"
+        }
+      ],
+      "versionCode": 6602,
+      "versionName": "2.0.0",
+      "outputFile": "app-xxxhdpi-release.apk"
     },
     {
       "type": "ONE_OF_MANY",
@@ -70,8 +70,8 @@
           "value": "hdpi"
         }
       ],
-      "versionCode": 1101,
-      "versionName": "1.0.1",
+      "versionCode": 1102,
+      "versionName": "2.0.0",
       "outputFile": "app-hdpi-release.apk"
     },
     {
@@ -82,8 +82,8 @@
           "value": "xhdpi"
         }
       ],
-      "versionCode": 4401,
-      "versionName": "1.0.1",
+      "versionCode": 4402,
+      "versionName": "2.0.0",
       "outputFile": "app-xhdpi-release.apk"
     }
   ]
