@@ -11,6 +11,7 @@ import com.project.eportfolio.model.grade.ModelGrade;
 import com.project.eportfolio.model.gradesekolah.ModelGradeSekolah;
 import com.project.eportfolio.model.guru.ModelGuru;
 import com.project.eportfolio.model.guru.ModelUpdateDataGuru;
+import com.project.eportfolio.model.kategoripo.ModelKategoriPO;
 import com.project.eportfolio.model.kategoristrategi.ModelKategoriStrategi;
 import com.project.eportfolio.model.kelas.ModelKelas;
 import com.project.eportfolio.model.matapelajaran.ModelMataPelajaran;
@@ -104,6 +105,10 @@ public interface APIInterfacesRest {
     @GET("api/achievment/all")
     Call<ModelAchievement> getDataAchievement(@Query("X-Api-Key") String apikey,
                                               @Query("limit") int limit);
+
+    @GET("api/po_kategori/all")
+    Call<ModelKategoriPO> getDataKategoriPo(@Query("X-Api-Key") String apikey,
+                                             @Query("limit") int limit);
 
 
     // ------------------------- POST DATA -------------------------

@@ -3,6 +3,7 @@ package com.project.eportfolio.student;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,7 +24,10 @@ import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.ArtikelActivity;
 import com.project.eportfolio.R;
 //import com.project.eportfolio.adapter.adapterPortfolio.AdapterSliderPortfolio;
+import com.project.eportfolio.adapter.adapterArtikel.AdapterSliderArtikel;
 import com.project.eportfolio.adapter.adapterPortfolio.AdapterSliderPortfolio;
+import com.project.eportfolio.model.blog.Blog;
+import com.project.eportfolio.model.blog.ModelBlog;
 import com.project.eportfolio.model.portfolio.ModelPortofolio;
 import com.project.eportfolio.model.portfolio.TrPortofolio;
 import com.project.eportfolio.student.outputportfolio.OutputPortfolioA;
@@ -32,6 +36,7 @@ import com.project.eportfolio.student.portfolio.PortfolioStudentAchievement;
 import com.project.eportfolio.student.portfolio.PortfolioStudentKarya;
 import com.project.eportfolio.student.portfolio.PortfolioStudentProject;
 import com.project.eportfolio.student.portfolio.PortfolioStudentUnjukKerja;
+import com.project.eportfolio.teacher.HomeTeacher;
 import com.project.eportfolio.utility.PreferenceUtils;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
@@ -61,12 +66,17 @@ public class HomeStudent extends AppCompatActivity {
     List<TrPortofolio> listOrganisasi = new ArrayList<>();
     List<TrPortofolio> listForumEdukasi = new ArrayList<>();
 
+    ModelBlog dataModelBlog;
+    List<Blog> listBlog = new ArrayList<>();
+    AdapterSliderArtikel itemListArtikel;
+    ViewPager viewPagerArticleStudent;
+
     AdapterSliderPortfolio itemList;
     ViewPager viewPager;
     RecyclerView rvSliderPortfolioSiswa;
 
     String namasiswa;
-    TextView namaSiswa;
+    TextView namaSiswa,  txtMoreArticleSiswa;
     //TextView nisSiswa;
     ImageView fotoSiswa;
 
@@ -97,6 +107,11 @@ public class HomeStudent extends AppCompatActivity {
         //nisSiswa = findViewById(R.id.nisSiswa);
         fotoSiswa = findViewById(R.id.imgSiswa);
 
+        txtMoreArticleSiswa = findViewById(R.id.txtMoreArticleSiswa);
+        txtMoreArticleSiswa.setPaintFlags(txtMoreArticleSiswa.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
+        viewPagerArticleStudent = findViewById(R.id.viewPagerArticleStudent);
+        txtload = findViewById(R.id.textloading);
+
 /*
 
         txtForumEdukasi = findViewById(R.id.txtForumEdukasi);
@@ -113,7 +128,17 @@ public class HomeStudent extends AppCompatActivity {
         txtload = findViewById(R.id.textloading);
 
         setDataSiswa();
+        first();
         //first();
+
+        txtMoreArticleSiswa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent a = new Intent(HomeStudent.this, ArtikelActivity.class);
+                startActivity(a);
+                finish();
+            }
+        });
 
         btn_portfolio.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -378,6 +403,41 @@ public class HomeStudent extends AppCompatActivity {
         });
     }
 
+    public void first(){
+        findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
+        final Handler handler = new Handler();
+
+        Runnable runnable = new Runnable() {
+            int count = 0;
+            @Override
+            public void run() {
+                count++;
+                if (count == 1)
+                {
+                    txtload.setText("Loading Article .");
+                }
+                else if (count == 2)
+                {
+                    txtload.setText("Loading Article . .");
+                }
+                else if (count == 3)
+                {
+                    txtload.setText("Loading Article . . .");
+                }
+                if (count == 3)
+                    count = 0;
+                handler.postDelayed(this, 1500);
+            }
+        };
+        handler.postDelayed(runnable, 1 * 1000);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                getArticle();
+            }
+        }).start();
+    }
+
     public void setDataSiswa(){
 
         namasiswa = PreferenceUtils.getFirstName(getApplicationContext()) + " " +
@@ -424,6 +484,70 @@ public class HomeStudent extends AppCompatActivity {
 
 
 
+    }
+
+    public void getArticle() {
+        final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
+        final Call<ModelBlog> dataSiswax = apiInterface.getDataBlog(  apikey, 10000);
+
+        dataSiswax.enqueue(new Callback<ModelBlog>() {
+            @Override
+            public void onResponse(Call<ModelBlog> call, Response<ModelBlog> response) {
+
+                dataModelBlog = response.body();
+
+                if (response.body()!=null) {
+                    for (int i = 0; i < dataModelBlog.getTotal(); i++) {
+                        listBlog.add(dataModelBlog.getData().getBlog().get(i));
+                    }
+                }
+
+                if (listBlog!=null){
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            findViewById(R.id.framelayout).setVisibility(View.GONE);
+                            setDataArtikel();
+                        }
+                    });
+
+                }
+            }
+            @Override
+            public void onFailure(Call<ModelBlog> call, Throwable t) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        findViewById(R.id.framelayout).setVisibility(View.GONE);
+                        Toast.makeText(HomeStudent.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
+                    }
+                });
+                call.cancel();
+            }
+        });
+    }
+
+    public void setDataArtikel(){
+        if (listBlog!=null){
+            try {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        for (int i=0; i<5; i++){
+                            itemListArtikel = new AdapterSliderArtikel(listBlog, getApplicationContext());
+                           /* LinearLayoutManager layoutManager
+                                    = new LinearLayoutManager(HomeTeacher.this, LinearLayoutManager.HORIZONTAL, false);
+                            rvSliderPortfolioGuru.setLayoutManager(layoutManager);*/
+                            viewPagerArticleStudent.setAdapter(itemListArtikel);
+                        }
+                    }
+                });
+            } catch (Exception e){
+
+            }
+
+        }
     }
 
     @Override

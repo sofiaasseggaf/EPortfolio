@@ -13,6 +13,9 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.provider.Settings;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -20,6 +23,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,14 +42,21 @@ import com.project.eportfolio.APIService.APIInterfacesRest;
 import com.project.eportfolio.APIService.AppUtil;
 import com.project.eportfolio.R;
 //import com.project.eportfolio.utility.FileCompressor;
+import com.project.eportfolio.model.kategoripo.ModelKategoriPO;
+import com.project.eportfolio.model.kategoripo.PoKategorus;
+import com.project.eportfolio.model.kategoristrategi.MsKategoristrategi;
 import com.project.eportfolio.model.portfolio.ModelPostPortfolio;
+import com.project.eportfolio.model.strategi.ModelStrategi;
+import com.project.eportfolio.model.strategi.MsStrategi;
 import com.project.eportfolio.student.portfolio.PortfolioStudentProject;
+import com.project.eportfolio.teacher.input.InputTeacherA;
 import com.project.eportfolio.utility.FileCompressor;
 import com.project.eportfolio.utility.PreferenceUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -74,6 +85,11 @@ public class InputStudent extends AppCompatActivity {
     String mFileName;
     MultipartBody.Part fotox;
 
+    Spinner sp_kategoripo;
+    ModelKategoriPO dataModelKategoripo;
+    List<PoKategorus> listKategoriPo = new ArrayList<>();
+    String inputIdKategoripo;
+
     static final int REQUEST_TAKE_PHOTO = 1;
     static final int REQUEST_GALLERY_PHOTO = 2;
     String apikey = "7826470ABBA476706DB24D47C6A6ED64";
@@ -90,6 +106,7 @@ public class InputStudent extends AppCompatActivity {
         txtTempat = findViewById(R.id.txtTempat);
         txtNarasi = findViewById(R.id.txtNarasi);
         imgPortofolio = findViewById(R.id.imgPortofolio);
+        sp_kategoripo = findViewById(R.id.sp_kategoripo);
 
         btnInputPortfolio = findViewById(R.id.btnInputPortfolio);
         btnOpenCamera = findViewById(R.id.btnOpenCamera);
@@ -99,6 +116,8 @@ public class InputStudent extends AppCompatActivity {
         btn_profile = findViewById(R.id.btn_profile);
 
         txtload = findViewById(R.id.textloading);
+
+        start();
 
         btn_beranda.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -156,6 +175,41 @@ public class InputStudent extends AppCompatActivity {
             }
         });
 
+        if (listKategoriPo!=null){
+            try {
+                sp_kategoripo.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                        if (listKategoriPo!=null){
+                            for (int a=0; a<listKategoriPo.size(); a++){
+                                if (listKategoriPo.get(a).getNama().equalsIgnoreCase(String.valueOf(listKategoriPo.get(position).getNama()))) {
+                                    inputIdKategoripo = listKategoriPo.get(a).getId();
+                                    break;
+                                }
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+            } catch (Exception a){ }
+
+        }
+
+    }
+
+    private void start(){
+        findViewById(R.id.framelayout).setVisibility(View.VISIBLE);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                getStrategiPo();
+            }
+        }).start();
     }
 
     private void thread() {
@@ -197,6 +251,68 @@ public class InputStudent extends AppCompatActivity {
                 sendDataAchievement();
             }
         }).start();
+    }
+
+    public void getStrategiPo() {
+        final APIInterfacesRest apiInterface = APIClient.getClient().create(APIInterfacesRest.class);
+        final Call<ModelKategoriPO> dataSiswax = apiInterface.getDataKategoriPo(  apikey, 1000);
+        dataSiswax.enqueue(new Callback<ModelKategoriPO>() {
+            @Override
+            public void onResponse(Call<ModelKategoriPO> call, Response<ModelKategoriPO> response) {
+                dataModelKategoripo = response.body();
+                if (response.body()!=null){
+                    listKategoriPo.clear();
+                    for (int i = 0; i < dataModelKategoripo.getData().getPoKategori().size(); i++) {
+                        listKategoriPo.add(dataModelKategoripo.getData().getPoKategori().get(i));
+                    }
+                }
+                if(listKategoriPo!=null){
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            findViewById(R.id.framelayout).setVisibility(View.GONE);
+                            setSpinnerKategori();
+                        }
+                    });
+                }
+            }
+            @Override
+            public void onFailure(Call<ModelKategoriPO> call, Throwable t) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(InputStudent.this, "Terjadi gangguan koneksi", Toast.LENGTH_LONG).show();
+                    }
+                });
+                call.cancel();
+            }
+        });
+    }
+
+    public void setSpinnerKategori(){
+        ArrayAdapter<PoKategorus> adapter_kategoripo = new ArrayAdapter<PoKategorus>(
+                InputStudent.this,
+                android.R.layout.simple_spinner_dropdown_item,
+                listKategoriPo)
+        {
+            @Override
+            public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View v = super.getDropDownView(position, convertView, parent);
+                ((TextView)v).setText(String.valueOf(listKategoriPo.get(position).getNama()));
+                return v;
+            }
+
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View v = super.getDropDownView(position, convertView, parent);
+                ((TextView)v).setText(String.valueOf(listKategoriPo.get(position).getNama()));
+                return v;
+            }
+        };
+
+        adapter_kategoripo.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        sp_kategoripo.setAdapter(adapter_kategoripo);
     }
 
     private void selectImage() {
@@ -382,7 +498,7 @@ public class InputStudent extends AppCompatActivity {
                 RequestBody.create(MediaType.parse("text/plain"),apikey),
                 RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getIdSekolahSiswa(getApplicationContext())),
                 RequestBody.create(MediaType.parse("text/plain"),PreferenceUtils.getIdSiswa(getApplicationContext())),
-                RequestBody.create(MediaType.parse("text/plain"),"4"),
+                RequestBody.create(MediaType.parse("text/plain"),inputIdKategoripo),
                 RequestBody.create(MediaType.parse("text/plain"),txtJudul.getText().toString()),
                 RequestBody.create(MediaType.parse("text/plain"),txtNarasi.getText().toString()),
                 RequestBody.create(MediaType.parse("text/plain"),txtTempat.getText().toString()),
