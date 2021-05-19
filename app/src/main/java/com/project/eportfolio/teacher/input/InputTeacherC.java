@@ -84,6 +84,7 @@ import retrofit2.Response;
 public class InputTeacherC extends AppCompatActivity {
 
     ImageButton btn_beranda, btn_master, btn_input, btn_profile, btn_simpandanlanjutkan;
+    LinearLayout btn_beranda2, btn_master2, btn_input2, btn_profile2;
     EditText txtNarasi, txtNilai;
     TextView txtPoint4, txtPoint3, txtPoint2, txtPoint1, txtkategori;
     LinearLayout ll_predikat_a, ll_predikat_b, ll_predikat_c, ll_predikat_d;
@@ -112,6 +113,11 @@ public class InputTeacherC extends AppCompatActivity {
         btn_input = findViewById(R.id.btn_input);
         btn_profile = findViewById(R.id.btn_profile);
         btn_simpandanlanjutkan = findViewById(R.id.btn_simpandanlanjutkan);
+
+        btn_beranda2 = findViewById(R.id.btn_home2);
+        btn_master2 = findViewById(R.id.btn_master2);
+        btn_input2 = findViewById(R.id.btn_input2);
+        btn_profile2 = findViewById(R.id.btn_profile2);
 
         rbPoint1 = findViewById(R.id.rbPoint1);
         rbPoint2 = findViewById(R.id.rbPoint2);
@@ -280,6 +286,24 @@ public class InputTeacherC extends AppCompatActivity {
             }
         });
         btn_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                keProfile();
+            }
+        });
+        btn_beranda2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+        btn_master2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                keMaster();
+            }
+        });
+        btn_profile2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 keProfile();

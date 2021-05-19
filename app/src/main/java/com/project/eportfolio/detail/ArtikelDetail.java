@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -33,7 +34,7 @@ public class ArtikelDetail extends AppCompatActivity {
     Blog artikel;
 
     ImageView img_detail_atrikel;
-    TextView txt_detail_judulartikel, txt_detail_isiartikel, txt_detail_authorartikel, txt_detail_tanggalartikel, txt_detail_kategoriartikel;
+    TextView txt_detail_judulartikel, txt_detail_isiartikel, txt_detail_authorartikel, txt_detail_tanggalartikel, txt_detail_linkartikel;
 
     String idartikel;
     String apikey = "7826470ABBA476706DB24D47C6A6ED64";
@@ -53,6 +54,7 @@ public class ArtikelDetail extends AppCompatActivity {
         txt_detail_isiartikel = findViewById(R.id.txt_detail_isiartikel);
         txt_detail_authorartikel = findViewById(R.id.txt_detail_authorartikel);
         txt_detail_tanggalartikel = findViewById(R.id.txt_detail_tanggalartikel);
+        txt_detail_linkartikel = findViewById(R.id.txt_detail_linkartikel);
         //txt_detail_kategoriartikel = findViewById(R.id.txt_detail_kategoriartikel);
     }
 
@@ -116,6 +118,8 @@ public class ArtikelDetail extends AppCompatActivity {
         txt_detail_isiartikel.setText(artikel.getContent());
         txt_detail_authorartikel.setText(artikel.getAuthor());
         txt_detail_tanggalartikel.setText(artikel.getCreatedAt());
+        txt_detail_linkartikel.setText("https://eportofolio.id/blog/"+artikel.getSlug());
+        txt_detail_linkartikel.setMovementMethod(LinkMovementMethod.getInstance());
         //txt_detail_kategoriartikel.setText("Kategori : "+artikel.getCategory());
     }
 }

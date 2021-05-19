@@ -84,6 +84,7 @@ import retrofit2.Response;
 public class InputTeacherD extends AppCompatActivity {
 
     ImageButton btn_beranda, btn_master, btn_input, btn_profile;
+    LinearLayout btn_beranda2, btn_master2, btn_input2, btn_profile2;
     ImageButton btnInputPortfolio, btnOpenCamera;
     ImageView imgPortofolio;
     String inputIdStrategi, inputIdKategori, inputTxtJudul, inputTahunAjaran, inputSemester;
@@ -120,6 +121,11 @@ public class InputTeacherD extends AppCompatActivity {
         imgPortofolio = findViewById(R.id.imgPortofolio);
         txtload = findViewById(R.id.textloading);
 
+        btn_beranda2 = findViewById(R.id.btn_home2);
+        btn_master2 = findViewById(R.id.btn_master2);
+        btn_input2 = findViewById(R.id.btn_input2);
+        btn_profile2 = findViewById(R.id.btn_profile2);
+
         Intent intent = getIntent();
         inputIdStrategi = intent.getStringExtra("inputIdStrategi");
         inputIdKategori = intent.getStringExtra("inputIdKategori");
@@ -150,6 +156,25 @@ public class InputTeacherD extends AppCompatActivity {
             }
         });
         btn_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                keProfile();
+            }
+        });
+
+        btn_beranda2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                keHome();
+            }
+        });
+        btn_master2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                keMaster();
+            }
+        });
+        btn_profile2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 keProfile();

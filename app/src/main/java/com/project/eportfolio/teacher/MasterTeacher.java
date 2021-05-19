@@ -20,6 +20,7 @@ import com.project.eportfolio.teacher.master.DataPortfolioDuaModel;
 public class MasterTeacher extends AppCompatActivity {
 
     ImageButton btn_beranda, btn_master, btn_input, btn_profile;
+    LinearLayout btn_beranda2, btn_master2, btn_input2, btn_profile2;
     LinearLayout btnDataMurid, btnDataGuru, btnDataKelas, btnDataMapel, btnDataPortfolio;
 
     @Override
@@ -38,6 +39,13 @@ public class MasterTeacher extends AppCompatActivity {
         btnDataMapel = findViewById(R.id.btnDataMapel);
         btnDataPortfolio = findViewById(R.id.btnDataPortfolio);
 
+
+        btn_beranda2 = findViewById(R.id.btn_home2);
+        btn_master2 = findViewById(R.id.btn_master2);
+        btn_input2 = findViewById(R.id.btn_input2);
+        btn_profile2 = findViewById(R.id.btn_profile2);
+
+
         btn_beranda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,14 +59,6 @@ public class MasterTeacher extends AppCompatActivity {
                 Intent a = new Intent(MasterTeacher.this, InputTeacherA.class);
                 startActivity(a);
                 finish();
-                /*if(Build.VERSION.SDK_INT>20){
-                    ActivityOptions options =
-                            ActivityOptions.makeSceneTransitionAnimation(MasterTeacher.this);
-                    startActivity(a,options.toBundle());
-                }else {
-                    startActivity(a);
-                    finish();
-                }*/
             }
         });
 
@@ -68,14 +68,31 @@ public class MasterTeacher extends AppCompatActivity {
                 Intent a = new Intent(MasterTeacher.this, ProfileTeacher.class);
                 startActivity(a);
                 finish();
-                /*if(Build.VERSION.SDK_INT>20){
-                    ActivityOptions options =
-                            ActivityOptions.makeSceneTransitionAnimation(MasterTeacher.this);
-                    startActivity(a,options.toBundle());
-                }else {
-                    startActivity(a);
-                    finish();
-                }*/
+            }
+        });
+
+        btn_beranda2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        btn_input2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(MasterTeacher.this, InputTeacherA.class);
+                startActivity(a);
+                finish();
+            }
+        });
+
+        btn_profile2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(MasterTeacher.this, ProfileTeacher.class);
+                startActivity(a);
+                finish();
             }
         });
 

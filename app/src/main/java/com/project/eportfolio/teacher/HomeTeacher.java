@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +48,7 @@ import retrofit2.Response;
 public class HomeTeacher extends AppCompatActivity {
 
     ImageButton btn_beranda, btn_master, btn_input, btn_profile;
+    LinearLayout btn_beranda2, btn_master2, btn_input2, btn_profile2;
     ImageButton btn_home_kelas, btn_home_mapel, btn_home_guru, btn_home_siswa;
     ImageButton btn_home_portfolio, btn_home_master, btn_home_artikel, btn_home_kalender;
 
@@ -72,6 +74,11 @@ public class HomeTeacher extends AppCompatActivity {
         btn_input = findViewById(R.id.btn_input);
         btn_profile = findViewById(R.id.btn_profile);
 
+        btn_beranda2 = findViewById(R.id.btn_home2);
+        btn_master2 = findViewById(R.id.btn_master2);
+        btn_input2 = findViewById(R.id.btn_input2);
+        btn_profile2 = findViewById(R.id.btn_profile2);
+
         btn_home_kelas = findViewById(R.id.btn_home_kelas);
         btn_home_mapel = findViewById(R.id.btn_home_mapel);
         btn_home_guru = findViewById(R.id.btn_home_guru);
@@ -92,6 +99,15 @@ public class HomeTeacher extends AppCompatActivity {
         first();
 
         btn_master.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(HomeTeacher.this, MasterTeacher.class);
+                startActivity(a);
+                finish();
+            }
+        });
+
+        btn_master2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent a = new Intent(HomeTeacher.this, MasterTeacher.class);
@@ -132,14 +148,6 @@ public class HomeTeacher extends AppCompatActivity {
                 Intent a = new Intent(HomeTeacher.this, InputTeacherA.class);
                 startActivity(a);
                 finish();
-                /*if(Build.VERSION.SDK_INT>20){
-                    ActivityOptions options =
-                            ActivityOptions.makeSceneTransitionAnimation(HomeTeacher.this);
-                    startActivity(a,options.toBundle());
-                }else {
-                    startActivity(a);
-                    finish();
-                }*/
             }
         });
 
@@ -149,14 +157,24 @@ public class HomeTeacher extends AppCompatActivity {
                 Intent a = new Intent(HomeTeacher.this, ProfileTeacher.class);
                 startActivity(a);
                 finish();
-               /* if(Build.VERSION.SDK_INT>20){
-                    ActivityOptions options =
-                            ActivityOptions.makeSceneTransitionAnimation(HomeTeacher.this);
-                    startActivity(a,options.toBundle());
-                }else {
-                    startActivity(a);
-                    finish();
-                }*/
+            }
+        });
+
+        btn_input2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(HomeTeacher.this, InputTeacherA.class);
+                startActivity(a);
+                finish();
+            }
+        });
+
+        btn_profile2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(HomeTeacher.this, ProfileTeacher.class);
+                startActivity(a);
+                finish();
             }
         });
 

@@ -85,6 +85,7 @@ public class InputTeacherB extends AppCompatActivity {
 
     ImageButton btn_beranda, btn_master, btn_input, btn_profile, btn_simpandanlanjutkan;
     Spinner sp_mapel, sp_kelas, sp_siswa, sp_semester, sp_tahun_ajaran; //sp_kategori
+    LinearLayout btn_beranda2, btn_master2, btn_input2, btn_profile2;
     String inputIdSiswa, inputIdMapel, inputIdKelas, inputNamaKelas;
     String inputIdStrategi, inputIdKategori, inputTxtJudul;
 
@@ -119,6 +120,11 @@ public class InputTeacherB extends AppCompatActivity {
         btn_input = findViewById(R.id.btn_input);
         btn_profile = findViewById(R.id.btn_profile);
         btn_simpandanlanjutkan = findViewById(R.id.btn_simpandanlanjutkan);
+
+        btn_beranda2 = findViewById(R.id.btn_home2);
+        btn_master2 = findViewById(R.id.btn_master2);
+        btn_input2 = findViewById(R.id.btn_input2);
+        btn_profile2 = findViewById(R.id.btn_profile2);
 
         sp_kelas = findViewById(R.id.sp_kelas);
         sp_siswa = findViewById(R.id.sp_siswa);
@@ -256,6 +262,26 @@ public class InputTeacherB extends AppCompatActivity {
                 keProfile();
             }
         });
+
+        btn_beranda2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+        btn_master2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                keMaster();
+            }
+        });
+        btn_profile2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                keProfile();
+            }
+        });
+
         btn_simpandanlanjutkan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

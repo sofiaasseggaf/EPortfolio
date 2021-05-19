@@ -19,6 +19,7 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -75,6 +76,7 @@ import retrofit2.Response;
 public class InputStudent extends AppCompatActivity {
 
     ImageButton btn_beranda, btn_portfolio, btn_input, btn_profile;
+    LinearLayout btn_beranda2, btn_portfolio2, btn_input2, btn_profile2;
     EditText txtJudul, txtTempat, txtNarasi;
     ImageButton btnInputPortfolio, btnOpenCamera;
     ImageView imgPortofolio;
@@ -114,6 +116,10 @@ public class InputStudent extends AppCompatActivity {
         btn_portfolio = findViewById(R.id.btn_portfolio);
         btn_input = findViewById(R.id.btn_input);
         btn_profile = findViewById(R.id.btn_profile);
+        btn_beranda2 = findViewById(R.id.btn_home2);
+        btn_portfolio2 = findViewById(R.id.btn_portfolio2);
+        btn_input2 = findViewById(R.id.btn_input2);
+        btn_profile2 = findViewById(R.id.btn_profile2);
 
         txtload = findViewById(R.id.textloading);
 
@@ -134,6 +140,27 @@ public class InputStudent extends AppCompatActivity {
         });
 
         btn_profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                keProfile();
+            }
+        });
+
+        btn_beranda2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        btn_portfolio2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                kePortfolio();
+            }
+        });
+
+        btn_profile2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 keProfile();

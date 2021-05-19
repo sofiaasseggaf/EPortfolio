@@ -143,6 +143,7 @@
         android:background="@drawable/rect_bottombar">
 
         <LinearLayout
+            android:id="@+id/btn_home2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -164,6 +165,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btn_portfolio2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -185,6 +187,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btn_input2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -206,6 +209,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btn_profile2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

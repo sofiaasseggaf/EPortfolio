@@ -32,6 +32,7 @@ import com.squareup.picasso.Target;
 public class ProfileStudent extends AppCompatActivity {
 
     ImageButton btn_beranda, btn_portfolio, btn_input, btn_profile;
+    LinearLayout btn_beranda2, btn_portfolio2, btn_input2, btn_profile2;
     TextView namaProfile;
     ImageView imgProfile;
     String namasiswa;
@@ -48,6 +49,10 @@ public class ProfileStudent extends AppCompatActivity {
         btn_portfolio = findViewById(R.id.btn_portfolio);
         btn_input = findViewById(R.id.btn_input);
         btn_profile = findViewById(R.id.btn_profile);
+        btn_beranda2 = findViewById(R.id.btn_home2);
+        btn_portfolio2 = findViewById(R.id.btn_portfolio2);
+        btn_input2 = findViewById(R.id.btn_input2);
+        btn_profile2 = findViewById(R.id.btn_profile2);
 
         btnEditAccount = findViewById(R.id.btnEditAccount);
         btnEditPrivacy = findViewById(R.id.btnEditPrivacy);
@@ -118,14 +123,7 @@ public class ProfileStudent extends AppCompatActivity {
                 Intent a = new Intent(ProfileStudent.this, PortfolioStudentProject.class);
                 startActivity(a);
                 finish();
-                /*if(Build.VERSION.SDK_INT>20){
-                    ActivityOptions options =
-                            ActivityOptions.makeSceneTransitionAnimation(ProfileStudent.this);
-                    startActivity(a,options.toBundle());
-                }else {
-                    startActivity(a);
-                    finish();
-                }*/
+
             }
         });
 
@@ -135,14 +133,34 @@ public class ProfileStudent extends AppCompatActivity {
                 Intent a = new Intent(ProfileStudent.this, InputStudent.class);
                 startActivity(a);
                 finish();
-                /*if(Build.VERSION.SDK_INT>20){
-                    ActivityOptions options =
-                            ActivityOptions.makeSceneTransitionAnimation(ProfileStudent.this);
-                    startActivity(a,options.toBundle());
-                }else {
-                    startActivity(a);
-                    finish();
-                }*/
+
+            }
+        });
+
+        btn_beranda2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        btn_portfolio2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(ProfileStudent.this, PortfolioStudentProject.class);
+                startActivity(a);
+                finish();
+
+            }
+        });
+
+        btn_input2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(ProfileStudent.this, InputStudent.class);
+                startActivity(a);
+                finish();
+
             }
         });
 

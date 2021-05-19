@@ -23,6 +23,7 @@ import com.squareup.picasso.Picasso;
 public class ProfileTeacher extends AppCompatActivity {
 
     ImageButton btn_beranda, btn_master, btn_input, btn_profile;
+    LinearLayout btn_beranda2, btn_master2, btn_input2, btn_profile2;
     TextView namaProfile;
     ImageView imgProfile;
     String namaguru;
@@ -39,6 +40,11 @@ public class ProfileTeacher extends AppCompatActivity {
         btn_master = findViewById(R.id.btn_master);
         btn_input = findViewById(R.id.btn_input);
         btn_profile = findViewById(R.id.btn_profile);
+
+        btn_beranda2 = findViewById(R.id.btn_home2);
+        btn_master2 = findViewById(R.id.btn_master2);
+        btn_input2 = findViewById(R.id.btn_input2);
+        btn_profile2 = findViewById(R.id.btn_profile2);
 
         btnEditAccount = findViewById(R.id.btnEditAccount);
         btnEditPrivacy = findViewById(R.id.btnEditPrivacy);
@@ -74,14 +80,6 @@ public class ProfileTeacher extends AppCompatActivity {
                 Intent a = new Intent(ProfileTeacher.this, MasterTeacher.class);
                 startActivity(a);
                 finish();
-                /*if(Build.VERSION.SDK_INT>20){
-                    ActivityOptions options =
-                            ActivityOptions.makeSceneTransitionAnimation(ProfileTeacher.this);
-                    startActivity(a,options.toBundle());
-                }else {
-                    startActivity(a);
-                    finish();
-                }*/
             }
         });
 
@@ -91,14 +89,33 @@ public class ProfileTeacher extends AppCompatActivity {
                 Intent a = new Intent(ProfileTeacher.this, InputTeacherA.class);
                 startActivity(a);
                 finish();
-                /*if(Build.VERSION.SDK_INT>20){
-                    ActivityOptions options =
-                            ActivityOptions.makeSceneTransitionAnimation(ProfileTeacher.this);
-                    startActivity(a,options.toBundle());
-                }else {
-                    startActivity(a);
-                    finish();
-                }*/
+            }
+        });
+
+
+
+        btn_beranda2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+        btn_master2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(ProfileTeacher.this, MasterTeacher.class);
+                startActivity(a);
+                finish();
+            }
+        });
+
+        btn_input2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent a = new Intent(ProfileTeacher.this, InputTeacherA.class);
+                startActivity(a);
+                finish();
             }
         });
 

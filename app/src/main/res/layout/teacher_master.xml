@@ -76,16 +76,18 @@
         android:background="@drawable/rect_bottombar">
 
         <LinearLayout
+            android:id="@+id/btn_home2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
             android:gravity="center">
+
             <ImageButton
                 android:id="@+id/btn_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/icon_home_inactive"/>
+                android:background="@drawable/icon_home_inactive" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -97,6 +99,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btn_master2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -118,6 +121,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btn_input2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -139,6 +143,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/btn_profile2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
